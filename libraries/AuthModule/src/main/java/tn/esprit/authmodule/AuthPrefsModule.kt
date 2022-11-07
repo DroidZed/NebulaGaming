@@ -1,5 +1,6 @@
 package tn.esprit.authmodule
 
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,12 +15,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 abstract class AuthPrefsModule {
 
-    @Singleton
-    @Provides
+
+    @Binds
     abstract fun provideUserAuthManager(impl: UserAuthManagerImpl): UserAuthManager
 
-    @Singleton
-    @Provides
+    @Binds
     abstract fun provideJWTManager(impl: JWTManagerImpl): JWTManager
 
 }
