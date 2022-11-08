@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import dagger.hilt.android.qualifiers.ApplicationContext
-import tn.esprit.shared.APP_PREFS
-import tn.esprit.shared.JWT_KEY
-import tn.esprit.shared.U_ID_KEY
+import tn.esprit.shared.Consts.APP_PREFS
+import tn.esprit.shared.Consts.JWT_KEY
+import tn.esprit.shared.Consts.U_ID_KEY
 import tn.esprit.shared.UserInfo
 import javax.inject.Inject
 

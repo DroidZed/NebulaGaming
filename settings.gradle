@@ -16,3 +16,4 @@ rootProject.name = "Nebula Gaming"
 include ':app'
 include ':libraries:Shared'
 include ':libraries:AuthModule'
+include ':libraries:ApiModule'
