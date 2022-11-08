@@ -1,9 +1,12 @@
 package tn.esprit.shared
 
-const val APP_PREFS = "STAR_DUST"
+object Consts {
 
-const val JWT_KEY = "USER_TOKEN"
+    const val APP_PREFS = "STAR_DUST"
 
-const val U_ID_KEY = "USER_ID"
+    const val JWT_KEY = "USER_TOKEN"
 
-const val FUNCTION_URL = "https://ng-back.vercel.app/"
+    const val U_ID_KEY = "USER_ID"
+
+    const val FUNCTION_URL = "https://ng-back.vercel.app/"
+}

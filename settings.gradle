@@ -15,6 +15,5 @@ dependencyResolutionManagement {
 rootProject.name = "Nebula Gaming"
 include ':app'
 include ':libraries:Shared'
-include ':features:SplashScreen'
 include ':libraries:AuthModule'
-include ':features:LoginScreen'
+include ':libraries:ApiModule'
