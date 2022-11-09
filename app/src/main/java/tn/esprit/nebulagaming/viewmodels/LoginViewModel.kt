@@ -7,21 +7,19 @@ import androidx.lifecycle.ViewModel
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
-import tn.esprit.apimodule.NetworkModule
 import tn.esprit.apimodule.models.AuthReqBody
 import tn.esprit.apimodule.models.AuthResp
-import tn.esprit.authmodule.repos.JWTManagerImpl
-import tn.esprit.authmodule.repos.UserAuthManagerImpl
+import tn.esprit.apimodule.repos.AuthApiService
+import tn.esprit.authmodule.repos.JWTManager
+import tn.esprit.authmodule.repos.UserAuthManager
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val UserAuthManager: UserAuthManagerImpl,
-    private val JwtManager: JWTManagerImpl,
-    private val networkModule: NetworkModule
+    private val JwtManager: JWTManager,
+    private val apiService: AuthApiService,
+    private val UserAuthManager: UserAuthManager
 ) : ViewModel() {
-
-    private val retrofitClient = networkModule.providesRetrofit()
 
     private var job: Job? = null
     var errorMessage = MutableLiveData<String>()
@@ -33,7 +31,10 @@ class LoginViewModel @Inject constructor(
 
         if (validateInputs(inputs, textLayouts).toList().all { it })
 
-            processLogin(inputs[0].text.toString(), inputs[1].text.toString())
+            processLogin(
+                email = inputs[0].text.toString(),
+                password = inputs[1].text.toString()
+            )
     }
 
     override fun onCleared() {
@@ -41,14 +42,11 @@ class LoginViewModel @Inject constructor(
         job?.cancel()
     }
 
-    // TODO: login with retrofit
     private fun processLogin(email: String, password: String) {
-
-        val authApiService = networkModule.providesAuthAPI(retrofitClient)
 
         job = CoroutineScope(Dispatchers.IO).launch {
 
-            val loginResp = authApiService.login(AuthReqBody(email, password))
+            val loginResp = apiService.login(AuthReqBody(email, password))
             withContext(Dispatchers.Main) {
                 if (loginResp.isSuccessful)
                     onSuccess(loginResp.body()!!)
@@ -58,19 +56,18 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private fun onSuccess(loginResp: AuthResp) {
-        val token = loginResp.token!!
+    private fun onSuccess(apiResponse: AuthResp) {
+        val token = apiResponse.token!!
 
         val userId = JwtManager.extractUserIdFromJWT(token)
 
         UserAuthManager.saveUserInfoToStorage(userId, token)
 
         loading.value = false
-
     }
 
-    private fun onError(loginResp: AuthResp) {
-        errorMessage.value = loginResp.error!!
+    private fun onError(apiResponse: AuthResp) {
+        errorMessage.value = apiResponse.error!!
         loading.value = false
     }
 
@@ -79,24 +76,36 @@ class LoginViewModel @Inject constructor(
         textLayouts: List<TextInputLayout>
     ): Pair<Boolean, Boolean> {
 
-        val emailET = inputs[0]
-
         when {
 
             inputs.all { it.text.isBlank() } -> {
                 textLayouts.forEach {
-                    it.error = "Field mustn't be blank!"
-                    it.isErrorEnabled = true
+                    it.apply {
+                        error = "Field mustn't be blank!"
+                        isErrorEnabled = true
+                    }
                 }
                 return Pair(false, false)
             }
 
-            !Patterns.EMAIL_ADDRESS.matcher(emailET.text.toString()).matches() -> return Pair(
-                false,
-                true
-            )
+            !Patterns.EMAIL_ADDRESS.matcher(inputs[0].text.toString()).matches() -> {
+                textLayouts[0].apply {
+                    isErrorEnabled = true
+                    error = "Invalid email !"
+                }
 
-            else -> return Pair(true, true)
+                return Pair(false, true)
+            }
+
+            else -> {
+                textLayouts.forEach {
+                    it.apply {
+                        error = null
+                        isErrorEnabled = false
+                    }
+                }
+                return Pair(true, true)
+            }
         }
     }
 }
