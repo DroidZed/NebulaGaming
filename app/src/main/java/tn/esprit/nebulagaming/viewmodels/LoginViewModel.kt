@@ -53,10 +53,17 @@ class LoginViewModel @Inject constructor(
 
             val loginResp = apiService.login(AuthReqBody(email, password))
             withContext(Dispatchers.Main) {
-                if (loginResp.isSuccessful)
-                    onSuccess(loginResp.body()!!)
-                else
-                    onError(loginResp.body()!!)
+                try {
+
+                    if (loginResp.isSuccessful)
+                        onSuccess(loginResp.body()!!)
+                    else {
+                        println("error in retrofit")
+                        onError(loginResp.body()?.error!!)
+                    }
+                } catch (ex: Exception) {
+                    onError("Error connecting to the server !")
+                }
             }
         }
     }
@@ -72,8 +79,8 @@ class LoginViewModel @Inject constructor(
         loading.value = false
     }
 
-    private fun onError(apiResponse: AuthResp) {
-        errorMessage.value = apiResponse.error!!
+    private fun onError(message: String) {
+        errorMessage.value = message
         loading.value = false
     }
 
