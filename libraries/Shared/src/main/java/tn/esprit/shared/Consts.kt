@@ -10,5 +10,5 @@ object Consts {
 
     const val U_ID_KEY = "USER_ID"
 
-    const val FUNCTION_URL = "https://ng-back.vercel.app/"
+    const val FUNCTION_URL = "https://ng-back.vercel.app"
 }

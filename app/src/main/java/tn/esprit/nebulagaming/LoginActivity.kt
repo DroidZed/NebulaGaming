@@ -9,8 +9,10 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputLayout
+import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.nebulagaming.viewmodels.LoginViewModel
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private val loginVM: LoginViewModel by viewModels()
