@@ -10,65 +10,49 @@ import tn.esprit.apimodule.repos.AuthApiService
 import tn.esprit.apimodule.repos.UserApiService
 import tn.esprit.apimodule.utils.AuthInterceptor
 import tn.esprit.shared.Consts.FUNCTION_URL
-import java.util.concurrent.TimeUnit
 
 
-class NetworkClient {
+class NetworkClient(context: Context) {
 
-    private lateinit var authService: AuthApiService
-    private lateinit var userService: UserApiService
+    private val secureClient: Retrofit
+    private val defaultClient: Retrofit
 
-    fun getAuthService(context: Context): AuthApiService {
 
-        if (!::authService.isInitialized) {
+    init {
+        secureClient = Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okhttpClient(context))
+            .baseUrl(FUNCTION_URL)
+            .build()
 
-            val retrofit = Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(okhttpClient(context))
-                .baseUrl(FUNCTION_URL)
-                .build()
-
-            authService = retrofit.create(AuthApiService::class.java)
-        }
-
-        return authService
+        defaultClient = Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(defaultInterceptor())
+            .baseUrl(FUNCTION_URL)
+            .build()
     }
 
-    fun getUserService(context: Context): UserApiService {
+    fun getAuthService(): AuthApiService =
+        defaultClient.create(AuthApiService::class.java)
 
-        if (!::userService.isInitialized) {
-
-            val retrofit = Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(defaultInterceptor())
-                .baseUrl(FUNCTION_URL)
-                .build()
-
-            userService = retrofit.create(UserApiService::class.java)
-        }
-
-        return userService
-
-    }
+    fun getUserService(): UserApiService =
+        secureClient.create(UserApiService::class.java)
 
 
     /**
      * Initialize OkhttpClient with our interceptor
      */
-    private fun okhttpClient(context: Context): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(AuthInterceptor(context))
-            .build()
-    }
+    private fun okhttpClient(context: Context): OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(AuthInterceptor(context))
+        .build()
+
 
     /**
      * Initialize OkhttpClient with a default interceptor
      */
-    private fun defaultInterceptor(): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().apply {
-                this.level = HttpLoggingInterceptor.Level.BODY
-            })
-            .build()
-    }
+    private fun defaultInterceptor(): OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(HttpLoggingInterceptor().apply {
+            this.level = HttpLoggingInterceptor.Level.BODY
+        })
+        .build()
 }

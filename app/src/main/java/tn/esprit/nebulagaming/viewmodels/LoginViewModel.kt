@@ -21,10 +21,10 @@ class LoginViewModel @Inject constructor(
     private val UserAuthManager: UserAuthManager
 ) : ViewModel() {
 
-    private var job: Job? = null
     var errorMessage = MutableLiveData<String>()
     val loading = MutableLiveData<Boolean>()
 
+    private var job: Job? = null
 
     // onclick login button
     fun handleLogin(context: Context, inputs: List<EditText>, textLayouts: List<TextInputLayout>) {
@@ -45,9 +45,9 @@ class LoginViewModel @Inject constructor(
 
     private fun processLogin(email: String, password: String, context: Context) {
 
-        val authClient = NetworkClient()
+        val authClient = NetworkClient(context)
 
-        val apiService = authClient.getAuthService(context)
+        val apiService = authClient.getAuthService()
 
         job = CoroutineScope(Dispatchers.IO).launch {
 
