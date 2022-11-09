@@ -1,4 +1,4 @@
-package tn.esprit.nebulagaming
+package tn.esprit.apimodule
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
