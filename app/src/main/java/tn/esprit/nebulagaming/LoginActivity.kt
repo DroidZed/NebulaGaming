@@ -36,11 +36,18 @@ class LoginActivity : AppCompatActivity() {
         loginBtn.setOnClickListener {
             loginVM.handleLogin(listOf(emailET, passwordET), listOf(emailTL, passwordTL))
 
-            loginVM.errorMessage.observe(this) {
-                if (it != null) {
-                    Toast.makeText(this, "Error logging in", Toast.LENGTH_SHORT).show()
-                } else {
-                    // startActivity(Intent(this, HomeScreen::class.java))
+            loginVM.loading.observe(this) { loadingValue ->
+
+                if (!loadingValue) {
+
+                    loginVM.errorMessage.observe(this) { error ->
+                        if (error != null) {
+                            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+                        } else {
+                            // startActivity(Intent(this, HomeScreen::class.java))
+                            Toast.makeText(this, "Logged in !", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
             }
         }
