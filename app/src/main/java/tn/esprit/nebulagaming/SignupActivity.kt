@@ -44,13 +44,13 @@ class SignupActivity : AppCompatActivity() {
             } else if (PhoneInputText.text.toString().isEmpty()) {
                 PhoneTextLayout.error = "Phone Required"
             } else {
-                val intent = Intent(this, role::class.java)
+                val intent = Intent(this, RoleActivity::class.java)
                 startActivity(intent)
             }
         }
 
         haveacc.setOnClickListener {
-            val intent = Intent(this, Signin::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
     }

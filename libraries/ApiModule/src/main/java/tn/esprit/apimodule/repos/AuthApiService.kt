@@ -1,12 +1,14 @@
 package tn.esprit.apimodule.repos
 
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.Header
 import retrofit2.http.POST
 import tn.esprit.apimodule.models.AuthReqBody
 import tn.esprit.apimodule.models.AuthResp
 import tn.esprit.apimodule.models.GenericResp
-
 
 interface AuthApiService {
 
@@ -27,4 +29,8 @@ interface AuthApiService {
 
     @POST("forgetPassword")
     suspend fun unsecureChangePassword(@Body emailCodePassword: AuthReqBody): Response<GenericResp>
+
+    @POST("refresh-token")
+    @FormUrlEncoded
+    fun resetUserToken(@Header("Refresh-Token") params: String): Call<Response<AuthResp>>
 }

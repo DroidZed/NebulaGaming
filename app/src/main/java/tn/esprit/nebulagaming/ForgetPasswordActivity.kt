@@ -28,7 +28,7 @@ class ForgetPasswordActivity : AppCompatActivity() {
 
         // events
         actionBtn.setOnClickListener {
-            forgetPwdVM.handleForgetPasswordRequest(emailInput, emailTLayout)
+            forgetPwdVM.handleForgetPasswordRequest(this, emailInput, emailTLayout)
 
             forgetPwdVM.loading.observe(this) { loadingValue ->
 
@@ -39,7 +39,8 @@ class ForgetPasswordActivity : AppCompatActivity() {
                             Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
                         } else {
                             // startActivity(Intent(this, HomeScreen::class.java))
-                            Toast.makeText(this, forgetPwdVM.apiMessage.value, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, forgetPwdVM.apiMessage.value, Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
                 }

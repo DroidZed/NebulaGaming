@@ -1,5 +1,6 @@
 package tn.esprit.nebulagaming.viewmodels
 
+import android.content.Context
 import android.util.Patterns
 import android.widget.EditText
 import androidx.lifecycle.MutableLiveData
@@ -7,16 +8,12 @@ import androidx.lifecycle.ViewModel
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.AuthReqBody
 import tn.esprit.apimodule.models.GenericResp
-import tn.esprit.apimodule.repos.AuthApiService
-import javax.inject.Inject
 
 @HiltViewModel
-class ForgetPasswordViewModel @Inject constructor(
-    private val apiService: AuthApiService,
-) :
-    ViewModel() {
+class ForgetPasswordViewModel : ViewModel() {
 
     private var job: Job? = null
     var errorMessage = MutableLiveData<String>()
@@ -24,13 +21,22 @@ class ForgetPasswordViewModel @Inject constructor(
     val loading = MutableLiveData<Boolean>()
 
     // onclick send button
-    fun handleForgetPasswordRequest(emailInput: EditText, emailTLayout: TextInputLayout) {
+    fun handleForgetPasswordRequest(
+        context: Context,
+        emailInput: EditText,
+        emailTLayout: TextInputLayout
+    ) {
 
         if (validateInput(emailInput, emailTLayout))
-            sendRequest(emailInput.text.toString())
+            sendRequest(context, emailInput.text.toString())
     }
 
-    private fun sendRequest(email: String) {
+    private fun sendRequest(context: Context, email: String) {
+
+
+        val authClient = NetworkClient()
+
+        val apiService = authClient.getAuthService(context)
 
         job = CoroutineScope(Dispatchers.IO).launch {
             val response = apiService.forgetPasswordRequest(AuthReqBody(email))

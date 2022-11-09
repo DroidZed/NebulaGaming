@@ -1,5 +1,6 @@
 package tn.esprit.nebulagaming.viewmodels
 
+import android.content.Context
 import android.util.Patterns
 import android.widget.EditText
 import androidx.lifecycle.MutableLiveData
@@ -7,9 +8,9 @@ import androidx.lifecycle.ViewModel
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.AuthReqBody
 import tn.esprit.apimodule.models.AuthResp
-import tn.esprit.apimodule.repos.AuthApiService
 import tn.esprit.authmodule.repos.JWTManager
 import tn.esprit.authmodule.repos.UserAuthManager
 import javax.inject.Inject
@@ -17,7 +18,6 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val JwtManager: JWTManager,
-    private val apiService: AuthApiService,
     private val UserAuthManager: UserAuthManager
 ) : ViewModel() {
 
@@ -27,13 +27,14 @@ class LoginViewModel @Inject constructor(
 
 
     // onclick login button
-    fun handleLogin(inputs: List<EditText>, textLayouts: List<TextInputLayout>) {
+    fun handleLogin(context: Context, inputs: List<EditText>, textLayouts: List<TextInputLayout>) {
 
         if (validateInputs(inputs, textLayouts).toList().all { it })
 
             processLogin(
                 email = inputs[0].text.toString(),
-                password = inputs[1].text.toString()
+                password = inputs[1].text.toString(),
+                context
             )
     }
 
@@ -42,7 +43,11 @@ class LoginViewModel @Inject constructor(
         job?.cancel()
     }
 
-    private fun processLogin(email: String, password: String) {
+    private fun processLogin(email: String, password: String, context: Context) {
+
+        val authClient = NetworkClient()
+
+        val apiService = authClient.getAuthService(context)
 
         job = CoroutineScope(Dispatchers.IO).launch {
 
@@ -58,10 +63,11 @@ class LoginViewModel @Inject constructor(
 
     private fun onSuccess(apiResponse: AuthResp) {
         val token = apiResponse.token!!
+        val refresh = apiResponse.refresh!!
 
         val userId = JwtManager.extractUserIdFromJWT(token)
 
-        UserAuthManager.saveUserInfoToStorage(userId, token)
+        UserAuthManager.saveUserInfoToStorage(userId, token, refresh)
 
         loading.value = false
     }

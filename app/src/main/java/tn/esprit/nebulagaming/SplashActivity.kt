@@ -10,8 +10,7 @@ import android.view.animation.Animation
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 
-
-class Splash : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
     private lateinit var img:ImageView
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +23,7 @@ class Splash : AppCompatActivity() {
         a.duration = 3000
         a.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation?) {
-                img.setVisibility(View.VISIBLE)
+                img.visibility = View.VISIBLE
 
             }
 
@@ -33,16 +32,15 @@ class Splash : AppCompatActivity() {
             }
 
             override fun onAnimationEnd(animation: Animation?) {
-                img.setVisibility(View.GONE)
+                img.visibility = View.GONE
 
             }
         })
 
         img.startAnimation(a)
 
-        Handler().postDelayed({
-            val intent = Intent(this, Signin::class.java)
-            startActivity(intent)
+        Handler(mainLooper).postDelayed({
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }, 2000)
     }

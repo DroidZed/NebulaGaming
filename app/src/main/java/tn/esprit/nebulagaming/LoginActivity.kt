@@ -24,17 +24,27 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginBtn: Button
 
     private lateinit var forgotPasswordLink: TextView
-    private lateinit var signUpBtn: Button
+    private lateinit var signUpPrompt: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         // findViewById
+        emailET = findViewById(R.id.emailTf)
+        passwordET = findViewById(R.id.passwordTf)
+
+        emailTL = findViewById(R.id.emailTextLay)
+        passwordTL = findViewById(R.id.passwordTextLay)
+
+        loginBtn = findViewById(R.id.buttonLogin)
+
+        forgotPasswordLink = findViewById(R.id.resetPasswordLink)
+        signUpPrompt = findViewById(R.id.signUpText)
 
         // events
         loginBtn.setOnClickListener {
-            loginVM.handleLogin(listOf(emailET, passwordET), listOf(emailTL, passwordTL))
+            loginVM.handleLogin(this, listOf(emailET, passwordET), listOf(emailTL, passwordTL))
 
             loginVM.loading.observe(this) { loadingValue ->
 
@@ -56,8 +66,8 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, ForgetPasswordActivity::class.java))
         }
 
-        signUpBtn.setOnClickListener {
-            //TODO: generate SignUp activity startActivity(Intent(this, SignUpActivity::class.java))
+        signUpPrompt.setOnClickListener {
+            startActivity(Intent(this, SignupActivity::class.java))
         }
     }
 }

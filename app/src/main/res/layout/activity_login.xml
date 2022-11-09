@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="15dp"
     android:background="@drawable/backgroundd"
     android:orientation="vertical"
-    tools:context=".Signin">
+    tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="99dp"
         android:layout_height="99dp"
         android:layout_gravity="center"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="14dp"
         android:contentDescription="@string/todo"
         app:layout_constraintBottom_toTopOf="@+id/sign"
@@ -45,16 +44,15 @@
         android:layout_gravity="top"
         android:layout_marginTop="20dp"
         android:gravity="top"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailTextLay"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="12dp"
             android:hint="@string/email"
             android:textColorHint="#E1FFFFFF"
             app:boxBackgroundColor="@color/inputBg"
@@ -84,9 +82,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="8dp"
             android:hint="@string/password"
             android:textColorHint="#E1FFFFFF"
             app:boxBackgroundColor="@color/inputBg"
@@ -117,23 +113,22 @@
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
             android:backgroundTint="#3C1E5C"
-            android:text="Login"
+            android:text="@string/login"
 
             android:textColor="@color/white"
             app:startIconDrawable="@drawable/ic_fbicone" />
 
         <TextView
-            android:id="@+id/resetpassword"
+            android:id="@+id/resetPasswordLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
             android:clickable="true"
+            android:focusable="true"
             android:minHeight="48dp"
-            android:text="Reset password ?"
+            android:text="@string/forgot_your_password"
             android:textAlignment="center"
             android:textColor="#FFFFFF" />
     </LinearLayout>
@@ -141,7 +136,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_marginTop="14dp">
 
         <TextView
@@ -149,27 +143,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:fontFamily="@font/pacifico"
-            android:text="Continue with"
-            android:textColor="#FFFFFF" />
+            android:text="@string/continue_with"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:layout_toLeftOf="@id/tvText"
+            android:layout_marginStart="16dp"
+            android:layout_toStartOf="@id/tvText"
             android:background="@color/white" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_centerVertical="true"
-            android:layout_marginRight="16dp"
-            android:layout_toRightOf="@id/tvText"
+            android:layout_marginEnd="16dp"
+            android:layout_toEndOf="@id/tvText"
             android:background="@color/white" />
 
     </RelativeLayout>
@@ -233,15 +227,37 @@
                 tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/dnthaveAccount"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:clickable="true"
             android:gravity="center"
-            android:text="Don't have an account? Sign Up"
-            android:textColor="@color/white" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="5dp"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:text="@string/don_t_have_an_account"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/signUpText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/sign_up"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>
