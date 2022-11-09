@@ -11,9 +11,10 @@ import kotlinx.coroutines.*
 import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.AuthReqBody
 import tn.esprit.apimodule.models.GenericResp
+import javax.inject.Inject
 
 @HiltViewModel
-class ForgetPasswordViewModel : ViewModel() {
+class ForgetPasswordViewModel @Inject constructor() : ViewModel() {
 
     private var job: Job? = null
     var errorMessage = MutableLiveData<String>()
@@ -34,9 +35,9 @@ class ForgetPasswordViewModel : ViewModel() {
     private fun sendRequest(context: Context, email: String) {
 
 
-        val authClient = NetworkClient()
+        val authClient = NetworkClient(context)
 
-        val apiService = authClient.getAuthService(context)
+        val apiService = authClient.getAuthService()
 
         job = CoroutineScope(Dispatchers.IO).launch {
             val response = apiService.forgetPasswordRequest(AuthReqBody(email))

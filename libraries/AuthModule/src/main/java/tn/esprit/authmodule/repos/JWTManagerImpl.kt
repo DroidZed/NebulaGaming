@@ -3,6 +3,7 @@ package tn.esprit.authmodule.repos
 
 import android.util.Base64
 import com.google.gson.Gson
+import javax.inject.Inject
 
 data class Payload(
     val id: String,
@@ -10,7 +11,7 @@ data class Payload(
     val exp: String
 )
 
-class JWTManagerImpl : JWTManager {
+class JWTManagerImpl @Inject constructor() : JWTManager {
 
     private val gson = Gson()
 
