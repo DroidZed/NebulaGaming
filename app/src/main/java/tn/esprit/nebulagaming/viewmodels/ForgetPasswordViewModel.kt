@@ -8,16 +8,19 @@ import androidx.lifecycle.ViewModel
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import org.json.JSONObject
+import retrofit2.Response
 import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.AuthReqBody
 import tn.esprit.apimodule.models.GenericResp
+import tn.esprit.apimodule.utils.ResponseConverter
 import javax.inject.Inject
 
 @HiltViewModel
 class ForgetPasswordViewModel @Inject constructor() : ViewModel() {
 
     private var job: Job? = null
-    var errorMessage = MutableLiveData<String>()
+    var errorMessage = MutableLiveData<String?>()
     var apiMessage = MutableLiveData<String>()
     val loading = MutableLiveData<Boolean>()
 
@@ -45,7 +48,7 @@ class ForgetPasswordViewModel @Inject constructor() : ViewModel() {
                 if (response.isSuccessful)
                     onSuccess(response.body()!!)
                 else
-                    onError(response.body()!!)
+                    onError(response)
             }
         }
 
@@ -87,8 +90,12 @@ class ForgetPasswordViewModel @Inject constructor() : ViewModel() {
         loading.value = false
     }
 
-    private fun onError(apiResponse: GenericResp) {
-        errorMessage.value = apiResponse.error!!
+    private fun onError(response: Response<GenericResp>) {
+        errorMessage.value = ResponseConverter.convert<GenericResp>(
+            JSONObject(
+                response.errorBody()!!.string()
+            )
+        ).data!!.error
         loading.value = false
     }
 

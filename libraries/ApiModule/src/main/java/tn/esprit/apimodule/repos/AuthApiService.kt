@@ -9,11 +9,12 @@ import retrofit2.http.POST
 import tn.esprit.apimodule.models.AuthReqBody
 import tn.esprit.apimodule.models.AuthResp
 import tn.esprit.apimodule.models.GenericResp
+import tn.esprit.apimodule.models.LoginReqBody
 
 interface AuthApiService {
 
     @POST("login")
-    suspend fun login(@Body emailPassword: AuthReqBody): Response<AuthResp>
+    suspend fun login(@Body emailPassword: LoginReqBody): Response<AuthResp>
 
     @POST("forgetPassword")
     suspend fun forgetPassword(@Body email: AuthReqBody): Response<GenericResp>
@@ -32,5 +33,5 @@ interface AuthApiService {
 
     @POST("refresh-token")
     @FormUrlEncoded
-    fun resetUserToken(@Header("Refresh-Token") params: String): Call<Response<AuthResp>>
+    fun resetUserToken(@Header("refreshToken") refreshToken: String): Call<Response<AuthResp>>
 }
