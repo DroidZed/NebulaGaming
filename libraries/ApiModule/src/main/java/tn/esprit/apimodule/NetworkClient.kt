@@ -8,7 +8,7 @@ import retrofit2.Retrofit.Builder
 import retrofit2.converter.gson.GsonConverterFactory
 import tn.esprit.apimodule.repos.AuthApiService
 import tn.esprit.apimodule.repos.UserApiService
-import tn.esprit.apimodule.utils.AuthInterceptor
+import tn.esprit.apimodule.utils.TokenAuthenticator
 import tn.esprit.shared.Consts.FUNCTION_URL
 
 
@@ -17,11 +17,10 @@ class NetworkClient(context: Context) {
     private val secureClient: Retrofit
     private val defaultClient: Retrofit
 
-
     init {
         secureClient = Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .client(okhttpClient(context))
+            .client(secureHttpInterceptor(context))
             .baseUrl(FUNCTION_URL)
             .build()
 
@@ -42,8 +41,9 @@ class NetworkClient(context: Context) {
     /**
      * Initialize OkhttpClient with our interceptor
      */
-    private fun okhttpClient(context: Context): OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(AuthInterceptor(context))
+    private fun secureHttpInterceptor(context: Context): OkHttpClient = OkHttpClient.Builder()
+        // .addInterceptor(AuthInterceptor(context))
+        .authenticator(TokenAuthenticator(context))
         .build()
 
 

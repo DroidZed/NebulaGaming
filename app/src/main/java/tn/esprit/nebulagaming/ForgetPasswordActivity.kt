@@ -36,7 +36,7 @@ class ForgetPasswordActivity : AppCompatActivity() {
                 if (!loadingValue) {
 
                     forgetPwdVM.errorMessage.observe(this) { error ->
-                        if (error != null) {
+                        if (!error.isNullOrEmpty()) {
                             Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
                         } else {
                             // startActivity(Intent(this, HomeScreen::class.java))

@@ -8,9 +8,12 @@ import androidx.lifecycle.ViewModel
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import org.json.JSONObject
+import retrofit2.Response
 import tn.esprit.apimodule.NetworkClient
-import tn.esprit.apimodule.models.AuthReqBody
 import tn.esprit.apimodule.models.AuthResp
+import tn.esprit.apimodule.models.LoginReqBody
+import tn.esprit.apimodule.utils.ResponseConverter
 import tn.esprit.authmodule.repos.JWTManager
 import tn.esprit.authmodule.repos.UserAuthManager
 import javax.inject.Inject
@@ -21,7 +24,7 @@ class LoginViewModel @Inject constructor(
     private val UserAuthManager: UserAuthManager
 ) : ViewModel() {
 
-    var errorMessage = MutableLiveData<String>()
+    var errorMessage = MutableLiveData<String?>()
     val loading = MutableLiveData<Boolean>()
 
     private var job: Job? = null
@@ -51,18 +54,13 @@ class LoginViewModel @Inject constructor(
 
         job = CoroutineScope(Dispatchers.IO).launch {
 
-            val loginResp = apiService.login(AuthReqBody(email, password))
+            val loginResp = apiService.login(LoginReqBody(email = email, password = password))
             withContext(Dispatchers.Main) {
-                try {
+                if (loginResp.isSuccessful)
+                    onSuccess(loginResp.body()!!)
+                else {
 
-                    if (loginResp.isSuccessful)
-                        onSuccess(loginResp.body()!!)
-                    else {
-                        println("error in retrofit")
-                        onError(loginResp.body()?.error!!)
-                    }
-                } catch (ex: Exception) {
-                    onError("Error connecting to the server !")
+                    onError(loginResp)
                 }
             }
         }
@@ -75,12 +73,16 @@ class LoginViewModel @Inject constructor(
         val userId = JwtManager.extractUserIdFromJWT(token)
 
         UserAuthManager.saveUserInfoToStorage(userId, token, refresh)
-
+        errorMessage.value = null
         loading.value = false
     }
 
-    private fun onError(message: String) {
-        errorMessage.value = message
+    private fun onError(response: Response<AuthResp>) {
+        errorMessage.value = ResponseConverter.convert<AuthResp>(
+            JSONObject(
+                response.errorBody()!!.string()
+            )
+        ).data!!.error
         loading.value = false
     }
 
