@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigator"
+    app:startDestination="@id/articlesFragment">
+    <fragment
+        android:id="@+id/articlesFragment"
+        android:name="tn.esprit.nebulagaming.fragments.ArticlesFragment"
+        android:label="@string/articles"
+        tools:layout="@layout/fragment_articles" />
+    <fragment
+        android:id="@+id/eventsFragment"
+        android:name="tn.esprit.nebulagaming.fragments.EventsFragment"
+        android:label="@string/events"
+        app:popUpTo="@id/articlesFragment"
+        tools:layout="@layout/fragment_events" />
+
+    <fragment
+        android:id="@+id/marketFragment"
+        android:name="tn.esprit.nebulagaming.fragments.MarketplaceFragment"
+        android:label="@string/marketplace"
+        app:popUpTo="@id/articlesFragment"
+        tools:layout="@layout/fragment_marketplace" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="tn.esprit.nebulagaming.fragments.AboutFragment"
+        android:label="@string/about"
+        app:popUpTo="@id/articlesFragment"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/jobOffersFragment"
+        android:name="tn.esprit.nebulagaming.fragments.JobOffersFragment"
+        android:label="@string/job_offers"
+        app:popUpTo="@id/articlesFragment"
+        tools:layout="@layout/fragment_job_offers" />
+    <fragment
+        android:id="@+id/forumFragment"
+        android:name="tn.esprit.nebulagaming.fragments.ForumFragment"
+        android:label="@string/forum"
+        app:popUpTo="@id/articlesFragment"
+        tools:layout="@layout/fragment_forum" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="tn.esprit.nebulagaming.fragments.NotificationsFragment"
+        android:label="@string/notifications"
+        tools:layout="@layout/fragment_notifications" />
+</navigation>

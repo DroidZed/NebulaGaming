@@ -63,11 +63,13 @@ class LoginActivity : AppCompatActivity() {
                 if (!loadingValue) {
 
                     loginVM.errorMessage.observe(this) { error ->
-                        if (!error.isNullOrEmpty())
+                        if (!error.isNullOrEmpty()) {
                             Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
-                        else
-                        // startActivity(Intent(this, HomeScreen::class.java))
+                        } else {
                             Toast.makeText(this, "Logged in !", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this, MainActivity::class.java))
+                            finish()
+                        }
 
                     }
                 }

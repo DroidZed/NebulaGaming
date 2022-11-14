@@ -35,7 +35,8 @@ class TokenAuthenticator constructor(private val context: Context) : Authenticat
         authServ.saveUserInfoToStorage(
             id = userInfo.userId,
             token = userInfo.token,
-            refresh = userInfo.refresh
+            refresh = userInfo.refresh,
+            role = userInfo.role
         )
 
         return response?.token!!

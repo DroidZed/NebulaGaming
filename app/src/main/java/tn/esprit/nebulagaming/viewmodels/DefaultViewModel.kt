@@ -22,7 +22,8 @@ open class DefaultViewModel @Inject constructor() : ViewModel() {
     }
 
     override fun onCleared() {
-        job?.cancel()
+        if (job != null) job?.cancel()
+
         super.onCleared()
     }
 }

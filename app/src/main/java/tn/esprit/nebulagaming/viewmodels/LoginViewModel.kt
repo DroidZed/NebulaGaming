@@ -51,7 +51,7 @@ class LoginViewModel @Inject constructor(
                         onSuccess(loginResp.body()!!)
                     else
                         onError(loginResp)
-                } catch (e: NullPointerException) {
+                } catch (e: Exception) {
                     super.onError()
                 }
             }
@@ -63,8 +63,14 @@ class LoginViewModel @Inject constructor(
         val refresh = apiResponse.refresh!!
 
         val userId = JwtManager.extractUserIdFromJWT(token)
+        val role = JwtManager.extractRoleFromJWT(token)
 
-        UserAuthManager.saveUserInfoToStorage(userId, token, refresh)
+        UserAuthManager.saveUserInfoToStorage(
+            id = userId,
+            token = token,
+            refresh = refresh,
+            role = role
+        )
         errorMessage.postValue(null)
         loading.postValue(false)
     }

@@ -11,4 +11,32 @@
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="continue_with">Continue with</string>
+    <string name="pfp">pfp</string>
+    <string name="cntdesc">cntDesc</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="events">Events</string>
+    <string name="articles">Articles</string>
+    <string name="forum">Forum</string>
+    <string name="job_offers">Job Offers</string>
+    <string name="marketplace">Marketplace</string>
+    <string name="nav_open">Open</string>
+    <string name="about">About</string>
+    <string name="nav_close">Close</string>
+    <string name="username">Username</string>
+    <string name="level">LEVEL</string>
+    <string name="open_link">Open Link</string>
+    <string name="options">Options</string>
+    <string name="logout">Logout</string>
+    <string name="profile">Profile</string>
+    <string name="notifications">Notifications</string>
+    <string name="notifimage">notifImage</string>
+    <string name="hot_now">Hot Now!</string>
+    <string name="check_out_what_s_hot_now">Check out what\'s hot now !</string>
+    <string name="cool">Cool !</string>
+    <string name="nothing_to_show_here">Nothing to show here</string>
+    <string name="job_description">
+        %1$s is looking for (a) prominent %2$s(s) enthusiastic to work at our company for a period of %3$s starting from %4$s. We\'re located at %5$s and you can contact us via our email: %6$s or click on the card to visit our website. We\'re waiting for your applications!
+    </string>
+    <string name="we_re_hiring">WE\'RE HIRING!</string>
 </resources>
