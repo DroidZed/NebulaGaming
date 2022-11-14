@@ -9,4 +9,7 @@ class JWTManagerImpl @Inject constructor() : JWTManager {
     override fun extractUserIdFromJWT(token: String): String =
 
         JWT(token).getClaim("id").asString()!!
+
+    override fun extractRoleFromJWT(token: String): String =
+        JWT(token).getClaim("role").asString()!!
 }

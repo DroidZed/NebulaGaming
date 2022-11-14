@@ -8,7 +8,9 @@ object Consts {
 
     const val REFRESH_KEY = "REFRESH_TOKEN"
 
+    const val ROLE_KEY = "USER_ROLE"
+
     const val U_ID_KEY = "USER_ID"
 
-    const val FUNCTION_URL = "https://bf36-197-2-176-27.eu.ngrok.io"
+    const val FUNCTION_URL = "https://b38c-197-2-201-73.eu.ngrok.io"
 }

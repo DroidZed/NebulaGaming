@@ -3,12 +3,12 @@ package tn.esprit.nebulagaming.viewmodels
 import android.content.Context
 import android.util.Patterns
 import android.widget.EditText
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.*
-import org.json.JSONObject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.AuthResp
@@ -22,12 +22,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val JwtManager: JWTManager,
     private val UserAuthManager: UserAuthManager
-) : ViewModel() {
-
-    var errorMessage = MutableLiveData<String?>()
-    val loading = MutableLiveData<Boolean>()
-
-    private var job: Job? = null
+) : DefaultViewModel() {
 
     // onclick login button
     fun handleLogin(context: Context, inputs: List<EditText>, textLayouts: List<TextInputLayout>) {
@@ -41,11 +36,6 @@ class LoginViewModel @Inject constructor(
             )
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        job?.cancel()
-    }
-
     private fun processLogin(email: String, password: String, context: Context) {
 
         val authClient = NetworkClient(context)
@@ -56,11 +46,13 @@ class LoginViewModel @Inject constructor(
 
             val loginResp = apiService.login(LoginReqBody(email = email, password = password))
             withContext(Dispatchers.Main) {
-                if (loginResp.isSuccessful)
-                    onSuccess(loginResp.body()!!)
-                else {
-
-                    onError(loginResp)
+                try {
+                    if (loginResp.isSuccessful)
+                        onSuccess(loginResp.body()!!)
+                    else
+                        onError(loginResp)
+                } catch (e: Exception) {
+                    super.onError()
                 }
             }
         }
@@ -71,19 +63,26 @@ class LoginViewModel @Inject constructor(
         val refresh = apiResponse.refresh!!
 
         val userId = JwtManager.extractUserIdFromJWT(token)
+        val role = JwtManager.extractRoleFromJWT(token)
 
-        UserAuthManager.saveUserInfoToStorage(userId, token, refresh)
-        errorMessage.value = null
-        loading.value = false
+        UserAuthManager.saveUserInfoToStorage(
+            id = userId,
+            token = token,
+            refresh = refresh,
+            role = role
+        )
+        errorMessage.postValue(null)
+        loading.postValue(false)
     }
 
+    /**
+     * when an error response returns from the server [400 - 500]
+     */
     private fun onError(response: Response<AuthResp>) {
-        errorMessage.value = ResponseConverter.convert<AuthResp>(
-            JSONObject(
-                response.errorBody()!!.string()
-            )
-        ).data!!.error
-        loading.value = false
+        errorMessage.postValue(
+            ResponseConverter.convert<AuthResp>(response.errorBody()!!.string()).data!!.error
+        )
+        loading.postValue(false)
     }
 
     private fun validateInputs(
@@ -97,7 +96,6 @@ class LoginViewModel @Inject constructor(
                 textLayouts.forEach {
                     it.apply {
                         error = "Field mustn't be blank!"
-                        isErrorEnabled = true
                     }
                 }
                 return Pair(false, false)
@@ -108,6 +106,9 @@ class LoginViewModel @Inject constructor(
                     isErrorEnabled = true
                     error = "Invalid email !"
                 }
+                textLayouts[1].apply {
+                    error = null
+                }
 
                 return Pair(false, true)
             }
@@ -116,7 +117,6 @@ class LoginViewModel @Inject constructor(
                 textLayouts.forEach {
                     it.apply {
                         error = null
-                        isErrorEnabled = false
                     }
                 }
                 return Pair(true, true)

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/articlesFragment"
+        android:icon="@drawable/ic_baseline_article"
+        android:title="@string/articles" />
+
+    <item
+        android:id="@+id/eventsFragment"
+        android:icon="@drawable/ic_baseline_event"
+        android:title="@string/events" />
+
+    <item
+        android:id="@+id/marketFragment"
+        android:icon="@drawable/ic_baseline_shopping_cart"
+        android:title="@string/marketplace" />
+
+    <item
+        android:id="@+id/forumFragment"
+        android:icon="@drawable/ic_baseline_forum"
+        android:title="@string/forum" />
+
+    <item
+        android:id="@+id/jobOffersFragment"
+        android:icon="@drawable/ic_baseline_work"
+        android:title="@string/job_offers" />
+
+    <item
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/ic_baseline_info"
+        android:title="@string/about" />
+
+
+</menu>

@@ -4,11 +4,12 @@ import android.content.Context
 import android.util.Patterns
 import android.widget.EditText
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.*
-import org.json.JSONObject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.AuthReqBody
@@ -17,12 +18,9 @@ import tn.esprit.apimodule.utils.ResponseConverter
 import javax.inject.Inject
 
 @HiltViewModel
-class ForgetPasswordViewModel @Inject constructor() : ViewModel() {
+class ForgetPasswordViewModel @Inject constructor() : DefaultViewModel() {
 
-    private var job: Job? = null
-    var errorMessage = MutableLiveData<String?>()
     var apiMessage = MutableLiveData<String>()
-    val loading = MutableLiveData<Boolean>()
 
     // onclick send button
     fun handleForgetPasswordRequest(
@@ -45,13 +43,32 @@ class ForgetPasswordViewModel @Inject constructor() : ViewModel() {
         job = CoroutineScope(Dispatchers.IO).launch {
             val response = apiService.forgetPasswordRequest(AuthReqBody(email))
             withContext(Dispatchers.Main) {
-                if (response.isSuccessful)
-                    onSuccess(response.body()!!)
-                else
-                    onError(response)
+                try {
+
+                    if (response.isSuccessful)
+                        onSuccess(response.body()!!)
+                    else
+                        onError(response)
+                } catch (ex: NullPointerException) {
+                    super.onError()
+                }
             }
         }
 
+    }
+
+    private fun onSuccess(apiResponse: GenericResp) {
+        apiMessage.postValue(apiResponse.message!!)
+        loading.postValue(false)
+    }
+
+    private fun onError(response: Response<GenericResp>) {
+        errorMessage.postValue(
+            ResponseConverter.convert<GenericResp>(
+                response.errorBody()!!.string()
+            ).data!!.error
+        )
+        loading.postValue(false)
     }
 
     private fun validateInput(emailInput: EditText, emailTLayout: TextInputLayout): Boolean {
@@ -79,24 +96,4 @@ class ForgetPasswordViewModel @Inject constructor() : ViewModel() {
             }
         }
     }
-
-    override fun onCleared() {
-        job?.cancel()
-        super.onCleared()
-    }
-
-    private fun onSuccess(apiResponse: GenericResp) {
-        apiMessage.value = apiResponse.message!!
-        loading.value = false
-    }
-
-    private fun onError(response: Response<GenericResp>) {
-        errorMessage.value = ResponseConverter.convert<GenericResp>(
-            JSONObject(
-                response.errorBody()!!.string()
-            )
-        ).data!!.error
-        loading.value = false
-    }
-
 }

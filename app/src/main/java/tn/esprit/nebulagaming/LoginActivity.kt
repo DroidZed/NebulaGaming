@@ -2,6 +2,7 @@ package tn.esprit.nebulagaming
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -10,6 +11,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
+import tn.esprit.nebulagaming.utils.hideKeyboard
+import tn.esprit.nebulagaming.utils.on
 import tn.esprit.nebulagaming.viewmodels.LoginViewModel
 
 @AndroidEntryPoint
@@ -44,6 +47,13 @@ class LoginActivity : AppCompatActivity() {
         forgotPasswordLink = findViewById(R.id.resetPasswordLink)
         signUpPrompt = findViewById(R.id.signUpText)
 
+        passwordET.on(IME_ACTION_DONE) {
+            passwordET.apply {
+                clearFocus()
+                hideKeyboard()
+            }
+        }
+
         // events
         loginBtn.setOnClickListener {
             loginVM.handleLogin(this, listOf(emailET, passwordET), listOf(emailTL, passwordTL))
@@ -53,11 +63,13 @@ class LoginActivity : AppCompatActivity() {
                 if (!loadingValue) {
 
                     loginVM.errorMessage.observe(this) { error ->
-                        if (!error.isNullOrEmpty())
+                        if (!error.isNullOrEmpty()) {
                             Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
-                        else
-                        // startActivity(Intent(this, HomeScreen::class.java))
+                        } else {
                             Toast.makeText(this, "Logged in !", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this, MainActivity::class.java))
+                            finish()
+                        }
 
                     }
                 }

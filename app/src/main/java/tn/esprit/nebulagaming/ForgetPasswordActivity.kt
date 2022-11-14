@@ -1,12 +1,8 @@
 package tn.esprit.nebulagaming
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.nebulagaming.viewmodels.ForgetPasswordViewModel
 
@@ -26,7 +22,15 @@ class ForgetPasswordActivity : AppCompatActivity() {
         setContentView(R.layout.activity_forget_password)
 
         // findViewById
+
 /*
+        emailInput.on(EditorInfo.IME_ACTION_DONE) {
+            emailInput.apply {
+                    clearFocus()
+                    hideKeyboard()
+                }
+            }
+
         // events
         actionBtn.setOnClickListener {
             forgetPwdVM.handleForgetPasswordRequest(this, emailInput, emailTLayout)

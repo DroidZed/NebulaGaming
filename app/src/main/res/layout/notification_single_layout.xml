@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/border_shape"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/notifImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="@string/notifimage"
+        android:src="@drawable/logonv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/notifTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:text="this is the title of the notif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/notifImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/notifBody"
+        android:layout_width="0dp"
+        android:maxLines="2"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:textSize="15sp"
+        tools:text="this is the body of the notif sdfgsdgsdfsfsfssfsfsf fsdfsd fsdfsdfssfsdfsdf sfsdfsdf sdfsffsdfsd sdfdsfsddfsdfdsf sdfsdfsdfsdfsdffsdfsdfdfsdf"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/notifImage"
+        app:layout_constraintTop_toBottomOf="@id/notifTitle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

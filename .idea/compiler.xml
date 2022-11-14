@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
       <module name="Nebula_Gaming.features.HomeScreen" target="18" />
+      <module name="Nebula_Gaming.libraries.RSSFeedModule" target="18" />
     </bytecodeTargetLevel>
   </component>
 </project>

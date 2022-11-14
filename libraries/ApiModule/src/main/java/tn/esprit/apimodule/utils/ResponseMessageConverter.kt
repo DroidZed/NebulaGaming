@@ -1,13 +1,12 @@
 package tn.esprit.apimodule.utils
 
 import com.google.gson.Gson
-import org.json.JSONObject
 
-data class ResponseConverter<out T>(val json: JSONObject, val data: T?) {
+data class ResponseConverter<out T>(val json: String, val data: T?) {
 
     companion object {
 
-        inline fun <reified T> convert(json: JSONObject): ResponseConverter<T> =
-            ResponseConverter(json, Gson().fromJson(json.toString(), T::class.java))
+        inline fun <reified T> convert(json: String): ResponseConverter<T> =
+            ResponseConverter(json, Gson().fromJson(json, T::class.java))
     }
 }
