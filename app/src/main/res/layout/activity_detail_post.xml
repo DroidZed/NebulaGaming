@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backg"
-    tools:context=".Detailpostforum">
+    tools:context=".DetailPostActivity">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/photoprofdetailuser"

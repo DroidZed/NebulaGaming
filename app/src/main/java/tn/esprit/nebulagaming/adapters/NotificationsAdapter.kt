@@ -13,7 +13,7 @@ class NotificationsAdapter(private val data: MutableList<Notification>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder =
         NotificationViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.notification_single_layout, parent, false)
+                .inflate(R.layout.layout_notification_single, parent, false)
         )
 
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {

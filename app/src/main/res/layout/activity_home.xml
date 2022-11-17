@@ -27,7 +27,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <include layout="@layout/main_navbar_layout" />
+                <include layout="@layout/layout_main_navbar" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -53,7 +53,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
-            app:headerLayout="@layout/drawer_header"
+            app:headerLayout="@layout/layout_drawer_header"
             app:menu="@menu/main_nav_menu" />
 
     </androidx.drawerlayout.widget.DrawerLayout>

@@ -1,4 +1,4 @@
-package tn.esprit.nebulagaming.Adapters
+package tn.esprit.nebulagaming.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,7 @@ import tn.esprit.nebulagaming.models.ComentPost
 
 class ComentAdapter(private val list: List<ComentPost>) : RecyclerView.Adapter<ComentAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.onecomment, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_one_comment, parent, false)
         return ViewHolder(view)
     }
 

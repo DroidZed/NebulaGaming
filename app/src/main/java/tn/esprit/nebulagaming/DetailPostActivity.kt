@@ -1,26 +1,30 @@
 package tn.esprit.nebulagaming
 
-import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
 import com.google.android.material.imageview.ShapeableImageView
+import tn.esprit.nebulagaming.fragments.CommentFragment
 
-class Detailpostforum : AppCompatActivity() {
+class DetailPostActivity : AppCompatActivity() {
     private lateinit var fragContainer: FragmentContainerView
-    private lateinit var fg1:Commentfragment
+    private lateinit var fg1: CommentFragment
     private lateinit var imgprofpost: ShapeableImageView
     private lateinit var imgpost: ShapeableImageView
     private lateinit var usernamepost: TextView
     private lateinit var datepost: TextView
     private lateinit var textpost: TextView
-    @SuppressLint("MissingInflatedId")
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detailpostforum)
+        setContentView(R.layout.activity_detail_post)
+
         fragContainer = findViewById(R.id.fragmentContainercommnet)
-        fg1 = Commentfragment()
+
+        fg1 = CommentFragment()
+
         supportFragmentManager.beginTransaction().add(R.id.fragmentContainercommnet, fg1).commit()
         imgprofpost = findViewById(R.id.photoprofdetailuser)
         imgpost = findViewById(R.id.detphotoforum)

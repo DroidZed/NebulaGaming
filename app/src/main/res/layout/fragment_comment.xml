@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Commentfragment">
+    tools:context=".fragments.CommentFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recComment"
@@ -11,5 +11,5 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
-        tools:listitem="@layout/onecomment" />
+        tools:listitem="@layout/layout_one_comment" />
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package tn.esprit.nebulagaming.Adapters
+package tn.esprit.nebulagaming.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +14,7 @@ class WishlistAdapter(
     private val list: ArrayList<Wishlist>,
 ):RecyclerView.Adapter<WishlistAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.onewishlist, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_one_wishlist, parent, false)
         return ViewHolder(view)
     }
 
