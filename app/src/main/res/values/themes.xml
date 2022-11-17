@@ -27,6 +27,7 @@
         <item name="android:actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
     </style>
 
+
     <style name="MyActionButtonOverflow" parent="@style/Widget.AppCompat.ActionButton.Overflow">
         <item name="android:src">@drawable/logonv</item>
         <item name="android:scaleType">centerCrop</item>
@@ -34,4 +35,30 @@
         <item name="android:scaleY">.7</item>
         <item name="android:adjustViewBounds">true</item>
     </style>
+
+    <style name="Theme.NoSystemUi" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+
+    </style>
+
+    <style name="roundimageview" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Theme.NebulaGaming.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.NebulaGaming.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.NebulaGaming.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

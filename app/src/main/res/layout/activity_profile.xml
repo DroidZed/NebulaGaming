@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backg"
+    android:orientation="vertical"
+    tools:context=".ProfileActivity">
+
+    <RelativeLayout
+        android:id="@+id/cricleshape"
+        android:layout_width="191dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/circle"
+        app:layout_constraintBottom_toTopOf="@+id/nameUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/photoprof"
+            android:layout_width="162dp"
+            android:layout_height="152dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="5dp"
+            android:clickable="true"
+            android:src="@drawable/avatar_profile_png_picture"
+            android:translationX="2dp"
+            android:translationY="2dp"
+            app:civ_border_width="4dp"
+            app:civ_shadow_radius="10dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <RelativeLayout
+            android:layout_width="152dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="-1dp"
+            android:background="@drawable/broderprofile">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/anaheim"
+                android:text="Level :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/numlevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="15dp"
+                android:text="NumLevel"
+                android:textColor="#FFFEFE" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/nameUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="229dp"
+        android:layout_marginBottom="60dp"
+        android:fontFamily="@font/amaranth"
+        android:gravity="center"
+        android:text="Name User"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        android:textStyle="normal|bold"
+        app:layout_constraintBottom_toTopOf="@+id/fragcontainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/view"
+        android:layout_width="323dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="503dp"
+        android:background="@drawable/bordershape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/nameUser"
+        app:layout_constraintStart_toStartOf="@+id/nameUser"
+        app:layout_constraintTop_toBottomOf="@+id/nameUser"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/emailuser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:text="Emai@email.com"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:translationX="12dp"
+            tools:ignore="RtlCompat" />
+    </RelativeLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragcontainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="78dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameUser"
+        tools:layout="@layout/fragment_posts" />
+
+    <RelativeLayout
+        android:id="@+id/view1"
+        android:layout_width="363dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/bordershape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/whishlistprof"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="150dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#B0371C61"
+            app:cornerRadius="28dp"
+            app:icon="@drawable/ic_baseline_production_quantity_limits_24"
+            app:iconGravity="top"
+            app:iconSize="27dp"
+            app:iconTint="@color/white"
+            app:startIconTint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/info"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="208dp"
+            android:layout_marginBottom="7dp"
+            android:backgroundTint="#B0371C61"
+            app:cornerRadius="28dp"
+            app:icon="@drawable/ic_baseline_info_24"
+            app:iconGravity="top"
+            app:iconSize="27dp"
+            app:iconTint="@color/white"
+            app:startIconTint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/forum"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="93dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#B0371C61"
+            app:cornerRadius="28dp"
+            app:icon="@drawable/ic_baseline_forum_24"
+            app:iconGravity="top"
+            app:iconSize="27dp"
+            app:iconTint="@color/white"
+            app:startIconTint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

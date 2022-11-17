@@ -4,6 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backg"
     tools:context=".RoleActivity">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="105dp"
+        android:layout_height="101dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:contentDescription="@string/todo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logonv" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/pacifico"
+        android:text="@string/sign_up"
+        android:textColor="#FFFFFF"
+        android:textSize="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Select your role please"
+        android:textAlignment="center"
+        android:textColor="#F8F6F6"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="250dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/buttonSubmitfinal"
+        android:layout_width="329dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="28dp"
+        android:layout_weight="1"
+        android:backgroundTint="#3C1E5C"
+        android:text="Submit"
+
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner1"
+        app:startIconDrawable="@drawable/ic_fbicone"
+        tools:ignore="TouchTargetSizeCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

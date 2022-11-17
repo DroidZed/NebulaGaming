@@ -39,4 +39,14 @@
         %1$s is looking for (a) prominent %2$s(s) enthusiastic to work at our company for a period of %3$s starting from %4$s. We\'re located at %5$s and you can contact us via our email: %6$s or click on the card to visit our website. We\'re waiting for your applications!
     </string>
     <string name="we_re_hiring">WE\'RE HIRING!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_editprofile">EditprofileActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

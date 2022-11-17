@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backg"
+    tools:context=".Detailpostforum">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/photoprofdetailuser"
+        android:layout_width="53dp"
+        android:layout_height="66dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="291dp"
+        android:clickable="true"
+        android:src="@drawable/avatar_profile_png_picture"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentContainercommnet"
+        app:layout_constraintEnd_toStartOf="@+id/datepostdet"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.857"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/usernamedetpost"
+        android:layout_width="278dp"
+        android:layout_height="22dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="1dp"
+        android:fontFamily="monospace"
+        android:text="username"
+        android:textColor="#ECE1E1"
+        app:layout_constraintBottom_toTopOf="@+id/datepostdet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/datepostdet"
+        android:layout_width="272dp"
+        android:layout_height="27dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="36dp"
+        android:text="date"
+        android:textColor="#E4DEDE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/usernamedetpost"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textPostdetai"
+        android:layout_width="389dp"
+        android:layout_height="72dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="319dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="422dp"
+        android:text="TextView"
+        android:textColor="#F3EDED"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/detphotoforum"
+        android:layout_width="187dp"
+        android:layout_height="178dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearlayoutreact"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datepostdet"
+        app:layout_constraintVertical_bias="0.0"
+        app:shapeAppearanceOverlay="@style/roundimageview"
+        app:srcCompat="@drawable/bronze" />
+
+    <LinearLayout
+        android:id="@+id/linearlayoutreact"
+        android:layout_width="389dp"
+        android:layout_height="56dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginEnd="11dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/likepost"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_gravity="center"
+            android:backgroundTint="#B0371C61"
+            app:cornerRadius="28dp"
+            app:icon="@drawable/like"
+            app:iconGravity="top"
+            app:iconSize="27dp"
+            app:iconTint="@color/white"
+            app:startIconTint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/commentpost"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
+            android:backgroundTint="#B0371C61"
+            app:cornerRadius="28dp"
+            app:icon="@drawable/comment"
+            app:iconGravity="top"
+            app:iconSize="27dp"
+            app:iconTint="@color/white"
+            app:startIconTint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/savepost"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
+            android:backgroundTint="#B0371C61"
+            app:cornerRadius="28dp"
+            app:icon="@drawable/savepost"
+            app:iconGravity="top"
+            app:iconSize="25dp"
+            app:iconTint="@color/white"
+            app:startIconTint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+    </LinearLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainercommnet"
+        android:layout_width="406dp"
+        android:layout_height="371dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="396dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="1dp"
+        android:background="#EB0D0619"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayoutreact"
+        app:layout_constraintVertical_bias="1.0">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/photoprofconncted"
+            android:layout_width="52dp"
+            android:layout_height="40dp"
+            android:clickable="true"
+            android:src="@drawable/avatar_profile_png_picture"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,DuplicateClickableBoundsCheck" />
+
+        <EditText
+            android:id="@+id/commenterhere"
+            android:layout_width="279dp"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:hint="Coment here"
+            android:inputType="textPersonName"
+            android:textColor="#F6F5F5"
+            android:textColorHighlight="#F8F3F3"
+            android:textColorHint="#92FFFFFF"
+            android:translationY="-28dp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="74dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="9dp"
+            app:icon="@drawable/send"
+            app:iconGravity="top"
+            app:iconSize="23dp"
+            app:iconTint="@color/white"
+
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

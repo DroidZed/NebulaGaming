@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/bordersprofile"
+    android:paddingBottom="16dp">
+
+    <ImageView
+        android:id="@+id/imageViewprodcutwish"
+        android:layout_width="153dp"
+        android:layout_height="98dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bronzereward" />
+
+    <TextView
+        android:id="@+id/productname"
+        android:layout_width="156dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
+        android:text="Nom produit"
+        app:layout_constraintStart_toEndOf="@+id/imageViewprodcutwish"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/productprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/amaranth"
+        android:text="Prix de produit"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewprodcutwish"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.639" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/deletbtn"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#B0E41527"
+        app:cornerRadius="28dp"
+        app:icon="@drawable/ic_baseline_restore_from_trash_24"
+        app:iconGravity="top"
+        app:iconSize="27dp"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.647"
+        app:startIconTint="@color/white"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+</androidx.constraintlayout.widget.ConstraintLayout>
