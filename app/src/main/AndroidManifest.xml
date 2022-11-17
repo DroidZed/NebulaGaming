@@ -17,6 +17,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NebulaGaming"
         tools:targetApi="31">
+
+        <activity
+            android:name=".DetailPostActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".ChatRoomActivity"
             android:exported="false">
@@ -27,6 +42,7 @@
         <activity
             android:name=".HomeActivity"
             android:exported="false">
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -77,6 +93,10 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

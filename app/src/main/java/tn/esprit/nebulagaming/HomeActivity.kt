@@ -82,6 +82,8 @@ class HomeActivity : AppCompatActivity() {
         return when (item.itemId) {
 
             R.id.profile -> {
+                startActivity(Intent(this, ProfileActivity::class.java))
+                finish()
                 true
             }
 

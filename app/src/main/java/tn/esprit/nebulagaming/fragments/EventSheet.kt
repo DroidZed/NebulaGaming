@@ -49,7 +49,7 @@ class EventSheet() : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.event_sheet, container, false)
+    ): View? = inflater.inflate(R.layout.layout_event_sheet, container, false)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

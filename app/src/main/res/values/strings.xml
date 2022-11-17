@@ -13,8 +13,6 @@
     <string name="continue_with">Continue with</string>
     <string name="pfp">pfp</string>
     <string name="cntdesc">cntDesc</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="events">Events</string>
     <string name="articles">Articles</string>
     <string name="forum">Forum</string>
@@ -45,4 +43,7 @@
     <string name="bubble_header">
         %1$s • %2$s
     </string>
+    <string name="title_activity_editprofile">EditprofileActivity</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 </resources>
