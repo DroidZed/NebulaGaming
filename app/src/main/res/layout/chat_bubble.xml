@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:id="@+id/bubble"
+    android:layout_marginVertical="10dp"
+    android:layout_marginHorizontal="10dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/bubbleHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:textColor="@color/lightyGray"
+        android:textSize="16sp"
+        tools:text="Today, 1 min" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chatBubbleContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="20dp"
+        android:paddingStart="10dp"
+        android:paddingVertical="10dp"
+        android:background="@drawable/sent_bubble">
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:maxWidth="390dp"
+            android:maxLines="3"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="hello there fsd fs ." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

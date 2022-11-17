@@ -6,13 +6,6 @@
         <item name="android:statusBarColor">@color/DarkBarColor</item>
     </style>
 
-    <style name="Theme.NebulaGaming.Launcher" parent="Theme.Material3.Dark.NoActionBar">
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@drawable/splash_bg</item>
-    </style>
-
     <!-- Base application theme. -->
     <style name="Theme.NebulaGaming" parent="Theme.NoSystemUi">
         <!-- Primary brand color. -->
@@ -25,6 +18,15 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Customize your theme here. -->
         <item name="android:actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
+        <item name="android:windowActivityTransitions">true</item>
+    </style>
+
+    <style name="Theme.SplashTheme" parent="Theme.NebulaGaming">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowBackground">@drawable/splash_bg</item>
     </style>
 
 

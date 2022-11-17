@@ -12,5 +12,5 @@ object Consts {
 
     const val U_ID_KEY = "USER_ID"
 
-    const val FUNCTION_URL = "https://b38c-197-2-201-73.eu.ngrok.io"
+    const val FUNCTION_URL = "https://rotten-steaks-cover-196-203-207-178.loca.lt"
 }
