@@ -40,8 +40,8 @@ class SplashActivity : AppCompatActivity() {
         img.startAnimation(a)
 
         Handler(mainLooper).postDelayed({
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+                startActivity(Intent(this, ProfileActivity::class.java))
+                finish()
         }, 2000)
     }
 }
