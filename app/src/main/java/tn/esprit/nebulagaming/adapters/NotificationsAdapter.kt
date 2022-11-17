@@ -16,9 +16,9 @@ class NotificationsAdapter(private val data: MutableList<Notification>) :
                 .inflate(R.layout.notification_single_layout, parent, false)
         )
 
-    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) =
         holder.bind(data[position])
-    }
+
 
     override fun getItemCount(): Int = data.size
 

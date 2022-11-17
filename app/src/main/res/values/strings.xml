@@ -39,4 +39,7 @@
         %1$s is looking for (a) prominent %2$s(s) enthusiastic to work at our company for a period of %3$s starting from %4$s. We\'re located at %5$s and you can contact us via our email: %6$s or click on the card to visit our website. We\'re waiting for your applications!
     </string>
     <string name="we_re_hiring">WE\'RE HIRING!</string>
+    <string name="dot">•</string>
+    <string name="chat">Chat</string>
+    <string name="your_message">Your message...</string>
 </resources>

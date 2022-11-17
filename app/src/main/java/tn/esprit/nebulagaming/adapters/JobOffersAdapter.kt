@@ -14,9 +14,8 @@ class JobOffersAdapter(private val data: MutableList<JobOffer>) : Adapter<JobOff
             LayoutInflater.from(parent.context).inflate(R.layout.joboffer_item, parent, false)
         )
 
-    override fun onBindViewHolder(holder: JobOffersViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: JobOffersViewHolder, position: Int) =
         holder.bind(data[position])
-    }
 
     override fun getItemCount(): Int = data.size
 }

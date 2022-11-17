@@ -12,7 +12,7 @@ import tn.esprit.apimodule.utils.TokenAuthenticator
 import tn.esprit.shared.Consts.FUNCTION_URL
 
 
-class NetworkClient(context: Context) {
+class NetworkClient(private val context: Context) {
 
     private val secureClient: Retrofit
     private val defaultClient: Retrofit
@@ -20,7 +20,7 @@ class NetworkClient(context: Context) {
     init {
         secureClient = Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .client(secureHttpInterceptor(context))
+            .client(secureHttpInterceptor())
             .baseUrl(FUNCTION_URL)
             .build()
 
@@ -41,7 +41,7 @@ class NetworkClient(context: Context) {
     /**
      * Initialize OkhttpClient with our interceptor
      */
-    private fun secureHttpInterceptor(context: Context): OkHttpClient = OkHttpClient.Builder()
+    fun secureHttpInterceptor(): OkHttpClient = OkHttpClient.Builder()
         // .addInterceptor(AuthInterceptor(context))
         .authenticator(TokenAuthenticator(context))
         .build()

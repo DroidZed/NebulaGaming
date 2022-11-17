@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.data.Article
 import tn.esprit.nebulagaming.utils.HelperFunctions.launchURL
+import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 
 class ArticleViewHolder(itemView: View) : ViewHolder(itemView) {
 
@@ -25,12 +26,9 @@ class ArticleViewHolder(itemView: View) : ViewHolder(itemView) {
     fun bind(article: Article) {
         articleTitle!!.text = article.title
         articleDescription!!.text = article.description
-/*
-        Picasso.get()
-            .load(article.image)
-            .placeholder(R.drawable.article_ph)
-            .into(articleImage)
-*/
+
+        usePicasso(article.image, R.drawable.backg, articleImage!!)
+
         itemView.setOnClickListener {
             launchURL(it, article.link)
         }

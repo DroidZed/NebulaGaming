@@ -4,9 +4,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.squareup.picasso.Picasso
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.data.Notification
+import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 
 class NotificationViewHolder(itemView: View) : ViewHolder(itemView) {
 
@@ -24,11 +24,17 @@ class NotificationViewHolder(itemView: View) : ViewHolder(itemView) {
     fun bind(notification: Notification) {
         notifTitle!!.text = notification.title
         notifBody!!.text = notification.body
-
-       Picasso.get()
-            .load(notification.image)
-            .placeholder(R.drawable.logonv)
-            .into(notifImage)
-
+/*
+        // TODO: add notification image from backend
+        useSecurePicasso(
+            notification.image,
+            R.drawable.logonv,
+            context,
+            notifImage!!,
+            OkHttp3Downloader(NetworkClient(itemView.context).secureHttpInterceptor())
+        )
+ */
+        usePicasso(notification.image, R.drawable.logonv, notifImage!!)
     }
+
 }
