@@ -38,10 +38,13 @@ class ChatRoomActivity : AppCompatActivity() {
         sendBtn = findViewById(R.id.sendBtn)
         textZoneL = findViewById(R.id.textZoneL)
         textZoneE = findViewById(R.id.textZoneE)
+        topBarChat = findViewById(R.id.chatToolBar)
 
-        topBarChat = findViewById(R.id.topBarChat)
+        val otherName = intent.getStringExtra("OTHER_USERNAME")
 
         setSupportActionBar(topBarChat)
+
+        topBarChat.title = otherName
 
         sharedPrefs = getSharedPreferences(APP_PREFS, MODE_PRIVATE)
 
@@ -49,12 +52,14 @@ class ChatRoomActivity : AppCompatActivity() {
 
         val items = mutableListOf(
             ChatBubble(
+                senderName = "Aymen",
                 message = "hello there",
                 time = "1 min ago.",
                 senderId = userId!!,
                 receiverId = ""
             ),
             ChatBubble(
+                senderName = "Hammadi",
                 message = "hii !!",
                 time = "Now.",
                 senderId = "",
@@ -73,14 +78,19 @@ class ChatRoomActivity : AppCompatActivity() {
 
                 items.add(
                     ChatBubble(
+                        senderName = otherName!!,
                         message = textZoneE.text.toString(),
-                        time = "Now",
-                        senderId = userId,
+                        time = listOf("Now", "Yesterday", "1 min ago.").random(),
+                        senderId = listOf(userId, "").random(),
                         receiverId = ""
                     )
                 )
                 chatRoomAdapter.notifyItemInserted(items.size - 1)
                 chatRV.scrollToPosition(items.size - 1)
+                textZoneE.apply {
+                    clearFocus()
+                    text.clear()
+                }
             }
         }
 

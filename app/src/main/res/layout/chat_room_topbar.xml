@@ -7,7 +7,7 @@
     android:orientation="horizontal">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/mainToolBar"
+        android:id="@+id/chatToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/DarkBarColor"

@@ -47,7 +47,7 @@ class ChatListAdapter(private val data: MutableList<Conversation>) : Adapter<Cha
                 notifyItemChanged(position)
 
                 Intent((it.context as HomeActivity), ChatRoomActivity::class.java).let { i ->
-                    i.putExtra("OTHER_ID", data[position].otherId)
+                    i.putExtra("OTHER_USERNAME", data[position].otherName)
                     startActivity((it.context as HomeActivity), i, null)
                 }
             }

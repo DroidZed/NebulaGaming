@@ -41,5 +41,8 @@
     <string name="we_re_hiring">WE\'RE HIRING!</string>
     <string name="dot">•</string>
     <string name="chat">Chat</string>
-    <string name="your_message">Your message...</string>
+    <string name="your_message">Your message…</string>
+    <string name="bubble_header">
+        %1$s • %2$s
+    </string>
 </resources>

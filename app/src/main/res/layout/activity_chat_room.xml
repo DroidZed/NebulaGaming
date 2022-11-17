@@ -15,7 +15,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRV"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/interactionZone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,8 +30,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#00FFFFFF"
-        android:paddingHorizontal="10dp"
+        android:paddingStart="10dp"
         android:paddingTop="5dp"
+        android:paddingEnd="2dp"
         android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +42,7 @@
             android:id="@+id/textZoneL"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="8dp"
             app:boxCornerRadiusBottomEnd="25dp"
             app:boxCornerRadiusBottomStart="25dp"
             app:boxCornerRadiusTopEnd="25dp"
@@ -71,7 +72,8 @@
             app:iconSize="30dp"
             app:iconTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
