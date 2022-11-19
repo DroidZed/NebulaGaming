@@ -11,7 +11,7 @@ class ChatRoomAdapter(private val data: MutableList<ChatBubble>) : Adapter<ChatB
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatBubbleViewHolder =
         ChatBubbleViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.chat_bubble, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.layout_chat_bubble, parent, false)
         )
 
     override fun onBindViewHolder(holder: ChatBubbleViewHolder, position: Int) =

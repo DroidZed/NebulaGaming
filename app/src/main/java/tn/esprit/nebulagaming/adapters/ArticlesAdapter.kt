@@ -14,7 +14,7 @@ class ArticlesAdapter(private val data: MutableList<Article>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder =
         ArticleViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.article_item, parent, false)
+                .inflate(R.layout.layout_article_item, parent, false)
         )
 
     fun clear() {

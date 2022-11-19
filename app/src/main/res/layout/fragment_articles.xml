@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:itemCount="3"
-            tools:listitem="@layout/article_item" />
+            tools:listitem="@layout/layout_article_item" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

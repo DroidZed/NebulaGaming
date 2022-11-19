@@ -43,7 +43,24 @@
     <string name="bubble_header">
         %1$s • %2$s
     </string>
-    <string name="title_activity_editprofile">EditprofileActivity</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="select_your_role_please">Select your role please</string>
+    <string name="submit">Submit</string>
+    <string name="slogant">Best Tunisian Gaming Platform</string>
+    <string name="made_with_love_by">Made with Love By</string>
+    <string name="tap_to_contact_us">Tap to contact us!</string>
+    <string name="dev1">Aymen Dhahri</string>
+    <string name="dev2">Med Yassine Messaoud</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="github">GitHub</string>
+    <string name="fb_yassine">https://www.facebook.com/yassine.mess.12</string>
+    <string name="lin_yassine">https://www.linkedin.com/in/mdyassinemess/</string>
+    <string name="gh_aymen">https://www.github.com/DroidZed</string>
+    <string name="gh_yassine">https://www.github.com/yassineMessaoud9</string>
+    <string name="lin_aymen">https://www.linkedin.com/in/aymen-d/</string>
+    <string name="facebook">Facebook</string>
+    <string name="ng_email">nebula.gaming2@outlook.com</string>
+    <string name="dev1_email">aymen.dhahri@esprit.tn</string>
+    <string name="dev2_email">medyassinee.messaoud@esprit.tn</string>
 </resources>

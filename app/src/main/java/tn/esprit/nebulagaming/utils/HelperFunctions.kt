@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.browser.customtabs.CustomTabsIntent
 import com.squareup.picasso.Downloader
+import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 
 object HelperFunctions {
@@ -21,6 +22,7 @@ object HelperFunctions {
             .load(url)
             .resize(300, 300)
             .centerCrop()
+            .memoryPolicy(MemoryPolicy.NO_CACHE)
             .placeholder(placeholder)
             .into(view)
 
@@ -36,6 +38,7 @@ object HelperFunctions {
             .downloader(downloader)
             .build()
             .load(url)
+            .memoryPolicy(MemoryPolicy.NO_CACHE)
             .resize(300, 300)
             .centerCrop()
             .placeholder(placeholder)

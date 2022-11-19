@@ -44,6 +44,12 @@ class ChatRoomActivity : AppCompatActivity() {
 
         setSupportActionBar(topBarChat)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        topBarChat.setNavigationOnClickListener {
+            finish()
+        }
+
         topBarChat.title = otherName
 
         sharedPrefs = getSharedPreferences(APP_PREFS, MODE_PRIVATE)
@@ -59,7 +65,7 @@ class ChatRoomActivity : AppCompatActivity() {
                 receiverId = ""
             ),
             ChatBubble(
-                senderName = "Hammadi",
+                senderName = otherName!!,
                 message = "hii !!",
                 time = "Now.",
                 senderId = "",
@@ -79,7 +85,7 @@ class ChatRoomActivity : AppCompatActivity() {
                 items.add(
                     ChatBubble(
                         senderName = otherName!!,
-                        message = textZoneE.text.toString(),
+                        message = textZoneE.text.toString().trim(),
                         time = listOf("Now", "Yesterday", "1 min ago.").random(),
                         senderId = listOf(userId, "").random(),
                         receiverId = ""
@@ -88,7 +94,6 @@ class ChatRoomActivity : AppCompatActivity() {
                 chatRoomAdapter.notifyItemInserted(items.size - 1)
                 chatRV.scrollToPosition(items.size - 1)
                 textZoneE.apply {
-                    clearFocus()
                     text.clear()
                 }
             }

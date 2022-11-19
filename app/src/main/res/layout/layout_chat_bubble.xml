@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bubble"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="start|bottom"
+            android:contentDescription="@string/cntdesc"
+            android:src="@drawable/logonv" />
+
+        <TextView
+
+            android:id="@+id/bubbleHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|bottom"
+            android:textColor="@color/lightyGray"
+            android:textSize="16sp"
+            tools:text="Aymen - Today, 1 min" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginStart="32dp"
+        android:id="@+id/chatBubbleContainer"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sent_bubble"
+        android:paddingVertical="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="3dp">
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:ellipsize="end"
+            android:textColor="@color/white"
+            android:textIsSelectable="true"
+            android:textSize="16sp"
+            app:flow_wrapMode="aligned"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="hello there friend ! sdfsd f s fssd fsd fd sdfd sd fsd sd sd fsdsdfsd " />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

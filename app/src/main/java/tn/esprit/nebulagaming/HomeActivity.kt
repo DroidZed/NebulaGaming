@@ -83,7 +83,6 @@ class HomeActivity : AppCompatActivity() {
 
             R.id.profile -> {
                 startActivity(Intent(this, ProfileActivity::class.java))
-                finish()
                 true
             }
 

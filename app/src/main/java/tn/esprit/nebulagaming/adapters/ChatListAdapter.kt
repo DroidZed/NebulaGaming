@@ -5,21 +5,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.squareup.picasso.OkHttp3Downloader
-import com.squareup.picasso.Picasso
-import tn.esprit.apimodule.NetworkClient
 import tn.esprit.nebulagaming.ChatRoomActivity
 import tn.esprit.nebulagaming.HomeActivity
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.data.Conversation
-import tn.esprit.nebulagaming.utils.HelperFunctions.useSecurePicasso
+import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 import tn.esprit.nebulagaming.viewholders.ChatViewHolder
 
 class ChatListAdapter(private val data: MutableList<Conversation>) : Adapter<ChatViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder =
         ChatViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.conversation_item, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.layout_conversation_item, parent, false)
         )
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
@@ -31,6 +29,12 @@ class ChatListAdapter(private val data: MutableList<Conversation>) : Adapter<Cha
 
             val context = itemView.context
 
+            usePicasso(
+                data[position].otherImage,
+                R.drawable.logonv,
+                senderImage!!
+            )
+/*
             useSecurePicasso(
                 data[position].otherImage,
                 R.drawable.logonv,
@@ -39,6 +43,7 @@ class ChatListAdapter(private val data: MutableList<Conversation>) : Adapter<Cha
                 OkHttp3Downloader(NetworkClient(context).secureHttpInterceptor()),
             )
 
+ */
             itemView.setOnClickListener {
                 val selected = data[position]
                 selected.isRead = true

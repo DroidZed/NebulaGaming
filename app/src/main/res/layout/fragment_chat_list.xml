@@ -10,6 +10,6 @@
         android:id="@+id/chatListRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/conversation_item" />
+        tools:listitem="@layout/layout_conversation_item" />
 
 </FrameLayout>
