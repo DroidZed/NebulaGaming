@@ -59,6 +59,8 @@ class LoginViewModel @Inject constructor(
     }
 
     /*
+    // TODO: use it correctly in the other screens !
+
         private fun runLogin(email: String, password: String, context: Context) =
             liveData(Dispatchers.IO) {
 
@@ -92,14 +94,12 @@ class LoginViewModel @Inject constructor(
         val token = apiResponse.token!!
         val refresh = apiResponse.refresh!!
 
-        val userId = JwtManager.extractUserIdFromJWT(token)
-        val role = JwtManager.extractRoleFromJWT(token)
-
         UserAuthManager.saveUserInfoToStorage(
-            id = userId,
+            id = JwtManager.extractUserIdFromJWT(token),
             token = token,
             refresh = refresh,
-            role = role
+            role = JwtManager.extractRoleFromJWT(token),
+            status = JwtManager.extractStatusFromJWT(token)
         )
         errorMessage.postValue(null)
         loading.postValue(false)
