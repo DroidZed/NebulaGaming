@@ -4,6 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import retrofit2.Response
+import tn.esprit.apimodule.models.GenericResp
+import tn.esprit.apimodule.utils.ResponseConverter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -13,24 +16,26 @@ open class DefaultViewModel @Inject constructor() : ViewModel() {
     open var errorMessage = MutableLiveData<String?>()
     open var successMessage = MutableLiveData<String?>()
 
-    open var loading = MutableLiveData<Boolean>()
-
     /**
      * No internet connection or server unavailable...
      */
     protected fun onError() {
         errorMessage.postValue("Error connecting to the server")
-        loading.postValue(false)
     }
 
-    protected open fun onSuccess() {
-        successMessage.postValue("Success")
-        loading.postValue(true)
+    protected open fun onError(response: Response<GenericResp>) {
+        errorMessage.postValue(
+            ResponseConverter.convert<GenericResp>(response.errorBody()!!.string()).data!!.error
+        )
+    }
+
+    protected open fun onSuccess(msg: String? = "Success") {
+        successMessage.postValue(msg)
+        errorMessage.postValue(null)
     }
 
     override fun onCleared() {
         if (job != null) job?.cancel()
-
         super.onCleared()
     }
 }

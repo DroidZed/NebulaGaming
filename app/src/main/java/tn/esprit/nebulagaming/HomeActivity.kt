@@ -1,11 +1,9 @@
 package tn.esprit.nebulagaming
 
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.ViewGroup
 import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -16,7 +14,6 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -107,7 +104,7 @@ class HomeActivity : AppCompatActivity() {
                 val dialog = BottomSheetDialog(this)
 
                 // on below line we are inflating a layout file which we have created.
-                val view = layoutInflater.inflate(R.layout.activity_newoffrejob, null)
+                val view = layoutInflater.inflate(R.layout.activity_new_job_offer, null)
                 // which we are using to dismiss our dialog.
 
                 // on below line we are adding on click listener

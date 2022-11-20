@@ -14,7 +14,7 @@ object Consts {
     
     const val STATUS_KEY = "USER_STATUS"
 
-    const val FUNCTION_URL = "https://four-walls-beg-197-238-196-110.loca.lt"
+    const val FUNCTION_URL = " https://342d-102-156-63-33.eu.ngrok.io"
 
     const val FROM_IMG_EXTRACTION_REGEX = "(img src=\")([a-zA-Z0-9_,:\\/\\.-]*)(\"[a-z=\"])*"
 

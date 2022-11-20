@@ -10,17 +10,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Response
 import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.AuthReqBody
-import tn.esprit.apimodule.models.GenericResp
-import tn.esprit.apimodule.utils.ResponseConverter
 import javax.inject.Inject
 
 @HiltViewModel
 class ForgetPasswordViewModel @Inject constructor() : DefaultViewModel() {
-
-    var apiMessage = MutableLiveData<String>()
 
     // onclick send button
     fun handleForgetPasswordRequest(
@@ -46,7 +41,7 @@ class ForgetPasswordViewModel @Inject constructor() : DefaultViewModel() {
                 try {
 
                     if (response.isSuccessful)
-                        onSuccess(response.body()!!)
+                        onSuccess(response.body()!!.message!!)
                     else
                         onError(response)
                 } catch (ex: NullPointerException) {
@@ -55,20 +50,6 @@ class ForgetPasswordViewModel @Inject constructor() : DefaultViewModel() {
             }
         }
 
-    }
-
-    private fun onSuccess(apiResponse: GenericResp) {
-        apiMessage.postValue(apiResponse.message!!)
-        loading.postValue(false)
-    }
-
-    private fun onError(response: Response<GenericResp>) {
-        errorMessage.postValue(
-            ResponseConverter.convert<GenericResp>(
-                response.errorBody()!!.string()
-            ).data!!.error
-        )
-        loading.postValue(false)
     }
 
     private fun validateInput(emailInput: EditText, emailTLayout: TextInputLayout): Boolean {

@@ -36,7 +36,8 @@ class TokenAuthenticator constructor(private val context: Context) : Authenticat
             id = userInfo.userId,
             token = userInfo.token,
             refresh = userInfo.refresh,
-            role = userInfo.role
+            role = userInfo.role,
+            status = userInfo.status
         )
 
         return response?.token!!

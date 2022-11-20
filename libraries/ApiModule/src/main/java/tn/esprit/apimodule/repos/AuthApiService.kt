@@ -12,7 +12,7 @@ interface AuthApiService {
 
     @Headers("Content-Type:application/json")
     @POST("register")
-    suspend fun register(@Body emailPasswordinfo: UserRegister): Response<RegisterReqBody>
+    suspend fun register(@Body emailPasswordinfo: UserRegister): Response<GenericResp>
 
     @POST("forgetPassword")
     suspend fun forgetPassword(@Body email: AuthReqBody): Response<GenericResp>

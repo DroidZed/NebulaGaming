@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backg"
-    tools:context=".fragments.NewoffrejobsFragment">
+    tools:context=".fragments.NewJobOfferFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import com.squareup.picasso.Downloader
 import com.squareup.picasso.MemoryPolicy
@@ -43,4 +44,8 @@ object HelperFunctions {
             .centerCrop()
             .placeholder(placeholder)
             .into(view)
+
+    fun toastMsg(context: Context, message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
 }

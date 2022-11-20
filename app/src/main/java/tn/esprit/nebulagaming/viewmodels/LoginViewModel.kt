@@ -48,9 +48,9 @@ class LoginViewModel @Inject constructor(
             withContext(Dispatchers.Main) {
                 try {
                     if (loginResp.isSuccessful)
-                        onSuccess(loginResp.body()!!)
+                        onLoginSuccess(loginResp.body()!!)
                     else
-                        onError(loginResp)
+                        onLoginError(loginResp)
                 } catch (e: Exception) {
                     super.onError()
                 }
@@ -90,7 +90,7 @@ class LoginViewModel @Inject constructor(
                 }
             }
     */
-    private fun onSuccess(apiResponse: AuthResp) {
+    private fun onLoginSuccess(apiResponse: AuthResp) {
         val token = apiResponse.token!!
         val refresh = apiResponse.refresh!!
 
@@ -102,17 +102,15 @@ class LoginViewModel @Inject constructor(
             status = JwtManager.extractStatusFromJWT(token)
         )
         errorMessage.postValue(null)
-        loading.postValue(false)
     }
 
     /**
      * when an error response returns from the server [400 - 500]
      */
-    private fun onError(response: Response<AuthResp>) {
+    private fun onLoginError(response: Response<AuthResp>) {
         errorMessage.postValue(
             ResponseConverter.convert<AuthResp>(response.errorBody()!!.string()).data!!.error
         )
-        loading.postValue(false)
     }
 
     private fun validateInputs(

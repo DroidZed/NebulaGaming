@@ -18,14 +18,14 @@
         android:theme="@style/Theme.NebulaGaming"
         tools:targetApi="31">
         <activity
-            android:name=".ActivateaccountActivity"
+            android:name=".ActivateAccountActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".NewoffrejobActivity"
+            android:name=".NewJobOfferActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

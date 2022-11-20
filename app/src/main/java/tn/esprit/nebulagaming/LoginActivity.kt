@@ -11,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
+import tn.esprit.nebulagaming.utils.clearText
 import tn.esprit.nebulagaming.utils.hideKeyboard
 import tn.esprit.nebulagaming.utils.on
 import tn.esprit.nebulagaming.viewmodels.LoginViewModel
@@ -58,20 +59,14 @@ class LoginActivity : AppCompatActivity() {
         loginBtn.setOnClickListener {
             loginVM.handleLogin(this, listOf(emailET, passwordET), listOf(emailTL, passwordTL))
 
-            loginVM.loading.observe(this) { loadingValue ->
-
-                if (!loadingValue) {
-
-                    loginVM.errorMessage.observe(this) { error ->
-                        if (!error.isNullOrEmpty()) {
-                            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(this, "Logged in !", Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this, MainActivity::class.java))
-                            finish()
-                        }
-
-                    }
+            loginVM.errorMessage.observe(this) { error ->
+                if (error != null)
+                    Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+                else {
+                    listOf(emailET, passwordET).forEach { it.clearText() }
+                    Toast.makeText(this, "Logged in !", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
                 }
             }
         }
