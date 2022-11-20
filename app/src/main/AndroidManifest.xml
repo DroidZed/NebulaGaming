@@ -17,7 +17,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NebulaGaming"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ActivateaccountActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".NewoffrejobActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".DetailPostActivity"
             android:exported="false">
@@ -35,7 +48,6 @@
         <activity
             android:name=".HomeActivity"
             android:exported="false">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

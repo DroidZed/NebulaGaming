@@ -2,19 +2,17 @@ package tn.esprit.apimodule.repos
 
 import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.Header
-import retrofit2.http.POST
-import tn.esprit.apimodule.models.AuthReqBody
-import tn.esprit.apimodule.models.AuthResp
-import tn.esprit.apimodule.models.GenericResp
-import tn.esprit.apimodule.models.LoginReqBody
+import retrofit2.http.*
+import tn.esprit.apimodule.models.*
 
 interface AuthApiService {
 
     @POST("login")
     suspend fun login(@Body emailPassword: LoginReqBody): Response<AuthResp>
+
+    @Headers("Content-Type:application/json")
+    @POST("register")
+    suspend fun register(@Body emailPasswordinfo: UserRegister): Response<RegisterReqBody>
 
     @POST("forgetPassword")
     suspend fun forgetPassword(@Body email: AuthReqBody): Response<GenericResp>

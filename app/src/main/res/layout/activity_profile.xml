@@ -91,32 +91,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/view"
-        android:layout_width="323dp"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="503dp"
-        android:background="@drawable/bordershape"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/nameUser"
-        app:layout_constraintStart_toStartOf="@+id/nameUser"
-        app:layout_constraintTop_toBottomOf="@+id/nameUser"
-        app:layout_constraintVertical_bias="1.0">
 
-        <TextView
-            android:id="@+id/emailuser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:foregroundGravity="center"
-            android:gravity="center"
-            android:text="Emai@email.com"
-            android:textAlignment="textStart"
-            android:textColor="@color/white"
-            android:translationX="12dp"
-            tools:ignore="RtlCompat" />
-    </RelativeLayout>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragcontainer"
