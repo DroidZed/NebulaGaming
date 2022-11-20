@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
+    android:layout_marginVertical="10dp"
     app:cardCornerRadius="25dp"
     app:cardElevation="3dp">
 
@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="370dp"
             android:foreground="@drawable/gradiant_overlay"
             android:foregroundTint="@color/darkyGray"
             android:foregroundTintMode="multiply"

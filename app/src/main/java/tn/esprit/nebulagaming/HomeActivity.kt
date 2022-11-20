@@ -20,12 +20,12 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import tn.esprit.nebulagaming.viewmodels.HomeViewModel
+import tn.esprit.nebulagaming.viewmodels.ArticleViewModel
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
-    private val homeVM: HomeViewModel by viewModels()
+    private val homeVM: ArticleViewModel by viewModels()
 
     private lateinit var appToolBar: Toolbar
 
@@ -88,7 +88,6 @@ class HomeActivity : AppCompatActivity() {
 
             R.id.profile -> {
                 startActivity(Intent(this, ProfileActivity::class.java))
-                finish()
                 true
             }
 

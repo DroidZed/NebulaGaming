@@ -13,7 +13,6 @@
     <string name="continue_with">Continue with</string>
     <string name="pfp">pfp</string>
     <string name="cntdesc">cntDesc</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="events">Events</string>
     <string name="articles">Articles</string>
     <string name="forum">Forum</string>
@@ -38,14 +37,30 @@
         %1$s is looking for (a) prominent %2$s(s) enthusiastic to work at our company for a period of %3$s starting from %4$s. We\'re located at %5$s and you can contact us via our email: %6$s or click on the card to visit our website. We\'re waiting for your applications!
     </string>
     <string name="we_re_hiring">WE\'RE HIRING!</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_editprofile">EditprofileActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="dot">•</string>
+    <string name="chat">Chat</string>
+    <string name="your_message">Your message…</string>
+    <string name="bubble_header">
+        %1$s • %2$s
+    </string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="select_your_role_please">Select your role please</string>
+    <string name="submit">Submit</string>
+    <string name="slogant">Best Tunisian Gaming Platform</string>
+    <string name="made_with_love_by">Made with Love By</string>
+    <string name="tap_to_contact_us">Tap to contact us!</string>
+    <string name="dev1">Aymen Dhahri</string>
+    <string name="dev2">Med Yassine Messaoud</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="github">GitHub</string>
+    <string name="fb_yassine">https://www.facebook.com/yassine.mess.12</string>
+    <string name="lin_yassine">https://www.linkedin.com/in/mdyassinemess/</string>
+    <string name="gh_aymen">https://www.github.com/DroidZed</string>
+    <string name="gh_yassine">https://www.github.com/yassineMessaoud9</string>
+    <string name="lin_aymen">https://www.linkedin.com/in/aymen-d/</string>
+    <string name="facebook">Facebook</string>
+    <string name="ng_email">nebula.gaming2@outlook.com</string>
+    <string name="dev1_email">aymen.dhahri@esprit.tn</string>
+    <string name="dev2_email">medyassinee.messaoud@esprit.tn</string>
 </resources>

@@ -14,8 +14,8 @@ class MainActivity : AppCompatActivity() {
     private val mainVM: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.Theme_NebulaGaming)
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_NebulaGaming)
         setContentView(R.layout.activity_main)
 
         when {

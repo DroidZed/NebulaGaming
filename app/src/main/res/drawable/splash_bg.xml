@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
 
     <item
-        android:gravity="fill"
-        android:drawable="@drawable/backgroundd" />
+        android:drawable="@drawable/backgroundd"
+        android:gravity="fill" />
 
 
     <item
-        android:height="700dp"
         android:width="400dp"
+        android:height="700dp"
         android:drawable="@drawable/splashnv"
         android:gravity="center" />
 

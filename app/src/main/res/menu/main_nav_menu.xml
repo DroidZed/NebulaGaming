@@ -32,5 +32,9 @@
         android:icon="@drawable/ic_baseline_info"
         android:title="@string/about" />
 
+    <item
+        android:id="@+id/chatListFragment"
+        android:icon="@drawable/ic_baseline_chat"
+        android:title="@string/chat" />
 
 </menu>

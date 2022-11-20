@@ -11,16 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.prof.rssparser.Parser
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.ArticlesAdapter
 import tn.esprit.nebulagaming.data.Article
-import tn.esprit.nebulagaming.viewmodels.HomeViewModel
+import tn.esprit.nebulagaming.viewmodels.ArticleViewModel
 
 @AndroidEntryPoint
 class ArticlesFragment : Fragment() {
 
-    private val homeVM: HomeViewModel by viewModels()
+    private val homeVM: ArticleViewModel by viewModels()
 
     private lateinit var rssParser: Parser
 
@@ -101,11 +100,8 @@ class ArticlesFragment : Fragment() {
         // Configure the refreshing colors
 
         swipeContainer.setColorSchemeResources(
-            R.color.purple_200,
-
             R.color.purple_500,
-
-            R.color.purple_700,
+            R.color.DarkPurple,
         );
 
         articlesRV.apply {
