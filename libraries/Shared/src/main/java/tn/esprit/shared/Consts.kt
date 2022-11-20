@@ -11,10 +11,10 @@ object Consts {
     const val ROLE_KEY = "USER_ROLE"
 
     const val U_ID_KEY = "USER_ID"
-
+    
     const val STATUS_KEY = "USER_STATUS"
 
-    const val FUNCTION_URL = "https://7a1e-41-62-238-100.eu.ngrok.io"
+    const val FUNCTION_URL = "https://four-walls-beg-197-238-196-110.loca.lt"
 
     const val FROM_IMG_EXTRACTION_REGEX = "(img src=\")([a-zA-Z0-9_,:\\/\\.-]*)(\"[a-z=\"])*"
 

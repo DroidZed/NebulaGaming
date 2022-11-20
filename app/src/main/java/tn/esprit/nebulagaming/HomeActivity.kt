@@ -1,9 +1,12 @@
 package tn.esprit.nebulagaming
 
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.ViewGroup
+import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +16,8 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.nebulagaming.viewmodels.ArticleViewModel
@@ -95,6 +100,39 @@ class HomeActivity : AppCompatActivity() {
 
             R.id.notificationFragment -> {
                 navController.navigate(R.id.notificationFragment)
+                true
+            }
+
+            R.id.postFragment -> {
+                val dialog = BottomSheetDialog(this)
+
+                // on below line we are inflating a layout file which we have created.
+                val view = layoutInflater.inflate(R.layout.activity_newoffrejob, null)
+                // which we are using to dismiss our dialog.
+
+                // on below line we are adding on click listener
+                // for our dismissing the dialog button.
+                val btnClose = view.findViewById<Button>(R.id.Closepost)
+
+                // on below line we are adding on click listener
+                // for our dismissing the dialog button.
+                btnClose.setOnClickListener {
+                    // on below line we are calling a dismiss
+                    // method to close our dialog.
+                    dialog.dismiss()
+                }
+                // below line is use
+                // below line is use to set cancelable to avoid
+                // closing of dialog box when clicking on the screen.
+                dialog.setCancelable(false)
+
+                // on below line we are setting
+                // content view to our view.
+                dialog.setContentView(view)
+
+                // on below line we are calling
+                // a show method to display a dialog.
+                dialog.show()
                 true
             }
 

@@ -11,6 +11,8 @@ open class DefaultViewModel @Inject constructor() : ViewModel() {
 
     protected open var job: Job? = null
     open var errorMessage = MutableLiveData<String?>()
+    open var successMessage = MutableLiveData<String?>()
+
     open var loading = MutableLiveData<Boolean>()
 
     /**
@@ -19,6 +21,11 @@ open class DefaultViewModel @Inject constructor() : ViewModel() {
     protected fun onError() {
         errorMessage.postValue("Error connecting to the server")
         loading.postValue(false)
+    }
+
+    protected open fun onSuccess() {
+        successMessage.postValue("Success")
+        loading.postValue(true)
     }
 
     override fun onCleared() {
