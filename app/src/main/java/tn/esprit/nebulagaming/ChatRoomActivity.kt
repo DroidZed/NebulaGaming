@@ -84,7 +84,7 @@ class ChatRoomActivity : AppCompatActivity() {
 
                 items.add(
                     ChatBubble(
-                        senderName = otherName!!,
+                        senderName = otherName,
                         message = textZoneE.text.toString().trim(),
                         time = listOf("Now", "Yesterday", "1 min ago.").random(),
                         senderId = listOf(userId, "").random(),

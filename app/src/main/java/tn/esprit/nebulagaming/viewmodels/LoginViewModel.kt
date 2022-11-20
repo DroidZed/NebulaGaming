@@ -58,6 +58,36 @@ class LoginViewModel @Inject constructor(
         }
     }
 
+    /*
+        private fun runLogin(email: String, password: String, context: Context) =
+            liveData(Dispatchers.IO) {
+
+                val authClient = NetworkClient(context)
+
+                val apiService = authClient.getAuthService()
+
+                emit(Resource.loading(data = null))
+                try {
+                    emit(
+                        Resource.success(
+                            data = apiService.login(
+                                LoginReqBody(
+                                    email = email,
+                                    password = password
+                                )
+                            )
+                        )
+                    )
+                } catch (ex: Exception) {
+                    emit(
+                        Resource.error(
+                            data = null,
+                            message = ex.message ?: "Error connecting to the server"
+                        )
+                    )
+                }
+            }
+    */
     private fun onSuccess(apiResponse: AuthResp) {
         val token = apiResponse.token!!
         val refresh = apiResponse.refresh!!

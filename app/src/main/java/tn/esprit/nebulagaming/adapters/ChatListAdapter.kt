@@ -27,7 +27,7 @@ class ChatListAdapter(private val data: MutableList<Conversation>) : Adapter<Cha
             name!!.text = data[position].otherName
             at!!.text = data[position].at
 
-            val context = itemView.context
+//            val context = itemView.context
 
             usePicasso(
                 data[position].otherImage,

@@ -15,7 +15,7 @@ import tn.esprit.authmodule.repos.UserAuthManager
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class ArticleViewModel @Inject constructor(
     private val authManager: UserAuthManager
 ) : ViewModel() {
 
