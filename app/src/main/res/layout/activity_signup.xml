@@ -31,7 +31,7 @@
         android:fontFamily="@font/pacifico"
         android:text="@string/sign_up"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -106,7 +106,7 @@
                 android:inputType="textEmailAddress"
                 android:shadowColor="#FFFEFE"
                 android:singleLine="true"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textColorHint="#B388FF"
                 tools:ignore="TextContrastCheck" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -140,7 +140,7 @@
                 android:inputType="textPassword"
                 android:shadowColor="#FFFEFE"
                 android:singleLine="true"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textColorHint="#B388FF"
                 tools:ignore="TextContrastCheck" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -172,7 +172,7 @@
                 android:inputType="phone|number"
                 android:shadowColor="#FFFEFE"
                 android:singleLine="true"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textColorHint="#B388FF"
                 tools:ignore="TextContrastCheck" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -208,7 +208,7 @@
             android:layout_marginRight="10dp"
             android:fontFamily="@font/pacifico"
             android:text="Continue with"
-            android:textColor="#FFFFFF" />
+            android:textColor="@color/white" />
 
         <View
             android:layout_width="match_parent"

@@ -255,7 +255,7 @@
                     android:layout_marginBottom="76dp"
                     android:fontFamily="@font/anaheim"
                     android:text="TextView"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="11sp" />
 
                 <TextView
@@ -268,7 +268,7 @@
                     android:layout_marginBottom="63dp"
                     android:fontFamily="@font/anaheim"
                     android:text="TextView"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="11sp" />
 
                 <TextView

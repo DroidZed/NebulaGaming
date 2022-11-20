@@ -8,13 +8,13 @@ import tn.esprit.nebulagaming.data.Article
 import tn.esprit.nebulagaming.viewholders.ArticleViewHolder
 
 
-class ArticlesAdapter (private val data: MutableList<Article>) :
+class ArticlesAdapter(private val data: MutableList<Article>) :
     Adapter<ArticleViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder =
         ArticleViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.article_item, parent, false)
+                .inflate(R.layout.layout_article_item, parent, false)
         )
 
     fun clear() {
@@ -27,12 +27,9 @@ class ArticlesAdapter (private val data: MutableList<Article>) :
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-
+    override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) =
         holder.bind(data[position])
-    }
 
     override fun getItemCount(): Int = data.size
-
 
 }

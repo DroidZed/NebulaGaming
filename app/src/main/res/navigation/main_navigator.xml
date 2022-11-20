@@ -45,4 +45,21 @@
         android:name="tn.esprit.nebulagaming.fragments.NotificationsFragment"
         android:label="@string/notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/chatListFragment"
+        android:name="tn.esprit.nebulagaming.fragments.ChatListFragment"
+        android:label="Chat list"
+        tools:layout="@layout/fragment_chat_list">
+        <action
+            android:id="@+id/action_chatListFragment_to_chatRoomActivity"
+            app:destination="@id/chatRoomActivity" />
+    </fragment>
+
+    <activity
+        android:id="@+id/chatRoomActivity"
+        android:name="tn.esprit.nebulagaming.ChatRoomActivity"
+        android:label="Chat"
+        tools:layout="@layout/activity_chat_room" />
+
 </navigation>

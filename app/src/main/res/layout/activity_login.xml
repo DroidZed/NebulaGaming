@@ -31,7 +31,7 @@
         android:fontFamily="@font/pacifico"
         android:text="@string/sign_in"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
                 android:inputType="textEmailAddress"
                 android:shadowColor="#FFFEFE"
                 android:singleLine="true"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textColorHint="#B388FF"
                 tools:ignore="TextContrastCheck" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -104,7 +104,7 @@
                 android:inputType="textPassword"
                 android:shadowColor="#FFFEFE"
                 android:singleLine="true"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textColorHint="#B388FF"
                 tools:ignore="TextContrastCheck" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -130,7 +130,7 @@
             android:minHeight="48dp"
             android:text="@string/forgot_your_password"
             android:textAlignment="center"
-            android:textColor="#FFFFFF" />
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <RelativeLayout
@@ -147,7 +147,7 @@
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/pacifico"
             android:text="@string/continue_with"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="15sp" />
 
         <View
@@ -231,8 +231,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
@@ -241,9 +241,9 @@
                 android:layout_gravity="center"
                 android:layout_marginEnd="5dp"
                 android:gravity="center"
-                android:textSize="16sp"
                 android:text="@string/don_t_have_an_account"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/signUpText"
