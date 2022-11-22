@@ -71,4 +71,9 @@
     <string name="timer_text">%1$d:%2$d</string>
     <string name="enter_the_4_digit_code_we_sent_to_your_email_address_to_verify_your_new_nebula_gaming_account">Enter the 4-digit code we sent to your email address to verify your new Nebula Gaming account:</string>
     <string name="add_job_post">Publish Job Ad</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="shop">Shop</string>
+    <string name="your_products">Your products</string>
 </resources>

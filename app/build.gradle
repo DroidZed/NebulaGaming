@@ -52,6 +52,8 @@ dependencies {
 
     implementation "org.jsoup:jsoup:1.14.3"
 
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
