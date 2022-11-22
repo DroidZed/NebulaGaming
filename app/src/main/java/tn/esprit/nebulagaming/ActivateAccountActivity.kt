@@ -64,6 +64,7 @@ class ActivateAccountActivity : AppCompatActivity() {
         }
     }
 
+
     private fun countDownTime() {
         object : CountDownTimer(3 * 60 * 1000.toLong(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -73,9 +74,19 @@ class ActivateAccountActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
+                timer.text = "00:00"
                 renvoyerCode.setOnClickListener {
+                    val emailUser: String = intent.getStringExtra("Email").toString()
+                    verifAccVm.resendCode(this@ActivateAccountActivity, emailUser)
+                    verifAccVm.errorMessage.observe(this@ActivateAccountActivity) { error ->
+                        if (error != null) codeInputLayout.error = error
+                        else {
+                            countDownTime()
+                        }
+                    }
                 }
             }
+
         }.start()
     }
 }

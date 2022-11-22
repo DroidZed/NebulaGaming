@@ -13,29 +13,17 @@ import tn.esprit.apimodule.models.AuthReqBody
 import javax.inject.Inject
 
 @HiltViewModel
-class VerifyAccountViewModel @Inject constructor() : DefaultViewModel() {
+class VerifyCodeFGPViewModel  @Inject constructor() : DefaultViewModel() {
 
     // onclick send button
-    fun handleVerifyAccountRequest(
+    fun handleVerifyCodeRequest(
         context: Context,
-        email: String,
+        email:String,
         codeInput: EditText,
         codeTLayout: TextInputLayout
     ) {
         if (validateInput(codeInput, codeTLayout))
             sendRequest(context, email, codeInput.text.toString())
-    }
-
-    //validateInput
-    private fun validateInput(codeInput: EditText, codeTLayout: TextInputLayout): Boolean {
-        var isValid = true
-        if (codeInput.text.toString().isEmpty()) {
-            codeTLayout.error = "Code is required"
-            isValid = false
-        } else {
-            codeTLayout.error = null
-        }
-        return isValid
     }
 
     private fun sendRequest(context: Context, email: String, code: String) {
@@ -46,9 +34,9 @@ class VerifyAccountViewModel @Inject constructor() : DefaultViewModel() {
             withContext(Dispatchers.Main) {
                 try {
                     if (response.isSuccessful)
-                        onSuccess()
+                        onSuccess(response.body()!!.message!!)
                     else
-                        super.onError(response)
+                        onError(response)
                 } catch (ex: NullPointerException) {
                     super.onError()
                 }
@@ -56,21 +44,24 @@ class VerifyAccountViewModel @Inject constructor() : DefaultViewModel() {
         }
     }
 
-
-    // resend code
-    fun resendCode(context: Context, email: String) {
-        val authClient = NetworkClient(context)
-        val apiService = authClient.getAuthService()
-        job = CoroutineScope(Dispatchers.IO).launch {
-            val response = apiService.resetVerifCode(AuthReqBody(email))
-            withContext(Dispatchers.Main) {
-                try {
-                    if (response.isSuccessful)
-                        onSuccess()
-                    else
-                        super.onError(response)
-                } catch (ex: NullPointerException) {
-                    super.onError()
+    private fun validateInput(codeInput: EditText, codeTLayout: TextInputLayout): Boolean {
+        when {
+            codeInput.text.isBlank() -> {
+                codeTLayout.apply {
+                    error = "Field mustn't be blank!"
+                    return false
+                }
+            }
+            codeInput.text.length < 4 -> {
+                codeTLayout.apply {
+                    error = "Code must be 4 digits!"
+                    return false
+                }
+            }
+            else -> {
+                codeTLayout.apply {
+                    error = null
+                    return true
                 }
             }
         }
