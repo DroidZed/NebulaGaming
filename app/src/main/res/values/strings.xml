@@ -75,4 +75,7 @@
     <string name="enter_your_email_to_reset_your_password">Enter your email to reset your password</string>
     <string name="enter_your_4_digit_code_sent_to_your_email">Enter your 4 digit code sent to your email</string>
     <string name="enter_your_4_digit_code_to_modify_your_password">Enter your 4 digit code to modify your password</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="shop">Shop</string>
+    <string name="your_products">Your products</string>
 </resources>

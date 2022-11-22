@@ -50,16 +50,11 @@
         android:id="@+id/chatListFragment"
         android:name="tn.esprit.nebulagaming.fragments.ChatListFragment"
         android:label="Chat list"
-        tools:layout="@layout/fragment_chat_list">
-        <action
-            android:id="@+id/action_chatListFragment_to_chatRoomActivity"
-            app:destination="@id/chatRoomActivity" />
-    </fragment>
-
-    <activity
-        android:id="@+id/chatRoomActivity"
-        android:name="tn.esprit.nebulagaming.ChatRoomActivity"
-        android:label="Chat"
-        tools:layout="@layout/activity_chat_room" />
+        tools:layout="@layout/fragment_chat_list"/>
+    <fragment
+        android:id="@+id/bookmarksFragment"
+        android:name="tn.esprit.nebulagaming.fragments.BookmarksFragment"
+        android:label="@string/bookmarks"
+        tools:layout="@layout/fragment_bookmarks" />
 
 </navigation>
