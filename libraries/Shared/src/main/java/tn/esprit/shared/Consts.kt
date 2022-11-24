@@ -1,7 +1,6 @@
 package tn.esprit.shared
 
 object Consts {
-
     const val APP_PREFS = "STAR_DUST"
 
     const val JWT_KEY = "USER_TOKEN"
@@ -14,7 +13,7 @@ object Consts {
     
     const val STATUS_KEY = "USER_STATUS"
 
-    const val FUNCTION_URL = "https://plain-laws-shine-196-203-207-178.loca.lt"
+    const val FUNCTION_URL = "https://deep-crabs-jam-197-15-26-81.loca.lt"
 
     const val FROM_IMG_EXTRACTION_REGEX = "(img src=\")([a-zA-Z0-9_,:\\/\\.-]*)(\"[a-z=\"])*"
 

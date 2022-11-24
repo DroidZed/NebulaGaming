@@ -52,7 +52,6 @@ class ForgetPasswordActivity : AppCompatActivity() {
                 putExtra("Email", emailInput.text.toString())
                 startActivity(this)
             }
- finish()
         }
 
     }

@@ -30,7 +30,7 @@ class UnsecurechangepassViewModel @Inject constructor() : DefaultViewModel() {
         val authClient = NetworkClient(context)
         val apiService = authClient.getAuthService()
         job = CoroutineScope(Dispatchers.IO).launch {
-            val response = apiService.unsecureChangePassword(AuthReqBody(email, password))
+            val response = apiService.unsecureChangePassword(AuthReqBody(email, null,password))
             withContext(Dispatchers.Main) {
                 try {
                     if (response.isSuccessful)
