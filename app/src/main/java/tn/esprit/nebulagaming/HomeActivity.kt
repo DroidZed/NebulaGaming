@@ -101,35 +101,9 @@ class HomeActivity : AppCompatActivity() {
             }
 
             R.id.postFragment -> {
-                val dialog = BottomSheetDialog(this)
+                startActivity(Intent(this, NewJobOfferActivity::class.java))
 
-                // on below line we are inflating a layout file which we have created.
-                val view = layoutInflater.inflate(R.layout.activity_new_job_offer, null)
-                // which we are using to dismiss our dialog.
 
-                // on below line we are adding on click listener
-                // for our dismissing the dialog button.
-                val btnClose = view.findViewById<Button>(R.id.Closepost)
-
-                // on below line we are adding on click listener
-                // for our dismissing the dialog button.
-                btnClose.setOnClickListener {
-                    // on below line we are calling a dismiss
-                    // method to close our dialog.
-                    dialog.dismiss()
-                }
-                // below line is use
-                // below line is use to set cancelable to avoid
-                // closing of dialog box when clicking on the screen.
-                dialog.setCancelable(false)
-
-                // on below line we are setting
-                // content view to our view.
-                dialog.setContentView(view)
-
-                // on below line we are calling
-                // a show method to display a dialog.
-                dialog.show()
                 true
             }
 
