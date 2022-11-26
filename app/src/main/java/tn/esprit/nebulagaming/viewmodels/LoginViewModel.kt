@@ -47,9 +47,10 @@ class LoginViewModel @Inject constructor(
             val loginResp = apiService.login(LoginReqBody(email = email, password = password))
             withContext(Dispatchers.Main) {
                 try {
-                    if (loginResp.isSuccessful)
+                    if (loginResp.isSuccessful) {
                         onLoginSuccess(loginResp.body()!!)
-                    else
+
+                    }else
                         onLoginError(loginResp)
                 } catch (e: Exception) {
                     super.onError()

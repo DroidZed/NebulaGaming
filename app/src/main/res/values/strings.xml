@@ -78,6 +78,20 @@
     <string name="bookmarks">Bookmarks</string>
     <string name="shop">Shop</string>
     <string name="your_products">Your products</string>
+    <string name="title_job">Title Job</string>
+    <string name="job_title">Job Title</string>
+    <string name="job_description_offre">Job Description</string>
+    <string name="job_salary">Job Salary</string>
+    <string name="job_adress">Job Adress</string>
+
+    <string-array name="offrejobType">
+        <item>Stage PFE</item>
+        <item>Stage Initiation</item>
+        <item>Emploi CDI</item>
+        <item>Emploi CDD</item>
+        <item>Alternance</item>
+        <item>Freelance</item>
+    </string-array>
     <string name="your_name">Your name</string>
     <string name="lvl_10">lvl 10</string>
     <string name="rank">Rank</string>

@@ -42,7 +42,7 @@ class VerifycodeforgetpassActivity : AppCompatActivity() {
                     if (error != null) CodeTextLayout.error = error
                     else {
 
-                        Intent(this, VerifycodeforgetpassActivity::class.java).apply {
+                        Intent(this, UnsecureChangepasswordActivity::class.java).apply {
                             putExtra("Email", Email)
                             startActivity(this)}
 finish()
