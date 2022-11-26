@@ -13,7 +13,7 @@
         android:title="@string/events" />
 
     <item
-        android:id="@+id/marketFragment"
+        android:id="@+id/marketplaceActivity"
         android:icon="@drawable/ic_baseline_shopping_cart"
         android:title="@string/marketplace" />
 
@@ -27,19 +27,14 @@
         android:icon="@drawable/ic_baseline_work"
         android:title="@string/job_offers" />
 
-
     <item
         android:id="@+id/chatListFragment"
         android:icon="@drawable/ic_baseline_chat"
         android:title="@string/chat" />
+
     <item
         android:id="@+id/aboutFragment"
         android:icon="@drawable/ic_baseline_info"
         android:title="@string/about" />
-
-    <item
-        android:id="@+id/bookmarksFragment"
-        android:icon="@drawable/ic_baseline_bookmark_24"
-        android:title="@string/bookmarks" />
 
 </menu>

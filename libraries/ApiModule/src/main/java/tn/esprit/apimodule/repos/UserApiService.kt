@@ -25,7 +25,7 @@ interface UserApiService {
 
     @Multipart
     @PATCH("users/changeImage/{id}")
-    suspend fun updateUserPicture(@Part("image") image: Image): Response<GenericResp>
+    suspend fun updateUserPicture(@Part image: Image): Response<GenericResp>
 
     @POST("users/requestChangePwd")
     suspend fun requestChangePwd(@Body email: AuthReqBody): Response<GenericResp>

@@ -1,36 +1,25 @@
 package tn.esprit.nebulagaming.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.ComentAdapter
-import tn.esprit.nebulagaming.models.ComentPost
+import tn.esprit.nebulagaming.data.CommentPost
 
 
-class CommentFragment : Fragment() {
+class CommentFragment : Fragment(R.layout.fragment_comment) {
 
     private lateinit var adapter: ComentAdapter
-    private lateinit var arraylist: ArrayList<ComentPost>
+    private lateinit var arraylist: ArrayList<CommentPost>
     private lateinit var recyclerView: RecyclerView
     lateinit var idComent: Array<Int>
     lateinit var photoUser: Array<Int>
     lateinit var dateComment: Array<String>
     lateinit var commentsPost: Array<String>
     lateinit var usernameComment: Array<String>
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_comment, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -96,7 +85,7 @@ class CommentFragment : Fragment() {
         )
         for (i in photoUser.indices) {
             arraylist.add(
-                ComentPost(
+                CommentPost(
                     idComent[i],
                     usernameComment[i],
                     commentsPost[i],

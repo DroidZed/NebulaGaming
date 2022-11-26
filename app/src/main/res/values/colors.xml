@@ -12,6 +12,7 @@
     <color name="GoogleColor">#d44638</color>
     <color name="DiscordColor">#7289DA</color>
     <color name="DarkBarColor">#1E1E1E</color>
+    <color name="appBg">#1C1B1F</color>
     <color name="DarkBgColor">#0C0C0C</color>
     <color name="darkyGray">#292929</color>
     <color name="lightyGray">#878787</color>

@@ -38,8 +38,6 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
-    // private lateinit var bottomNav: BottomNavigationView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -47,7 +45,6 @@ class HomeActivity : AppCompatActivity() {
         appToolBar = findViewById(R.id.mainToolBar)
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
-        // bottomNav = findViewById(R.id.bottomNavMain)
 
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -70,8 +67,6 @@ class HomeActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navView.setupWithNavController(navController)
-
-        // setupBottomNavMenu(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -100,7 +95,7 @@ class HomeActivity : AppCompatActivity() {
                 true
             }
 
-            R.id.postFragment -> {
+            R.id.publishJobFragment -> {
                 val dialog = BottomSheetDialog(this)
 
                 // on below line we are inflating a layout file which we have created.
@@ -142,10 +137,4 @@ class HomeActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
-    /*
-        private fun setupBottomNavMenu(navController: NavController) {
-            bottomNav.setupWithNavController(navController)
-        }
-    */
 }

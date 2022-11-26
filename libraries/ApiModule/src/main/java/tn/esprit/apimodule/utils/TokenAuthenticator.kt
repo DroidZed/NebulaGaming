@@ -25,7 +25,7 @@ class TokenAuthenticator constructor(private val context: Context) : Authenticat
         val userInfo = authServ.retrieveUserInfoFromStorage()
 
         val response =
-            client.getAuthService().resetUserToken(userInfo.refresh).execute().body()?.body()
+            client.getAuthService().resetUserToken(userInfo!!.refresh).execute().body()?.body()
 
         userInfo.apply {
             token = response?.token!!

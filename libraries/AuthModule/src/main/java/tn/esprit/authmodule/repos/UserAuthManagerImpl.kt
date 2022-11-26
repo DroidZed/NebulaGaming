@@ -3,37 +3,34 @@ package tn.esprit.authmodule.repos
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import com.google.gson.Gson
 import dagger.hilt.android.qualifiers.ApplicationContext
+import tn.esprit.authmodule.utils.UserInfo
 import tn.esprit.shared.Consts.APP_PREFS
-import tn.esprit.shared.Consts.JWT_KEY
-import tn.esprit.shared.Consts.REFRESH_KEY
-import tn.esprit.shared.Consts.ROLE_KEY
-import tn.esprit.shared.Consts.STATUS_KEY
-import tn.esprit.shared.Consts.U_ID_KEY
-import tn.esprit.shared.UserInfo
+import tn.esprit.shared.Consts.USER_KEY
 import javax.inject.Inject
 
-class UserAuthManagerImpl @Inject constructor(@ApplicationContext context: Context) :
+class UserAuthManagerImpl @Inject constructor(
+    @ApplicationContext context: Context
+) :
     UserAuthManager {
 
     private var sharedPrefs: SharedPreferences
+    private val gson: Gson = Gson()
 
     init {
         sharedPrefs = context.getSharedPreferences(APP_PREFS, MODE_PRIVATE)
     }
 
-    override fun retrieveUserInfoFromStorage(): UserInfo =
-        UserInfo(
-            sharedPrefs.getString(U_ID_KEY, "")!!,
-            sharedPrefs.getString(JWT_KEY, "")!!,
-            sharedPrefs.getString(REFRESH_KEY, "")!!,
-            sharedPrefs.getString(ROLE_KEY, "")!!,
-            sharedPrefs.getInt(STATUS_KEY, 0)
-        )
+    override fun retrieveUserInfoFromStorage(): UserInfo? {
+        val json = sharedPrefs.getString(USER_KEY, "")
+        if (json == "") return null
+        return gson.fromJson(json, UserInfo::class.java)
+    }
+    
+    override fun checkIfUserLoggedIn(): Boolean = retrieveUserInfoFromStorage() != null
 
-    override fun checkIfUserLoggedIn(): Boolean = sharedPrefs.contains(U_ID_KEY);
-
-    override fun checkIfUserIsValid() = sharedPrefs.getInt(STATUS_KEY, 0) != 0
+    override fun checkIfUserIsValid() = retrieveUserInfoFromStorage()?.status != 0
 
     override fun logOutUser() = sharedPrefs.edit().clear().apply()
 
@@ -46,11 +43,17 @@ class UserAuthManagerImpl @Inject constructor(@ApplicationContext context: Conte
     ) =
         sharedPrefs
             .edit()
-            .putString(U_ID_KEY, id)
-            .putString(JWT_KEY, token)
-            .putString(REFRESH_KEY, refresh)
-            .putString(ROLE_KEY, role)
-            .putInt(STATUS_KEY, status)
+            .putString(
+                USER_KEY,
+                gson.toJson(
+                    UserInfo(
+                        userId = id,
+                        role = role,
+                        token = token,
+                        refresh = refresh,
+                        status = status
+                    )
+                )
+            )
             .apply()
-
 }

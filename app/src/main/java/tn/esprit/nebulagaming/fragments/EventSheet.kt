@@ -1,9 +1,7 @@
 package tn.esprit.nebulagaming.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -18,7 +16,7 @@ private const val ARG_DESC = "ARG_DESC"
 private const val ARG_PERIOD = "ARG_PERIOD"
 private const val ARG_IMG = "ARG_IMG"
 
-class EventSheet() : BottomSheetDialogFragment() {
+class EventSheet: BottomSheetDialogFragment(R.layout.layout_event_sheet) {
 
     private lateinit var sheetBgEv: ImageView
     private lateinit var eventTitleSh: TextView
@@ -44,13 +42,6 @@ class EventSheet() : BottomSheetDialogFragment() {
             imgArg = it.getString(ARG_IMG)
         }
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.layout_event_sheet, container, false)
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

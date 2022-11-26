@@ -5,21 +5,26 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
 import android.widget.Button
 import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputLayout
+import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.nebulagaming.adapters.ChatRoomAdapter
 import tn.esprit.nebulagaming.data.ChatBubble
 import tn.esprit.nebulagaming.utils.hideKeyboard
 import tn.esprit.nebulagaming.utils.on
+import tn.esprit.nebulagaming.viewmodels.ChatRoomViewModel
 import tn.esprit.shared.Consts.APP_PREFS
-import tn.esprit.shared.Consts.U_ID_KEY
 
+@AndroidEntryPoint
 class ChatRoomActivity : AppCompatActivity() {
 
     private lateinit var chatRoomAdapter: ChatRoomAdapter
+
+    private val chatRoomVM: ChatRoomViewModel by viewModels()
 
     private lateinit var chatRV: RecyclerView
     private lateinit var sendBtn: Button
@@ -54,14 +59,13 @@ class ChatRoomActivity : AppCompatActivity() {
 
         sharedPrefs = getSharedPreferences(APP_PREFS, MODE_PRIVATE)
 
-        val userId = sharedPrefs.getString(U_ID_KEY, "")
 
         val items = mutableListOf(
             ChatBubble(
                 senderName = "Aymen",
                 message = "hello there",
                 time = "1 min ago.",
-                senderId = userId!!,
+                senderId = chatRoomVM.retrieveConnectedUserId()!!,
                 receiverId = ""
             ),
             ChatBubble(
@@ -87,7 +91,7 @@ class ChatRoomActivity : AppCompatActivity() {
                         senderName = otherName,
                         message = textZoneE.text.toString().trim(),
                         time = listOf("Now", "Yesterday", "1 min ago.").random(),
-                        senderId = listOf(userId, "").random(),
+                        senderId = listOf(chatRoomVM.retrieveConnectedUserId()!!, "").random(),
                         receiverId = ""
                     )
                 )

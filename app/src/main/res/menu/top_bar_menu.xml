@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/postFragment"
+        android:id="@+id/publishJobFragment"
         android:icon="@drawable/ic_baseline_control_point_24"
         android:title="@string/add_job_post"
         app:showAsAction="always"

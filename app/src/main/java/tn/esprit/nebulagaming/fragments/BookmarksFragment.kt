@@ -9,12 +9,9 @@ import tn.esprit.nebulagaming.R
 
 
 
-class BookmarksFragment : Fragment() {
+class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View?
-        = inflater.inflate(R.layout.fragment_bookmarks, container, false)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 }
