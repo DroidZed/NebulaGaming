@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 import tn.esprit.nebulagaming.DetailPostActivity
 import tn.esprit.nebulagaming.R
-import tn.esprit.nebulagaming.models.ForumPost
+import tn.esprit.nebulagaming.data.ForumPost
 
 class ForumAdapter(
     private val list: List<ForumPost>,

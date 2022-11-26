@@ -29,7 +29,7 @@ class ArticleViewHolder(itemView: View) : ViewHolder(itemView) {
 
         usePicasso(article.image, R.drawable.backg, articleImage!!)
 
-        itemView.setOnClickListener {
+        articleImage?.setOnClickListener {
             launchURL(it, article.link)
         }
     }

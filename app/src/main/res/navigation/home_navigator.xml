@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_navigator"
+    android:id="@+id/home_navigator"
     app:startDestination="@id/articlesFragment">
     <fragment
         android:id="@+id/articlesFragment"
@@ -15,13 +15,6 @@
         android:label="@string/events"
         app:popUpTo="@id/articlesFragment"
         tools:layout="@layout/fragment_events" />
-
-    <fragment
-        android:id="@+id/marketFragment"
-        android:name="tn.esprit.nebulagaming.fragments.MarketplaceFragment"
-        android:label="@string/marketplace"
-        app:popUpTo="@id/articlesFragment"
-        tools:layout="@layout/fragment_marketplace" />
     <fragment
         android:id="@+id/aboutFragment"
         android:name="tn.esprit.nebulagaming.fragments.AboutFragment"
@@ -50,11 +43,11 @@
         android:id="@+id/chatListFragment"
         android:name="tn.esprit.nebulagaming.fragments.ChatListFragment"
         android:label="Chat list"
-        tools:layout="@layout/fragment_chat_list"/>
-    <fragment
-        android:id="@+id/bookmarksFragment"
-        android:name="tn.esprit.nebulagaming.fragments.BookmarksFragment"
-        android:label="@string/bookmarks"
-        tools:layout="@layout/fragment_bookmarks" />
+        tools:layout="@layout/fragment_chat_list" />
 
+    <activity
+        android:id="@+id/marketplaceActivity"
+        android:name="tn.esprit.nebulagaming.MarketplaceActivity"
+        android:label="Marketplace"
+        tools:layout="@layout/activity_marketplace" />
 </navigation>

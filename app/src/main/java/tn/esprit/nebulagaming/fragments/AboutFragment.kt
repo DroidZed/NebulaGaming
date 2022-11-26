@@ -3,16 +3,14 @@ package tn.esprit.nebulagaming.fragments
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
 import tn.esprit.nebulagaming.R
 
 
-class AboutFragment : Fragment() {
+class AboutFragment : Fragment(R.layout.fragment_about) {
 
     private lateinit var contactBtn: Button
     private lateinit var dev1ChipLI: Chip
@@ -20,13 +18,6 @@ class AboutFragment : Fragment() {
     private lateinit var dev1ChipGH: Chip
     private lateinit var dev2ChipGH: Chip
     private lateinit var dev2ChipFB: Chip
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? =
-        inflater.inflate(R.layout.fragment_about, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,7 +30,7 @@ class AboutFragment : Fragment() {
         dev2ChipFB = view.findViewById(R.id.dev2ChipFB)
 
         contactBtn.setOnClickListener {
-            Intent(Intent.ACTION_SENDTO).apply {
+            Intent(Intent.ACTION_SEND).apply {
                 data = Uri.parse("mailto:nebula.gaming2@outlook.com")
                 putExtra(Intent.EXTRA_SUBJECT, "Contact Nebula Team")
                 putExtra(

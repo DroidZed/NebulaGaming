@@ -92,4 +92,17 @@
         <item>Alternance</item>
         <item>Freelance</item>
     </string-array>
+    <string name="your_name">Your name</string>
+    <string name="lvl_10">lvl 10</string>
+    <string name="rank">Rank</string>
+    <string name="rewards">Rewards</string>
+    <string name="update_info">Update info</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="my_cart">My Cart</string>
+    <string name="search">Search…</string>
+    <string name="product_image">product image</string>
+    <string name="view">View</string>
+    <string name="view_icon">view icon</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</string>
 </resources>

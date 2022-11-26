@@ -1,9 +1,7 @@
 package tn.esprit.nebulagaming.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.CalendarView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -16,7 +14,7 @@ import tn.esprit.nebulagaming.data.EventData
 import tn.esprit.nebulagaming.viewmodels.EventViewModel
 
 @AndroidEntryPoint
-class EventsFragment : Fragment() {
+class EventsFragment : Fragment(R.layout.fragment_events) {
 
     private lateinit var eventsCal: CalendarView
 
@@ -25,14 +23,6 @@ class EventsFragment : Fragment() {
     private lateinit var eventsAdapter: EventsAdapter
 
     private val eventVM: EventViewModel by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_events, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -82,7 +72,7 @@ class EventsFragment : Fragment() {
                 val eventSheet =
                     EventSheet.newInstance(
                         title = "EVENT TITLE",
-                        desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                        desc = resources.getString(R.string.lorem),
                         period = "${dayOfMonth}/${month + 1} @ 9PM - ${dayOfMonth}/${month + 1} @ 10PM",
                         topic = "20% EXP BOOST !!",
                         image = "https://i.pinimg.com/originals/1b/f6/fa/1bf6fa809078cd185a3c9e54eb127ac8.jpg"

@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import tn.esprit.nebulagaming.R
-import tn.esprit.nebulagaming.models.Wishlist
+import tn.esprit.nebulagaming.data.Wishlist
 
 class WishlistAdapter(
     private val list: ArrayList<Wishlist>,
@@ -22,7 +22,7 @@ class WishlistAdapter(
         val wishlist = list[position]
 
         holder.idWish = wishlist.idWish
-        holder.nomProdcut.text = wishlist.nomProdcut
+        holder.nomProdcut.text = wishlist.nameProduct
         holder.priceProduct.text = wishlist.priceProduct
         holder.photoProduct.setImageResource(wishlist.photoProduct)
        holder.deleteWish.setOnClickListener {

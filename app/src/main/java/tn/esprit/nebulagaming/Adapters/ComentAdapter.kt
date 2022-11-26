@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 import tn.esprit.nebulagaming.R
-import tn.esprit.nebulagaming.models.ComentPost
+import tn.esprit.nebulagaming.data.CommentPost
 
-class ComentAdapter(private val list: List<ComentPost>) : RecyclerView.Adapter<ComentAdapter.ViewHolder>() {
+class ComentAdapter(private val list: List<CommentPost>) : RecyclerView.Adapter<ComentAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_one_comment, parent, false)
         return ViewHolder(view)

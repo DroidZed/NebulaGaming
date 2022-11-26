@@ -14,9 +14,7 @@
         app:menu="@menu/top_bar_menu"
         app:navigationIcon="@drawable/ic_baseline_menu"
         app:title="@string/app_name"
-        app:titleTextColor="@color/white">
-
-    </com.google.android.material.appbar.MaterialToolbar>
+        app:titleTextColor="@color/white"/>
 
 
 </LinearLayout>

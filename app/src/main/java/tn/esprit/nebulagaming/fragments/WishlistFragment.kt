@@ -1,18 +1,16 @@
 package tn.esprit.nebulagaming.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.WishlistAdapter
-import tn.esprit.nebulagaming.models.Wishlist
+import tn.esprit.nebulagaming.data.Wishlist
 
 
-class WishlistFragment : Fragment() {
+class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
 
     private lateinit var adapter: WishlistAdapter
     private lateinit var arraylist: ArrayList<Wishlist>
@@ -22,14 +20,6 @@ class WishlistFragment : Fragment() {
     lateinit var priceProduct: Array<String>
     lateinit var nomProduct: Array<String>
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_wishlist, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,7 +32,7 @@ class WishlistFragment : Fragment() {
     }
 
     private fun dataInitialise() {
-        arraylist = arrayListOf<Wishlist>()
+        arraylist = arrayListOf()
         idWish = arrayOf(1, 2, 3, 4, 5)
         photoProduct = arrayOf(
             R.drawable.goldreward,

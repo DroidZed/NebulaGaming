@@ -1,9 +1,7 @@
 package tn.esprit.nebulagaming.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +15,7 @@ import tn.esprit.nebulagaming.data.Article
 import tn.esprit.nebulagaming.viewmodels.ArticleViewModel
 
 @AndroidEntryPoint
-class ArticlesFragment : Fragment() {
+class ArticlesFragment : Fragment(R.layout.fragment_articles) {
 
     private val homeVM: ArticleViewModel by viewModels()
 
@@ -28,12 +26,6 @@ class ArticlesFragment : Fragment() {
     private lateinit var swipeContainer: SwipeRefreshLayout
 
     private lateinit var articlesAdapter: ArticlesAdapter
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_articles, container, false)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -90,7 +82,6 @@ class ArticlesFragment : Fragment() {
             // Make sure you call swipeContainer.setRefreshing(false)
 
             // once the network request has completed successfully.
-
 
 
             fetchTimelineAsync()

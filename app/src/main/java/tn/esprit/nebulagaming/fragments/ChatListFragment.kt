@@ -1,9 +1,7 @@
 package tn.esprit.nebulagaming.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,20 +10,10 @@ import tn.esprit.nebulagaming.adapters.ChatListAdapter
 import tn.esprit.nebulagaming.data.Conversation
 
 
-class ChatListFragment : Fragment() {
+class ChatListFragment : Fragment(R.layout.fragment_chat_list) {
 
     private lateinit var chatRV: RecyclerView
     private lateinit var chatAdapter: ChatListAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_chat_list, container, false)
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
