@@ -36,7 +36,7 @@ class UserAuthManagerImpl @Inject constructor(
 
     override fun saveUserInfoToStorage(
         id: String,
-        role: String,
+        role: Int,
         token: String,
         refresh: String,
         status: Int

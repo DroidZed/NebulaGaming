@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +13,6 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.nebulagaming.viewmodels.HomeViewModel
@@ -54,6 +52,7 @@ class HomeActivity : AppCompatActivity() {
 
         setSupportActionBar(appToolBar)
 
+
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
 
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -72,6 +71,9 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.top_bar_menu, menu)
+
+        menu?.getItem(0)?.isVisible = homeVM.checkIfCompany()
+
         return super.onCreateOptionsMenu(menu)
     }
 

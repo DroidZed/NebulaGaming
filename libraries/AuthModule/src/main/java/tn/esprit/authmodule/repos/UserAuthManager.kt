@@ -5,7 +5,7 @@ import tn.esprit.authmodule.utils.UserInfo
 
 interface UserAuthManager {
 
-    fun saveUserInfoToStorage(id: String, role: String, token: String, refresh: String, status: Int)
+    fun saveUserInfoToStorage(id: String, role: Int, token: String, refresh: String, status: Int)
 
     fun retrieveUserInfoFromStorage(): UserInfo?
 

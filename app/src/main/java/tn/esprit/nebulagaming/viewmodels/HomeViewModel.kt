@@ -10,6 +10,8 @@ class HomeViewModel @Inject constructor(
     private val authManager: UserAuthManager
 ) : ViewModel() {
 
+    fun checkIfCompany(): Boolean = authManager.retrieveUserInfoFromStorage()!!.role == 2
+
     fun handleLogOut() {
         authManager.logOutUser()
     }

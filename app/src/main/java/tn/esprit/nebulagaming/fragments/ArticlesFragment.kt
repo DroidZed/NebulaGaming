@@ -2,7 +2,6 @@ package tn.esprit.nebulagaming.fragments
 
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
-import tn.esprit.apimodule.models.Article
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.ArticlesAdapter
 import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
@@ -70,9 +68,13 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
             it?.let { rs ->
                 when (rs.status) {
                     Status.SUCCESS -> {
-                        rs.data?.let {
+                        rs.data?.apply {
+                            pagedItemsCount = this.pageSize
+                            totalItems = this.total
+                            totalPages = this.pages
+                            pageNumber = this.page
                             swipeContainer.isRefreshing = false
-                            articlesAdapter.addAll(it.articles)
+                            articlesAdapter.addAll(this.articles)
                             articlesRV.smoothScrollToPosition(0)
                         }
                     }

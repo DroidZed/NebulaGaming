@@ -3,11 +3,11 @@ package tn.esprit.nebulagaming.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import tn.esprit.apimodule.models.Product
 import tn.esprit.nebulagaming.R
-import tn.esprit.nebulagaming.data.ProductDetails
 import tn.esprit.nebulagaming.viewholders.ProductViewHolder
 
-class ProductAdapter(private val data: MutableList<ProductDetails>) : Adapter<ProductViewHolder>() {
+class ProductAdapter(private val data: MutableList<Product>) : Adapter<ProductViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder =
         ProductViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.layout_product_item, parent, false)

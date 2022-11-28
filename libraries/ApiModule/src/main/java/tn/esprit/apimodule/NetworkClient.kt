@@ -5,10 +5,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit.Builder
 import retrofit2.converter.gson.GsonConverterFactory
-import tn.esprit.apimodule.repos.ArticleApiService
-import tn.esprit.apimodule.repos.AuthApiService
-import tn.esprit.apimodule.repos.JobOffreApiService
-import tn.esprit.apimodule.repos.UserApiService
+import tn.esprit.apimodule.repos.*
 import tn.esprit.apimodule.utils.AuthInterceptor
 import tn.esprit.apimodule.utils.TokenAuthenticator
 import tn.esprit.shared.Consts.FUNCTION_URL
@@ -42,7 +39,14 @@ class NetworkClient(private val context: Context) {
 
     fun getArticleService(): ArticleApiService = secureClient.create(ArticleApiService::class.java)
 
-    fun getOffreService():JobOffreApiService=secureClient.create(JobOffreApiService::class.java)
+    fun getEventService(): EventApiService = secureClient.create(EventApiService::class.java)
+
+    fun getCategoryService(): CategoryApiService =
+        secureClient.create(CategoryApiService::class.java)
+
+    fun getProductService(): ProductApiService = secureClient.create(ProductApiService::class.java)
+
+    fun getOffreService(): JobOffreApiService = secureClient.create(JobOffreApiService::class.java)
 
     /**
      * Initialize OkhttpClient with token authenticator
@@ -58,8 +62,8 @@ class NetworkClient(private val context: Context) {
      */
     private fun defaultInterceptor(): OkHttpClient =
         OkHttpClient.Builder()
-        .addInterceptor(HttpLoggingInterceptor().apply {
-            this.level = HttpLoggingInterceptor.Level.BODY
-        })
-        .build()
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                this.level = HttpLoggingInterceptor.Level.BODY
+            })
+            .build()
 }
