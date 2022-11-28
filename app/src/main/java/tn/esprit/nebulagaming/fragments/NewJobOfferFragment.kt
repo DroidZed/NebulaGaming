@@ -1,6 +1,7 @@
 package tn.esprit.nebulagaming.fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -41,8 +42,7 @@ class NewJobOfferFragment : Fragment(R.layout.fragment_new_job_offer) {
         fun newInstance(param1: String, param2: String) =
             NewJobOfferFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+
                 }
             }
     }

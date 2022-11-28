@@ -19,6 +19,7 @@ import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.nebulagaming.viewmodels.HomeViewModel
 
+
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
@@ -95,7 +96,7 @@ class HomeActivity : AppCompatActivity() {
                 true
             }
 
-            R.id.postFragment -> {
+            R.id.publishJobFragment -> {
                 startActivity(Intent(this, NewJobOfferActivity::class.java))
 
 

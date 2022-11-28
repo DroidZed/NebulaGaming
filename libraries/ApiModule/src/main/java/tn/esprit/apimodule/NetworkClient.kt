@@ -7,6 +7,7 @@ import retrofit2.Retrofit.Builder
 import retrofit2.converter.gson.GsonConverterFactory
 import tn.esprit.apimodule.repos.ArticleApiService
 import tn.esprit.apimodule.repos.AuthApiService
+import tn.esprit.apimodule.repos.JobOffreApiService
 import tn.esprit.apimodule.repos.UserApiService
 import tn.esprit.apimodule.utils.AuthInterceptor
 import tn.esprit.apimodule.utils.TokenAuthenticator
@@ -41,6 +42,7 @@ class NetworkClient(private val context: Context) {
 
     fun getArticleService(): ArticleApiService = secureClient.create(ArticleApiService::class.java)
 
+    fun getOffreService():JobOffreApiService=secureClient.create(JobOffreApiService::class.java)
 
     /**
      * Initialize OkhttpClient with token authenticator
