@@ -8,15 +8,15 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.viewModels
 import com.google.android.material.textfield.TextInputLayout
-import tn.esprit.nebulagaming.viewmodels.UnsecurechangepassViewModel
+import tn.esprit.nebulagaming.viewmodels.UnsecureChangePassViewModel
 
-class UnsecureChangepasswordActivity : AppCompatActivity() {
+class UnsecureChangePasswordActivity : AppCompatActivity() {
     private lateinit var Passwordinput: EditText
     private lateinit var PasswordLayout: TextInputLayout
     private lateinit var emailuser: TextView
     private lateinit var btnsubm: Button
     private lateinit var Email: String
-    private val VmUnsecure: UnsecurechangepassViewModel by viewModels()
+    private val VmUnsecure: UnsecureChangePassViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_unsecure_changepassword)

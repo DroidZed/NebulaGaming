@@ -13,7 +13,7 @@ import tn.esprit.apimodule.models.AuthReqBody
 import javax.inject.Inject
 
 @HiltViewModel
-class UnsecurechangepassViewModel @Inject constructor() : DefaultViewModel() {
+class UnsecureChangePassViewModel @Inject constructor() : DefaultViewModel() {
 
     // onclick send button
     fun handleUnsecureChangePassRequest(
