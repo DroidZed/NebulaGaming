@@ -3,6 +3,7 @@ package tn.esprit.nebulagaming.viewmodels
 import android.content.Context
 import android.util.Log
 import android.widget.EditText
+import androidx.lifecycle.liveData
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,6 +15,7 @@ import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.OffreJob
 import tn.esprit.authmodule.repos.UserAuthManager
 import tn.esprit.authmodule.repos.UserAuthManagerImpl
+import tn.esprit.nebulagaming.utils.Resource
 import tn.esprit.nebulagaming.utils.Status
 import javax.inject.Inject
 
@@ -108,4 +110,27 @@ fun processSaveOffrejob(
         }
         return validationList
     }
+    fun loadOffreJob(context: Context) =
+        liveData(Dispatchers.IO) {
+
+            val client = NetworkClient(context)
+
+            val articlesServices = client.getOffreService()
+
+            emit(Resource.loading(data = null))
+            try {
+                emit(
+                    Resource.success(
+                        data = articlesServices.getAllOfre().body()
+                    )
+                )
+            } catch (ex: Exception) {
+                emit(
+                    Resource.error(
+                        data = null,
+                        message = ex.message ?: "Unable to retrieve articles at the moment, please try again later."
+                    )
+                )
+            }
+        }
 }
