@@ -7,41 +7,53 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import dagger.hilt.android.AndroidEntryPoint
+import tn.esprit.nebulagaming.viewmodels.OffreJobViewModel
 import java.util.*
 
 @Suppress("DEPRECATION")
+@AndroidEntryPoint
 class NewJobOfferActivity : AppCompatActivity() {
     private lateinit var btnclose: Button
     private lateinit var Startdatebtnn: Button
     private lateinit var Enddatebtn: Button
     private lateinit var Startdatetext: TextView
     private lateinit var Enddatetext: TextView
-    private lateinit var pickoffreimage: Button
-    private lateinit var offreimage: ShapeableImageView
+    private lateinit var TitleOffreLay: TextInputLayout
+    private lateinit var TitleOffreTf: TextInputEditText
+    private lateinit var descOffreLay:TextInputLayout
+    private lateinit var DescOffreTf:TextInputEditText
+    private lateinit var sharepostbtn:Button
+    private lateinit var SalaryOffreLay: TextInputLayout
+    private lateinit var SalaryOffreTf: TextInputEditText
+    private lateinit var AdressOffreLay: TextInputLayout
+    private lateinit var AddressOffreTf: TextInputEditText
     val REQUEST_CODE = 100
     private var imageUri: Uri? = null
-
+    private val Ofjvm: OffreJobViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_job_offer)
 
         val spin = findViewById<View>(R.id.typeOffrespin) as Spinner
         val tpof = resources.getStringArray(R.array.offrejobType)
-        pickoffreimage = findViewById<View>(R.id.pickoffreimage) as Button
-        offreimage = findViewById<View>(R.id.offreimage) as ShapeableImageView
+        TitleOffreLay = findViewById<View>(R.id.TitleOffreLay) as TextInputLayout
+        TitleOffreTf = findViewById<View>(R.id.TitleOffreTf) as TextInputEditText
+        descOffreLay = findViewById<View>(R.id.descOffreLay) as TextInputLayout
+        DescOffreTf = findViewById<View>(R.id.DescOffreTf) as TextInputEditText
+        sharepostbtn = findViewById<View>(R.id.sharepostbtn) as Button
+        SalaryOffreLay = findViewById<View>(R.id.SalaryOffreLay) as TextInputLayout
+        SalaryOffreTf = findViewById<View>(R.id.SalaryOffreTf) as TextInputEditText
+        AdressOffreLay = findViewById<View>(R.id.AdressOffreLay) as TextInputLayout
+        AddressOffreTf = findViewById<View>(R.id.AddressOffreTf) as TextInputEditText
 
-
-        pickoffreimage.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, REQUEST_CODE)
-
-        }
 
 
 
@@ -61,8 +73,11 @@ class NewJobOfferActivity : AppCompatActivity() {
         Startdatetext = findViewById(R.id.Startdatetext)
         Enddatetext = findViewById(R.id.EnddateText)
 
+
+
         btnclose.setOnClickListener {
-            finish()
+            dial(spin)
+
         }
 
 
@@ -99,11 +114,94 @@ class NewJobOfferActivity : AppCompatActivity() {
             dpd.show()
         }
 
+        sharepostbtn.setOnClickListener {
+            val title = TitleOffreTf.text.toString()
+            val desc = DescOffreTf.text.toString()
+            val salary = SalaryOffreTf.text.toString()
+            val address = AddressOffreTf.text.toString()
+            val startdate = Startdatetext.text.toString()
+            val enddate = Enddatetext.text.toString()
+            val type = spin.selectedItem.toString()
+            if (title.isEmpty()) {
+                TitleOffreLay.error = "Title is required"
+                TitleOffreLay.requestFocus()
+                return@setOnClickListener
+            }
+            if (desc.isEmpty()) {
+                descOffreLay.error = "Description is required"
+                descOffreLay.requestFocus()
+                return@setOnClickListener
+            }
+            if (salary.isEmpty()) {
+                SalaryOffreLay.error = "Salary is required"
+                SalaryOffreLay.requestFocus()
+                return@setOnClickListener
+            }
+            if (address.isEmpty()) {
+                AdressOffreLay.error = "Address is required"
+                AdressOffreLay.requestFocus()
+                return@setOnClickListener
+            }
+            if (startdate.isEmpty()) {
+                Toast.makeText(this, "Start date is required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (enddate.isEmpty()) {
+                Toast.makeText(this, "End date is required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (type.isEmpty()) {
+                Toast.makeText(this, "Type is required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            Ofjvm.handlesaveOffreJob(this,listOf(TitleOffreTf,DescOffreTf,SalaryOffreTf,AddressOffreTf), listOf(TitleOffreLay,descOffreLay,SalaryOffreLay,AdressOffreLay),startdate.toString(),enddate.toString(),type.toString())
+            Ofjvm.errorMessage.observe(this)
+            {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            }
+            Ofjvm.successMessage.observe(this)
+            {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        }
+
+
     }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
-            offreimage.setImageURI(data?.data) // handle chosen image
+
+    private fun dial(spin: Spinner) {
+        if (TitleOffreTf.text.toString().isEmpty() && DescOffreTf.text.toString()
+                .isEmpty() && Startdatetext.text.toString().isEmpty() && Enddatetext.text.toString()
+                .isEmpty() && spin.selectedItem.toString().isEmpty() && imageUri.toString()
+                .isEmpty()
+        ) {
+            finish()
+
+        } else {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Alert")
+            builder.setMessage("Are you sure you want to exit?")
+    //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
+
+            builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+                Toast.makeText(
+                    applicationContext,
+                    android.R.string.yes, Toast.LENGTH_SHORT
+                ).show()
+                finish()
+            }
+
+            builder.setNegativeButton(android.R.string.no) { dialog, which ->
+                Toast.makeText(
+                    applicationContext,
+                    android.R.string.no, Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            builder.show()
+
         }
     }
+
 }
