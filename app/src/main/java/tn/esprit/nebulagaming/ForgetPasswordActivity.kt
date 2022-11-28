@@ -1,6 +1,5 @@
 package tn.esprit.nebulagaming
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
@@ -48,7 +47,7 @@ class ForgetPasswordActivity : AppCompatActivity() {
             forgetPwdVM.errorMessage.observe(this) {
                 emailTLayout.error = it
             }
-            Intent(this, VerifycodeforgetpassActivity::class.java).apply {
+            Intent(this, VerifyCodeForgetPassActivity::class.java).apply {
                 putExtra("Email", emailInput.text.toString())
                 startActivity(this)
             }

@@ -1,87 +1,39 @@
 package tn.esprit.nebulagaming.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.content.Context
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.prof.rssparser.Channel
-import com.prof.rssparser.Parser
+import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import tn.esprit.authmodule.repos.UserAuthManager
+import tn.esprit.apimodule.NetworkClient
+import tn.esprit.nebulagaming.utils.Resource
 import javax.inject.Inject
 
 @HiltViewModel
-class ArticleViewModel @Inject constructor(
-    private val authManager: UserAuthManager
-) : ViewModel() {
+class ArticleViewModel @Inject constructor() : ViewModel() {
 
-    private val url = "https://kotaku.com/rss"
+    fun loadRssArticles(pageNumber: Int, context: Context) =
+        liveData(Dispatchers.IO) {
 
-    private val okHttpClient by lazy {
-        OkHttpClient()
-    }
+            val client = NetworkClient(context)
 
-    private val _snackBar = MutableLiveData<String?>()
-    val snackBar: MutableLiveData<String?>
-        get() = _snackBar
+            val articlesServices = client.getArticleService()
 
-    private val _rssChannel = MutableLiveData<Channel>()
-    val rssChannel: LiveData<Channel>
-        get() = _rssChannel
-
-    fun onSnackBarShowed() {
-        _snackBar.value = null
-    }
-
-    fun handleLogOut() {
-        authManager.logOutUser()
-    }
-
-    fun fetchFeed(parser: Parser) {
-
-        viewModelScope.launch {
+            emit(Resource.loading(data = null))
             try {
-                val channel = parser.getChannel(url)
-                _rssChannel.postValue(channel)
-            } catch (e: Exception) {
-                e.printStackTrace()
-                _snackBar.value = "An error has occurred. Please retry"
-                _rssChannel.postValue(
-                    Channel(
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        mutableListOf(),
-                        null
+                emit(
+                    Resource.success(
+                        data = articlesServices.downloadArticles(pageNumber).body()
+                    )
+                )
+            } catch (ex: Exception) {
+                emit(
+                    Resource.error(
+                        data = null,
+                        message = ex.message ?: "Unable to retrieve articles at the moment, please try again later."
                     )
                 )
             }
         }
-    }
-
-    fun fetchForUrlAndParseRawData(parser: Parser) {
-
-        viewModelScope.launch(Dispatchers.IO) {
-            val request = Request.Builder()
-                .url(url)
-                .build()
-            val result = okHttpClient.newCall(request).execute()
-            val raw = runCatching { result.body?.string() }.getOrNull()
-            if (raw == null) {
-                _snackBar.postValue("Something went wrong!")
-            } else {
-                val channel = parser.parse(raw)
-                _rssChannel.postValue(channel)
-            }
-        }
-    }
-
 
 }

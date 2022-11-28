@@ -3,8 +3,8 @@ package tn.esprit.nebulagaming.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import tn.esprit.apimodule.models.Article
 import tn.esprit.nebulagaming.R
-import tn.esprit.nebulagaming.data.Article
 import tn.esprit.nebulagaming.viewholders.ArticleViewHolder
 
 
@@ -22,7 +22,7 @@ class ArticlesAdapter(private val data: MutableList<Article>) :
         notifyDataSetChanged()
     }
 
-    fun addAll(articles: List<Article>) {
+    fun addAll(articles: MutableList<Article>) {
         data.addAll(articles)
         notifyDataSetChanged()
     }

@@ -28,8 +28,9 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
         super.onViewCreated(view, savedInstanceState)
 
         eventsCal = view.findViewById(R.id.eventsCal)
-
         eventsRV = view.findViewById(R.id.eventsRV)
+
+        eventVM.getCurrentMonth()
 
         val data = mutableListOf(
             EventData(

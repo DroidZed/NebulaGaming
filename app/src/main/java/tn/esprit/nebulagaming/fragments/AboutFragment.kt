@@ -30,16 +30,10 @@ class AboutFragment : Fragment(R.layout.fragment_about) {
         dev2ChipFB = view.findViewById(R.id.dev2ChipFB)
 
         contactBtn.setOnClickListener {
-            Intent(Intent.ACTION_SEND).apply {
+            Intent(Intent.ACTION_SENDTO).apply {
                 data = Uri.parse("mailto:nebula.gaming2@outlook.com")
                 putExtra(Intent.EXTRA_SUBJECT, "Contact Nebula Team")
-                putExtra(
-                    Intent.EXTRA_EMAIL, arrayListOf(
-                        getUrlFromResource(R.string.ng_email),
-                        getUrlFromResource(R.string.dev1_email),
-                        getUrlFromResource(R.string.dev2_email)
-                    )
-                )
+                putExtra(Intent.EXTRA_EMAIL, getUrlFromResource(R.string.ng_email))
                 startActivity(Intent.createChooser(this, "Choose an Email client :"))
             }
         }
