@@ -1,15 +1,17 @@
 package tn.esprit.nebulagaming
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputLayout
+import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.nebulagaming.viewmodels.UnsecureChangePassViewModel
 
+@AndroidEntryPoint
 class UnsecureChangePasswordActivity : AppCompatActivity() {
     private lateinit var Passwordinput: EditText
     private lateinit var PasswordLayout: TextInputLayout
@@ -22,12 +24,12 @@ class UnsecureChangePasswordActivity : AppCompatActivity() {
         setContentView(R.layout.activity_unsecure_changepassword)
         Passwordinput = findViewById(R.id.passwordTfchngpass)
         PasswordLayout = findViewById(R.id.passwordTextLaychngpass)
-btnsubm = findViewById(R.id.buttonverifValidfrgtpass)
-        Email=intent.getStringExtra("Email").toString()
+        btnsubm = findViewById(R.id.buttonverifValidfrgtpass)
+        Email = intent.getStringExtra("Email").toString()
         emailuser = findViewById(R.id.emailuserchangepass)
-        emailuser.text= Email
+        emailuser.text = Email
 
-        btnsubm.setOnClickListener{
+        btnsubm.setOnClickListener {
             val password = Passwordinput.text.toString()
             if (password.isEmpty()) {
                 PasswordLayout.error = "Password is required"
