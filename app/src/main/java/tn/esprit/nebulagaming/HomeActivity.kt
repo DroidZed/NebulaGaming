@@ -17,12 +17,12 @@ import androidx.navigation.ui.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import tn.esprit.nebulagaming.viewmodels.ArticleViewModel
+import tn.esprit.nebulagaming.viewmodels.HomeViewModel
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
-    private val homeVM: ArticleViewModel by viewModels()
+    private val homeVM: HomeViewModel by viewModels()
 
     private lateinit var appToolBar: Toolbar
 

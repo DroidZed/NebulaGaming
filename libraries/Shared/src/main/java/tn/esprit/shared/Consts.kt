@@ -6,7 +6,7 @@ object Consts {
 
     const val USER_KEY = "USER_INFO"
 
-    const val FUNCTION_URL = "https://dull-roses-beg-196-203-207-178.loca.lt"
+    const val FUNCTION_URL = "https://ead0-197-14-204-40.eu.ngrok.io"
 
     const val FROM_IMG_EXTRACTION_REGEX = "(img src=\")([a-zA-Z0-9_,:\\/\\.-]*)(\"[a-z=\"])*"
 
@@ -15,4 +15,6 @@ object Consts {
     const val LINK_EXTRACTION_REGEX = "(<a href=\")([a-z]{5}:\\/\\/[a-zA-Z\\/\\.\\-\\_\\,0-9]*)(\" ?\\/?>)"
 
     const val ID_PROD = "ID_PROD"
+
+    const val POST_DATA = "POST_DATA"
 }

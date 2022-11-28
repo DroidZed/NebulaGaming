@@ -29,5 +29,5 @@ interface AuthApiService {
 
     @POST("refresh-token")
     @FormUrlEncoded
-    fun resetUserToken(@Header("refreshToken") refreshToken: String): Call<Response<AuthResp>>
+    fun resetUserToken(@Header("Authorization") refreshToken: String, @Field("token") token: String): Call<Response<AuthResp>>
 }

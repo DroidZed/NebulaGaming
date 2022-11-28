@@ -20,14 +20,15 @@
         android:layout_marginBottom="291dp"
         android:clickable="true"
         android:src="@drawable/avatar_profile_png_picture"
-        app:layout_constraintBottom_toTopOf="@+id/fragmentContainercommnet"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentContainerComment"
         app:layout_constraintEnd_toStartOf="@+id/datepostdet"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.857"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/usernamedetpost"
@@ -41,7 +42,6 @@
         android:layout_marginEnd="61dp"
         android:layout_marginBottom="1dp"
         android:fontFamily="monospace"
-        android:text="username"
         android:textColor="#ECE1E1"
         app:layout_constraintBottom_toTopOf="@+id/datepostdet"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="36dp"
-        android:text="date"
         android:textColor="#E4DEDE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -75,7 +74,6 @@
         android:layout_marginTop="319dp"
         android:layout_marginEnd="11dp"
         android:layout_marginBottom="422dp"
-        android:text="TextView"
         android:textColor="#F3EDED"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +134,7 @@
             android:layout_width="46dp"
             android:layout_height="46dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="3dp"
+            android:layout_marginStart="3dp"
             android:backgroundTint="#B0371C61"
             app:cornerRadius="28dp"
             app:icon="@drawable/comment"
@@ -152,7 +150,7 @@
             android:layout_width="46dp"
             android:layout_height="46dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="3dp"
+            android:layout_marginStart="3dp"
             android:backgroundTint="#B0371C61"
             app:cornerRadius="28dp"
             app:icon="@drawable/savepost"
@@ -164,13 +162,14 @@
     </LinearLayout>
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainercommnet"
+        android:id="@+id/fragmentContainerComment"
         android:layout_width="406dp"
         android:layout_height="371dp"
         android:layout_marginStart="4dp"
+        tools:name="tn.esprit.nebulagaming.fragments.CommentFragment"
         android:layout_marginTop="396dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -191,24 +190,26 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/photoprofconncted"
             android:layout_width="52dp"
-            android:layout_height="40dp"
+            android:layout_height="52dp"
             android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/avatar_profile_png_picture"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,DuplicateClickableBoundsCheck" />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
             android:id="@+id/commenterhere"
             android:layout_width="279dp"
             android:layout_height="40dp"
             android:ems="10"
-            android:hint="Coment here"
+            android:hint="@string/your_comment"
             android:inputType="textPersonName"
             android:textColor="#F6F5F5"
             android:textColorHighlight="#F8F3F3"
             android:textColorHint="#92FFFFFF"
             android:translationY="-28dp"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck"
+            android:importantForAutofill="no" />
 
         <Button
             android:id="@+id/button"

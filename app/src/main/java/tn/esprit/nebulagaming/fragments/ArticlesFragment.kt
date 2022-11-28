@@ -2,90 +2,59 @@ package tn.esprit.nebulagaming.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.prof.rssparser.Parser
 import dagger.hilt.android.AndroidEntryPoint
+import tn.esprit.apimodule.models.Article
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.ArticlesAdapter
-import tn.esprit.nebulagaming.data.Article
+import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
+import tn.esprit.nebulagaming.utils.Status
 import tn.esprit.nebulagaming.viewmodels.ArticleViewModel
+
 
 @AndroidEntryPoint
 class ArticlesFragment : Fragment(R.layout.fragment_articles) {
 
-    private val homeVM: ArticleViewModel by viewModels()
-
-    private lateinit var rssParser: Parser
+    private val articlesVM: ArticleViewModel by viewModels()
 
     private lateinit var articlesRV: RecyclerView
 
     private lateinit var swipeContainer: SwipeRefreshLayout
 
+    private lateinit var noNetLayout: ConstraintLayout
+
     private lateinit var articlesAdapter: ArticlesAdapter
 
+    private var pageNumber: Int = 1
+    private var pagedItemsCount: Int = 0
+    private var totalItems: Int = 0
+    private var totalPages: Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         articlesRV = view.findViewById(R.id.articlesRV)
-
         swipeContainer = view.findViewById(R.id.swipeContainer)
+        noNetLayout = view.findViewById(R.id.noNetLayout)
 
-        rssParser = Parser.Builder()
-            .context(view.context)
-            .cacheExpirationMillis(24L * 60L * 60L * 1000L) // one day
-            .build()
+        articlesAdapter = ArticlesAdapter(mutableListOf())
 
-        articlesAdapter = ArticlesAdapter(
-            mutableListOf(
-                Article(
-                    title = "A1",
-                    image = "https://avatars.githubusercontent.com/u/41507665?v=4",
-                    description = "D1",
-                    link = "https://droidzed.github.io"
-                ),
-                Article(
-                    title = "A2",
-                    image = "https://avatars.githubusercontent.com/u/41507665?v=4",
-                    description = "D2",
-                    link = "https://droidzed.github.io"
-                ),
-                Article(
-                    title = "A3",
-                    image = "https://avatars.githubusercontent.com/u/41507665?v=4",
-                    description = "D3",
-                    link = "https://droidzed.github.io"
-                ),
-                Article(
-                    title = "A3",
-                    image = "https://avatars.githubusercontent.com/u/41507665?v=4",
-                    description = "D3",
-                    link = "https://droidzed.github.io"
-                ),
-                Article(
-                    title = "A3",
-                    image = "https://avatars.githubusercontent.com/u/41507665?v=4",
-                    description = "D3",
-                    link = "https://droidzed.github.io"
-                ),
-            )
-        )
+        articlesRV.apply {
+            adapter = articlesAdapter
+            layoutManager = LinearLayoutManager(view.context)
+        }
+
+        loadData(pageNumber)
 
         swipeContainer.setOnRefreshListener {
-
-            // Your code to refresh the list here.
-
-            // Make sure you call swipeContainer.setRefreshing(false)
-
-            // once the network request has completed successfully.
-
-
-            fetchTimelineAsync()
-
+            articlesAdapter.clear()
+            loadData(pageNumber)
         }
 
         // Configure the refreshing colors
@@ -93,20 +62,29 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
         swipeContainer.setColorSchemeResources(
             R.color.purple_500,
             R.color.DarkPurple,
-        );
-
-        articlesRV.apply {
-            adapter = articlesAdapter
-            layoutManager = LinearLayoutManager(view.context)
-        }
+        )
     }
 
-
-    private fun fetchTimelineAsync() {
-
-
-        swipeContainer.isRefreshing = false
-
-
+    private fun loadData(page: Int) {
+        articlesVM.loadRssArticles(page, view?.context!!).observe(requireActivity()) {
+            it?.let { rs ->
+                when (rs.status) {
+                    Status.SUCCESS -> {
+                        rs.data?.let {
+                            swipeContainer.isRefreshing = false
+                            articlesAdapter.addAll(it.articles)
+                            articlesRV.smoothScrollToPosition(0)
+                        }
+                    }
+                    Status.LOADING -> {
+                        swipeContainer.isRefreshing = true
+                    }
+                    Status.ERROR -> {
+                        swipeContainer.isRefreshing = false
+                        toastMsg(view?.context!!, "Could not fetch the api !")
+                    }
+                }
+            }
+        }
     }
 }

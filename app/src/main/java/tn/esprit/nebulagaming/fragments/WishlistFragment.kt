@@ -15,10 +15,10 @@ class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
     private lateinit var adapter: WishlistAdapter
     private lateinit var arraylist: ArrayList<Wishlist>
     private lateinit var recyclerView: RecyclerView
-    lateinit var idWish: Array<Int>
-    lateinit var photoProduct: Array<Int>
-    lateinit var priceProduct: Array<String>
-    lateinit var nomProduct: Array<String>
+    private lateinit var idWish: Array<Int>
+    private lateinit var photoProduct: Array<Int>
+    private lateinit var priceProduct: Array<String>
+    private lateinit var nomProduct: Array<String>
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

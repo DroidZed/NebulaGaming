@@ -2,71 +2,58 @@ package tn.esprit.nebulagaming
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.core.content.res.ResourcesCompat
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import tn.esprit.nebulagaming.adapters.ProfileVP2Adapter
 
 class ProfileActivity : AppCompatActivity() {
 
-    private lateinit var bottomNav: BottomNavigationView
-    private lateinit var navController: NavController
+    private lateinit var pViewPager: ViewPager2
+    private lateinit var pTabLayout: TabLayout
 
-    private lateinit var navHostFragment: NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        bottomNav = findViewById(R.id.profileBottomNav)
 
-        navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.p_nav_host_fragment) as NavHostFragment
+        pViewPager = findViewById(R.id.pViewPager)
+        pTabLayout = findViewById(R.id.pTabLayout)
 
-        navController = navHostFragment.navController
+        pViewPager.adapter = ProfileVP2Adapter(this)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        TabLayoutMediator(pTabLayout, pViewPager) { tab, position ->
 
-        setupBottomNavMenu(navController)
-
-        bottomNav.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.rankFragment -> {
-                    navController.navigate(R.id.rankFragment)
-                    true
+            when (position) {
+                0 -> tab.apply {
+                    text = resources.getString(R.string.profile)
+                    icon = ResourcesCompat.getDrawable(resources, R.drawable.name, null)
                 }
-                R.id.bookmarksFragment -> {
-                    navController.apply {
-                        navigate(R.id.bookmarksFragment)
-
-                    }
-                    true
+                1 -> tab.apply {
+                    text = resources.getString(R.string.wishlist)
+                    icon = ResourcesCompat.getDrawable(resources, R.drawable.like, null)
                 }
-                R.id.wishlistFragment -> {
-                    navController.apply {
-                        navigate(R.id.wishlistFragment)
-
-                    }
-                    true
+                2 -> tab.apply {
+                    text = resources.getString(R.string.bookmarks)
+                    icon = ResourcesCompat.getDrawable(
+                        resources,
+                        R.drawable.ic_baseline_bookmark_24,
+                        null
+                    )
                 }
-                R.id.postsFragment -> {
-                    navController.apply {
-                        navigate(R.id.postsFragment)
-
-                    }
-                    true
+                3 -> tab.apply {
+                    text = resources.getString(R.string.posts)
+                    icon = ResourcesCompat.getDrawable(
+                        resources,
+                        R.drawable.ic_baseline_forum_24,
+                        null
+                    )
                 }
-                else -> false
             }
-        }
+        }.attach()
     }
-
-    private fun setupBottomNavMenu(navController: NavController) {
-        bottomNav.setupWithNavController(navController)
-    }
-
 }
 
 

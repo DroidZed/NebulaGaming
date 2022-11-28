@@ -17,38 +17,41 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/cntdesc"
             android:foreground="@drawable/gradiant_overlay"
+            android:foregroundGravity="fill"
             android:scaleType="centerCrop"
-            android:tintMode="multiply"
-            app:srcCompat="@drawable/event_wallpaper"
-            app:tint="@color/photoTint" />
+            app:srcCompat="@drawable/event_wallpaper" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:background="@color/DarkBgColor"
             android:padding="10dp">
 
             <TextView
                 android:id="@+id/artTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="34sp"
-                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/merriweather_bold"
+                android:layout_marginHorizontal="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Article title" />
+                tools:text="Article title fdsfsd s f sdfsfssfsfsfsfsfsfsdf s s  s fwf  sdfd sf sdd fs s " />
 
             <TextView
                 android:id="@+id/artDescription"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-thin"
                 android:maxLines="5"
                 android:textAlignment="textStart"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -58,10 +61,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
-            android:layout_margin="10dp"
-            android:layout_gravity="end"
+            android:id="@+id/bookMarkImg"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
             android:contentDescription="@string/cntdesc"
             android:src="@drawable/ic_baseline_bookmark_24" />
     </FrameLayout>

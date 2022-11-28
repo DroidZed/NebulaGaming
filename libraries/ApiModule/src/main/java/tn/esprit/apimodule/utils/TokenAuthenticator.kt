@@ -22,24 +22,28 @@ class TokenAuthenticator constructor(private val context: Context) : Authenticat
 
         val authServ = UserAuthManagerImpl(context)
 
-        val userInfo = authServ.retrieveUserInfoFromStorage()
+        val userInfo = authServ.retrieveUserInfoFromStorage()!!
 
-        val response =
-            client.getAuthService().resetUserToken(userInfo!!.refresh).execute().body()?.body()
+        val response = client
+            .getAuthService()
+            .resetUserToken("Bearer ${userInfo.refresh}", userInfo.token)
+            .execute()
+            .body()
+            ?.body()!!
 
         userInfo.apply {
-            token = response?.token!!
+            token = response.token!!
             refresh = response.refresh!!
         }
 
         authServ.saveUserInfoToStorage(
             id = userInfo.userId,
+            role = userInfo.role,
             token = userInfo.token,
             refresh = userInfo.refresh,
-            role = userInfo.role,
             status = userInfo.status
         )
 
-        return response?.token!!
+        return response.token!!
     }
 }

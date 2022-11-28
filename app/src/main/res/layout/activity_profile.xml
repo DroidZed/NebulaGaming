@@ -8,25 +8,87 @@
     android:background="@drawable/backg"
     tools:context=".ProfileActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/p_nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
+    <FrameLayout
+        android:id="@+id/cricleshape"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:defaultNavHost="true"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/nameUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/profile_navigator" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/profileBottomNav"
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top">
+
+            <ImageView
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/cntdesc"
+                android:src="@drawable/circle" />
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/photoprof"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/avatar_profile_png_picture"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/numlevel"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/broderprofile"
+            android:fontFamily="@font/merriweather_black_italic"
+            android:text="@string/lvl_10"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/nameUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:labelVisibilityMode="labeled"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/amaranth"
+        android:gravity="center"
+        android:text="@string/your_name"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="normal|bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cricleshape" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/pTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameUser" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/pViewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/profile_menu" />
+        app:layout_constraintTop_toBottomOf="@id/pTabLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
