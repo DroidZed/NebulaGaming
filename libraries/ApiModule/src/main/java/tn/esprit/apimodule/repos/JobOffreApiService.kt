@@ -6,7 +6,8 @@ import tn.esprit.apimodule.models.*
 
 interface JobOffreApiService {
     @GET("offrejob")
-    suspend fun getAllOfre(): Response<OffreJob>
+    suspend fun getAllOfre():Response<MutableList<OffreJob>>
+
 
     @POST("offrejob/saveoffrejob")
     suspend fun AddOffreJob(@Body offrejobbody: OffreJob): Response<GenericResp>
