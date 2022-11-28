@@ -34,6 +34,11 @@ class MarketplaceActivity : AppCompatActivity() {
         }.attach()
 
         setSupportActionBar(mpTopBar)
+
+        mpTopBar.setNavigationOnClickListener {
+            finish()
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

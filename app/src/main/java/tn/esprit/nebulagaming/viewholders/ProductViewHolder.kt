@@ -8,10 +8,10 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.makeramen.roundedimageview.RoundedImageView
+import tn.esprit.apimodule.models.Product
 import tn.esprit.nebulagaming.MarketplaceActivity
 import tn.esprit.nebulagaming.ProductActivity
 import tn.esprit.nebulagaming.R
-import tn.esprit.nebulagaming.data.ProductDetails
 import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 import tn.esprit.shared.Consts.ID_PROD
 
@@ -34,7 +34,7 @@ class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
 
-    fun bind(product: ProductDetails) {
+    fun bind(product: Product) {
 
         productImage?.setOnClickListener {
 
@@ -52,14 +52,14 @@ class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         )
 
         productName?.text = product.name
-        productDesc?.text = product.desc
+        productDesc?.text = product.description
 
         productBtbMS?.setOnClickListener {
 
             productDetailsOV?.visibility = View.INVISIBLE
 
             Intent(itemView.context as MarketplaceActivity, ProductActivity::class.java).let { i ->
-                i.putExtra(ID_PROD, product.id)
+                i.putExtra(ID_PROD, product._id)
                 startActivity(itemView.context as MarketplaceActivity, i, null)
             }
         }

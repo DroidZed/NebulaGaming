@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import tn.esprit.apimodule.models.Event
 import tn.esprit.nebulagaming.R
-import tn.esprit.nebulagaming.data.EventData
 
 class EventViewHolder(itemView: View) : ViewHolder(itemView) {
 
@@ -23,11 +23,11 @@ class EventViewHolder(itemView: View) : ViewHolder(itemView) {
     }
 
     @SuppressLint("SetTextI18n")
-    fun bind(e: EventData) {
+    fun bind(e: Event) {
 
         evDesc!!.text = e.description
         evTitle!!.text = e.title
         evTopic!!.text = e.topic
-        evPeriod!!.text = "${e.startDate} - ${e.endDate}"
+        evPeriod!!.text = "${e.startDateTime} - ${e.endDateTime}"
     }
 }

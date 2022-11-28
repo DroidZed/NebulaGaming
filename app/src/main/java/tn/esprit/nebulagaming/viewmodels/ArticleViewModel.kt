@@ -5,12 +5,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import tn.esprit.apimodule.NetworkClient
 import tn.esprit.nebulagaming.utils.Resource
+import tn.esprit.roommodule.dao.BookmarksDao
+import tn.esprit.roommodule.models.Bookmarks
 import javax.inject.Inject
 
 @HiltViewModel
-class ArticleViewModel @Inject constructor() : ViewModel() {
+class ArticleViewModel @Inject constructor(
+    private val bookmarksDao: BookmarksDao
+) : ViewModel() {
 
     fun loadRssArticles(pageNumber: Int, context: Context) =
         liveData(Dispatchers.IO) {
@@ -30,7 +35,8 @@ class ArticleViewModel @Inject constructor() : ViewModel() {
                 emit(
                     Resource.error(
                         data = null,
-                        message = ex.message ?: "Unable to retrieve articles at the moment, please try again later."
+                        message = ex.message
+                            ?: "Unable to retrieve articles at the moment, please try again later."
                     )
                 )
             }

@@ -25,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
+            android:id="@+id/clickHere"
             android:background="@color/DarkBgColor"
             android:padding="10dp">
 
@@ -67,7 +68,7 @@
             android:layout_gravity="end"
             android:layout_margin="10dp"
             android:contentDescription="@string/cntdesc"
-            android:src="@drawable/ic_baseline_bookmark_24" />
+            android:src="@drawable/ic_baseline_bookmark_add" />
     </FrameLayout>
 
 </com.google.android.material.card.MaterialCardView>
