@@ -41,7 +41,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".UnsecureChangepasswordActivity"
+            android:name=".UnsecureChangePasswordActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
