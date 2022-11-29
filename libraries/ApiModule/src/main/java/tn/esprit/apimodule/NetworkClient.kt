@@ -9,6 +9,7 @@ import tn.esprit.apimodule.repos.*
 import tn.esprit.apimodule.utils.AuthInterceptor
 import tn.esprit.apimodule.utils.TokenAuthenticator
 import tn.esprit.shared.Consts.FUNCTION_URL
+import java.util.concurrent.TimeUnit
 
 
 class NetworkClient(private val context: Context) {
@@ -46,7 +47,7 @@ class NetworkClient(private val context: Context) {
 
     fun getProductService(): ProductApiService = secureClient.create(ProductApiService::class.java)
 
-    fun getOffreService(): JobOffreApiService = secureClient.create(JobOffreApiService::class.java)
+    fun getOffreService(): JobOfferApiService = secureClient.create(JobOfferApiService::class.java)
 
     /**
      * Initialize OkhttpClient with token authenticator
@@ -54,6 +55,9 @@ class NetworkClient(private val context: Context) {
     private fun secureHttpInterceptor(): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(AuthInterceptor(context))
         .authenticator(TokenAuthenticator(context))
+        .readTimeout(5, TimeUnit.SECONDS)
+        .writeTimeout(5, TimeUnit.SECONDS)
+        .callTimeout(5, TimeUnit.SECONDS)
         .build()
 
 
@@ -65,5 +69,8 @@ class NetworkClient(private val context: Context) {
             .addInterceptor(HttpLoggingInterceptor().apply {
                 this.level = HttpLoggingInterceptor.Level.BODY
             })
+            .readTimeout(5, TimeUnit.SECONDS)
+            .writeTimeout(5, TimeUnit.SECONDS)
+            .callTimeout(5, TimeUnit.SECONDS)
             .build()
 }

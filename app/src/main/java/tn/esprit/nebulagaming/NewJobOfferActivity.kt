@@ -1,17 +1,13 @@
 package tn.esprit.nebulagaming
 
-import android.app.Activity
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.View
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,6 +17,7 @@ import java.util.*
 @Suppress("DEPRECATION")
 @AndroidEntryPoint
 class NewJobOfferActivity : AppCompatActivity() {
+
     private lateinit var btnclose: Button
     private lateinit var Startdatebtnn: Button
     private lateinit var Enddatebtn: Button
@@ -28,21 +25,24 @@ class NewJobOfferActivity : AppCompatActivity() {
     private lateinit var Enddatetext: TextView
     private lateinit var TitleOffreLay: TextInputLayout
     private lateinit var TitleOffreTf: TextInputEditText
-    private lateinit var descOffreLay:TextInputLayout
-    private lateinit var DescOffreTf:TextInputEditText
-    private lateinit var sharepostbtn:Button
+    private lateinit var descOffreLay: TextInputLayout
+    private lateinit var DescOffreTf: TextInputEditText
+    private lateinit var sharepostbtn: Button
     private lateinit var SalaryOffreLay: TextInputLayout
     private lateinit var SalaryOffreTf: TextInputEditText
     private lateinit var AdressOffreLay: TextInputLayout
     private lateinit var AddressOffreTf: TextInputEditText
-    val REQUEST_CODE = 100
     private var imageUri: Uri? = null
+
+    private lateinit var spin: Spinner
+
     private val Ofjvm: OffreJobViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_job_offer)
 
-        val spin = findViewById<View>(R.id.typeOffrespin) as Spinner
+        spin = findViewById(R.id.typeOffrespin)
         val tpof = resources.getStringArray(R.array.offrejobType)
         TitleOffreLay = findViewById<View>(R.id.TitleOffreLay) as TextInputLayout
         TitleOffreTf = findViewById<View>(R.id.TitleOffreTf) as TextInputEditText
@@ -54,18 +54,11 @@ class NewJobOfferActivity : AppCompatActivity() {
         AdressOffreLay = findViewById<View>(R.id.AdressOffreLay) as TextInputLayout
         AddressOffreTf = findViewById<View>(R.id.AddressOffreTf) as TextInputEditText
 
-
-
-
-        if (spin != null) {
-            val adapter = ArrayAdapter(
-                this,
-                android.R.layout.simple_spinner_item, tpof
-            )
-            spin.adapter = adapter
-
-
-        }
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item, tpof
+        )
+        spin.adapter = adapter
 
         btnclose = findViewById(R.id.Closepost)
         Startdatebtnn = findViewById(R.id.Startdatebtnn)
@@ -73,13 +66,9 @@ class NewJobOfferActivity : AppCompatActivity() {
         Startdatetext = findViewById(R.id.Startdatetext)
         Enddatetext = findViewById(R.id.EnddateText)
 
-
-
         btnclose.setOnClickListener {
             dial(spin)
-
         }
-
 
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -155,7 +144,14 @@ class NewJobOfferActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            Ofjvm.handlesaveOffreJob(this,listOf(TitleOffreTf,DescOffreTf,SalaryOffreTf,AddressOffreTf), listOf(TitleOffreLay,descOffreLay,SalaryOffreLay,AdressOffreLay),startdate.toString(),enddate.toString(),type.toString())
+            Ofjvm.handlesaveOffreJob(
+                this,
+                listOf(TitleOffreTf, DescOffreTf, SalaryOffreTf, AddressOffreTf),
+                listOf(TitleOffreLay, descOffreLay, SalaryOffreLay, AdressOffreLay),
+                startdate,
+                enddate,
+                type
+            )
             Ofjvm.errorMessage.observe(this)
             {
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
@@ -166,8 +162,6 @@ class NewJobOfferActivity : AppCompatActivity() {
                 finish()
             }
         }
-
-
     }
 
     private fun dial(spin: Spinner) {
@@ -182,7 +176,7 @@ class NewJobOfferActivity : AppCompatActivity() {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Alert")
             builder.setMessage("Are you sure you want to exit?")
-    //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
+            //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
 
             builder.setPositiveButton(android.R.string.yes) { dialog, which ->
                 Toast.makeText(

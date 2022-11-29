@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import tn.esprit.apimodule.NetworkClient
+import tn.esprit.apimodule.models.GenericResp
+import tn.esprit.apimodule.utils.ResponseConverter
 import tn.esprit.nebulagaming.utils.Resource
 import tn.esprit.roommodule.dao.BookmarksDao
-import tn.esprit.roommodule.models.Bookmarks
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,11 +26,22 @@ class ArticleViewModel @Inject constructor(
 
             emit(Resource.loading(data = null))
             try {
-                emit(
-                    Resource.success(
-                        data = articlesServices.downloadArticles(pageNumber).body()
+                val response = articlesServices.downloadArticles(pageNumber)
+                if (response.isSuccessful)
+                    emit(
+                        Resource.success(
+                            data = response.body()
+                        )
                     )
-                )
+                else
+                    emit(
+                        Resource.error(
+                            data = null,
+                            message = ResponseConverter.convert<GenericResp>(
+                                response.errorBody()!!.string()
+                            ).data?.error!!
+                        )
+                    )
             } catch (ex: Exception) {
                 emit(
                     Resource.error(

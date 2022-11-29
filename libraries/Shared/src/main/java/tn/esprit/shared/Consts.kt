@@ -5,19 +5,11 @@ object Consts {
 
     const val USER_KEY = "USER_INFO"
 
-    const val REFRESH_KEY = "REFRESH_TOKEN"
-
-    const val ROLE_KEY = "USER_ROLE"
-
-    const val U_ID_KEY = "USER_ID"
-    
-    const val STATUS_KEY = "USER_STATUS"
-
     const val DB_NAME = "NebulaGaming"
 
     const val DB_VERSION = 1
 
-    const val FUNCTION_URL = "https://fb23-197-14-204-40.eu.ngrok.io"
+    const val FUNCTION_URL = "https://ready-radios-enjoy-196-203-207-178.loca.lt"
 
     const val FROM_IMG_EXTRACTION_REGEX = "(img src=\")([a-zA-Z0-9_,:\\/\\.-]*)(\"[a-z=\"])*"
 

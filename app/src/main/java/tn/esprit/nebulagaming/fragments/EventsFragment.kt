@@ -8,9 +8,9 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
+import tn.esprit.apimodule.models.Event
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.EventsAdapter
-import tn.esprit.nebulagaming.data.EventData
 import tn.esprit.nebulagaming.viewmodels.EventViewModel
 
 @AndroidEntryPoint
@@ -32,28 +32,8 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
 
         eventVM.getCurrentMonth()
 
-        val data = mutableListOf(
-            EventData(
-                "22/11/2022",
-                "23/11/2022",
-                "Topic 1",
-                "Description 1",
-                "The best event ever !"
-            ),
-            EventData(
-                "01/10/2022",
-                "02/10/2022",
-                "Topic 2",
-                "Description 2",
-                "The best event ever !"
-            ),
-            EventData(
-                "15/12/2022",
-                "31/12/2022",
-                "Topic 3",
-                "Description 3",
-                "The best event ever !"
-            ),
+        val data = mutableListOf<Event>(
+
         )
 
         eventsAdapter = EventsAdapter(data)

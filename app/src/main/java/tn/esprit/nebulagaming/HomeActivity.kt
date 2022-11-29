@@ -52,7 +52,6 @@ class HomeActivity : AppCompatActivity() {
 
         setSupportActionBar(appToolBar)
 
-
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
 
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -100,9 +99,6 @@ class HomeActivity : AppCompatActivity() {
 
             R.id.publishJobFragment -> {
                 startActivity(Intent(this, NewJobOfferActivity::class.java))
-
-
-
                 true
             }
 

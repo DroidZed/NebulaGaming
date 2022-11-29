@@ -12,15 +12,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import tn.esprit.apimodule.NetworkClient
+import tn.esprit.apimodule.models.GenericResp
 import tn.esprit.apimodule.models.OffreJob
-import tn.esprit.authmodule.repos.UserAuthManager
+import tn.esprit.apimodule.utils.ResponseConverter
 import tn.esprit.authmodule.repos.UserAuthManagerImpl
 import tn.esprit.nebulagaming.utils.Resource
-import tn.esprit.nebulagaming.utils.Status
 import javax.inject.Inject
 
 @HiltViewModel
-class OffreJobViewModel @Inject constructor(private val userManager: UserAuthManagerImpl) : DefaultViewModel() {
+class OffreJobViewModel @Inject constructor(private val userManager: UserAuthManagerImpl) :
+    DefaultViewModel() {
 
     //on click register button new offre job
     fun handlesaveOffreJob(
@@ -36,56 +37,61 @@ class OffreJobViewModel @Inject constructor(private val userManager: UserAuthMan
 
         if (validateInputs(inputs, textLayouts).toList().all { it })
 
-            processSaveOffrejob(
+            processSaveOfferJob(
                 jobTitle = inputs[0].text.toString(),
                 jobType = jobType,
                 jobDescription = inputs[1].text.toString(),
                 jobStartDate = jobStartDate,
                 jobEndDate = jobEndDate,
-                jobSalary = inputs[2].text.toString(),
+                jobPosition = inputs[2].text.toString(),
                 jobAdress = inputs[3].text.toString(),
+                jobEmail = inputs[4].text.toString(),
+                jobWebsite = inputs[5].text.toString(),
                 context = context
             )
     }
 
-fun processSaveOffrejob(
-    jobTitle: String,
-    jobType: String,
-    jobDescription: String,
-    jobStartDate: String,
-    jobEndDate: String,
-    jobSalary: String,
-    jobAdress: String,
-    context: Context
+    private fun processSaveOfferJob(
+        jobTitle: String,
+        jobType: String,
+        jobDescription: String,
+        jobStartDate: String,
+        jobEndDate: String,
+        jobPosition: String,
+        jobEmail: String,
+        jobWebsite: String,
+        jobAdress: String,
+        context: Context
     ) {
 
         val authClient = NetworkClient(context)
-    val iduser = userManager.retrieveUserInfoFromStorage()!!.userId
+        val iduser = userManager.retrieveUserInfoFromStorage()!!.userId
         val apiService = authClient.getOffreService()
 
         job = CoroutineScope(Dispatchers.IO).launch {
 
-            val registerResp = apiService.AddOffreJob(
-                OffreJob(
+            val registerResp = apiService.addOfferJob(
+                companyId = iduser,
+                jobOfferBody = OffreJob(
                     jobTitle = jobTitle,
                     jobType = jobType,
                     jobDescription = jobDescription,
                     jobStartDate = jobStartDate,
-                    jobEndDate = jobEndDate,
-                    jobSalary = jobSalary,
                     jobAdress = jobAdress,
-                    user_id = iduser
-
+                    jobEmail = jobEmail,
+                    jobWebsite = jobWebsite,
+                    jobPosition = jobPosition,
+                    jobEndDate = jobEndDate
                 )
             )
             withContext(Dispatchers.Main) {
                 try {
                     if (registerResp.isSuccessful)
                         onSuccess()
-                    else
-                    {
+                    else {
                         Log.e("error", registerResp.errorBody().toString())
-                        super.onError(registerResp)}
+                        super.onError(registerResp)
+                    }
                 } catch (ex: Exception) {
                     super.onError()
                 }
@@ -110,6 +116,7 @@ fun processSaveOffrejob(
         }
         return validationList
     }
+
     fun loadOffreJob(context: Context) =
         liveData(Dispatchers.IO) {
 
@@ -119,16 +126,28 @@ fun processSaveOffrejob(
 
             emit(Resource.loading(data = null))
             try {
-                emit(
-                    Resource.success(
-                        data = articlesServices.getAllOfre().body()
+                val response = articlesServices.getAllOffers()
+                if (response.isSuccessful)
+                    emit(
+                        Resource.success(
+                            data = response.body()
+                        )
                     )
-                )
+                else
+                    emit(
+                        Resource.error(
+                            data = null,
+                            message = ResponseConverter.convert<GenericResp>(
+                                response.errorBody()!!.string()
+                            ).data?.error!!
+                        )
+                    )
             } catch (ex: Exception) {
                 emit(
                     Resource.error(
                         data = null,
-                        message = ex.message ?: "Unable to retrieve articles at the moment, please try again later."
+                        message = ex.message
+                            ?: "Unable to retrieve articles at the moment, please try again later."
                     )
                 )
             }

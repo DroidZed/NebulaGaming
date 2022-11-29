@@ -1,6 +1,7 @@
 package tn.esprit.nebulagaming.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,6 +15,7 @@ import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.JobOffersAdapter
 import tn.esprit.nebulagaming.data.JobOffer
 import tn.esprit.nebulagaming.utils.HelperFunctions
+import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
 import tn.esprit.nebulagaming.utils.Status
 import tn.esprit.nebulagaming.viewmodels.OffreJobViewModel
 
@@ -24,7 +26,6 @@ class JobOffersFragment : Fragment(R.layout.fragment_job_offers) {
     private val JobOfVm:OffreJobViewModel by viewModels()
 
     private lateinit var jobsRV: RecyclerView
-    private lateinit var offrejobs: MutableList<OffreJob>
     private lateinit var swipeContainer: SwipeRefreshLayout
 
 
@@ -34,17 +35,17 @@ class JobOffersFragment : Fragment(R.layout.fragment_job_offers) {
         super.onViewCreated(view, savedInstanceState)
 
         jobsRV = view.findViewById(R.id.jobsRV)
-        offrejobs= mutableListOf()
         swipeContainer = view.findViewById(R.id.swipeContaineroffrejob)
 
-        jobsAdapter = JobOffersAdapter(offrejobs)
-        loadData()
+        jobsAdapter = JobOffersAdapter(mutableListOf())
+
         jobsRV.apply {
 
             adapter = jobsAdapter
-
             layoutManager = LinearLayoutManager(view.context)
         }
+
+        loadData()
 
         swipeContainer.setOnRefreshListener {
             jobsAdapter.clear()
@@ -58,9 +59,9 @@ class JobOffersFragment : Fragment(R.layout.fragment_job_offers) {
             it?.let { rs ->
                 when (rs.status) {
                     Status.SUCCESS -> {
-                        rs.data?.let {
+                        rs.data?.apply {
                             swipeContainer.isRefreshing = false
-                            jobsAdapter.addAll(offrejobs)
+                            jobsAdapter.addAll(this)
                             jobsRV.smoothScrollToPosition(0)
                         }
                     }
@@ -69,7 +70,8 @@ class JobOffersFragment : Fragment(R.layout.fragment_job_offers) {
                     }
                     Status.ERROR -> {
                         swipeContainer.isRefreshing = false
-                        HelperFunctions.toastMsg(view?.context!!, "Could not fetch the api !")
+                        toastMsg(view?.context!!, it.message!!)
+                        Log.e("OFFER-JOB", it.message)
                     }
                 }
             }

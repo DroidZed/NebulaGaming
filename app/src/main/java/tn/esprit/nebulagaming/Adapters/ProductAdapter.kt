@@ -17,4 +17,10 @@ class ProductAdapter(private val data: MutableList<Product>) : Adapter<ProductVi
         holder.bind(data[position])
 
     override fun getItemCount(): Int = data.size
+
+    fun updateList(list: MutableList<Product>) {
+        data.clear()
+        data.addAll(list)
+        notifyDataSetChanged()
+    }
 }

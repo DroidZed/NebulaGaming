@@ -83,7 +83,7 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
                     }
                     Status.ERROR -> {
                         swipeContainer.isRefreshing = false
-                        toastMsg(view?.context!!, "Could not fetch the api !")
+                        toastMsg(view?.context!!, it.message!!)
                     }
                 }
             }

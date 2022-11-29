@@ -4,13 +4,13 @@ import retrofit2.Response
 import retrofit2.http.*
 import tn.esprit.apimodule.models.*
 
-interface JobOffreApiService {
-    @GET("offrejob")
-    suspend fun getAllOfre():Response<MutableList<OffreJob>>
+interface JobOfferApiService {
 
+    @GET("offrejob")
+    suspend fun getAllOffers():Response<MutableList<OffreJob>>
 
     @POST("offrejob/saveoffrejob")
-    suspend fun AddOffreJob(@Body offrejobbody: OffreJob): Response<GenericResp>
+    suspend fun addOfferJob(@Query("companyId") companyId: String, @Body jobOfferBody: OffreJob): Response<GenericResp>
 
     @Headers("Content-Type:application/json")
     @PUT("offrejob/updateoffre/{id}")
