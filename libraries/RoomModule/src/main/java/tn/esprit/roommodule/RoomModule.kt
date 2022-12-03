@@ -7,6 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import tn.esprit.roommodule.dao.BookmarksDao
+import tn.esprit.roommodule.dao.UserDao
 import javax.inject.Singleton
 
 @Module
@@ -21,4 +22,8 @@ class RoomModule {
     @Provides
     @Singleton
     fun provideBookmarksDao(database: NebulaGamingDatabase): BookmarksDao = database.bookmarksDao()
+
+    @Provides
+    @Singleton
+    fun provideUserDao(database: NebulaGamingDatabase): UserDao = database.userDao()
 }

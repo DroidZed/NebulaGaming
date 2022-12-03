@@ -1,10 +1,8 @@
 package tn.esprit.nebulagaming.viewmodels
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.runBlocking
-import tn.esprit.roommodule.NebulaGamingDatabase
 import tn.esprit.roommodule.dao.BookmarksDao
 import javax.inject.Inject
 
@@ -13,10 +11,5 @@ class BookmarksViewModel @Inject constructor(
     private val bookmarksDao: BookmarksDao
 ) : ViewModel() {
 
-    fun loadBookmarkedArticles(context: Context) = runBlocking {
-        NebulaGamingDatabase
-            .getInstance(context)
-            .bookmarksDao()
-            .getAll()
-    }
+    fun loadBookmarkedArticles() = runBlocking { bookmarksDao.getAll() }
 }

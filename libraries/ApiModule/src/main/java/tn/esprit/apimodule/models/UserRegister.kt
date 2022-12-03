@@ -4,7 +4,7 @@ data class UserRegister(
     val name: String,
     val email: String,
     val password:String,
-    val phone: Int,
+    val phone: String,
     val role: Int,
 
 )

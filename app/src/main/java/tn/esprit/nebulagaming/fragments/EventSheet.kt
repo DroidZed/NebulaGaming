@@ -6,8 +6,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.squareup.picasso.Picasso
 import tn.esprit.nebulagaming.R
+import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 
 
 private const val ARG_TITLE = "ARG_TITLE"
@@ -16,7 +16,7 @@ private const val ARG_DESC = "ARG_DESC"
 private const val ARG_PERIOD = "ARG_PERIOD"
 private const val ARG_IMG = "ARG_IMG"
 
-class EventSheet: BottomSheetDialogFragment(R.layout.layout_event_sheet) {
+class EventSheet : BottomSheetDialogFragment(R.layout.layout_event_sheet) {
 
     private lateinit var sheetBgEv: ImageView
     private lateinit var eventTitleSh: TextView
@@ -57,16 +57,17 @@ class EventSheet: BottomSheetDialogFragment(R.layout.layout_event_sheet) {
 
         closeBtnSh = view.findViewById(R.id.closeBtnSh)
 
+        usePicasso(
+            url = imgArg!!,
+            placeholder = R.drawable.event_wallpaper,
+            view = eventImageSh
+        )
 
-        Picasso.get()
-            .load(imgArg)
-            .placeholder(R.drawable.event_wallpaper)
-            .into(eventImageSh)
-
-        Picasso.get()
-            .load(imgArg)
-            .placeholder(R.drawable.event_wallpaper)
-            .into(sheetBgEv)
+        usePicasso(
+            url = imgArg!!,
+            placeholder = R.drawable.event_wallpaper,
+            view = sheetBgEv
+        )
 
         eventTitleSh.text = titleArg
         eventTopicSh.text = topicArg

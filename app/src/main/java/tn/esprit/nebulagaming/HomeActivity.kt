@@ -4,9 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -14,8 +18,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
 import com.google.android.material.navigation.NavigationView
+import com.mikhaellopez.circularimageview.CircularImageView
 import dagger.hilt.android.AndroidEntryPoint
+import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
+import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
+import tn.esprit.nebulagaming.utils.Status
 import tn.esprit.nebulagaming.viewmodels.HomeViewModel
+import tn.esprit.shared.Consts.FUNCTION_URL
 
 
 @AndroidEntryPoint
@@ -30,6 +39,14 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     private lateinit var navView: NavigationView
+
+    private lateinit var headerView: View
+
+    private lateinit var headerImage: CircularImageView
+
+    private lateinit var usernameHeader: TextView
+
+    private lateinit var levelHeader: TextView
 
     private lateinit var navHostFragment: NavHostFragment
 
@@ -66,6 +83,57 @@ class HomeActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navView.setupWithNavController(navController)
+
+        headerView = navView.getHeaderView(0)
+        headerImage = headerView.findViewById(R.id.headerImage)
+        usernameHeader = headerView.findViewById(R.id.usernameHeader)
+        levelHeader = headerView.findViewById(R.id.levelHeader)
+
+        homeVM.fetchUserInfo(this).observe(this) {
+            it?.let { rs ->
+                when (rs.status) {
+                    Status.SUCCESS -> {
+                        rs.data?.let { u ->
+                            usePicasso(
+                                "$FUNCTION_URL/img/${u.photo}",
+                                R.drawable.logonv,
+                                headerImage
+                            )
+                            usernameHeader.text = u.name
+                            levelHeader.apply {
+                                textSize = if (u.level > 99) 17f else 25f
+                                text = "${u.level}"
+                            }
+
+                            val decor = window.decorView as ViewGroup
+
+                            val outViews: ArrayList<View> = ArrayList()
+
+                            decor.findViewsWithText(
+                                outViews, getString(R.string.overflow_btn_ctn_desc),
+                                View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION
+                            )
+
+                            if (outViews.isNotEmpty()) {
+
+                                usePicasso(
+                                    "$FUNCTION_URL/img/${u.photo}",
+                                    R.drawable.logonv,
+                                    outViews[0] as AppCompatImageView
+                                )
+                            }
+
+                        }
+                    }
+                    Status.LOADING -> {
+                        //
+                    }
+                    Status.ERROR -> {
+                        toastMsg(this, rs.message!!)
+                    }
+                }
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -35,6 +35,8 @@ class NetworkClient(private val context: Context) {
     fun getAuthService(): AuthApiService =
         defaultClient.create(AuthApiService::class.java)
 
+    fun retrieveSecureOkHttpClientInstance() = secureHttpInterceptor()
+
     fun getUserService(): UserApiService =
         secureClient.create(UserApiService::class.java)
 

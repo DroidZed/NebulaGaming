@@ -9,13 +9,10 @@ import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.GenericResp
 import tn.esprit.apimodule.utils.ResponseConverter
 import tn.esprit.nebulagaming.utils.Resource
-import tn.esprit.roommodule.dao.BookmarksDao
 import javax.inject.Inject
 
 @HiltViewModel
-class ArticleViewModel @Inject constructor(
-    private val bookmarksDao: BookmarksDao
-) : ViewModel() {
+class ArticleViewModel @Inject constructor() : ViewModel() {
 
     fun loadRssArticles(pageNumber: Int, context: Context) =
         liveData(Dispatchers.IO) {
@@ -46,8 +43,7 @@ class ArticleViewModel @Inject constructor(
                 emit(
                     Resource.error(
                         data = null,
-                        message = ex.message
-                            ?: "Unable to retrieve articles at the moment, please try again later."
+                        message = "Unable to retrieve articles at the moment, please try again later."
                     )
                 )
             }

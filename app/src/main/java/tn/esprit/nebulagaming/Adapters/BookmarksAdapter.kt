@@ -2,14 +2,15 @@ package tn.esprit.nebulagaming.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView.Adapter
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.utils.HelperFunctions
+import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 import tn.esprit.nebulagaming.viewholders.ArticleViewHolder
 import tn.esprit.roommodule.NebulaGamingDatabase
 import tn.esprit.roommodule.models.Bookmarks
 
-class BookmarksAdapter(private val list: MutableList<Bookmarks>) : Adapter<ArticleViewHolder>() {
+class BookmarksAdapter(private val list: MutableList<Bookmarks>) :
+    ClassicAdapter<ArticleViewHolder, Bookmarks>(list) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder =
         ArticleViewHolder(
@@ -19,16 +20,17 @@ class BookmarksAdapter(private val list: MutableList<Bookmarks>) : Adapter<Artic
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
 
-        holder.let { h ->
-            h.articleTitle!!.text = list[position].title
-            h.articleDescription!!.text = list[position].description
+        val bookmark = list[position]
 
+        holder.let { h ->
+            h.articleTitle!!.text = bookmark.title
+            h.articleDescription!!.text = bookmark.description
             h.bookMarkImg?.setImageResource(R.drawable.ic_baseline_bookmark_remove_24)
 
-            HelperFunctions.usePicasso(list[position].image, R.drawable.backg, h.articleImage!!)
+            usePicasso(bookmark.image, R.drawable.backg, h.articleImage!!)
 
             h.clickHere?.setOnClickListener {
-                HelperFunctions.launchURL(it, list[position].link)
+                HelperFunctions.launchURL(it, bookmark.link)
             }
 
             h.bookMarkImg?.setOnClickListener {
@@ -36,10 +38,9 @@ class BookmarksAdapter(private val list: MutableList<Bookmarks>) : Adapter<Artic
                 NebulaGamingDatabase
                     .getInstance(h.itemView.context)
                     .bookmarksDao()
-                    .delete(list[position])
+                    .delete(bookmark)
 
-                list.removeAt(position)
-                notifyItemRemoved(position)
+                remove(bookmark)
             }
         }
     }

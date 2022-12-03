@@ -89,6 +89,7 @@
         <item>Alternance</item>
         <item>Freelance</item>
     </string-array>
+    <string name="overflow_btn_ctn_desc">Overflow button</string>
     <string name="your_name">Your name</string>
     <string name="lvl_10">lvl 10</string>
     <string name="rank">Rank</string>

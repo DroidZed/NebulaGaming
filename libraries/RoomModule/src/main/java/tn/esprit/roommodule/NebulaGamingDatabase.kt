@@ -5,18 +5,21 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import tn.esprit.roommodule.dao.BookmarksDao
+import tn.esprit.roommodule.dao.UserDao
 import tn.esprit.roommodule.models.Bookmarks
+import tn.esprit.roommodule.models.UserProfile
 import tn.esprit.shared.Consts.DB_NAME
 import tn.esprit.shared.Consts.DB_VERSION
 
 @Database(
-    entities = [Bookmarks::class],
+    entities = [Bookmarks::class, UserProfile::class],
     version = DB_VERSION,
     exportSchema = false
 )
 abstract class NebulaGamingDatabase : RoomDatabase() {
 
     abstract fun bookmarksDao(): BookmarksDao
+    abstract fun userDao(): UserDao
 
     companion object {
 

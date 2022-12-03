@@ -5,16 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/headerImage"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@string/pfp"
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logonv" />
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/headerImage"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
+            android:layout_marginTop="15dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/pfp"
+            android:cropToPadding="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logonv"
+            app:civ_border="false"
+            app:civ_circle_color="@color/appBg" />
+
+
+        <TextView
+            android:id="@+id/levelHeader"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom|end"
+            android:background="@drawable/level_badge"
+            android:text="@string/level"
+            android:textColor="@color/purple_200"
+            android:gravity="center"
+            android:textStyle="bold"
+            tools:text="10"
+            tools:ignore="RtlCompat" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/usernameHeader"
@@ -28,29 +54,17 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerImage"
+        app:layout_constraintTop_toBottomOf="@+id/frame"
         tools:text="@string/username" />
-
-    <TextView
-        android:id="@+id/levelHeader"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/level"
-        android:textAlignment="center"
-        android:textColor="@color/purple_700"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameHeader"
-        tools:text="LEVEL" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginVertical="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/levelHeader" />
+        app:layout_constraintTop_toBottomOf="@id/usernameHeader" />
 </androidx.constraintlayout.widget.ConstraintLayout>

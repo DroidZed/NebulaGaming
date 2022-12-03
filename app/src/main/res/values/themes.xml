@@ -17,7 +17,7 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Customize your theme here. -->
-        <item name="android:actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
+        <item name="android:actionOverflowButtonStyle">@style/Widget.AppCompat.ActionButton.Overflow.MyActionButtonOverflow</item>
     </style>
 
     <style name="Theme.SplashTheme" parent="Theme.NebulaGaming">
@@ -29,12 +29,13 @@
     </style>
 
 
-    <style name="MyActionButtonOverflow" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+    <style name="Widget.AppCompat.ActionButton.Overflow.MyActionButtonOverflow" parent="@style/Widget.AppCompat.ActionButton.Overflow">
         <item name="android:src">@drawable/logonv</item>
         <item name="android:scaleType">centerCrop</item>
         <item name="android:scaleX">.7</item>
         <item name="android:scaleY">.7</item>
         <item name="android:adjustViewBounds">true</item>
+        <item name="android:contentDescription">@string/overflow_btn_ctn_desc</item>
     </style>
 
     <style name="roundimageview" parent="">

@@ -27,7 +27,7 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
         bookmarksRV.apply {
             layoutManager = LinearLayoutManager(view.context)
             adapter =
-                BookmarksAdapter(bkViewModel.loadBookmarkedArticles(view.context).toMutableList())
+                BookmarksAdapter(bkViewModel.loadBookmarkedArticles().toMutableList())
         }
     }
 }

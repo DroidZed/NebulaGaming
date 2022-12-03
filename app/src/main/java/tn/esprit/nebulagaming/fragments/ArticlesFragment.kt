@@ -23,9 +23,12 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
 
     private lateinit var articlesRV: RecyclerView
 
+
     private lateinit var swipeContainer: SwipeRefreshLayout
 
     private lateinit var noNetLayout: ConstraintLayout
+
+    private lateinit var articlesLm: LinearLayoutManager
 
     private lateinit var articlesAdapter: ArticlesAdapter
 
@@ -43,9 +46,11 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
 
         articlesAdapter = ArticlesAdapter(mutableListOf())
 
+        articlesLm = LinearLayoutManager(view.context)
+
         articlesRV.apply {
             adapter = articlesAdapter
-            layoutManager = LinearLayoutManager(view.context)
+            layoutManager = articlesLm
         }
 
         loadData(pageNumber)
@@ -53,10 +58,10 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
         swipeContainer.setOnRefreshListener {
             articlesAdapter.clear()
             loadData(pageNumber)
+            articlesRV.refreshDrawableState()
         }
 
         // Configure the refreshing colors
-
         swipeContainer.setColorSchemeResources(
             R.color.purple_500,
             R.color.DarkPurple,

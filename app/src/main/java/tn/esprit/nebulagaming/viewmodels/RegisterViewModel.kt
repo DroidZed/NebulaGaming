@@ -29,7 +29,7 @@ class RegisterViewModel @Inject constructor() : DefaultViewModel() {
                 name = inputs[0].text.toString(),
                 email = inputs[1].text.toString(),
                 password = inputs[2].text.toString(),
-                phone = inputs[3].text.toString().toInt(),
+                phone = inputs[3].text.toString(),
                 context = context
             )
     }
@@ -38,7 +38,7 @@ class RegisterViewModel @Inject constructor() : DefaultViewModel() {
         email: String,
         password: String,
         name: String,
-        phone: Int,
+        phone: String,
         context: Context
     ) {
 

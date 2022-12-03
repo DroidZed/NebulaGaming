@@ -51,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:itemCount="3"
+            android:clipToPadding="false"
             android:visibility="visible"
             tools:listitem="@layout/layout_article_item" />
     </FrameLayout>

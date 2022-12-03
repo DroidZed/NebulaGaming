@@ -7,15 +7,9 @@ object Consts {
 
     const val DB_NAME = "NebulaGaming"
 
-    const val DB_VERSION = 1
+    const val DB_VERSION = 2
 
-    const val FUNCTION_URL = "https://ready-radios-enjoy-196-203-207-178.loca.lt"
-
-    const val FROM_IMG_EXTRACTION_REGEX = "(img src=\")([a-zA-Z0-9_,:\\/\\.-]*)(\"[a-z=\"])*"
-
-    const val FROM_VID_EXTRACTION_REGEX = "(video poster=\")([a-zA-Z0-9_,:\\/\\.-]*)(\"[a-z=\"])*"
-
-    const val LINK_EXTRACTION_REGEX = "(<a href=\")([a-z]{5}:\\/\\/[a-zA-Z\\/\\.\\-\\_\\,0-9]*)(\" ?\\/?>)"
+    const val FUNCTION_URL = "https://48a9-197-0-56-8.eu.ngrok.io"
 
     const val ID_PROD = "ID_PROD"
 
