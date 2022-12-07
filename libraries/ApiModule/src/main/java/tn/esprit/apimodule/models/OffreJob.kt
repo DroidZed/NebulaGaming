@@ -1,5 +1,8 @@
 package tn.esprit.apimodule.models
 
+import java.util.*
+
+
 data class OffreJob(
     val _id: String? = null,
     val jobTitle: String,
@@ -8,8 +11,9 @@ data class OffreJob(
     val jobType: String,
     val jobStartDate: String,
     val jobEndDate: String,
-    val jobPosition: String,
+    val jobPosition : String,
     val jobWebsite: String,
     val jobEmail: String,
-    val company: String? = null
+    val postedAt: Date,
+    val company: UserRegister? = null // el 7assel nik rou7ek fil fields w bara
 )

@@ -106,4 +106,6 @@
     <string name="posts">Posts</string>
     <string name="no_internet_img">no internet img</string>
     <string name="no_internet">No internet!!</string>
+    <string name="job_position">Job Position</string>
+    <string name="link_to_apply_for_the_job">Link to apply for the job</string>
 </resources>

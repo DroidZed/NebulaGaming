@@ -28,10 +28,14 @@ class NewJobOfferActivity : AppCompatActivity() {
     private lateinit var descOffreLay: TextInputLayout
     private lateinit var DescOffreTf: TextInputEditText
     private lateinit var sharepostbtn: Button
-    private lateinit var SalaryOffreLay: TextInputLayout
-    private lateinit var SalaryOffreTf: TextInputEditText
     private lateinit var AdressOffreLay: TextInputLayout
     private lateinit var AddressOffreTf: TextInputEditText
+    private lateinit var PostionOffreLay: TextInputLayout
+    private lateinit var PostionOffreTf: TextInputEditText
+    private lateinit var WebsiteOffreLay: TextInputLayout
+    private lateinit var WebsiteOffreTf: TextInputEditText
+    private lateinit var EmailToOffreLay: TextInputLayout
+    private lateinit var EmailToOffreTf: TextInputEditText
     private var imageUri: Uri? = null
 
     private lateinit var spin: Spinner
@@ -49,10 +53,14 @@ class NewJobOfferActivity : AppCompatActivity() {
         descOffreLay = findViewById<View>(R.id.descOffreLay) as TextInputLayout
         DescOffreTf = findViewById<View>(R.id.DescOffreTf) as TextInputEditText
         sharepostbtn = findViewById<View>(R.id.sharepostbtn) as Button
-        SalaryOffreLay = findViewById<View>(R.id.SalaryOffreLay) as TextInputLayout
-        SalaryOffreTf = findViewById<View>(R.id.SalaryOffreTf) as TextInputEditText
         AdressOffreLay = findViewById<View>(R.id.AdressOffreLay) as TextInputLayout
         AddressOffreTf = findViewById<View>(R.id.AddressOffreTf) as TextInputEditText
+        PostionOffreLay = findViewById<View>(R.id.PostionOffreLay) as TextInputLayout
+        PostionOffreTf = findViewById<View>(R.id.PostionOffreTf) as TextInputEditText
+        WebsiteOffreLay = findViewById<View>(R.id.WebsiteOffreLay) as TextInputLayout
+        WebsiteOffreTf = findViewById<View>(R.id.WebsiteOffreTf) as TextInputEditText
+        EmailToOffreLay = findViewById<View>(R.id.EmailToOffreLay) as TextInputLayout
+        EmailToOffreTf = findViewById<View>(R.id.EmailToOffreTf) as TextInputEditText
 
         val adapter = ArrayAdapter(
             this,
@@ -106,11 +114,14 @@ class NewJobOfferActivity : AppCompatActivity() {
         sharepostbtn.setOnClickListener {
             val title = TitleOffreTf.text.toString()
             val desc = DescOffreTf.text.toString()
-            val salary = SalaryOffreTf.text.toString()
             val address = AddressOffreTf.text.toString()
             val startdate = Startdatetext.text.toString()
             val enddate = Enddatetext.text.toString()
             val type = spin.selectedItem.toString()
+            val position = PostionOffreTf.text.toString()
+            val website = WebsiteOffreTf.text.toString()
+            val email = EmailToOffreTf.text.toString()
+
             if (title.isEmpty()) {
                 TitleOffreLay.error = "Title is required"
                 TitleOffreLay.requestFocus()
@@ -121,11 +132,7 @@ class NewJobOfferActivity : AppCompatActivity() {
                 descOffreLay.requestFocus()
                 return@setOnClickListener
             }
-            if (salary.isEmpty()) {
-                SalaryOffreLay.error = "Salary is required"
-                SalaryOffreLay.requestFocus()
-                return@setOnClickListener
-            }
+
             if (address.isEmpty()) {
                 AdressOffreLay.error = "Address is required"
                 AdressOffreLay.requestFocus()
@@ -144,10 +151,27 @@ class NewJobOfferActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            if (position.isEmpty()) {
+                PostionOffreLay.error = "Position is required"
+                PostionOffreLay.requestFocus()
+                return@setOnClickListener
+            }
+            if (website.isEmpty()) {
+                WebsiteOffreLay.error = "Website is required"
+                WebsiteOffreLay.requestFocus()
+                return@setOnClickListener
+            }
+            if (email.isEmpty()) {
+                EmailToOffreLay.error = "Email is required"
+                EmailToOffreLay.requestFocus()
+                return@setOnClickListener
+            }
+
+
             Ofjvm.handlesaveOffreJob(
                 this,
-                listOf(TitleOffreTf, DescOffreTf, SalaryOffreTf, AddressOffreTf),
-                listOf(TitleOffreLay, descOffreLay, SalaryOffreLay, AdressOffreLay),
+                listOf(TitleOffreTf, DescOffreTf, AddressOffreTf, PostionOffreTf, WebsiteOffreTf, EmailToOffreTf),
+                listOf(TitleOffreLay, descOffreLay, AdressOffreLay, PostionOffreLay, WebsiteOffreLay, EmailToOffreLay),
                 startdate,
                 enddate,
                 type

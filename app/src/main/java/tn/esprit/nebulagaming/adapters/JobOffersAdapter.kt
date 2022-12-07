@@ -1,9 +1,11 @@
 package tn.esprit.nebulagaming.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import tn.esprit.apimodule.models.OffreJob
+import tn.esprit.nebulagaming.JobOffreDetailActivity
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.viewholders.JobOffersViewHolder
 
@@ -15,7 +17,9 @@ class JobOffersAdapter(private val data: MutableList<OffreJob>) : Adapter<JobOff
         )
 
     override fun onBindViewHolder(holder: JobOffersViewHolder, position: Int) =
-        holder.bind(data[position])
+        holder.bind(data[position]
+
+        )
 
     fun clear() {
         data.clear()

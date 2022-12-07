@@ -17,6 +17,7 @@ import tn.esprit.apimodule.models.OffreJob
 import tn.esprit.apimodule.utils.ResponseConverter
 import tn.esprit.authmodule.repos.UserAuthManagerImpl
 import tn.esprit.nebulagaming.utils.Resource
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -43,10 +44,10 @@ class OffreJobViewModel @Inject constructor(private val userManager: UserAuthMan
                 jobDescription = inputs[1].text.toString(),
                 jobStartDate = jobStartDate,
                 jobEndDate = jobEndDate,
-                jobPosition = inputs[2].text.toString(),
-                jobAdress = inputs[3].text.toString(),
-                jobEmail = inputs[4].text.toString(),
-                jobWebsite = inputs[5].text.toString(),
+                jobPosition = inputs[3].text.toString(),
+                jobAdress = inputs[2].text.toString(),
+                jobWebsite = inputs[4].text.toString(),
+                jobEmail = inputs[5].text.toString(),
                 context = context
             )
     }
@@ -81,7 +82,8 @@ class OffreJobViewModel @Inject constructor(private val userManager: UserAuthMan
                     jobEmail = jobEmail,
                     jobWebsite = jobWebsite,
                     jobPosition = jobPosition,
-                    jobEndDate = jobEndDate
+                    jobEndDate = jobEndDate,
+                    postedAt = Date()
                 )
             )
             withContext(Dispatchers.Main) {
@@ -142,6 +144,44 @@ class OffreJobViewModel @Inject constructor(private val userManager: UserAuthMan
                             ).data?.error!!
                         )
                     )
+            } catch (ex: Exception) {
+                emit(
+                    Resource.error(
+                        data = null,
+                        message = ex.message
+                            ?: "Unable to retrieve articles at the moment, please try again later."
+                    )
+                )
+            }
+        }
+
+    fun loadOffreJobById(context: Context, id: String) =
+        liveData(Dispatchers.IO) {
+
+            val client = NetworkClient(context)
+
+            val articlesServices = client.getOffreService()
+
+            emit(Resource.loading(data = null))
+            try {
+                val response = articlesServices.getOffreJobbyId(id)
+                if (response.isSuccessful)
+                    emit(
+                        Resource.success(
+                            data = response.body(),
+
+                            )
+                    )
+                else
+                    emit(
+                        Resource.error(
+                            data = null,
+                            message = ResponseConverter.convert<GenericResp>(
+                                response.errorBody()!!.string()
+                            ).data?.error!!
+                        )
+                    )
+
             } catch (ex: Exception) {
                 emit(
                     Resource.error(

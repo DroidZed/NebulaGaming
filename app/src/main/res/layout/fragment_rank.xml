@@ -106,7 +106,7 @@
                 android:gravity="center_vertical"
                 android:inputType="textEmailAddress"
                 android:textColor="#FAFAFA"
-                tools:ignore="Autofill,LabelFor" />
+                tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
         </LinearLayout>
 
