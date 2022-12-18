@@ -4,11 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_navigator"
     app:startDestination="@id/articlesFragment">
+
     <fragment
         android:id="@+id/articlesFragment"
         android:name="tn.esprit.nebulagaming.fragments.ArticlesFragment"
         android:label="@string/articles"
-        tools:layout="@layout/fragment_articles" />
+        tools:layout="@layout/fragment_articles">
+        <action
+            android:id="@+id/action_aboutFragment_to_marketplaceActivity"
+            app:destination="@id/marketplaceActivity"
+            app:enterAnim="@android:anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/eventsFragment"
         android:name="tn.esprit.nebulagaming.fragments.EventsFragment"
@@ -42,12 +48,11 @@
     <fragment
         android:id="@+id/chatListFragment"
         android:name="tn.esprit.nebulagaming.fragments.ChatListFragment"
-        android:label="Chat list"
+        android:label="@string/conversations"
         tools:layout="@layout/fragment_chat_list" />
-
     <activity
         android:id="@+id/marketplaceActivity"
         android:name="tn.esprit.nebulagaming.MarketplaceActivity"
-        android:label="Marketplace"
+        android:label="activity_marketplace"
         tools:layout="@layout/activity_marketplace" />
 </navigation>

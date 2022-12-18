@@ -35,10 +35,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweather_black"
                 android:text="@string/no_internet"
                 android:textAlignment="center"
                 android:textSize="40sp"
-                android:fontFamily="@font/merriweather_black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,9 +50,9 @@
             android:id="@+id/articlesRV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:itemCount="3"
             android:clipToPadding="false"
             android:visibility="visible"
+            tools:itemCount="3"
             tools:listitem="@layout/layout_article_item" />
     </FrameLayout>
 

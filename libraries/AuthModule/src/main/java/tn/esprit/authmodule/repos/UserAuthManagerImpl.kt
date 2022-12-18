@@ -27,7 +27,7 @@ class UserAuthManagerImpl @Inject constructor(
         if (json == "") return null
         return gson.fromJson(json, UserInfo::class.java)
     }
-    
+
     override fun checkIfUserLoggedIn(): Boolean = retrieveUserInfoFromStorage() != null
 
     override fun checkIfUserIsValid() = retrieveUserInfoFromStorage()?.status != 0

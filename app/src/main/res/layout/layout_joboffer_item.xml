@@ -16,11 +16,11 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="370dp"
+            android:contentDescription="@string/cntdesc"
             android:foreground="@drawable/gradiant_overlay"
             android:foregroundTint="@color/darkyGray"
             android:foregroundTintMode="multiply"
-            app:srcCompat="@drawable/interview_amico"
-            android:contentDescription="@string/cntdesc" />
+            app:srcCompat="@drawable/interview_amico" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -48,14 +48,14 @@
                 android:layout_height="0dp"
                 android:fontFamily="@font/merriweather_light"
                 android:gravity="center"
+                android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:lineSpacingMultiplier="1.2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.526"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/jTitle"
+                app:layout_constraintTop_toBottomOf="@+id/jobTitle"
                 tools:text="Job offer desc" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

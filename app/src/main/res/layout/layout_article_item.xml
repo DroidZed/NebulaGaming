@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="450dp"
+    android:layout_height="500dp"
     android:layout_marginVertical="20dp"
     app:cardCornerRadius="10dp">
 
@@ -21,11 +20,21 @@
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/event_wallpaper" />
 
+        <ImageView
+            android:id="@+id/bookMarkRem"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="top|end"
+            android:layout_margin="20dp"
+            android:contentDescription="@string/cntdesc"
+            android:src="@drawable/ic_baseline_bookmark_remove_24"
+            android:visibility="gone" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clickHere"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
-            android:id="@+id/clickHere"
             android:background="@color/DarkBgColor"
             android:padding="10dp">
 
@@ -33,42 +42,31 @@
                 android:id="@+id/artTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textAlignment="textStart"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                android:fontFamily="@font/merriweather_bold"
                 android:layout_marginHorizontal="10dp"
+                android:fontFamily="@font/merriweather_bold"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:textSize="19sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Article title fdsfsd s f sdfsfssfsfsfsfsfsfsdf s s  s fwf  sdfd sf sdd fs s " />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/artDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-thin"
-                android:maxLines="5"
+                android:ellipsize="end"
+                android:fontFamily="@font/merriweather_regular"
+                android:maxLines="3"
                 android:textAlignment="textStart"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/artTitle"
-                tools:text="article description here" />
+                app:layout_constraintTop_toBottomOf="@+id/artTitle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ImageView
-            android:id="@+id/bookMarkImg"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="end"
-            android:layout_margin="10dp"
-            android:contentDescription="@string/cntdesc"
-            android:src="@drawable/ic_baseline_bookmark_add" />
     </FrameLayout>
 
 </com.google.android.material.card.MaterialCardView>

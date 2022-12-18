@@ -5,5 +5,5 @@ data class PagedArticlesData(
     val pageSize: Int,
     val total: Int,
     val pages: Int,
-        val articles: MutableList<Article>
+    val articles: MutableList<Article>
 )

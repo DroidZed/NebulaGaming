@@ -7,5 +7,5 @@ data class Event(
     val startDateTime: String,
     val endDateTime: String,
     val topic: String,
-    val bonus: String
+    val bonus: Int
 )

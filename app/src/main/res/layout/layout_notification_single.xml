@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="90dp"
     android:layout_margin="5dp"
     android:background="@drawable/border_shape"
-    xmlns:tools="http://schemas.android.com/tools"
     android:padding="10dp">
 
     <ImageView
@@ -25,22 +25,22 @@
         android:layout_marginStart="10dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        tools:text="this is the title of the notif"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/notifImage"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="this is the title of the notif" />
 
     <TextView
         android:id="@+id/notifBody"
         android:layout_width="0dp"
-        android:maxLines="2"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
+        android:maxLines="2"
         android:textSize="15sp"
-        tools:text="this is the body of the notif sdfgsdgsdfsfsfssfsfsf fsdfsd fsdfsdfssfsdfsdf sfsdfsdf sdfsffsdfsd sdfdsfsddfsdfdsf sdfsdfsdfsdfsdffsdfsdfdfsdf"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/notifImage"
-        app:layout_constraintTop_toBottomOf="@id/notifTitle" />
+        app:layout_constraintTop_toBottomOf="@id/notifTitle"
+        tools:text="this is the body of the notif sdfgsdgsdfsfsfssfsfsf fsdfsd fsdfsdfssfsdfsdf sfsdfsdf sdfsffsdfsd sdfdsfsddfsdfdsf sdfsdfsdfsdfsdffsdfsdfdfsdf" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

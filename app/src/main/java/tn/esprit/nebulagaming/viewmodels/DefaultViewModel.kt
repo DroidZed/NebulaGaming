@@ -19,15 +19,12 @@ open class DefaultViewModel @Inject constructor() : ViewModel() {
     /**
      * No internet connection or server unavailable...
      */
-    protected fun onError() {
-        errorMessage.postValue("Error connecting to the server")
-    }
+    protected fun onError() = errorMessage.postValue("Error connecting to the server")
 
-    protected open fun onError(response: Response<GenericResp>) {
+    protected open fun <T> onError(response: Response<T>? = null) =
         errorMessage.postValue(
-            ResponseConverter.convert<GenericResp>(response.errorBody()!!.string()).data!!.error
+            ResponseConverter.convert<GenericResp>(response!!.errorBody()!!.string()).data!!.error
         )
-    }
 
     protected open fun onSuccess(msg: String? = "Success") {
         successMessage.postValue(msg)

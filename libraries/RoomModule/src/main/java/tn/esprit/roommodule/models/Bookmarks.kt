@@ -11,5 +11,5 @@ data class Bookmarks(
     val link: String,
     val description: String,
     val image: String,
-    val userId: String? = null
+    val userId: String
 )

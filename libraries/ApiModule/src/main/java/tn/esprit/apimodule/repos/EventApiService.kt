@@ -8,8 +8,8 @@ import tn.esprit.apimodule.models.Event
 interface EventApiService {
 
     @GET("events/today")
-    suspend fun getOfToday(): Response<List<Event>>
+    suspend fun getOfToday(): Response<Event>
 
     @GET("events")
-    suspend fun getOfMonth(@Query("month") month: Int): Response<List<Event>>
+    suspend fun getOfMonthAndYear(@Query("month") month: Int?, @Query("year") year: Int?): Response<List<Event>>
 }

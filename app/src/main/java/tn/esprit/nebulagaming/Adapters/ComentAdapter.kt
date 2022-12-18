@@ -9,9 +9,11 @@ import com.google.android.material.imageview.ShapeableImageView
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.data.CommentPost
 
-class ComentAdapter(private val list: List<CommentPost>) : RecyclerView.Adapter<ComentAdapter.ViewHolder>() {
+class ComentAdapter(private val list: List<CommentPost>) :
+    RecyclerView.Adapter<ComentAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_one_comment, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.layout_one_comment, parent, false)
         return ViewHolder(view)
     }
 
@@ -28,14 +30,12 @@ class ComentAdapter(private val list: List<CommentPost>) : RecyclerView.Adapter<
         return list.size
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var idComent: Int = 0
         var comentUser: TextView = itemView.findViewById(R.id.usernamecomm)
         var comentDate: TextView = itemView.findViewById(R.id.commentdate)
         var comentText: TextView = itemView.findViewById(R.id.textcomment)
         var comentUserPhoto: ShapeableImageView = itemView.findViewById(R.id.photoprofComment)
-
-
 
 
     }

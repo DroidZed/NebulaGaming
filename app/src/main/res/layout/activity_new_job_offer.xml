@@ -38,14 +38,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:fontFamily="@font/amaranth"
             android:text="New Offre Jobs"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginLeft="30dp"
             tools:layout_editor_absoluteX="76dp"
             tools:layout_editor_absoluteY="18dp" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/sharepostbtn"
             style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
@@ -53,8 +54,8 @@
             android:layout_width="46dp"
             android:layout_height="46dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginLeft="140dp"
             android:layout_alignParentBottom="true"
+            android:layout_marginLeft="140dp"
             android:layout_marginBottom="8dp"
             android:backgroundTint="#B0371C61"
             app:cornerRadius="40dp"

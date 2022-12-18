@@ -30,7 +30,6 @@
     <string name="notifications">Notifications</string>
     <string name="notifimage">notifImage</string>
     <string name="hot_now">Hot Now!</string>
-    <string name="check_out_what_s_hot_now">Check out what\'s hot now !</string>
     <string name="cool">Cool !</string>
     <string name="nothing_to_show_here">Nothing to show here</string>
     <string name="we_re_hiring">WE\'RE HIRING!</string>
@@ -107,4 +106,10 @@
     <string name="posts">Posts</string>
     <string name="no_internet_img">no internet img</string>
     <string name="no_internet">No internet!!</string>
+    <string name="conversations">Conversations</string>
+    <string name="article">Article Details</string>
+    <string name="check_it_out">Check it out</string>
+    <string name="tags">tags:</string>
+    <string name="read_more">Read more</string>
+    <string name="levelU">Level - %1$d</string>
 </resources>

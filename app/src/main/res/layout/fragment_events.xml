@@ -6,48 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".fragments.EventsFragment">
 
-    <TextView
-        android:id="@+id/titleTxT"
+    <com.applandeo.materialcalendarview.CalendarView
+        android:id="@+id/eventsCal"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_margin="10dp"
-        android:text="@string/check_out_what_s_hot_now"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:textStyle="bold|italic"
+        app:abbreviationsBarColor="#420897"
+        app:abbreviationsLabelsColor="@color/white"
+        app:anotherMonthsDaysLabelsColor="@color/lightyGray"
+        app:daysLabelsColor="@color/white"
+        app:eventsEnabled="true"
+        app:headerColor="#230751"
+        app:headerLabelColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-<!--
-    <CalendarView
-        android:id="@+id/eventsCal"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTxT" />
--->
-    <CalendarView
-        android:id="@+id/eventsCal"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTxT" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:pagesColor="@color/appBg"
+        app:swipeEnabled="true"
+        app:todayLabelColor="@color/purple_200" />
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/eventsRV"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeEventsLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/fancy_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/eventsCal"
-        tools:listitem="@layout/layout_event_item" />
+        app:layout_constraintTop_toBottomOf="@id/eventsCal">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/eventsRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/fancy_border"
+            tools:listitem="@layout/layout_event_item" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

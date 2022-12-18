@@ -18,7 +18,7 @@ class JobOffersViewHolder(itemView: View) : ViewHolder(itemView) {
     fun bind(jobOffer: OffreJob) {
 
         itemView.setOnClickListener {
-            launchURL(it, jobOffer.jobWebsite)
+            launchURL(it.context, jobOffer.jobWebsite)
         }
 
     }

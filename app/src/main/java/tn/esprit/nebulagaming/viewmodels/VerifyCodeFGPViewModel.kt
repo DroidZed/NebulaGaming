@@ -13,12 +13,12 @@ import tn.esprit.apimodule.models.AuthReqBody
 import javax.inject.Inject
 
 @HiltViewModel
-class VerifyCodeFGPViewModel  @Inject constructor() : DefaultViewModel() {
+class VerifyCodeFGPViewModel @Inject constructor() : DefaultViewModel() {
 
     // onclick send button
     fun handleVerifyCodeRequest(
         context: Context,
-        email:String,
+        email: String,
         codeInput: EditText,
         codeTLayout: TextInputLayout
     ) {

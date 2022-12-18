@@ -43,7 +43,7 @@ class ChatRoomActivity : AppCompatActivity() {
         sendBtn = findViewById(R.id.sendBtn)
         textZoneL = findViewById(R.id.textZoneL)
         textZoneE = findViewById(R.id.textZoneE)
-        topBarChat = findViewById(R.id.chatToolBar)
+        topBarChat = findViewById(R.id.topBarChat)
 
         val otherName = intent.getStringExtra("OTHER_USERNAME")
 

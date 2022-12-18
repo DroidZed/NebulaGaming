@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/backg"
     tools:context=".VerifyCodeForgetPassActivity">
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="147dp"

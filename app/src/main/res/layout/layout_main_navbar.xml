@@ -10,11 +10,11 @@
         android:id="@+id/mainToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1C1B1F"
+        android:background="@color/DarkBarColor"
         app:menu="@menu/top_bar_menu"
         app:navigationIcon="@drawable/ic_baseline_menu"
         app:title="@string/app_name"
-        app:titleTextColor="@color/white"/>
+        app:titleTextColor="@color/white" />
 
 
 </LinearLayout>

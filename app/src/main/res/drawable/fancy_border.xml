@@ -6,14 +6,15 @@
         android:width="10dp"
         android:color="@color/darkyGray" />
 
-    <corners  android:topLeftRadius="25dp" android:topRightRadius="25dp"/>
+    <corners
+        android:topLeftRadius="25dp"
+        android:topRightRadius="25dp" />
 
     <solid android:color="@color/darkyGray" />
 
     <padding
+        android:bottom="10dp"
         android:left="10dp"
-        android:top="10dp"
         android:right="10dp"
-        android:bottom="10dp" >
-    </padding>
+        android:top="10dp"></padding>
 </shape>

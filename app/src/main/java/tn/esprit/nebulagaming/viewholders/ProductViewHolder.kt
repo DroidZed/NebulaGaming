@@ -10,7 +10,7 @@ import com.google.android.material.button.MaterialButton
 import com.makeramen.roundedimageview.RoundedImageView
 import tn.esprit.apimodule.models.Product
 import tn.esprit.nebulagaming.MarketplaceActivity
-import tn.esprit.nebulagaming.ProductActivity
+import tn.esprit.nebulagaming.ProductDetailsActivity
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 import tn.esprit.shared.Consts.ID_PROD
@@ -58,7 +58,10 @@ class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             productDetailsOV?.visibility = View.INVISIBLE
 
-            Intent(itemView.context as MarketplaceActivity, ProductActivity::class.java).let { i ->
+            Intent(
+                itemView.context as MarketplaceActivity,
+                ProductDetailsActivity::class.java
+            ).let { i ->
                 i.putExtra(ID_PROD, product._id)
                 startActivity(itemView.context as MarketplaceActivity, i, null)
             }

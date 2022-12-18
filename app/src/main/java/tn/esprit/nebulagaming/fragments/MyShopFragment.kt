@@ -9,13 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.apimodule.models.Product
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.ProductAdapter
 import tn.esprit.nebulagaming.utils.hideKeyboard
 import tn.esprit.nebulagaming.utils.on
 
-
+@AndroidEntryPoint
 class MyShopFragment : Fragment(R.layout.fragment_my_shop) {
 
     private lateinit var productAdapter: ProductAdapter

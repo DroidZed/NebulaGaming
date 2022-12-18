@@ -12,9 +12,10 @@ import tn.esprit.nebulagaming.data.Wishlist
 
 class WishlistAdapter(
     private val list: ArrayList<Wishlist>,
-):RecyclerView.Adapter<WishlistAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<WishlistAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_one_wishlist, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.layout_one_wishlist, parent, false)
         return ViewHolder(view)
     }
 
@@ -25,13 +26,12 @@ class WishlistAdapter(
         holder.nomProdcut.text = wishlist.nameProduct
         holder.priceProduct.text = wishlist.priceProduct
         holder.photoProduct.setImageResource(wishlist.photoProduct)
-       holder.deleteWish.setOnClickListener {
-           list.removeAt(position)
-           notifyItemRemoved(position)
-           notifyItemRangeChanged(position, list.size)
-       }
+        holder.deleteWish.setOnClickListener {
+            list.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, list.size)
+        }
     }
-
 
 
     override fun getItemCount(): Int {
@@ -39,12 +39,12 @@ class WishlistAdapter(
     }
 
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        var idWish=0
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var idWish = 0
         val nomProdcut = itemView.findViewById<TextView>(R.id.productname)
         val priceProduct = itemView.findViewById<TextView>(R.id.productprice)
         val photoProduct = itemView.findViewById<ImageView>(R.id.imageViewprodcutwish)
-       val deleteWish = itemView.findViewById<Button>(R.id.deletbtn)
+        val deleteWish = itemView.findViewById<Button>(R.id.deletbtn)
     }
 }
 

@@ -5,12 +5,10 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class UserProfile(
-    @PrimaryKey val _id: String,
-    val name: String,
-    val photo: String,
-    val email: String,
-    val phone: String,
-    val role: Int,
-    val level: Int,
-    val status: Int
+    @PrimaryKey(autoGenerate = false) val _id: String,
+    var name: String,
+    var photo: String,
+    var email: String,
+    var phone: String,
+    var level: Int,
 )

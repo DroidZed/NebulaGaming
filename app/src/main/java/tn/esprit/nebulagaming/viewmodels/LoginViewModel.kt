@@ -47,11 +47,10 @@ class LoginViewModel @Inject constructor(
             val loginResp = apiService.login(LoginReqBody(email = email, password = password))
             withContext(Dispatchers.Main) {
                 try {
-                    if (loginResp.isSuccessful) {
+                    if (loginResp.isSuccessful)
                         onLoginSuccess(loginResp.body()!!)
-
-                    }else
-                        onLoginError(loginResp)
+                    else
+                        onError(loginResp)
                 } catch (e: Exception) {
                     super.onError()
                 }
@@ -71,15 +70,6 @@ class LoginViewModel @Inject constructor(
             status = JwtManager.extractStatusFromJWT(token)
         )
         errorMessage.postValue(null)
-    }
-
-    /**
-     * when an error response returns from the server [400 - 500]
-     */
-    private fun onLoginError(response: Response<AuthResp>) {
-        errorMessage.postValue(
-            ResponseConverter.convert<AuthResp>(response.errorBody()!!.string()).data!!.error
-        )
     }
 
     private fun validateInputs(

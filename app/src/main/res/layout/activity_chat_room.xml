@@ -6,12 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ChatRoomActivity">
 
-    <include
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topBarChat"
-        layout="@layout/layout_chat_room_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/DarkBarColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRV"
@@ -54,10 +59,10 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textZoneE"
-                android:imeOptions="actionDone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/your_message" />
+                android:hint="@string/your_message"
+                android:imeOptions="actionDone" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton

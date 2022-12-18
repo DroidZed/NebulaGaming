@@ -2,7 +2,6 @@ package tn.esprit.nebulagaming.viewmodels
 
 import android.content.Context
 import android.util.Log
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import tn.esprit.apimodule.NetworkClient
@@ -10,19 +9,20 @@ import tn.esprit.apimodule.models.GenericResp
 import tn.esprit.apimodule.utils.ResponseConverter
 import tn.esprit.authmodule.repos.UserAuthManager
 import tn.esprit.nebulagaming.utils.Resource
-import tn.esprit.roommodule.models.UserProfile
+import tn.esprit.roommodule.dao.UserDao
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val authManager: UserAuthManager
-) : ViewModel() {
+    override val authManager: UserAuthManager,
+    override val userDao: UserDao
+) : UserManipulationViewModel(authManager, userDao) {
 
     fun checkIfCompany(): Boolean = authManager.retrieveUserInfoFromStorage()!!.role == 2
 
     fun handleLogOut() = authManager.logOutUser()
 
-    fun fetchUserInfo(context: Context) = liveData<Resource<UserProfile>> {
+    fun fetchUserInfo(context: Context) = liveData {
 
         val netClient = NetworkClient(context)
 
@@ -31,7 +31,7 @@ class HomeViewModel @Inject constructor(
         emit(Resource.loading(data = null))
         try {
             val response =
-                userService.getProfile(authManager.retrieveUserInfoFromStorage()!!.userId)
+                userService.getProfile(getUserId())
             if (response.isSuccessful)
                 emit(Resource.success(response.body()))
             else
@@ -52,8 +52,6 @@ class HomeViewModel @Inject constructor(
                         ?: "Error loading user data..."
                 )
             )
-            Log.e("PROFILE", ex.message!!)
         }
     }
-
 }

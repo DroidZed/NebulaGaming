@@ -18,7 +18,7 @@ interface AuthApiService {
     suspend fun Verifycode(@Body email: AuthReqBody): Response<GenericResp>
 
 
-    @Headers("Content-Type:application/json")   
+    @Headers("Content-Type:application/json")
     @POST("resetVerif")
     suspend fun resetVerifCode(@Body email: AuthReqBody): Response<GenericResp>
 
@@ -33,5 +33,8 @@ interface AuthApiService {
 
     @POST("refresh-token")
     @FormUrlEncoded
-    fun resetUserToken(@Header("Authorization") refreshToken: String, @Field("token") token: String): Call<Response<AuthResp>>
+    fun resetUserToken(
+        @Header("Authorization") refreshToken: String,
+        @Field("token") token: String
+    ): Call<Response<AuthResp>>
 }

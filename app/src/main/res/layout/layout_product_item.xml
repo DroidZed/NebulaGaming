@@ -2,12 +2,12 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_gravity="center|top"
-    app:cardElevation="5dp"
-    app:cardCornerRadius="25dp"
-    android:layout_marginVertical="20dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|top"
+    android:layout_marginVertical="20dp"
+    app:cardCornerRadius="25dp"
+    app:cardElevation="5dp">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -35,8 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center|bottom"
-            android:background="@color/DarkBgColor"
             android:animateLayoutChanges="true"
+            android:background="@color/DarkBgColor"
             android:orientation="vertical"
             android:padding="10dp"
             android:visibility="invisible">

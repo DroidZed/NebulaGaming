@@ -18,9 +18,9 @@ class ForgetPasswordActivity : AppCompatActivity() {
 
     private val forgetPwdVM: ForgetPasswordViewModel by viewModels()
 
-     private lateinit var emailInput: EditText
+    private lateinit var emailInput: EditText
 
-     private lateinit var emailTLayout: TextInputLayout
+    private lateinit var emailTLayout: TextInputLayout
 
     private lateinit var actionBtn: Button
 
@@ -36,10 +36,10 @@ class ForgetPasswordActivity : AppCompatActivity() {
 
         emailInput.on(EditorInfo.IME_ACTION_DONE) {
             emailInput.apply {
-                    clearFocus()
-                    hideKeyboard()
-                }
+                clearFocus()
+                hideKeyboard()
             }
+        }
 
         // events
         actionBtn.setOnClickListener {

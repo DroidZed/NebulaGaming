@@ -26,7 +26,8 @@ class DetailPostActivity : AppCompatActivity() {
 
         fragContainer = findViewById(R.id.fragmentContainerComment)
 
-        supportFragmentManager.beginTransaction().add(R.id.fragmentContainerComment, CommentFragment()).commit()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragmentContainerComment, CommentFragment()).commit()
 
         imgprofpost = findViewById(R.id.photoprofdetailuser)
         imgPost = findViewById(R.id.detphotoforum)

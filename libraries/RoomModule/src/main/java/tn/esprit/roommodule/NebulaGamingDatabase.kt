@@ -13,8 +13,7 @@ import tn.esprit.shared.Consts.DB_VERSION
 
 @Database(
     entities = [Bookmarks::class, UserProfile::class],
-    version = DB_VERSION,
-    exportSchema = false
+    version = DB_VERSION
 )
 abstract class NebulaGamingDatabase : RoomDatabase() {
 

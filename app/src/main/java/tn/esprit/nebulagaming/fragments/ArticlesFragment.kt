@@ -23,13 +23,11 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
 
     private lateinit var articlesRV: RecyclerView
 
-
     private lateinit var swipeContainer: SwipeRefreshLayout
 
     private lateinit var noNetLayout: ConstraintLayout
 
     private lateinit var articlesLm: LinearLayoutManager
-
     private lateinit var articlesAdapter: ArticlesAdapter
 
     private var pageNumber: Int = 1
@@ -45,7 +43,6 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
         noNetLayout = view.findViewById(R.id.noNetLayout)
 
         articlesAdapter = ArticlesAdapter(mutableListOf())
-
         articlesLm = LinearLayoutManager(view.context)
 
         articlesRV.apply {

@@ -5,7 +5,6 @@
     android:id="@+id/linearLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backg"
     tools:context=".ProfileActivity">
 
     <FrameLayout
@@ -31,7 +30,7 @@
                 android:src="@drawable/circle" />
 
             <com.mikhaellopez.circularimageview.CircularImageView
-                android:id="@+id/photoprof"
+                android:id="@+id/photoProf"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:layout_gravity="center"

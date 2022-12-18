@@ -1,14 +1,17 @@
 package tn.esprit.roommodule.dao
 
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 import tn.esprit.roommodule.models.UserAndBookmarks
 import tn.esprit.roommodule.models.UserProfile
 
-interface UserDao: EntityDao<UserProfile> {
+@Dao
+interface UserDao : EntityDao<UserProfile> {
 
     @Transaction
-    @Query("SELECT * FROM UserProfile")
-    fun getUserWithBookmarks(userId: String): List<UserAndBookmarks>
+    @Query("SELECT * FROM UserProfile WHERE _id = :userId")
+    suspend fun getUserWithBookmarks(userId: String): UserAndBookmarks?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun saveUser(e: UserProfile)
 
 }

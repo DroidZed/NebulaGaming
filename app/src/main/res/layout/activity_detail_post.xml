@@ -19,6 +19,7 @@
         android:layout_marginTop="1dp"
         android:layout_marginBottom="291dp"
         android:clickable="true"
+        android:focusable="true"
         android:src="@drawable/avatar_profile_png_picture"
         app:layout_constraintBottom_toTopOf="@+id/fragmentContainerComment"
         app:layout_constraintEnd_toStartOf="@+id/datepostdet"
@@ -27,8 +28,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.857"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-        android:focusable="true" />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/usernamedetpost"
@@ -166,10 +166,10 @@
         android:layout_width="406dp"
         android:layout_height="371dp"
         android:layout_marginStart="4dp"
-        tools:name="tn.esprit.nebulagaming.fragments.CommentFragment"
         android:layout_marginTop="396dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:name="tn.esprit.nebulagaming.fragments.CommentFragment" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -203,13 +203,13 @@
             android:layout_height="40dp"
             android:ems="10"
             android:hint="@string/your_comment"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:textColor="#F6F5F5"
             android:textColorHighlight="#F8F3F3"
             android:textColorHint="#92FFFFFF"
             android:translationY="-28dp"
-            tools:ignore="TouchTargetSizeCheck"
-            android:importantForAutofill="no" />
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/button"

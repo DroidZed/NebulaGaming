@@ -5,11 +5,12 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.WishlistAdapter
 import tn.esprit.nebulagaming.data.Wishlist
 
-
+@AndroidEntryPoint
 class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
 
     private lateinit var adapter: WishlistAdapter

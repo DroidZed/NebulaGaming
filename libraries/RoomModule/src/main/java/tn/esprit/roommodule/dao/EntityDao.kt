@@ -8,14 +8,14 @@ import androidx.room.Update
 interface EntityDao<T> {
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    fun create(e: T)
+    suspend fun create(e: T)
 
     @Insert
-    fun addAll(e: List<T>)
+    suspend fun addAll(e: List<T>)
 
     @Update
-    fun update(e: T)
+    suspend fun update(e: T)
 
     @Delete
-    fun delete(e: T)
+    suspend fun delete(e: T)
 }

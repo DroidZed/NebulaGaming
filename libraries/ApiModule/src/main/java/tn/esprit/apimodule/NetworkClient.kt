@@ -3,6 +3,7 @@ package tn.esprit.apimodule
 import android.content.Context
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
 import retrofit2.Retrofit.Builder
 import retrofit2.converter.gson.GsonConverterFactory
 import tn.esprit.apimodule.repos.*
@@ -13,7 +14,6 @@ import java.util.concurrent.TimeUnit
 
 
 class NetworkClient(private val context: Context) {
-
 
     private val secureClient by lazy {
         Builder()
@@ -32,24 +32,25 @@ class NetworkClient(private val context: Context) {
             .build()
     }
 
-    fun getAuthService(): AuthApiService =
-        defaultClient.create(AuthApiService::class.java)
+    companion object ServiceFactory {
 
-    fun retrieveSecureOkHttpClientInstance() = secureHttpInterceptor()
+        inline fun <reified T> getService(client: Retrofit): T {
 
-    fun getUserService(): UserApiService =
-        secureClient.create(UserApiService::class.java)
+            return client.create(T::class.java)
+        }
+    }
 
-    fun getArticleService(): ArticleApiService = secureClient.create(ArticleApiService::class.java)
+    fun getAuthService() = getService<AuthApiService>(defaultClient)
 
-    fun getEventService(): EventApiService = secureClient.create(EventApiService::class.java)
+    fun getUserService() = getService<UserApiService>(secureClient)
 
-    fun getCategoryService(): CategoryApiService =
-        secureClient.create(CategoryApiService::class.java)
+    fun getArticleService() = getService<ArticleApiService>(secureClient)
 
-    fun getProductService(): ProductApiService = secureClient.create(ProductApiService::class.java)
+    fun getEventService() = getService<EventApiService>(secureClient)
 
-    fun getOffreService(): JobOfferApiService = secureClient.create(JobOfferApiService::class.java)
+    fun getMarketplaceService() = getService<MarketplaceApiService>(secureClient)
+
+    fun getOffreService() = getService<JobOfferApiService>(secureClient)
 
     /**
      * Initialize OkhttpClient with token authenticator
@@ -57,11 +58,10 @@ class NetworkClient(private val context: Context) {
     private fun secureHttpInterceptor(): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(AuthInterceptor(context))
         .authenticator(TokenAuthenticator(context))
-        .readTimeout(5, TimeUnit.SECONDS)
-        .writeTimeout(5, TimeUnit.SECONDS)
-        .callTimeout(5, TimeUnit.SECONDS)
+        .readTimeout(2, TimeUnit.MINUTES)
+        .writeTimeout(2, TimeUnit.MINUTES)
+        .callTimeout(2, TimeUnit.MINUTES)
         .build()
-
 
     /**
      * Initialize OkhttpClient with a default interceptor

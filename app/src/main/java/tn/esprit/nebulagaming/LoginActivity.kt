@@ -64,7 +64,8 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
                 else {
                     listOf(emailET, passwordET).forEach {
-                        it.clearText() }
+                        it.clearText()
+                    }
                     Toast.makeText(this, "Logged in !", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()

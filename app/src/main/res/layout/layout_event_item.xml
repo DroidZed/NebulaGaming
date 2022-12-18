@@ -15,9 +15,9 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:src="@drawable/flame"
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="200dp"
+            android:src="@drawable/flame" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

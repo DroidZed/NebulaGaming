@@ -1,7 +1,12 @@
 package tn.esprit.nebulagaming.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.utils.HelperFunctions
 import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
@@ -25,22 +30,26 @@ class BookmarksAdapter(private val list: MutableList<Bookmarks>) :
         holder.let { h ->
             h.articleTitle!!.text = bookmark.title
             h.articleDescription!!.text = bookmark.description
-            h.bookMarkImg?.setImageResource(R.drawable.ic_baseline_bookmark_remove_24)
+            h.bookMarkRem?.apply {
+                visibility = View.VISIBLE
+                setImageResource(R.drawable.ic_baseline_bookmark_remove_24)
+            }
 
             usePicasso(bookmark.image, R.drawable.backg, h.articleImage!!)
 
-            h.clickHere?.setOnClickListener {
-                HelperFunctions.launchURL(it, bookmark.link)
+            h.itemView.setOnClickListener {
+                HelperFunctions.launchURL(it.context, bookmark.link)
             }
 
-            h.bookMarkImg?.setOnClickListener {
+            h.bookMarkRem?.setOnClickListener {
 
-                NebulaGamingDatabase
-                    .getInstance(h.itemView.context)
-                    .bookmarksDao()
-                    .delete(bookmark)
-
-                remove(bookmark)
+                CoroutineScope(Dispatchers.IO).launch {
+                    NebulaGamingDatabase
+                        .getInstance(h.itemView.context)
+                        .bookmarksDao()
+                        .delete(bookmark)
+                    withContext(Dispatchers.Main) { remove(bookmark) }
+                }
             }
         }
     }

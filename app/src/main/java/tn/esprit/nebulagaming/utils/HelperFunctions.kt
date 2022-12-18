@@ -2,58 +2,43 @@ package tn.esprit.nebulagaming.utils
 
 import android.content.Context
 import android.net.Uri
-import android.view.View
+import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
-import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.NetworkPolicy
-import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
-import tn.esprit.apimodule.NetworkClient
+import org.apache.commons.codec.binary.Hex
+import org.apache.commons.codec.digest.DigestUtils
 
 object HelperFunctions {
 
-    fun launchURL(it: View, url: String) {
+    fun launchURL(context: Context, url: String) {
         val builder = CustomTabsIntent.Builder()
         val customTabsIntent = builder.build()
-        customTabsIntent.launchUrl(it.context, Uri.parse(url))
+        customTabsIntent.launchUrl(context, Uri.parse(url))
     }
 
-    fun usePicasso(url: String, placeholder: Int, view: ImageView) =
-        Picasso.get()
-            .load(url)
-            .networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE)
-            .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
-            .placeholder(placeholder)
-            .into(view)
-
-    fun useSecurePicasso(
+    fun usePicasso(
         url: String,
         placeholder: Int,
-        context: Context,
-        view: ImageView,
-        height: Int? = 300,
-        width: Int? = 300
-
+        view: ImageView
     ) =
-        Picasso
-            .Builder(context)
-            .downloader(
-                OkHttp3Downloader(
-                    NetworkClient(context).retrieveSecureOkHttpClientInstance()
-                )
-            )
-            .build()
+        Picasso.get()
             .load(url)
-            .memoryPolicy(MemoryPolicy.NO_CACHE)
-            .resize(width!!, height!!)
-            .centerCrop()
+            .networkPolicy(NetworkPolicy.NO_STORE, NetworkPolicy.NO_CACHE)
             .placeholder(placeholder)
             .into(view)
 
-
-    fun toastMsg(context: Context, message: String) {
+    fun toastMsg(context: Context, message: String) =
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+
+    fun getGravatar(email: String): String =
+        "https://s.gravatar.com/avatar/${md5(email)}?d=retro"
+
+    private fun md5(content: String): String {
+        val hash = String(Hex.encodeHex(DigestUtils.md5(content)))
+        Log.d("digest", hash)
+        return hash
     }
 }

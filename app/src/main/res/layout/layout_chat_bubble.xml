@@ -11,9 +11,9 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:orientation="horizontal"
         tools:ignore="UseCompoundDrawables">
 
@@ -36,10 +36,10 @@
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginStart="32dp"
         android:id="@+id/chatBubbleContainer"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:background="@drawable/sent_bubble"
         android:paddingVertical="10dp"
         android:paddingStart="10dp"

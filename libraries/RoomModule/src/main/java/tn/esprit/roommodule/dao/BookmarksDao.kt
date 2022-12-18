@@ -8,6 +8,5 @@ import tn.esprit.roommodule.models.Bookmarks
 interface BookmarksDao : EntityDao<Bookmarks> {
 
     @Query("SELECT * FROM Bookmarks")
-    fun getAll(): List<Bookmarks>
-
+    suspend fun getAll(): List<Bookmarks>
 }

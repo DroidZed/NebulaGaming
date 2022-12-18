@@ -3,8 +3,8 @@ package tn.esprit.nebulagaming.adapters
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import tn.esprit.nebulagaming.fragments.MyShopFragment
 import tn.esprit.nebulagaming.fragments.MarketplaceFragment
+import tn.esprit.nebulagaming.fragments.MyShopFragment
 import tn.esprit.nebulagaming.fragments.WishlistFragment
 
 class MarketPlaceVP2Adapter(activity: AppCompatActivity) :

@@ -5,17 +5,20 @@ import android.view.View
 import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.apimodule.models.Product
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.ProductAdapter
 import tn.esprit.nebulagaming.utils.hideKeyboard
 import tn.esprit.nebulagaming.utils.on
+import tn.esprit.nebulagaming.viewmodels.MarketplaceViewModel
 
-
+@AndroidEntryPoint
 class MarketplaceFragment : Fragment(R.layout.fragment_marketplace) {
 
     private lateinit var productAdapter: ProductAdapter
@@ -23,6 +26,8 @@ class MarketplaceFragment : Fragment(R.layout.fragment_marketplace) {
     private lateinit var searchProductsBar: EditText
     private lateinit var categoriesGroup: ChipGroup
     private lateinit var productsListRV: RecyclerView
+
+    private val marketPlaceVM: MarketplaceViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,32 +53,20 @@ class MarketplaceFragment : Fragment(R.layout.fragment_marketplace) {
             categoriesGroup.addView(chip)
         }
 
-
-        var products = mutableListOf<Product>(
-
-        )
-
-
+        val products = mutableListOf<Product>()
 
         searchProductsBar.on(IME_ACTION_DONE) {
             searchProductsBar.clearFocus()
             searchProductsBar.hideKeyboard()
 
-            var filtered = products.asSequence().filter { p ->
+            val filtered = products.asSequence().filter { p ->
                 p.name == searchProductsBar.text.toString()
             }.toMutableList()
+            productAdapter.apply {
+                clear()
+                addAll(filtered)
+            }
         }
-
-        // mb3d t7ot eekel variable filtered fil adapter w t3ayt l notifyDataSetChanged()
-
-        /** hedhi fil adapter
-         *     fun updateList(list: MutableList<Product>) {
-        data.clear()
-        data.addAll(list)
-        notifyDataSetChanged()
-        }
-         */
-
 
         productAdapter = ProductAdapter(products)
 

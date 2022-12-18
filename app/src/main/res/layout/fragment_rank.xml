@@ -13,7 +13,7 @@
         android:padding="10dp">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/editpage"
+            android:id="@+id/editPageBtn"
             style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
             android:layout_width="53dp"
             android:layout_height="52dp"
@@ -65,7 +65,7 @@
                 android:gravity="center_vertical"
                 android:inputType="text"
                 android:textColor="#FAFAFA"
-                tools:ignore="Autofill,LabelFor" />
+                tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck" />
 
 
         </LinearLayout>
@@ -106,7 +106,7 @@
                 android:gravity="center_vertical"
                 android:inputType="textEmailAddress"
                 android:textColor="#FAFAFA"
-                tools:ignore="Autofill,LabelFor" />
+                tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck" />
 
         </LinearLayout>
 
@@ -150,47 +150,7 @@
                 android:gravity="center_vertical"
                 android:inputType="phone"
                 android:textColor="#FAFAFA"
-                tools:ignore="LabelFor" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageViewLevel"
-                android:layout_width="37dp"
-                android:layout_height="37dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:contentDescription="@string/cntdesc"
-                android:src="@drawable/level" />
-
-            <TextView
-                android:id="@+id/leveltinfo"
-                android:layout_width="83dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="32dp"
-                android:gravity="center_vertical"
-                android:text="@string/rank"
-                android:textColor="#FBFBFB"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/userinfolevel"
-                android:layout_width="235dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="32dp"
-                android:gravity="center"
-                android:textColor="#FAFAFA"
-                android:textSize="20sp"
-                tools:ignore="MissingConstraints"
-                tools:text="Level 25" />
+                tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
         </LinearLayout>
 
@@ -203,7 +163,7 @@
 
 
             <Button
-                android:id="@+id/updatebtn"
+                android:id="@+id/updateBtn"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#B0371C61"

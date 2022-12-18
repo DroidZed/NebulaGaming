@@ -7,8 +7,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.nebulagaming.adapters.MarketPlaceVP2Adapter
 
+@AndroidEntryPoint
 class MarketplaceActivity : AppCompatActivity() {
 
     private lateinit var tabLayout: TabLayout

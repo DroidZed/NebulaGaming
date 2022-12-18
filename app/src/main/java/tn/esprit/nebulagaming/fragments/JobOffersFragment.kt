@@ -9,12 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
-import tn.esprit.apimodule.models.Article
-import tn.esprit.apimodule.models.OffreJob
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.JobOffersAdapter
-import tn.esprit.nebulagaming.data.JobOffer
-import tn.esprit.nebulagaming.utils.HelperFunctions
 import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
 import tn.esprit.nebulagaming.utils.Status
 import tn.esprit.nebulagaming.viewmodels.OffreJobViewModel
@@ -23,7 +19,7 @@ import tn.esprit.nebulagaming.viewmodels.OffreJobViewModel
 @AndroidEntryPoint
 class JobOffersFragment : Fragment(R.layout.fragment_job_offers) {
 
-    private val JobOfVm:OffreJobViewModel by viewModels()
+    private val JobOfVm: OffreJobViewModel by viewModels()
 
     private lateinit var jobsRV: RecyclerView
     private lateinit var swipeContainer: SwipeRefreshLayout

@@ -13,4 +13,4 @@ data class ParcelablePostData(
     val postSaved: String,
     val postPhoto: Int,
     val postUserPhoto: Int
-): Parcelable
+) : Parcelable
