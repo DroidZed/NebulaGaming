@@ -112,4 +112,6 @@
     <string name="tags">tags:</string>
     <string name="read_more">Read more</string>
     <string name="levelU">Level - %1$d</string>
+    <string name="job_position">Job Position</string>
+    <string name="link_to_apply_for_the_job">Link to apply for the job</string>
 </resources>

@@ -69,13 +69,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="410dp"
-        android:layout_height="737dp"
+        android:layout_height="757dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.697">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <View
             android:id="@+id/view"
@@ -83,8 +82,8 @@
             android:layout_height="8dp"
             android:background="@drawable/toolbar_dropshadow"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="0dp" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/TitleOffreLay"
@@ -92,7 +91,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:contextClickable="true"
             android:hint="@string/job_title"
             android:textColorHint="#E1FFFFFF"
@@ -124,7 +123,7 @@
             android:layout_width="192dp"
             android:layout_height="61dp"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/bordersprofile"
             android:dropDownWidth="wrap_content"
@@ -140,7 +139,8 @@
             android:layout_width="397dp"
             android:layout_height="145dp"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="4dp"
             android:contextClickable="true"
             android:hint="@string/job_description_offre"
             android:textColorHint="#E1FFFFFF"
@@ -152,8 +152,9 @@
             app:endIconTint="@color/white"
             app:helperTextTextColor="@color/white"
             app:hintTextColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/TitleOffreLay"
             tools:ignore="MissingConstraints">
 
 
@@ -216,7 +217,7 @@
             android:id="@+id/EnddateText"
             android:layout_width="121dp"
             android:layout_height="24dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="6dp"
             android:layout_marginEnd="31dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Enddatebtn"
@@ -224,15 +225,13 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/SalaryOffreLay"
+            android:id="@+id/PostionOffreLay"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="29dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginTop="30dp"
             android:contextClickable="true"
-            android:hint="@string/job_salary"
+            android:hint="@string/job_position"
             android:textColorHint="#E1FFFFFF"
             app:boxBackgroundColor="@color/inputBg"
             app:boxCollapsedPaddingTop="2dp"
@@ -242,23 +241,21 @@
             app:endIconTint="@color/white"
             app:helperTextTextColor="@color/white"
             app:hintTextColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Startdatetext"
-            tools:ignore="MissingConstraints">
+            app:layout_constraintTop_toBottomOf="@+id/EnddateText"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="7dp">
 
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/SalaryOffreTf"
+                android:id="@+id/PostionOffreTf"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
-                android:inputType="phone|number"
+                android:inputType="text"
                 android:shadowColor="@color/white"
                 android:singleLine="true"
                 android:textColor="@color/white"
                 tools:ignore="DuplicateSpeakableTextCheck" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/AdressOffreLay"
@@ -266,7 +263,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="4dp"
             android:contextClickable="true"
             android:hint="@string/job_adress"
@@ -281,7 +278,7 @@
             app:hintTextColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SalaryOffreLay"
+            app:layout_constraintTop_toBottomOf="@+id/PostionOffreLay"
             tools:ignore="MissingConstraints">
 
 
@@ -296,6 +293,78 @@
                 tools:ignore="DuplicateSpeakableTextCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/WebsiteOffreLay"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="4dp"
+            android:contextClickable="true"
+            android:hint="@string/link_to_apply_for_the_job"
+            android:textColorHint="#E1FFFFFF"
+            app:boxBackgroundColor="@color/inputBg"
+            app:boxCollapsedPaddingTop="2dp"
+            app:boxStrokeColor="@color/white"
+            app:counterOverflowTextColor="@color/white"
+            app:counterTextColor="@color/white"
+            app:endIconTint="@color/white"
+            app:helperTextTextColor="@color/white"
+            app:hintTextColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AdressOffreLay"
+            tools:ignore="MissingConstraints">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/WebsiteOffreTf"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:inputType="text"
+                android:shadowColor="@color/white"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/EmailToOffreLay"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="4dp"
+            android:contextClickable="true"
+            android:hint="Email for more info"
+            android:textColorHint="#E1FFFFFF"
+            app:boxBackgroundColor="@color/inputBg"
+            app:boxCollapsedPaddingTop="2dp"
+            app:boxStrokeColor="@color/white"
+            app:counterOverflowTextColor="@color/white"
+            app:counterTextColor="@color/white"
+            app:endIconTint="@color/white"
+            app:helperTextTextColor="@color/white"
+            app:hintTextColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AdressOffreLay"
+            tools:ignore="MissingConstraints">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/EmailToOffreTf"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:inputType="textEmailAddress"
+                android:shadowColor="@color/white"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

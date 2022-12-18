@@ -1,21 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="10dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/bordersprofile"
     app:cardCornerRadius="25dp"
-    app:cardElevation="3dp">
+    app:cardElevation="3dp"
+    app:layout_goneMarginBottom="10dp"
+    app:layout_goneMarginTop="10dp"
+    app:layout_scrollFlags="snapMargins">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/photoprofdetailuserOffreJob"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="372dp"
+        android:clickable="true"
+        android:src="@drawable/avatar_profile_png_picture"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/nameuserpostOffreJob"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/nameuserpostOffreJob"
+        android:layout_width="266dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="66dp"
+        android:layout_marginBottom="1dp"
+        android:gravity="center_vertical"
+        android:text="TextView"
+        android:textColor="#F3EEEE"
+        app:layout_constraintBottom_toTopOf="@+id/timepostOffreJob"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/photoprofdetailuserOffreJob"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/timepostOffreJob"
+        android:layout_width="262dp"
+        android:layout_height="32dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="9dp"
+        android:layout_toEndOf="@+id/photoprofdetailuserOffreJob"
+        android:text="22-02-2022 12:00 PM"
+        android:textColor="#FFF3EEEE"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/photoprofdetailuserOffreJob"
+        app:layout_constraintTop_toBottomOf="@+id/nameuserpostOffreJob" />
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="75dp"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="370dp"
+            android:layout_height="367dp"
             android:contentDescription="@string/cntdesc"
             android:foreground="@drawable/gradiant_overlay"
             android:foregroundTint="@color/darkyGray"
@@ -26,6 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/joboffer_border"
             android:padding="10dp">
 
@@ -33,7 +98,7 @@
                 android:id="@+id/jobTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/merriweather_black"
+                android:fontFamily="@font/merriweather_light"
                 android:text="@string/we_re_hiring"
                 android:textAlignment="center"
                 android:textColor="@color/white"
@@ -43,21 +108,47 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/jDesc"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:fontFamily="@font/merriweather_light"
-                android:gravity="center"
-                android:lineSpacingMultiplier="1.2"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.526"
+                android:id="@+id/PostionJob"
+                android:layout_width="115dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/merriweather_black"
+                android:foregroundGravity="center"
+                android:text="Postion Job"
+                android:textSize="12sp"
+                android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/jobTitle"
-                tools:text="Job offer desc" />
+                app:layout_constraintTop_toBottomOf="@+id/JobTitleOffre" />
+
+            <TextView
+                android:id="@+id/JobTitleOffre"
+                android:layout_width="173dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/merriweather_black_italic"
+                android:foregroundGravity="left"
+                android:text="Job title offre"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/jobTitle" />
+
+            <TextView
+                android:id="@+id/descJobOffre"
+                android:layout_width="356dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="29dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/PostionJob" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
-</com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

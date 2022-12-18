@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backg"
+    app:layoutDescription="@xml/activity_job_offre_detail_scene"
+    tools:context=".JobOffreDetailActivity">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="62dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="413dp"
+                android:layout_height="64dp"
+                android:background="#77440C67"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/CloseOffre"
+                    style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="#B0371C61"
+                    app:cornerRadius="29dp"
+                    app:icon="@drawable/ic_baseline_arrow_back"
+                    app:iconGravity="top"
+                    app:iconSize="27dp"
+                    app:iconTint="@color/white"
+                    app:startIconTint="@color/white"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/titleJobDetOffrejob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/amaranth"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="30dp"
+                    tools:layout_editor_absoluteX="76dp"
+                    tools:layout_editor_absoluteY="18dp" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/detphotoforumDetOffrejob"
+                android:layout_width="187dp"
+                android:layout_height="178dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.544"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/datepostdetDetOffrejob"
+                app:shapeAppearanceOverlay="@style/roundimageview"
+                app:srcCompat="@drawable/interview_amico" />
+
+            <TextView
+                android:id="@+id/usernamedetpostDetOffrejob"
+                android:layout_width="278dp"
+                android:layout_height="22dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="61dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="61dp"
+                android:fontFamily="monospace"
+                android:textColor="#ECE1E1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.454"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/datepostdetDetOffrejob"
+                android:layout_width="272dp"
+                android:layout_height="27dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="73dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="#E4DEDE"
+                app:layout_constraintBottom_toTopOf="@+id/detphotoforumDetOffrejob"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/photoprofdetailuserDetOffrejob"
+                app:layout_constraintTop_toBottomOf="@+id/usernamedetpostDetOffrejob" />
+
+            <TextView
+                android:id="@+id/textPostdetaiDetOffrejob"
+                android:layout_width="382dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="13dp"
+                android:layout_marginBottom="77dp"
+                android:textColor="#F3EDED"
+                app:layout_constraintBottom_toTopOf="@+id/ApplyDetOffrejob"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/EmailDetOffrejob" />
+
+            <TextView
+                android:id="@+id/titleJobDetOffrejobs"
+                android:layout_width="156dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="130dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="130dp"
+                android:fontFamily="@font/merriweather_bold"
+                android:gravity="center"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detphotoforumDetOffrejob" />
+
+            <TextView
+                android:id="@+id/JobPostionDetOffrejob"
+                android:layout_width="121dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="3dp"
+                    android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/JobTypeDetOffrejob"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleJobDetOffrejobs"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/JobTypeDetOffrejob"
+                android:layout_width="122dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="1dp"
+                app:layout_constraintEnd_toStartOf="@+id/JobAdresseDetOffrejob"
+                app:layout_constraintStart_toEndOf="@+id/JobPostionDetOffrejob"
+                app:layout_constraintTop_toBottomOf="@+id/titleJobDetOffrejobs" />
+
+            <TextView
+                android:id="@+id/JobAdresseDetOffrejob"
+                android:layout_width="137dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="11dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/JobTypeDetOffrejob"
+                app:layout_constraintTop_toBottomOf="@+id/titleJobDetOffrejobs" />
+
+            <TextView
+                android:id="@+id/datedebutDetOffrejob"
+                android:layout_width="91dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="11dp"
+                app:layout_constraintEnd_toStartOf="@+id/datefinDetOffrejob"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/JobPostionDetOffrejob" />
+
+            <TextView
+                android:id="@+id/datefinDetOffrejob"
+                android:layout_width="89dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="18dp"
+                app:layout_constraintEnd_toStartOf="@+id/EmailDetOffrejob"
+                app:layout_constraintStart_toEndOf="@+id/datedebutDetOffrejob"
+                app:layout_constraintTop_toBottomOf="@+id/JobPostionDetOffrejob" />
+
+            <Button
+                android:id="@+id/ApplyDetOffrejob"
+                android:layout_width="159dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="135dp"
+                android:layout_marginTop="92dp"
+                android:layout_marginEnd="117dp"
+                android:text="Apply Now"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textPostdetaiDetOffrejob" />
+
+            <TextView
+                android:id="@+id/EmailDetOffrejob"
+                android:layout_width="174dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="17dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/datefinDetOffrejob"
+                app:layout_constraintTop_toBottomOf="@+id/JobAdresseDetOffrejob" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/photoprofdetailuserDetOffrejob"
+                android:layout_width="53dp"
+                android:layout_height="66dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="68dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/avatar_profile_png_picture"
+                app:layout_constraintEnd_toStartOf="@+id/datepostdetDetOffrejob"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
