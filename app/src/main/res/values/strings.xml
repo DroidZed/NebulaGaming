@@ -114,4 +114,6 @@
     <string name="levelU">Level - %1$d</string>
     <string name="job_position">Job Position</string>
     <string name="link_to_apply_for_the_job">Link to apply for the job</string>
+    <string name="quiz">Quiz</string>
+    <string name="nothing_to_see_here">Nothing to see here...</string>
 </resources>

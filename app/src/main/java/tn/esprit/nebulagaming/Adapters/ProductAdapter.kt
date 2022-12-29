@@ -15,6 +15,4 @@ class ProductAdapter(private val data: MutableList<Product>) :
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) =
         holder.bind(data[position])
-
-    override fun getItemCount(): Int = data.size
 }

@@ -46,7 +46,4 @@ class ArticlesAdapter constructor(val data: MutableList<Article>) :
             }
         }
     }
-
-    override fun getItemCount(): Int = data.size
-
 }

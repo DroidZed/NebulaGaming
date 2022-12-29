@@ -9,37 +9,36 @@ import tn.esprit.roommodule.models.UserProfile
 
 interface UserApiService {
 
-    @GET("users/{id}")
+    companion object {
+
+        private const val API_ID = "users"
+    }
+
+    @GET("$API_ID/{id}")
     suspend fun getProfile(@Path("id") id: String): Response<UserProfile>
 
-    @DELETE("users/deleteuser/{id}")
+    @DELETE("$API_ID/deleteuser/{id}")
     suspend fun deleteProfile(@Path("id") id: String): Response<GenericResp>
 
-    @PUT("users/changePassword/{id}")
+    @PUT("$API_ID/changePassword/{id}")
     suspend fun changePassword(
         @Path("id") id: String,
         @Body code: AuthReqBody
     ): Response<GenericResp>
 
-    @PUT("users/updateProfile/{id}")
+    @PUT("$API_ID/updateProfile/{id}")
     suspend fun updateProfile(
         @Path("id") id: String,
         @Body phoneName: UpdateProfileBody
     ): Response<GenericResp>
 
     @Multipart
-    @PATCH("users/changeImage/{id}")
+    @PATCH("$API_ID/changeImage/{id}")
     suspend fun updateUserPicture(
         @Path("id") id: String,
         @Part image: MultipartBody.Part
     ): Response<GenericResp>
 
-    @POST("users/requestChangePwd")
+    @POST("$API_ID/requestChangePwd")
     suspend fun requestChangePwd(@Body email: AuthReqBody): Response<GenericResp>
-
-    @PATCH("users/changeLevel/{id}")
-    suspend fun changeLevel(
-        @Body level: UpdateLevelQuery,
-        @Path("id") id: String
-    ): Response<GenericResp>
 }

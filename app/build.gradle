@@ -4,6 +4,7 @@ plugins {
     id 'com.google.dagger.hilt.android'
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-parcelize'
+    id 'com.google.gms.google-services'
     id 'kotlin-kapt'
 }
 
@@ -14,6 +15,7 @@ android {
     defaultConfig {
         applicationId "tn.esprit.nebulagaming"
         minSdk 26
+        //noinspection OldTargetApi
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -88,6 +90,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
+    implementation platform('com.google.firebase:firebase-bom:31.1.1')
+
+    implementation "com.google.firebase:firebase-messaging-ktx"
+
     //noinspection GradleDependency
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -101,4 +107,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
+}
+
+kapt {
+    correctErrorTypes true
 }

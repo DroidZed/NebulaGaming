@@ -1,7 +1,6 @@
 package tn.esprit.nebulagaming.viewholders
 
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -14,18 +13,20 @@ import java.util.*
 
 class JobOffersViewHolder(itemView: View) : ViewHolder(itemView) {
 
-   // private var jDesc: TextView? = null
+    // private var jDesc: TextView? = null
     private var nameuserpostOffreJob: TextView? = null
+
     //private var photoprofdetailuserOffreJob: ShapeableImageView? = null
     private var timepostOffreJob: TextView? = null
     private var jobTitle: TextView? = null
     private var typeJobOffre: TextView? = null
     private var PostionJob: TextView? = null
     private var descJobOffre: TextView? = null
+
     init {
-     //   jDesc = itemView.findViewById(R.id.jDesc)
+        //   jDesc = itemView.findViewById(R.id.jDesc)
         nameuserpostOffreJob = itemView.findViewById(R.id.nameuserpostOffreJob)
-      //  photoprofdetailuserOffreJob = itemView.findViewById(R.id.photoprofdetailuserOffreJob)
+        //  photoprofdetailuserOffreJob = itemView.findViewById(R.id.photoprofdetailuserOffreJob)
         timepostOffreJob = itemView.findViewById(R.id.timepostOffreJob)
         jobTitle = itemView.findViewById(R.id.JobTitleOffre)
         PostionJob = itemView.findViewById(R.id.PostionJob)
@@ -38,17 +39,16 @@ class JobOffersViewHolder(itemView: View) : ViewHolder(itemView) {
         jobTitle!!.text = jobOffer.jobTitle
         PostionJob!!.text = jobOffer.jobPosition
         timepostOffreJob!!.text = parseDateToddMMyyyy(jobOffer.postedAt.toString())
-      nameuserpostOffreJob!!.text = jobOffer.company?.name.toString()
+        nameuserpostOffreJob!!.text = jobOffer.company?.name.toString()
         descJobOffre!!.text = jobOffer.jobDescription
 
         itemView.setOnClickListener {
-           val intent = Intent(itemView.context, JobOffreDetailActivity::class.java)
+            val intent = Intent(itemView.context, JobOffreDetailActivity::class.java)
             intent.putExtra("jobid", jobOffer._id)
             intent.putExtra("jobPostion", jobOffer.jobPosition)
             intent.putExtra("username", jobOffer.company?.name.toString())
             itemView.context.startActivity(intent)
         }
-
 
 
     }
@@ -69,7 +69,6 @@ class JobOffersViewHolder(itemView: View) : ViewHolder(itemView) {
         }
         return str
     }
-
 
 
 }

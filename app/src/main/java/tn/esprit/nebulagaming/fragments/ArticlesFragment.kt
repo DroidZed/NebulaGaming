@@ -30,10 +30,12 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
     private lateinit var articlesLm: LinearLayoutManager
     private lateinit var articlesAdapter: ArticlesAdapter
 
+    private lateinit var scrollListener: RecyclerView.OnScrollListener
+
     private var pageNumber: Int = 1
     private var pagedItemsCount: Int = 0
-    private var totalItems: Int = 0
     private var totalPages: Int = 0
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -63,28 +65,55 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
             R.color.purple_500,
             R.color.DarkPurple,
         )
+
+        setRecyclerViewScrollListener()
     }
 
-    private fun loadData(page: Int) {
+    private fun setRecyclerViewScrollListener() {
+
+        scrollListener = object : RecyclerView.OnScrollListener() {
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager
+
+                if (
+                    linearLayoutManager.findLastCompletelyVisibleItemPosition() == recyclerView.layoutManager?.itemCount?.minus(
+                        1
+                    )
+                    &&
+                    pageNumber < totalPages
+                ) {
+                    pageNumber++
+                    loadData(pageNumber, false)
+                }
+            }
+        }
+
+        articlesRV.addOnScrollListener(scrollListener)
+    }
+
+    private fun loadData(page: Int, initialRun: Boolean? = true) {
         articlesVM.loadRssArticles(page, view?.context!!).observe(requireActivity()) {
             it?.let { rs ->
                 when (rs.status) {
                     Status.SUCCESS -> {
                         rs.data?.apply {
                             pagedItemsCount = this.pageSize
-                            totalItems = this.total
-                            totalPages = this.pages
                             pageNumber = this.page
-                            swipeContainer.isRefreshing = false
+                            totalPages = this.pages
+                            if (initialRun == true) swipeContainer.isRefreshing = false
                             articlesAdapter.addAll(this.articles)
-                            articlesRV.smoothScrollToPosition(0)
                         }
                     }
                     Status.LOADING -> {
-                        swipeContainer.isRefreshing = true
+                        if (initialRun == true)
+                            swipeContainer.isRefreshing = true
+
                     }
                     Status.ERROR -> {
-                        swipeContainer.isRefreshing = false
+                        if (initialRun == true) swipeContainer.isRefreshing = false
                         toastMsg(view?.context!!, it.message!!)
                     }
                 }

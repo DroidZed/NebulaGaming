@@ -5,6 +5,8 @@ import android.content.Context
 import android.net.Uri
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 fun EditText.on(actionId: Int, func: () -> Unit) {
     setOnEditorActionListener { _, receivedActionId, _ ->

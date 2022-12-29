@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
-import tn.esprit.nebulagaming.MainActivity
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
 import tn.esprit.nebulagaming.viewmodels.ProfileViewModel
@@ -45,8 +44,6 @@ class RankFragment : Fragment(R.layout.fragment_rank) {
             email,
             phone
         )
-
-        (context as MainActivity).start
 
         disableComponents(group)
 

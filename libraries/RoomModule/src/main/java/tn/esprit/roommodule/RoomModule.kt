@@ -7,6 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import tn.esprit.roommodule.dao.BookmarksDao
+import tn.esprit.roommodule.dao.NotifDao
 import tn.esprit.roommodule.dao.UserDao
 import javax.inject.Singleton
 
@@ -26,4 +27,8 @@ class RoomModule {
     @Provides
     @Singleton
     fun provideUserDao(database: NebulaGamingDatabase): UserDao = database.userDao()
+
+    @Provides
+    @Singleton
+    fun providesNotificationDao(database: NebulaGamingDatabase): NotifDao = database.notifDao()
 }

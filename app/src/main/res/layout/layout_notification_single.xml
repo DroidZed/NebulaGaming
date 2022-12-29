@@ -1,46 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="90dp"
+    android:id="@+id/cardItem"
+    app:cardElevation="5dp"
     android:layout_margin="5dp"
-    android:background="@drawable/border_shape"
-    android:padding="10dp">
+    android:background="@drawable/border_shape">
 
-    <ImageView
-        android:id="@+id/notifImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="@string/notifimage"
-        android:src="@drawable/logonv"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
 
-    <TextView
-        android:id="@+id/notifTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/notifImage"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="this is the title of the notif" />
 
-    <TextView
-        android:id="@+id/notifBody"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:maxLines="2"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/notifImage"
-        app:layout_constraintTop_toBottomOf="@id/notifTitle"
-        tools:text="this is the body of the notif sdfgsdgsdfsfsfssfsfsf fsdfsd fsdfsdfssfsdfsdf sfsdfsdf sdfsffsdfsd sdfdsfsddfsdfdsf sdfsdfsdfsdfsdffsdfsdfdfsdf" />
+        <ImageView
+            android:id="@+id/notifImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/notifimage"
+            android:src="@drawable/logonv"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/notifTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/notifImage"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="this is the title of the notif" />
+
+        <TextView
+            android:id="@+id/notifBody"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:maxLines="2"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/notifImage"
+            app:layout_constraintTop_toBottomOf="@id/notifTitle"
+            tools:text="this is the body of the notif sdfgsdgsdfsfsfssfsfsf fsdfsd fsdfsdfssfsdfsdf sfsdfsdf sdfsffsdfsd sdfdsfsddfsdfdsf sdfsdfsdfsdfsdffsdfsdfdfsdf" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

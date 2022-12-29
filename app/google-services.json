@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "412356902711",
+    "project_id": "nabula-gaming",
+    "storage_bucket": "nabula-gaming.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412356902711:android:89b425fb031424235524b2",
+        "android_client_info": {
+          "package_name": "tn.esprit.nebulagaming"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "412356902711-733ihctobg7ue5eons88ju1kdphh01ts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFB7RMt-vqeIKt_MtBNcm1xke0NPASX3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "412356902711-733ihctobg7ue5eons88ju1kdphh01ts.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

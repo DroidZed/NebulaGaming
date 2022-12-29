@@ -53,6 +53,4 @@ class BookmarksAdapter(private val list: MutableList<Bookmarks>) :
             }
         }
     }
-
-    override fun getItemCount(): Int = list.size
 }

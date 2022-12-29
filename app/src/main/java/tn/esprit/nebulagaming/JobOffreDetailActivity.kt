@@ -1,7 +1,5 @@
 package tn.esprit.nebulagaming
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -34,7 +32,7 @@ class JobOffreDetailActivity : AppCompatActivity() {
     private lateinit var ApplyDetOffrejob: Button
     private lateinit var idofre: String
     private lateinit var EmailDetOffrejob: TextView
-    private lateinit var CloseOffre : Button
+    private lateinit var CloseOffre: Button
     private val OfJVM: OffreJobViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,22 +68,24 @@ class JobOffreDetailActivity : AppCompatActivity() {
             it?.let { rs ->
                 when (rs.status) {
                     Status.SUCCESS -> {
-                        rs.data?.let { data ->
-                            titleJobDetOffrejob.text = data.jobTitle
-                            JobTypeDetOffrejob.text = data.jobType
-                            JobAdresseDetOffrejob.text = data.jobAdress
-                            datedebutDetOffrejob.text = data.jobStartDate
-                            datefinDetOffrejob.text = data.jobEndDate
-                            textPostdetaiDetOffrejob.text = data.jobDescription
-                            EmailDetOffrejob.text = data.jobEmail
-                            usernamedetpostDetOffrejob.text = intent.getStringExtra("username").toString()
-                            datepostdetDetOffrejob.text = parseDateToddMMyyyy(data.postedAt.toString())
-                            JobPostionDetOffrejob.text = intent.getStringExtra("jobPostion").toString()
-                            JobPostionDetOffrejob.text = data.jobPosition
-                            Log.d("DATA", data.toString())
+                        rs.data?.let { offreJob ->
+                            titleJobDetOffrejob.text = offreJob.jobTitle
+                            JobTypeDetOffrejob.text = offreJob.jobType
+                            JobAdresseDetOffrejob.text = offreJob.jobAdress
+                            datedebutDetOffrejob.text = offreJob.jobStartDate
+                            datefinDetOffrejob.text = offreJob.jobEndDate
+                            textPostdetaiDetOffrejob.text = offreJob.jobDescription
+                            EmailDetOffrejob.text = offreJob.jobEmail
+                            usernamedetpostDetOffrejob.text =
+                                intent.getStringExtra("username").toString()
+                            datepostdetDetOffrejob.text =
+                                parseDateToddMMyyyy(offreJob.postedAt.toString())
+                            JobPostionDetOffrejob.text =
+                                intent.getStringExtra("jobPostion").toString()
+                            JobPostionDetOffrejob.text = offreJob.jobPosition
+                            Log.d("DATA", offreJob.toString())
                             ApplyDetOffrejob.setOnClickListener {
-                                HelperFunctions.launchURL(it, data.jobWebsite);
-
+                                HelperFunctions.launchURL(this, offreJob.jobWebsite);
                             }
                         }
 
@@ -100,6 +100,7 @@ class JobOffreDetailActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun parseDateToddMMyyyy(time: String): String? {
         var inputPattern = "EEE MMM dd HH:mm:ss zzz yyyy"
         var outputPattern = "dd/MM/yyyy HH:mm"

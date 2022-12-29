@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class ClassicAdapter<T : RecyclerView.ViewHolder, Y>(private val data: MutableList<Y>) :
     RecyclerView.Adapter<T>() {
 
+    override fun getItemCount(): Int = data.size
+
     open fun getItem(position: Int): Y = data[position]
 
     open fun add(movie: Y) {
@@ -31,5 +33,4 @@ abstract class ClassicAdapter<T : RecyclerView.ViewHolder, Y>(private val data: 
             remove(getItem(0))
         }
     }
-
 }

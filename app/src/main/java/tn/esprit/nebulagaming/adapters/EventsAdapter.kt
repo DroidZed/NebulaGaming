@@ -17,7 +17,4 @@ class EventsAdapter(private val data: MutableList<Event>) :
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) =
         holder.bind(data[position])
-
-    override fun getItemCount(): Int = data.size
-
 }

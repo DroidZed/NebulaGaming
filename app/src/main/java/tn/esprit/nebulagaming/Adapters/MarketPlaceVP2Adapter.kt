@@ -10,7 +10,6 @@ import tn.esprit.nebulagaming.fragments.WishlistFragment
 class MarketPlaceVP2Adapter(activity: AppCompatActivity) :
     FragmentStateAdapter(activity) {
 
-
     private var fragments: List<Fragment> = listOf(
         MarketplaceFragment(),
         MyShopFragment(),
@@ -19,7 +18,5 @@ class MarketPlaceVP2Adapter(activity: AppCompatActivity) :
 
     override fun getItemCount(): Int = fragments.size
 
-
     override fun createFragment(position: Int): Fragment = fragments[position]
-
 }

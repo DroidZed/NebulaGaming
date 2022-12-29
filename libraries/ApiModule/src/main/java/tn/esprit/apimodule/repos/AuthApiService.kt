@@ -15,8 +15,7 @@ interface AuthApiService {
     suspend fun register(@Body emailPasswordinfo: UserRegister): Response<GenericResp>
 
     @POST("VerifyCode")
-    suspend fun Verifycode(@Body email: AuthReqBody): Response<GenericResp>
-
+    suspend fun verifyCode(@Body email: AuthReqBody): Response<GenericResp>
 
     @Headers("Content-Type:application/json")
     @POST("resetVerif")

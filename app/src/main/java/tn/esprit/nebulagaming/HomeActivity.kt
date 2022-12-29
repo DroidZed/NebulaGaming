@@ -18,12 +18,16 @@ import androidx.navigation.ui.*
 import com.google.android.material.navigation.NavigationView
 import com.mikhaellopez.circularimageview.CircularImageView
 import dagger.hilt.android.AndroidEntryPoint
+import tn.esprit.nebulagaming.utils.HelperFunctions.subscribeToTopic
 import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
 import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 import tn.esprit.nebulagaming.utils.Status
 import tn.esprit.nebulagaming.viewmodels.HomeViewModel
 import tn.esprit.nebulagaming.viewmodels.ProfileViewModel
 import tn.esprit.roommodule.models.UserProfile
+import tn.esprit.shared.Consts.QUIZ_NOTIF_CHANNEL_ID
+import tn.esprit.shared.Consts.QUIZ_NOTIF_CHANNEL_NAME
+import tn.esprit.shared.Consts.QUIZ_TOPIC
 
 
 @AndroidEntryPoint
@@ -64,6 +68,14 @@ class HomeActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
         logout = findViewById(R.id.logout)
+
+        subscribeToTopic(
+            this,
+            QUIZ_NOTIF_CHANNEL_NAME,
+            QUIZ_NOTIF_CHANNEL_ID,
+            QUIZ_TOPIC
+        )
+
 
         logout.setOnClickListener {
             homeVM.handleLogOut()

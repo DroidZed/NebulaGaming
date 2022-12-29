@@ -7,9 +7,13 @@ import tn.esprit.apimodule.models.Event
 
 interface EventApiService {
 
-    @GET("events/today")
+    companion object {
+        private const val API_ID = "events"
+    }
+
+    @GET("$API_ID/today")
     suspend fun getOfToday(): Response<Event>
 
-    @GET("events")
+    @GET(API_ID)
     suspend fun getOfMonthAndYear(@Query("month") month: Int?, @Query("year") year: Int?): Response<List<Event>>
 }

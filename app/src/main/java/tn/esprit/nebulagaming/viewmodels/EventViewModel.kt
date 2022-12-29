@@ -13,8 +13,6 @@ import javax.inject.Inject
 @HiltViewModel
 class EventViewModel @Inject constructor() : DefaultViewModel() {
 
-    //   fun getMonthFromDate(d: Date? = null): String = SimpleDateFormat("MM", Locale.ENGLISH).format(d?: Date())
-
     fun parseDate(date: String): LocalDateTime? =
         LocalDateTime.parse(date)
 

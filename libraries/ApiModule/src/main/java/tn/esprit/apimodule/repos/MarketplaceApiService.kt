@@ -10,14 +10,13 @@ import tn.esprit.apimodule.models.Product
 interface MarketplaceApiService {
 
     companion object {
-
-        private const val SUB_P_PATH = "product"
+        private const val API_ID = "product"
     }
 
     @GET("category")
     suspend fun getAll(): Response<List<Category>>
 
-    @POST(SUB_P_PATH)
+    @POST(API_ID)
     @Multipart
     suspend fun publishProduct(
         @Query("categoryId") categoryId: String,
@@ -29,22 +28,22 @@ interface MarketplaceApiService {
         @PartMap body: HashMap<String, RequestBody>
     ): Response<GenericResp>
 
-    @GET(SUB_P_PATH)
+    @GET(API_ID)
     suspend fun getAllProducts(): Response<List<Product>>
 
-    @GET("$SUB_P_PATH/{id}")
+    @GET("$API_ID/{id}")
     suspend fun getOneProduct(@Path("id") idProd: String): Response<List<Product>>
 
-    @DELETE("$SUB_P_PATH/{id}")
+    @DELETE("$API_ID/{id}")
     suspend fun deleteProduct(@Path("id") id: String): Response<GenericResp>
 
-    @GET("$SUB_P_PATH/myProducts")
+    @GET("$API_ID/myProducts")
     suspend fun getMyProducts(@Query("userId") userId: String): Response<List<Product>>
 
-    @PUT("$SUB_P_PATH/hide/{id}")
+    @PUT("$API_ID/hide/{id}")
     suspend fun hideProduct(@Path("id") id: String): Response<List<Product>>
 
-    @PUT("$SUB_P_PATH/update2/{id}")
+    @PUT("$API_ID/update2/{id}")
     suspend fun updateWithoutImage(
         @Path("id") id: String,
         @Query("categoryName") categoryName: String,
@@ -52,7 +51,7 @@ interface MarketplaceApiService {
     ): Response<List<Product>>
 
     @Multipart
-    @PUT("$SUB_P_PATH/update/{id}")
+    @PUT("$API_ID/update/{id}")
     suspend fun updateWithImage(
         @Path("id") id: String,
         @Query("categoryName") categoryName: String,

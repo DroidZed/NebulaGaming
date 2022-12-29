@@ -52,6 +52,8 @@ class NetworkClient(private val context: Context) {
 
     fun getOffreService() = getService<JobOfferApiService>(secureClient)
 
+    fun getQuizService() = getService<QuizApiService>(secureClient)
+
     /**
      * Initialize OkhttpClient with token authenticator
      */

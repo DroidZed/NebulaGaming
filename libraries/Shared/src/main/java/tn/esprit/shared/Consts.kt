@@ -7,9 +7,9 @@ object Consts {
 
     const val DB_NAME = "NebulaGaming"
 
-    const val DB_VERSION = 3
+    const val DB_VERSION = 9
 
-    const val FUNCTION_URL = "https://better-hairs-cough-196-203-207-178.loca.lt"
+    const val FUNCTION_URL = "https://sour-rice-shine-102-156-59-220.loca.lt"
 
     const val ID_PROD = "ID_PROD"
 
@@ -22,5 +22,19 @@ object Consts {
     const val PERMS_REQUEST_CODE = 101
 
     const val IS_GRANTED_READ_IMAGES = "IS_GRANTED_READ_IMAGES"
+
+    const val QUIZ_NOTIF_CHANNEL_ID = "Q_NEBULA_NOTIFICATIONS77"
+
+    const val QUIZ_NOTIF_CHANNEL_NAME = "Quiz Notifications"
+
+    const val DMs_NOTIFICATIONS_ID = "DMS_NOTIFICATIONS"
+
+    const val DMS_NOTIF_CHANNEL_NAME = "Direct Messages"
+
+    const val QUIZ_TOPIC = "quiz"
+
+    const val DMs_TOPIC = "DMs"
+
+    const val INTENT_QUIZ_ID = "QUIZ_ID"
 
 }
