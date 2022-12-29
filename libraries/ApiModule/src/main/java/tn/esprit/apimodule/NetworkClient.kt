@@ -49,6 +49,8 @@ class NetworkClient(private val context: Context) {
 
     fun getOffreService(): JobOfferApiService = secureClient.create(JobOfferApiService::class.java)
 
+    fun getAdminService(): AdminApiService = defaultClient.create(AdminApiService::class.java)
+
     /**
      * Initialize OkhttpClient with token authenticator
      */

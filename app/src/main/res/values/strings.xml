@@ -23,16 +23,12 @@
     <string name="nav_close">Close</string>
     <string name="username">Username</string>
     <string name="level">LEVEL</string>
-    <string name="open_link">Open Link</string>
-    <string name="options">Options</string>
     <string name="logout">Logout</string>
     <string name="profile">Profile</string>
     <string name="notifications">Notifications</string>
     <string name="notifimage">notifImage</string>
-    <string name="hot_now">Hot Now!</string>
     <string name="check_out_what_s_hot_now">Check out what\'s hot now !</string>
     <string name="cool">Cool !</string>
-    <string name="nothing_to_show_here">Nothing to show here</string>
     <string name="we_re_hiring">WE\'RE HIRING!</string>
     <string name="dot">•</string>
     <string name="chat">Chat</string>
@@ -40,8 +36,6 @@
     <string name="bubble_header">
         %1$s • %2$s
     </string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
     <string name="select_your_role_please">Select your role please</string>
     <string name="submit">Submit</string>
     <string name="slogant">Best Tunisian Gaming Platform</string>
@@ -58,8 +52,6 @@
     <string name="lin_aymen">https://www.linkedin.com/in/aymen-d/</string>
     <string name="facebook">Facebook</string>
     <string name="ng_email">nebula.gaming2@outlook.com</string>
-    <string name="dev1_email">aymen.dhahri@esprit.tn</string>
-    <string name="dev2_email">medyassinee.messaoud@esprit.tn</string>
     <string name="code_count_down">3:00</string>
     <string name="verify_and_continue"><![CDATA[Verify & Continue]]></string>
     <string name="resend_code">Resend Code?</string>
@@ -70,15 +62,11 @@
     <string name="add_job_post">Publish Job Ad</string>
     <string name="forgot_password">Forgot password</string>
     <string name="enter_your_email_to_reset_your_password">Enter your email to reset your password</string>
-    <string name="enter_your_4_digit_code_sent_to_your_email">Enter your 4 digit code sent to your email</string>
     <string name="enter_your_4_digit_code_to_modify_your_password">Enter your 4 digit code to modify your password</string>
     <string name="bookmarks">Bookmarks</string>
-    <string name="shop">Shop</string>
     <string name="your_products">Your products</string>
-    <string name="title_job">Title Job</string>
     <string name="job_title">Job Title</string>
     <string name="job_description_offre">Job Description</string>
-    <string name="job_salary">Job Salary</string>
     <string name="job_adress">Job Adress</string>
 
     <string-array name="offrejobType">
@@ -97,9 +85,7 @@
     <string name="wishlist">Wishlist</string>
     <string name="my_cart">My Cart</string>
     <string name="search">Search…</string>
-    <string name="product_image">product image</string>
     <string name="view">View</string>
-    <string name="view_icon">view icon</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </string>
     <string name="your_comment">Your comment</string>
@@ -108,4 +94,6 @@
     <string name="no_internet">No internet!!</string>
     <string name="job_position">Job Position</string>
     <string name="link_to_apply_for_the_job">Link to apply for the job</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

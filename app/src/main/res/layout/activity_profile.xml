@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backg"
@@ -31,7 +30,6 @@
                 android:src="@drawable/circle" />
 
             <com.mikhaellopez.circularimageview.CircularImageView
-                android:id="@+id/photoprof"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:layout_gravity="center"
@@ -43,7 +41,6 @@
         </FrameLayout>
 
         <TextView
-            android:id="@+id/numlevel"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"

@@ -66,7 +66,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/timeercountdownfrgtpass"
         android:layout_width="107dp"
         android:layout_height="32dp"
         android:layout_marginStart="24dp"
