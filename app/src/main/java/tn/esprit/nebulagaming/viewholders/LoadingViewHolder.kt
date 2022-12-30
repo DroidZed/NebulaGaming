@@ -9,7 +9,6 @@ class LoadingViewHolder(itemView: View) : ViewHolder(itemView) {
 
     var progressBar: ProgressBar? = null
 
-    init {
-        progressBar = itemView.findViewById(R.id.progressBar)
+    init {// progressBar = itemView.findViewById(R.id.progressBar)
     }
 }

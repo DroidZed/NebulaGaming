@@ -11,7 +11,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app/AdminModule" />
+            <option value="$PROJECT_DIR$/app/mylibrary" />
             <option value="$PROJECT_DIR$/libraries" />
+            <option value="$PROJECT_DIR$/libraries/Admin" />
             <option value="$PROJECT_DIR$/libraries/ApiModule" />
             <option value="$PROJECT_DIR$/libraries/AuthModule" />
             <option value="$PROJECT_DIR$/libraries/RoomModule" />

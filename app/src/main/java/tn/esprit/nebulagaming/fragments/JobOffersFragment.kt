@@ -16,7 +16,7 @@ import tn.esprit.nebulagaming.utils.Status
 import tn.esprit.nebulagaming.viewmodels.OffreJobViewModel
 
 
-@AndroidEntryPoint
+    @AndroidEntryPoint
 class JobOffersFragment : Fragment(R.layout.fragment_job_offers) {
 
     private val JobOfVm: OffreJobViewModel by viewModels()
@@ -27,7 +27,7 @@ class JobOffersFragment : Fragment(R.layout.fragment_job_offers) {
 
     private lateinit var jobsAdapter: JobOffersAdapter
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         jobsRV = view.findViewById(R.id.jobsRV)

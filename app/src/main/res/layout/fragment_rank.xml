@@ -36,7 +36,6 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageusername"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
                 android:layout_marginStart="16dp"
@@ -46,7 +45,6 @@
 
 
             <TextView
-                android:id="@+id/usernametinfo"
                 android:layout_width="83dp"
                 android:layout_height="36dp"
                 android:layout_marginStart="12dp"
@@ -76,7 +74,6 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageViewEmail"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
                 android:layout_marginStart="16dp"
@@ -87,7 +84,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/useremailtinfo"
                 android:layout_width="83dp"
                 android:layout_height="36dp"
                 android:layout_marginStart="12dp"
@@ -116,7 +112,6 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageViewphone"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
                 android:layout_marginStart="16dp"
@@ -128,7 +123,6 @@
 
 
             <TextView
-                android:id="@+id/usernameintfophone"
                 android:layout_width="83dp"
                 android:layout_height="36dp"
                 android:layout_marginStart="12dp"
@@ -175,7 +169,6 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -195,7 +188,6 @@
             app:layout_constraintTop_toBottomOf="@+id/textView6">
 
             <ImageView
-                android:id="@+id/imageView9"
                 android:layout_width="145dp"
                 android:layout_height="99dp"
                 android:layout_alignParentTop="true"
@@ -208,7 +200,6 @@
                 android:src="@drawable/bronze" />
 
             <TextView
-                android:id="@+id/nameuserLoyatlycard"
                 android:layout_width="111dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -221,7 +212,6 @@
                 tools:text="TextView" />
 
             <TextView
-                android:id="@+id/statususerloyatlycard"
                 android:layout_width="112dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -234,7 +224,6 @@
                 tools:text="TextView" />
 
             <TextView
-                android:id="@+id/userjoindateloyaltycard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
