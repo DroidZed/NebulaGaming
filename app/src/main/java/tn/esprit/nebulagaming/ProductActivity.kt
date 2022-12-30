@@ -1,10 +1,13 @@
 package tn.esprit.nebulagaming
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import tn.esprit.nebulagaming.R.id.textInputLayout4productquantity
 
 class ProductActivity : AppCompatActivity() {
     private lateinit var CloseProduct: MaterialButton
@@ -15,8 +18,26 @@ class ProductActivity : AppCompatActivity() {
     private lateinit var productprice: TextInputEditText
     private lateinit var textInputLayout3productdescription: TextInputLayout
     private lateinit var productdescription: TextInputEditText
+    private lateinit var textInputLayout4productquantity: TextInputLayout
+    private lateinit var productquantity: TextInputEditText
+    private lateinit var spinnerproduct: Spinner
+    private lateinit var addimagebtn: MaterialButton
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
+        CloseProduct = findViewById(R.id.CloseProduct)
+        shareproductbtn = findViewById(R.id.shareproductbtn)
+        textInputLayoutproductname = findViewById(R.id.textInputLayoutproductname)
+        productname = findViewById(R.id.productname)
+        textInputLayout2productprice = findViewById(R.id.textInputLayout2productprice)
+        productprice = findViewById(R.id.productprice)
+        textInputLayout3productdescription = findViewById(R.id.textInputLayout3productdescription)
+        productdescription = findViewById(R.id.productdescription)
+        textInputLayout4productquantity = findViewById(R.id.textInputLayout4productquantity)
+        productquantity = findViewById(R.id.productquantity)
+        spinnerproduct = findViewById(R.id.spinnerproduct)
+        addimagebtn = findViewById(R.id.addimagebtn)
+
     }
 }
