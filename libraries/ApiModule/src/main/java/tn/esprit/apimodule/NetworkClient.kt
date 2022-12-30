@@ -56,6 +56,8 @@ class NetworkClient(private val context: Context) {
 
     fun getAdminService() = getService<AdminApiService>(defaultClient)
 
+    fun getWishlistService(): WishlistApiService = defaultClient.create(WishlistApiService::class.java)
+
     /**
      * Initialize OkhttpClient with token authenticator
      */
