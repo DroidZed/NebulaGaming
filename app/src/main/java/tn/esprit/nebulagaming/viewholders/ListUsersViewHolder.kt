@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ListUsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val profVM: ProfileViewModel?=null
+    private val profVM: ProfileViewModel? = null
 
     var photocardusert: ShapeableImageView? = null
     var photourl: String? = null
@@ -24,9 +24,8 @@ class ListUsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var ActDesactbutton: Button? = null
     var phoneusercrd: TextView? = null
     var levelusercard: TextView? = null
-    var statususer :TextView? = null
+    var statususer: TextView? = null
     var createsatcard: TextView? = null
-
 
 
     init {
@@ -51,21 +50,26 @@ class ListUsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         phoneusercrd!!.text = UserProfileResponse.phone
         levelusercard!!.text = UserProfileResponse.level.toString()
         statususer!!.text = UserProfileResponse.status.toString()
-        createsatcard!!.text =parseDateToddMMyyyy( UserProfileResponse.createdAd.toString())
+        createsatcard!!.text = parseDateToddMMyyyy(UserProfileResponse.createdAd.toString())
         if (UserProfileResponse.status == 0) {
             ActDesactbutton!!.text = "Enable"
-            ActDesactbutton!!.setOnClickListener { profVM!!.EnableuserId(itemView.context,UserProfileResponse._id) }
-        } else if (UserProfileResponse.status == 1){
+            ActDesactbutton!!.setOnClickListener {
+                profVM!!.enableUserById(
+                    itemView.context,
+                    UserProfileResponse._id
+                )
+            }
+        } else if (UserProfileResponse.status == 1) {
             ActDesactbutton!!.text = "Disable"
 
-            ActDesactbutton!!.setOnClickListener {  Log.e("id:",UserProfileResponse._id) }
+            ActDesactbutton!!.setOnClickListener { Log.e("id:", UserProfileResponse._id) }
 
         }
-        if(UserProfileResponse.role == 0){
+        if (UserProfileResponse.role == 0) {
             roleUsercard!!.text = "Admin"
-        }else if(UserProfileResponse.role == 1){
-            roleUsercard!!.text = "User"}
-        else if(UserProfileResponse.role==2){
+        } else if (UserProfileResponse.role == 1) {
+            roleUsercard!!.text = "User"
+        } else if (UserProfileResponse.role == 2) {
             roleUsercard!!.text = "Company"
         }
         if (UserProfileResponse.status == 0) {
@@ -73,7 +77,7 @@ class ListUsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         } else {
             statususer!!.text = "Enabled"
         }
-        
+
 
     }
 

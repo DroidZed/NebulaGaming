@@ -51,6 +51,7 @@
         tools:layout="@layout/fragment_chat_list" />
     <activity
         android:name="tn.esprit.nebulagaming.MarketplaceActivity"
-        android:label="activity_marketplace"
+        android:label="@string/marketplace"
+        android:id="@+id/marketplaceActivity"
         tools:layout="@layout/activity_marketplace" />
 </navigation>

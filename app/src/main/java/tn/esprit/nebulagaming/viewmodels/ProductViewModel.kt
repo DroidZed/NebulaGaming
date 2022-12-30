@@ -4,5 +4,5 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductViewModel @Inject constructor(){
+class ProductViewModel @Inject constructor() : DefaultViewModel() {
 }
