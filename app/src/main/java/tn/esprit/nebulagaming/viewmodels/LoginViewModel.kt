@@ -9,11 +9,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Response
 import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.AuthResp
 import tn.esprit.apimodule.models.LoginReqBody
-import tn.esprit.apimodule.utils.ResponseConverter
 import tn.esprit.authmodule.repos.JWTManager
 import tn.esprit.authmodule.repos.UserAuthManager
 import javax.inject.Inject

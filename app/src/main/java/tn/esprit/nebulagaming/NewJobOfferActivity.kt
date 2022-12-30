@@ -87,7 +87,7 @@ class NewJobOfferActivity : AppCompatActivity() {
         Startdatebtnn.setOnClickListener {
             val dpd = DatePickerDialog(
                 this,
-                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                { view, year, monthOfYear, dayOfMonth ->
                     // Display Selected date in textbox
                     Startdatetext.setText("" + dayOfMonth + "/" + monthOfYear + "/" + year)
                 },
@@ -100,7 +100,7 @@ class NewJobOfferActivity : AppCompatActivity() {
         Enddatebtn.setOnClickListener {
             val dpd = DatePickerDialog(
                 this,
-                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                { view, year, monthOfYear, dayOfMonth ->
                     // Display Selected date in textbox
                     Enddatetext.setText("" + dayOfMonth + "/" + monthOfYear + "/" + year)
                 },
@@ -170,8 +170,22 @@ class NewJobOfferActivity : AppCompatActivity() {
 
             Ofjvm.handlesaveOffreJob(
                 this,
-                listOf(TitleOffreTf, DescOffreTf, AddressOffreTf, PostionOffreTf, WebsiteOffreTf, EmailToOffreTf),
-                listOf(TitleOffreLay, descOffreLay, AdressOffreLay, PostionOffreLay, WebsiteOffreLay, EmailToOffreLay),
+                listOf(
+                    TitleOffreTf,
+                    DescOffreTf,
+                    AddressOffreTf,
+                    PostionOffreTf,
+                    WebsiteOffreTf,
+                    EmailToOffreTf
+                ),
+                listOf(
+                    TitleOffreLay,
+                    descOffreLay,
+                    AdressOffreLay,
+                    PostionOffreLay,
+                    WebsiteOffreLay,
+                    EmailToOffreLay
+                ),
                 startdate,
                 enddate,
                 type

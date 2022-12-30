@@ -15,9 +15,10 @@ import java.io.File
 import java.io.FileOutputStream
 
 /**
- * Created by jihoon on 2016. 4. 3..
+ *  Created by jihoon on 2016. 4. 3..
  */
 object FileUtils {
+
     /**
      * Get a file from a Uri.
      * Framework Documents, as well as the _data field for the MediaStore and
@@ -26,7 +27,6 @@ object FileUtils {
      * @param context The context.
      * @param uri     The Uri to query.
      */
-    @SuppressLint("Range")
     @Throws(Exception::class)
     fun getFileFromUri(context: Context, uri: Uri): File {
         var path: String? = null

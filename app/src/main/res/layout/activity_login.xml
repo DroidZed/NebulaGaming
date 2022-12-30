@@ -182,6 +182,7 @@
 
             <com.google.android.material.button.MaterialButton
                 style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:id="@+id/fbLoginBtn"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:layout_gravity="center"
@@ -214,7 +215,7 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/DiscordButton"
+                android:id="@+id/discordButton"
                 style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                 android:layout_width="56dp"
                 android:layout_height="56dp"

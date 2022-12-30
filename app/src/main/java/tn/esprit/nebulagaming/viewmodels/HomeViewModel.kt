@@ -1,7 +1,6 @@
 package tn.esprit.nebulagaming.viewmodels
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import tn.esprit.apimodule.NetworkClient

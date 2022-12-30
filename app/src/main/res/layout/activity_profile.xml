@@ -41,13 +41,13 @@
         </FrameLayout>
 
         <TextView
+            android:id="@+id/numlevel"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
             android:layout_marginStart="5dp"
             android:background="@drawable/broderprofile"
             android:fontFamily="@font/merriweather_black_italic"
-            android:text="@string/lvl_10"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp" />
@@ -76,7 +76,8 @@
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameUser" />
+        app:layout_constraintTop_toBottomOf="@+id/nameUser"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pViewPager"

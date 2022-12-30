@@ -7,11 +7,9 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
-import tn.esprit.apimodule.models.Article
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.BookmarksAdapter
 import tn.esprit.nebulagaming.viewmodels.BookmarksViewModel
-import tn.esprit.roommodule.models.Bookmarks
 
 
 @AndroidEntryPoint

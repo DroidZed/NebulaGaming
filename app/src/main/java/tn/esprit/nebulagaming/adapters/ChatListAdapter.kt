@@ -4,7 +4,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
-import androidx.recyclerview.widget.RecyclerView.Adapter
 import tn.esprit.nebulagaming.ChatRoomActivity
 import tn.esprit.nebulagaming.HomeActivity
 import tn.esprit.nebulagaming.R
@@ -12,7 +11,8 @@ import tn.esprit.nebulagaming.data.Conversation
 import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 import tn.esprit.nebulagaming.viewholders.ChatViewHolder
 
-class ChatListAdapter(private val data: MutableList<Conversation>) : Adapter<ChatViewHolder>() {
+class ChatListAdapter(private val data: MutableList<Conversation>) :
+    ClassicAdapter<ChatViewHolder, Conversation>(data) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder =
         ChatViewHolder(
@@ -58,6 +58,4 @@ class ChatListAdapter(private val data: MutableList<Conversation>) : Adapter<Cha
             }
         }
     }
-
-    override fun getItemCount(): Int = data.size
 }

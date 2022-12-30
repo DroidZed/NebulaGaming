@@ -16,8 +16,5 @@ class JobOffersAdapter(private val data: MutableList<OffreJob>) :
         )
 
     override fun onBindViewHolder(holder: JobOffersViewHolder, position: Int) =
-        holder.bind(
-            data[position]
-
-        )
+        holder.bind(data[position])
 }

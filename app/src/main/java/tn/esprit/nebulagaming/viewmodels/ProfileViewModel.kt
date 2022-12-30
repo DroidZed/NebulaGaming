@@ -3,28 +3,22 @@ package tn.esprit.nebulagaming.viewmodels
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import tn.esprit.apimodule.NetworkClient
+import tn.esprit.apimodule.models.GenericResp
 import tn.esprit.apimodule.models.UpdateProfileBody
+import tn.esprit.apimodule.utils.ResponseConverter
 import tn.esprit.authmodule.repos.UserAuthManager
 import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
+import tn.esprit.nebulagaming.utils.Resource
 import tn.esprit.roommodule.dao.UserDao
 import tn.esprit.roommodule.models.UserProfile
 import java.io.File
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import tn.esprit.apimodule.NetworkClient
-import tn.esprit.apimodule.models.GenericResp
-import tn.esprit.apimodule.utils.ResponseConverter
-import tn.esprit.nebulagaming.utils.Resource
-import tn.esprit.nebulagaming.viewholders.ListUsersViewHolder
-
 import javax.inject.Inject
 
 
@@ -32,10 +26,7 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     override val authManager: UserAuthManager,
     override val userDao: UserDao
-) : UserManipulationViewModel(
-    authManager,
-    userDao
-) {
+) : UserManipulationViewModel(authManager, userDao) {
 
     val nameUser = MutableLiveData("")
 
@@ -133,49 +124,14 @@ class ProfileViewModel @Inject constructor(
 
     }
 
-    fun loadUser(context: Context) =
-        liveData(Dispatchers.IO) {
+    fun loadUser(context: Context) = liveData(Dispatchers.IO) {
 
-            val client = NetworkClient(context)
-
-            val userServices = client.getAdminService()
-            emit(Resource.loading(data = null))
-            try {
-                val response= userServices.getAllUsers()
-                if (response.isSuccessful)
-                    emit(
-                        Resource.success(
-                            data = response.body()
-                        )
-                    )
-                else
-                    emit(
-                        Resource.error(
-                            data = null,
-                            message = ResponseConverter.convert<GenericResp>(
-                                response.errorBody()!!.string()
-                            ).data?.error!!
-                        )
-                    )
-            } catch (ex: Exception) {
-                emit(
-                    Resource.error(
-                        data = null,
-                        message = ex.message
-                            ?: "Unable to retrieve articles at the moment, please try again later."
-                    )
-                )
-            }
-            }
-
-
-
-    fun EnableuserId(context: Context, id: String) = liveData( Dispatchers.IO ){
         val client = NetworkClient(context)
+
         val userServices = client.getAdminService()
         emit(Resource.loading(data = null))
         try {
-            val response= userServices.enableUser(id)
+            val response = userServices.getAllUsers()
             if (response.isSuccessful)
                 emit(
                     Resource.success(
@@ -202,12 +158,45 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun DisableuserId(context: Context, id: String) = liveData( Dispatchers.IO ){
+
+    fun enableUserById(context: Context, id: String) = liveData(Dispatchers.IO) {
         val client = NetworkClient(context)
         val userServices = client.getAdminService()
         emit(Resource.loading(data = null))
         try {
-            val response= userServices.disableUser(id)
+            val response = userServices.enableUser(id)
+            if (response.isSuccessful)
+                emit(
+                    Resource.success(
+                        data = response.body()
+                    )
+                )
+            else
+                emit(
+                    Resource.error(
+                        data = null,
+                        message = ResponseConverter.convert<GenericResp>(
+                            response.errorBody()!!.string()
+                        ).data?.error!!
+                    )
+                )
+        } catch (ex: Exception) {
+            emit(
+                Resource.error(
+                    data = null,
+                    message = ex.message
+                        ?: "Unable to retrieve articles at the moment, please try again later."
+                )
+            )
+        }
+    }
+
+    fun disableUserById(context: Context, id: String) = liveData(Dispatchers.IO) {
+        val client = NetworkClient(context)
+        val userServices = client.getAdminService()
+        emit(Resource.loading(data = null))
+        try {
+            val response = userServices.disableUser(id)
             if (response.isSuccessful)
                 emit(
                     Resource.success(

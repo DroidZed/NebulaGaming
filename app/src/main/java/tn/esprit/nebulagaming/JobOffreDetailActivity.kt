@@ -85,7 +85,7 @@ class JobOffreDetailActivity : AppCompatActivity() {
                             JobPostionDetOffrejob.text = offreJob.jobPosition
                             Log.d("DATA", offreJob.toString())
                             ApplyDetOffrejob.setOnClickListener {
-                                HelperFunctions.launchURL(this, offreJob.jobWebsite);
+                                HelperFunctions.launchURL(this, offreJob.jobWebsite)
                             }
                         }
 

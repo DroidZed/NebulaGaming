@@ -54,7 +54,7 @@ class NetworkClient(private val context: Context) {
 
     fun getQuizService() = getService<QuizApiService>(secureClient)
 
-    fun getAdminService(): AdminApiService = defaultClient.create(AdminApiService::class.java)
+    fun getAdminService() = getService<AdminApiService>(defaultClient)
 
     /**
      * Initialize OkhttpClient with token authenticator
