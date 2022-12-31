@@ -1,17 +1,21 @@
 package tn.esprit.nebulagaming.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.apimodule.models.Product
+import tn.esprit.nebulagaming.ProductDetailsActivity
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.ProductAdapter
 import tn.esprit.nebulagaming.utils.hideKeyboard
@@ -22,7 +26,7 @@ import tn.esprit.nebulagaming.viewmodels.MarketplaceViewModel
 class MarketplaceFragment : Fragment(R.layout.fragment_marketplace) {
 
     private lateinit var productAdapter: ProductAdapter
-
+    private lateinit var addProductBtn: FloatingActionButton
     private lateinit var searchProductsBar: EditText
     private lateinit var categoriesGroup: ChipGroup
     private lateinit var productsListRV: RecyclerView
@@ -35,6 +39,7 @@ class MarketplaceFragment : Fragment(R.layout.fragment_marketplace) {
         searchProductsBar = view.findViewById(R.id.searchProductsBar)
         categoriesGroup = view.findViewById(R.id.categoriesGroup)
         productsListRV = view.findViewById(R.id.productsListRV)
+        addProductBtn = view.findViewById(R.id.addProductBtn)
 
         searchProductsBar.on(IME_ACTION_DONE) {
             searchProductsBar.apply {
@@ -66,6 +71,17 @@ class MarketplaceFragment : Fragment(R.layout.fragment_marketplace) {
                 clear()
                 addAll(filtered)
             }
+        }
+
+        addProductBtn.setOnClickListener {
+            val activity: FragmentActivity? = activity
+
+            startActivity(Intent(activity, ProductDetailsActivity::class.java))
+
+
+
+
+
         }
 
         productAdapter = ProductAdapter(products)

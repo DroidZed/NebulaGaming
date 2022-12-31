@@ -9,7 +9,7 @@ object Consts {
 
     const val DB_VERSION = 9
 
-    const val FUNCTION_URL = "https://fair-parents-wait-197-26-140-199.loca.lt"
+    const val FUNCTION_URL = "https://chubby-dancers-tickle-197-240-140-37.loca.lt"
 
     const val ID_PROD = "ID_PROD"
 

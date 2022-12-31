@@ -110,4 +110,5 @@
     <string name="created_at">Created At:</string>
     <string name="status">Status:</string>
     <string name="remaining_tries">Remaining tries: %1$d</string>
+    <string name="products">Products</string>
 </resources>

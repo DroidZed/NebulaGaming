@@ -1,16 +1,18 @@
 package tn.esprit.nebulagaming
 
-import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
-import tn.esprit.nebulagaming.R.id.textInputLayout4productquantity
+import tn.esprit.apimodule.models.Category
 import tn.esprit.nebulagaming.viewmodels.ProductViewModel
+
 
 @AndroidEntryPoint
 class ProductDetailsActivity : AppCompatActivity() {
@@ -29,7 +31,6 @@ class ProductDetailsActivity : AppCompatActivity() {
     private lateinit var productquantity: TextInputEditText
     private lateinit var spinnerproduct: Spinner
     private lateinit var addimagebtn: MaterialButton
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_details)
@@ -46,6 +47,21 @@ class ProductDetailsActivity : AppCompatActivity() {
         productquantity = findViewById(R.id.productquantity)
         spinnerproduct = findViewById(R.id.spinnerproduct)
         addimagebtn = findViewById(R.id.addimagebtn)
+
+
+        CloseProduct.setOnClickListener {
+            finish()
+        }
+        productViewModel.loadCategories(this).observe(this) {
+            val categories = it.data
+            val categoriesNames = categories?.map { category -> category.name }
+            val adapter = ArrayAdapter(this , android.R.layout.simple_spinner_item, categoriesNames?.toMutableList()!!)
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerproduct.adapter = adapter
+        }
+
+
+
 
     }
 }

@@ -1,0 +1,17 @@
+package tn.esprit.apimodule.repos
+
+import okhttp3.MultipartBody
+import retrofit2.Response
+import retrofit2.http.*
+import tn.esprit.apimodule.models.GenericResp
+import tn.esprit.apimodule.models.Product
+
+interface ProductApiService {
+
+    @POST("product/")
+    @Multipart
+    suspend fun uploadProduct(
+        @Query("CategoryId") CategoryId: String,
+        @Part image: MultipartBody.Part,
+        @Body product: Product): Response<GenericResp>
+}
