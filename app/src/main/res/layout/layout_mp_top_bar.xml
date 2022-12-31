@@ -8,11 +8,10 @@
         android:id="@+id/topBarMp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/appBg"
+        android:background="@color/DarkBarColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/marketplace_menu"
         app:navigationIcon="@drawable/ic_baseline_arrow_back"
         app:title="@string/marketplace"
         app:titleTextColor="@color/white" />

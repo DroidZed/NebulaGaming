@@ -25,6 +25,7 @@
 
         <service
             android:name=".services.QuizNotificationsService"
+            android:directBootAware="true"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -33,6 +34,7 @@
         </service>
         <service
             android:name=".services.MessagingNotificationService"
+            android:directBootAware="true"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -54,7 +56,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity    
+        <activity
             android:name=".AdminActivity"
             android:exported="false">
             <meta-data

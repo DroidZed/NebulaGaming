@@ -1,11 +1,13 @@
 package tn.esprit.nebulagaming.viewmodels
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -17,7 +19,6 @@ import tn.esprit.authmodule.repos.UserAuthManager
 import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
 import tn.esprit.nebulagaming.utils.Resource
 import tn.esprit.roommodule.dao.UserDao
-import tn.esprit.roommodule.models.UserProfile
 import java.io.File
 import javax.inject.Inject
 
@@ -30,22 +31,12 @@ class ProfileViewModel @Inject constructor(
 
     val nameUser = MutableLiveData("")
 
-    override fun persistUser(context: Context, user: UserProfile): Unit = runBlocking {
-        try {
-            userDao.update(user)
-        } catch (e: Exception) {
-            toastMsg(context, "Error updating your data")
-            Log.e("UPDATE", e.message!!)
-        }
-    }
-
     fun handleUpdate(context: Context, name: String, phone: String) {
 
         if (listOf(name, phone).any { it.isBlank() })
             toastMsg(context, "Verify your input!")
-        else {
+        else
             updateUserDetails(context, name, phone)
-        }
     }
 
     fun changeProfilePhoto(context: Context, file: File) {

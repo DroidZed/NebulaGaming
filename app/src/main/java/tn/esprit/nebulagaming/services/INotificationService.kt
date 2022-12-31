@@ -2,13 +2,18 @@ package tn.esprit.nebulagaming.services
 
 import android.app.PendingIntent
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.media.RingtoneManager
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
+import tn.esprit.apimodule.NetworkClient
+import tn.esprit.apimodule.models.TokenReqBody
 import tn.esprit.roommodule.dao.NotifDao
 import tn.esprit.roommodule.models.Notification
+import tn.esprit.shared.Consts.APP_PREFS
+import tn.esprit.shared.Consts.FCM_TOKEN
 
 
 interface INotificationService {
@@ -71,4 +76,33 @@ interface INotificationService {
         managerCompat.notify(1, builder.build())
     }
 
+    fun onTokenReceived(context: Context, newToken: String) {
+
+        val sharedPrefs = context.getSharedPreferences(APP_PREFS, MODE_PRIVATE)
+
+        val currentToken = sharedPrefs.getString(FCM_TOKEN, "")
+
+        val service = NetworkClient(context).getFcmService()
+
+        if ((currentToken != "") and (currentToken != newToken)) CoroutineScope(Dispatchers.IO).launch {
+
+            val resp = service.saveToken(TokenReqBody(currentToken!!, newToken))
+
+            withContext(Dispatchers.Main) {
+
+                if (resp.isSuccessful)
+                    sharedPrefs.edit().putString(FCM_TOKEN, newToken).apply()
+            }
+        }
+        else CoroutineScope(Dispatchers.IO).launch {
+
+            val resp = service.saveToken(TokenReqBody(newToken))
+
+            withContext(Dispatchers.Main) {
+
+                if (resp.isSuccessful)
+                    sharedPrefs.edit().putString(FCM_TOKEN, newToken).apply()
+            }
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package tn.esprit.nebulagaming
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -15,6 +16,8 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
+import com.google.android.material.badge.BadgeDrawable
+import com.google.android.material.badge.BadgeUtils
 import com.google.android.material.navigation.NavigationView
 import com.mikhaellopez.circularimageview.CircularImageView
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +26,7 @@ import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
 import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 import tn.esprit.nebulagaming.utils.Status
 import tn.esprit.nebulagaming.viewmodels.HomeViewModel
+import tn.esprit.nebulagaming.viewmodels.NotificationsViewModel
 import tn.esprit.nebulagaming.viewmodels.ProfileViewModel
 import tn.esprit.roommodule.models.UserProfile
 import tn.esprit.shared.Consts.QUIZ_NOTIF_CHANNEL_ID
@@ -35,6 +39,7 @@ class HomeActivity : AppCompatActivity() {
 
     private val homeVM: HomeViewModel by viewModels()
     private val profileVM: ProfileViewModel by viewModels()
+    private val notificationsViewModel: NotificationsViewModel by viewModels()
 
     private lateinit var appToolBar: Toolbar
 
@@ -53,6 +58,10 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var levelHeader: TextView
 
     private lateinit var logout: TextView
+
+    private var notifCount = 0
+
+    private lateinit var badgeDrawable: BadgeDrawable
 
     private lateinit var navHostFragment: NavHostFragment
 
@@ -75,7 +84,6 @@ class HomeActivity : AppCompatActivity() {
             QUIZ_NOTIF_CHANNEL_ID,
             QUIZ_TOPIC
         )
-
 
         logout.setOnClickListener {
             homeVM.handleLogOut()
@@ -109,6 +117,66 @@ class HomeActivity : AppCompatActivity() {
         headerImage = headerView.findViewById(R.id.headerImage)
         usernameHeader = headerView.findViewById(R.id.usernameHeader)
         levelHeader = headerView.findViewById(R.id.levelHeader)
+
+        notificationsViewModel.notifBadgeNumber.observe(this) { notifCount = it }
+    }
+
+    @SuppressLint("UnsafeOptInUsageError")
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+
+        badgeDrawable = BadgeDrawable.create(this)
+        badgeDrawable.isVisible = false
+
+        if (notifCount > 0) {
+            badgeDrawable.isVisible = true
+            badgeDrawable.number = notifCount
+            BadgeUtils.attachBadgeDrawable(badgeDrawable, appToolBar, R.id.notificationFragment)
+        }
+
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_bar_menu, menu)
+
+        menu!!.getItem(0)?.isVisible = homeVM.checkIfCompany()
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return when (item.itemId) {
+
+            R.id.profile -> {
+                startActivity(Intent(this, ProfileActivity::class.java))
+                true
+            }
+
+            R.id.notificationFragment -> {
+                badgeDrawable.clearNumber();
+                badgeDrawable.isVisible = false;
+                navController.navigate(R.id.notificationFragment)
+                true
+            }
+
+            R.id.publishJobFragment -> {
+                startActivity(Intent(this, NewJobOfferActivity::class.java))
+                true
+            }
+
+            else -> item.onNavDestinationSelected(findNavController(R.id.nav_host_fragment))
+                    || super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         val data = homeVM.fetchUserInfoFromDb()
 
@@ -147,42 +215,5 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_bar_menu, menu)
-
-        menu!!.getItem(0)?.isVisible = homeVM.checkIfCompany()
-
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        return when (item.itemId) {
-
-            R.id.profile -> {
-                startActivity(Intent(this, ProfileActivity::class.java))
-                true
-            }
-
-            R.id.notificationFragment -> {
-                navController.navigate(R.id.notificationFragment)
-                true
-            }
-
-            R.id.publishJobFragment -> {
-                startActivity(Intent(this, NewJobOfferActivity::class.java))
-                true
-            }
-
-            else -> item.onNavDestinationSelected(findNavController(R.id.nav_host_fragment))
-                    || super.onOptionsItemSelected(item)
-        }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }

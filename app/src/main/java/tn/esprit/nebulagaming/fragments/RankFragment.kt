@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
+import tn.esprit.nebulagaming.ProfileActivity
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
 import tn.esprit.nebulagaming.viewmodels.ProfileViewModel
@@ -55,7 +56,7 @@ class RankFragment : Fragment(R.layout.fragment_rank) {
                 if (msg != null) {
                     toastMsg(view.context, msg)
                     disableComponents(group)
-                    viewModel.nameUser.postValue(username.text.toString())
+                    (activity as ProfileActivity).nameUser.text = username.text.toString()
                 } else
                     toastMsg(view.context, viewModel.errorMessage.value!!)
             }

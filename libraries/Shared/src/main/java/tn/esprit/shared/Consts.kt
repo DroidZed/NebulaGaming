@@ -9,11 +9,13 @@ object Consts {
 
     const val DB_VERSION = 9
 
-    const val FUNCTION_URL = "https://sour-rice-shine-102-156-59-220.loca.lt"
+    const val FUNCTION_URL = "https://fair-parents-wait-197-26-140-199.loca.lt"
 
     const val ID_PROD = "ID_PROD"
 
     const val POST_DATA = "POST_DATA"
+
+    const val FCM_TOKEN = "FCM_TOKEN"
 
     const val ARTICLE_DETAIL = "ARTICLE_DETAIL"
 

@@ -67,5 +67,6 @@ class QuizNotificationsService : FirebaseMessagingService(), INotificationServic
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
+        onTokenReceived(this, token)
     }
 }

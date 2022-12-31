@@ -18,6 +18,21 @@
         app:title="@string/quiz"
         app:titleTextColor="@color/white" />
 
+    <ProgressBar
+        android:id="@+id/loadingBar"
+        style="@android:style/Widget.Material.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateBehavior="cycle"
+        android:indeterminateTint="@color/teal_200"
+        android:progress="0"
+        android:progressTint="@color/teal_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quizTopBar"
+        tools:visibility="visible" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -30,6 +45,7 @@
             android:id="@+id/imageView5"
             android:layout_width="129dp"
             android:layout_height="135dp"
+            android:layout_marginTop="24dp"
             android:contentDescription="@string/cntdesc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,14 +56,15 @@
             android:id="@+id/quizQuestionText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/merriweather_bold_italic"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="27sp"
+            android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5"
             tools:text="Quiz question here idk if this will fit or not ?" />
 
         <RadioGroup
@@ -105,27 +122,43 @@
                 android:id="@+id/cbx1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_gravity="start"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:textSize="25sp"/>
+                android:textSize="25sp" />
 
             <CheckBox
                 android:id="@+id/cbx2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_gravity="start"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:textSize="25sp"/>
+                android:textSize="25sp" />
 
             <CheckBox
                 android:id="@+id/cbx3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_gravity="start"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:textSize="25sp" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/nbTriesRem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="@font/merriweather_regular"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@id/cancelBtnQ"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Remaining tries: 10" />
 
         <Button
             android:id="@+id/cancelBtnQ"
@@ -134,11 +167,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
             android:layout_marginBottom="60dp"
+            android:clickable="true"
             android:fontFamily="@font/amaranth"
             android:text="@android:string/cancel"
             android:textColor="@color/white"
             android:textSize="28sp"
-            android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

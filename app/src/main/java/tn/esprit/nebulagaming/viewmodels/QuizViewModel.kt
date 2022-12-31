@@ -3,45 +3,57 @@ package tn.esprit.nebulagaming.viewmodels
 import android.content.Context
 import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.runBlocking
 import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.GenericResp
+import tn.esprit.apimodule.models.QuizAnswerBody
 import tn.esprit.apimodule.utils.ResponseConverter
+import tn.esprit.authmodule.repos.UserAuthManager
 import tn.esprit.nebulagaming.utils.Resource
+import tn.esprit.roommodule.dao.NotifDao
 import javax.inject.Inject
 
 @HiltViewModel
-class QuizViewModel @Inject constructor() : DefaultViewModel() {
+class QuizViewModel @Inject constructor(
+    private val authManager: UserAuthManager,
+    private val notifDao: NotifDao
+) :
+    DefaultViewModel() {
 
-    /**
-    * @param body HashMap<String, Any> quizId, answererId, failOrPass
-    * @param context Context
-    */
-    fun answerQuiz(context: Context, body: HashMap<String, Any>) {
+    fun answerQuiz(context: Context, quizId: String, failOrPass: Boolean) = liveData {
 
-        val client = NetworkClient(context)
+        emit(Resource.loading(data = null))
 
-        val service = client.getQuizService()
+        try {
 
-        job = CoroutineScope(Dispatchers.IO).launch {
+            val client = NetworkClient(context)
 
-            val actionResp = service.answerQuiz(body)
+            val service = client.getQuizService()
 
-            withContext(Dispatchers.Main) {
+            val actionResp = service.answerQuiz(
+                quizId,
+                QuizAnswerBody(authManager.retrieveUserInfoFromStorage()!!.userId, failOrPass)
+            )
 
-                try {
-                    if (actionResp.isSuccessful)
-                        onSuccess(actionResp.message())
-                    else
-                        onError(actionResp)
-                } catch (e: Exception) {
-                    super.onError()
-                }
-            }
+            if (actionResp.isSuccessful)
+                emit(Resource.success(data = actionResp.body()))
+            else
+                emit(
+                    Resource.error(
+                        data = null,
+                        message = ResponseConverter.convert<GenericResp>(
+                            actionResp.errorBody()!!.string()
+                        ).data?.error!!
+                    )
+                )
+
+        } catch (e: Exception) {
+            emit(Resource.error(data = null, message = e.message ?: "Error answering the quiz !"))
         }
+    }
+
+    fun deleteNotif(quizId: String) = runBlocking {
+        notifDao.delete(notifDao.getByData(quizId))
     }
 
     fun fetchQuiz(context: Context, id: String) = liveData {

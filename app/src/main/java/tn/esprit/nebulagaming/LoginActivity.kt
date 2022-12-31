@@ -75,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
                 else {
                     listOf(emailET, passwordET).forEach { it.clearText() }
                     Toast.makeText(this, "Logged in !", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, HomeActivity::class.java))
                     finish()
                 }
             }
@@ -88,7 +88,5 @@ class LoginActivity : AppCompatActivity() {
         signUpPrompt.setOnClickListener {
             startActivity(Intent(this, SignupActivity::class.java))
         }
-
-
     }
 }

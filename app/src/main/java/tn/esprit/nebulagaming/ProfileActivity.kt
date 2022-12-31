@@ -43,7 +43,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private lateinit var photoProf: CircularImageView
     private lateinit var numLevel: TextView
-    private lateinit var nameUser: TextView
+    lateinit var nameUser: TextView
 
     private lateinit var sharedPrefs: SharedPreferences
 

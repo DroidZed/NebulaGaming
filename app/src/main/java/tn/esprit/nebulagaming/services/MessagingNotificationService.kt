@@ -8,7 +8,9 @@ import tn.esprit.nebulagaming.HomeActivity
 import tn.esprit.nebulagaming.utils.HelperFunctions.subscribeToTopic
 import tn.esprit.roommodule.dao.NotifDao
 import tn.esprit.shared.Consts
+import tn.esprit.shared.Consts.APP_PREFS
 import tn.esprit.shared.Consts.DMs_NOTIFICATIONS_ID
+import tn.esprit.shared.Consts.FCM_TOKEN
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -51,5 +53,6 @@ class MessagingNotificationService : FirebaseMessagingService(), INotificationSe
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
+        onTokenReceived(this, token)
     }
 }
