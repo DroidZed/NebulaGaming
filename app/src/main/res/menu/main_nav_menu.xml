@@ -25,6 +25,10 @@
         android:id="@+id/jobOffersFragment"
         android:icon="@drawable/ic_baseline_work"
         android:title="@string/job_offers" />
+    <item
+        android:id="@+id/ProductFragment"
+        android:icon="@drawable/ic_baseline_view_carousel_24"
+        android:title="@string/products" />
 
     <item
         android:id="@+id/chatListFragment"
