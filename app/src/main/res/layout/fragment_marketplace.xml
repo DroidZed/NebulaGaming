@@ -75,7 +75,7 @@
                 android:layout_marginTop="5dp" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/addProductBtn"
+                android:id="@+id/filterProductsBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
