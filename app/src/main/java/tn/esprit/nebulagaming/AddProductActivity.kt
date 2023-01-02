@@ -43,10 +43,10 @@ class AddProductActivity : AppCompatActivity() {
     private lateinit var addimagebtn: MaterialButton
     private lateinit var progressBarUpimage: ProgressBar
     private lateinit var Done: TextView
-    var idCategory: String ?? = null
+    var idCategory: String? = null
     var REQUEST_CODE_SELECT_PHOTO = 1
     var imageUri: Uri? = null
-    @SuppressLint("MissingInflatedId")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
@@ -83,10 +83,7 @@ class AddProductActivity : AppCompatActivity() {
                             val adapter = ArrayAdapter(
                                 this@AddProductActivity,
                                 android.R.layout.simple_spinner_item,
-                                this.map {
-                                    it.name
-
-                                })
+                                this.map { cat -> cat.name })
                             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                             spinnerproduct.adapter = adapter
                         }
@@ -110,7 +107,7 @@ class AddProductActivity : AppCompatActivity() {
                 // Permission is not granted, request it
                 ActivityCompat.requestPermissions(this,
                     arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                    1)
+                    REQUEST_CODE_SELECT_PHOTO)
             }
             else {
                 val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -123,7 +120,6 @@ class AddProductActivity : AppCompatActivity() {
         spinnerproduct.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 Log.e("ena Zero ", idCategory.toString())
-
 
                 productViewModel.loadCategories(this@AddProductActivity).observe(this@AddProductActivity) {
 
@@ -188,7 +184,7 @@ class AddProductActivity : AppCompatActivity() {
                 listOf(productname, productdescription, productprice, productquantity),
                 listOf(textInputLayoutproductname, textInputLayout2productprice, textInputLayout3productdescription, textInputLayout4productquantity),
                 idCategory!!,
-                file!!
+                file
             )
             productViewModel.errorMessage.observe(this) {
                 if (it != null) {
@@ -213,16 +209,11 @@ class AddProductActivity : AppCompatActivity() {
             )
             Done.text = "Done"
             Done.setTextColor(resources.getColor(R.color.green))
-            val selectedImageUri = data.data!!
-            val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
-            val cursor = contentResolver.query(selectedImageUri, filePathColumn, null, null, null)
-            cursor?.moveToFirst()
-            val columnIndex = cursor?.getColumnIndex(filePathColumn[0])!!
-         imageUri =data?.data
+
+            imageUri =data.data
 
 
             Log.e("imageUri", imageUri.toString())
-            cursor.close()
         }
     }
 

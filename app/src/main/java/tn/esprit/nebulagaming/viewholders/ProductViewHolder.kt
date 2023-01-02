@@ -53,7 +53,6 @@ class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         productName?.text = product.name
         productDesc?.text = product.description
-
         productBtbMS?.setOnClickListener {
 
             productDetailsOV?.visibility = View.INVISIBLE

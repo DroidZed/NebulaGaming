@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|top"
+    android:layout_marginVertical="20dp"
+    app:cardCornerRadius="25dp"
+    app:cardElevation="5dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/myproductImage"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:layout_marginHorizontal="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="@drawable/gradiant_overlay"
+            android:foregroundTint="@color/appBg"
+            android:foregroundTintMode="multiply"
+            android:scaleType="centerCrop"
+            android:src="@drawable/event_wallpaper"
+            app:riv_border_color="@color/appBg"
+            app:riv_border_width="5dp"
+            app:riv_corner_radius="25dp"
+            app:riv_mutate_background="false"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <LinearLayout
+            android:id="@+id/myproductDetailsOV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|bottom"
+            android:animateLayoutChanges="true"
+            android:background="@color/DarkBgColor"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/myproductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/merriweather_black_italic"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                tools:text="Intel Core i5-7300Q" />
+
+            <TextView
+                android:id="@+id/myproductDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_weight="2"
+                android:fontFamily="@font/merriweather_light"
+                android:textAlignment="textStart"
+                android:textSize="15sp"
+                tools:text="lgihdfolmfklld flkmlngl jkgfljng klnfl fjdkjgl jk" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/myproductBtbMS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:fontFamily="@font/merriweather_regular"
+                android:text="@string/view"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</com.google.android.material.card.MaterialCardView>
