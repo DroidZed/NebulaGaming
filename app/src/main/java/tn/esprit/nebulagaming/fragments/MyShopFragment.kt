@@ -1,16 +1,19 @@
 package tn.esprit.nebulagaming.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.apimodule.models.Product
+import tn.esprit.nebulagaming.AddProductActivity
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.ProductAdapter
 import tn.esprit.nebulagaming.utils.hideKeyboard
@@ -48,6 +51,12 @@ class MyShopFragment : Fragment(R.layout.fragment_my_shop) {
             adapter = productAdapter
             layoutManager =
                 LinearLayoutManager(view.context)
+        }
+
+        addProductBtn.setOnClickListener {
+            val activity: FragmentActivity? = activity
+
+            startActivity(Intent(activity, AddProductActivity::class.java))
         }
 
     }

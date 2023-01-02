@@ -36,7 +36,7 @@ interface UserApiService {
     @PATCH("$API_ID/changeImage/{id}")
     suspend fun updateUserPicture(
         @Path("id") id: String,
-        @Part image: MultipartBody.Part
+            @Part image: MultipartBody.Part
     ): Response<GenericResp>
 
     @POST("$API_ID/requestChangePwd")

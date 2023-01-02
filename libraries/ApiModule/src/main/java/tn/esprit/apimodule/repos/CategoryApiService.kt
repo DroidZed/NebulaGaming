@@ -6,6 +6,6 @@ import tn.esprit.apimodule.models.*
 
 interface CategoryApiService {
 
-    @GET("category/") suspend fun getAllCategories(): Response<MutableList<Category>>
+    @GET("category") suspend fun getAllCategories(): Response<MutableList<Category>>
 
 }
