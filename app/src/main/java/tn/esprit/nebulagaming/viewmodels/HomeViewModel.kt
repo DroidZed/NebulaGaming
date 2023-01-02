@@ -8,14 +8,19 @@ import tn.esprit.apimodule.models.GenericResp
 import tn.esprit.apimodule.utils.ResponseConverter
 import tn.esprit.authmodule.repos.UserAuthManager
 import tn.esprit.nebulagaming.utils.Resource
+import tn.esprit.roommodule.dao.NotifDao
 import tn.esprit.roommodule.dao.UserDao
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
+    private val notifDao: NotifDao,
     override val authManager: UserAuthManager,
     override val userDao: UserDao
 ) : UserManipulationViewModel(authManager, userDao) {
+
+    var notifBadgeNumber = notifDao.countNotifications()
+
 
     fun checkIfCompany(): Boolean = authManager.retrieveUserInfoFromStorage()!!.role == 2
 

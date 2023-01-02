@@ -14,6 +14,8 @@ import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import org.apache.commons.codec.binary.Hex
 import org.apache.commons.codec.digest.DigestUtils
+import tn.esprit.shared.Consts.FUNCTION_URL
+import java.time.LocalDateTime
 import java.util.*
 
 object HelperFunctions {
@@ -46,6 +48,8 @@ object HelperFunctions {
         Log.d("digest", hash)
         return hash
     }
+
+    fun getImageFromBackend(name: String) = "$FUNCTION_URL/img/$name"
 
     fun subscribeToTopic(context: Context, channelName: String, channelId: String, topic: String) {
 

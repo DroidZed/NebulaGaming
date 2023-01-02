@@ -32,13 +32,9 @@ class NetworkClient(private val context: Context) {
             .build()
     }
 
-    companion object ServiceFactory {
 
-        inline fun <reified T> getService(client: Retrofit): T {
+    private inline fun <reified T> getService(client: Retrofit): T = client.create(T::class.java)
 
-            return client.create(T::class.java)
-        }
-    }
 
     fun getAuthService() = getService<AuthApiService>(defaultClient)
 
@@ -59,7 +55,7 @@ class NetworkClient(private val context: Context) {
     fun getWishlistService() = getService<WishlistApiService>(secureClient)
 
     fun getFcmService() = getService<FirebaseTokenApiService>(defaultClient)
-    
+
     fun getCategoryService() = getService<CategoryApiService>(secureClient)
 
     fun getProductService() = getService<ProductApiService>(secureClient)

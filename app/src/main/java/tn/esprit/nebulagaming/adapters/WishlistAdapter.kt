@@ -3,7 +3,7 @@ package tn.esprit.nebulagaming.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import tn.esprit.nebulagaming.R
-import tn.esprit.nebulagaming.data.Wishlist
+import tn.esprit.apimodule.models.Wishlist
 import tn.esprit.nebulagaming.viewholders.WishListViewHolder
 
 class WishlistAdapter(private val list: MutableList<Wishlist>) :

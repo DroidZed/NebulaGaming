@@ -45,11 +45,12 @@ class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             productDetailsOV?.visibility = View.INVISIBLE
         }
 
-        usePicasso(
-            url = product.image,
-            placeholder = R.drawable.event_wallpaper,
-            view = productImage!!
-        )
+        if (product.image != null)
+            usePicasso(
+                url = product.image!!,
+                placeholder = R.drawable.event_wallpaper,
+                view = productImage!!
+            )
 
         productName?.text = product.name
         productDesc?.text = product.description

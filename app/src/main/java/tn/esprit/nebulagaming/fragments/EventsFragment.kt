@@ -1,7 +1,6 @@
 package tn.esprit.nebulagaming.fragments
 
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -10,21 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.applandeo.materialcalendarview.CalendarView
-import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnCalendarPageChangeListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
-import tn.esprit.apimodule.models.Event
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.EventsAdapter
 import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
 import tn.esprit.nebulagaming.utils.Status
 import tn.esprit.nebulagaming.viewmodels.EventViewModel
-import java.time.LocalDateTime
-import java.time.temporal.ChronoUnit
 import java.util.*
-import java.util.stream.Collectors
-import java.util.stream.LongStream
 
 
 @AndroidEntryPoint
@@ -63,9 +56,9 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
             loadMonthlyEvents(
                 view,
                 eventsCal.currentPageDate[Calendar.MONTH] + 1,
-                eventsCal.currentPageDate[Calendar.YEAR]
+                eventsCal.currentPageDate[Calendar.YEAR],
+                false
             )
-            eventsRV.refreshDrawableState()
         }
 
         eventsRV.apply {
@@ -94,78 +87,37 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
         })
     }
 
-    private fun setupCalendar(eventList: List<Event>) {
-
-        val eventDates = mutableListOf<EventDay>()
-
-        eventList.forEach { event ->
-
-            val startDate = eventVM.parseDate(event.startDateTime)
-            val endDate = eventVM.parseDate(event.endDateTime)
-
-            val numOfDaysBetween: Long =
-                ChronoUnit.DAYS.between(startDate, endDate)
-
-            val allDatesInBetween: MutableList<LocalDateTime> =
-                LongStream.iterate(0) { i -> i + 1 }
-                    .limit(numOfDaysBetween)
-                    .mapToObj { i -> startDate!!.plusDays(i) }
-                    .collect(Collectors.toList())
-
-            allDatesInBetween.forEach { d ->
-                val calendar = Calendar.getInstance()
-                calendar.apply {
-                    set(Calendar.YEAR, d.year)
-                    set(Calendar.MONTH, d.monthValue)
-                    set(Calendar.DAY_OF_MONTH, d.dayOfMonth)
-                    set(Calendar.HOUR, d.hour)
-                    set(Calendar.MINUTE, d.minute)
-                    set(Calendar.SECOND, d.second)
-                }
-                eventsCal.setDate(calendar)
-                eventDates.add(
-                    EventDay(
-                        calendar,
-                        R.drawable.dot_filled,
-                        Color.parseColor(if (event.bonus <= 30) "#5a228b" else "#8b225a")
-                    )
-                )
-            }
-        }
-        eventsCal.setEvents(eventDates)
-    }
-
-
     // private fun setupEOTD(daily: Event) {}
 
-    private fun loadMonthlyEvents(view: View, month: Int?, year: Int?) = runBlocking {
+    private fun loadMonthlyEvents(view: View, month: Int?, year: Int?, initialRun: Boolean = true) =
+        runBlocking {
 
-        eventsAdapter.clear()
+            eventsAdapter.clear()
 
-        eventVM.fetchEventsOfTheMonthByYear(view.context, month, year).observe(viewLifecycleOwner) {
+            eventVM.fetchEventsOfTheMonthByYear(view.context, month, year)
+                .observe(viewLifecycleOwner) {
 
-            it?.let { rs ->
-                when (rs.status) {
-                    Status.LOADING -> {
-                        swipeEventsLayout.isRefreshing = true
-                    }
-                    Status.ERROR -> {
+                    it?.let { rs ->
+                        when (rs.status) {
+                            Status.LOADING -> if (initialRun) swipeEventsLayout.isRefreshing = true
 
-                        swipeEventsLayout.isRefreshing = false
-                        toastMsg(
-                            view.context,
-                            "Couldn't load events, please try again later."
-                        )
-                    }
+                            Status.ERROR -> {
 
-                    Status.SUCCESS ->
-                        rs.data?.apply {
-                            swipeEventsLayout.isRefreshing = false
-                            eventsAdapter.addAll(this.toMutableList())
-                            setupCalendar(this)
+                                if (initialRun)
+                                    swipeEventsLayout.isRefreshing = false
+                                toastMsg(
+                                    view.context,
+                                    "Couldn't load events, please try again later."
+                                )
+                            }
+
+                            Status.SUCCESS -> {
+                                swipeEventsLayout.isRefreshing = false
+
+                                eventsAdapter.addAll(rs.data!!.toMutableList())
+                            }
                         }
+                    }
                 }
-            }
         }
-    }
 }

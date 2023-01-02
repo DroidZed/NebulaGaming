@@ -1,16 +1,13 @@
 package tn.esprit.nebulagaming.viewmodels
 
 import android.content.Context
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import tn.esprit.apimodule.NetworkClient
-import tn.esprit.apimodule.models.Category
-import tn.esprit.apimodule.models.Product
+import tn.esprit.apimodule.models.GenericResp
+import tn.esprit.apimodule.utils.ResponseConverter
 import tn.esprit.authmodule.repos.UserAuthManager
+import tn.esprit.nebulagaming.utils.Resource
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,49 +15,104 @@ class MarketplaceViewModel @Inject constructor(
     private val userAuthManager: UserAuthManager,
 ) : DefaultViewModel() {
 
-    val productsData = MutableLiveData<List<Product>>()
 
-    val categories = MutableLiveData<List<Category>>()
+    fun getCategories(context: Context) = liveData {
 
-    fun getCategories(context: Context) {
+        emit(Resource.loading(data = null))
 
-        val client = NetworkClient(context)
+        try {
+            val client = NetworkClient(context)
 
-        val service = client.getMarketplaceService()
+            val service = client.getCategoryService()
 
+            val resp = service.getAllCategories()
 
+            if (resp.isSuccessful) emit(Resource.success(resp.body()))
+            else emit(
+                Resource.error(
+                    data = null,
+                    message = ResponseConverter.convert<GenericResp>(
+                        resp.errorBody()!!.string()
+                    ).data?.error!!
+                )
+            )
+        } catch (e: Exception) {
+            emit(Resource.error(data = null, message = e.message!!))
+        }
     }
 
-    fun getMyProducts(context: Context) {
+    fun getMyProducts(context: Context) = liveData {
 
-        val client = NetworkClient(context)
+        emit(Resource.loading(data = null))
 
-        val service = client.getMarketplaceService()
+        try {
+            val client = NetworkClient(context)
 
+            val service = client.getMarketplaceService()
 
+            val resp = service.getMyProducts(userAuthManager.retrieveUserInfoFromStorage()!!.userId)
 
+            if (resp.isSuccessful) emit(Resource.success(resp.body()))
+            else emit(
+                Resource.error(
+                    data = null,
+                    message = ResponseConverter.convert<GenericResp>(
+                        resp.errorBody()!!.string()
+                    ).data?.error!!
+                )
+            )
+        } catch (e: Exception) {
+            emit(Resource.error(data = null, message = e.message!!))
+        }
     }
 
-    fun getProducts(context: Context) {
+    fun getProducts(context: Context, page: Int) = liveData {
 
-        val client = NetworkClient(context)
+        emit(Resource.loading(data = null))
 
-        val service = client.getMarketplaceService()
+        try {
+            val client = NetworkClient(context)
 
-        job = CoroutineScope(Dispatchers.IO).launch {
+            val service = client.getMarketplaceService()
 
-            val resp = service.getAllProducts()
+            val resp = service.getAllProducts(page)
 
-            withContext(Dispatchers.Main) {
-                try {
-                    if (resp.isSuccessful)
-                        productsData.postValue(resp.body())
-                    else
-                        onError(resp)
-                } catch (e: Exception) {
-                    super.onError()
-                }
-            }
+            if (resp.isSuccessful) emit(Resource.success(resp.body()))
+            else emit(
+                Resource.error(
+                    data = null,
+                    message = ResponseConverter.convert<GenericResp>(
+                        resp.errorBody()!!.string()
+                    ).data?.error!!
+                )
+            )
+        } catch (e: Exception) {
+            emit(Resource.error(data = null, message = e.message!!))
+        }
+    }
+
+    fun getProductById(context: Context, id: String) = liveData {
+
+        emit(Resource.loading(data = null))
+
+        try {
+            val client = NetworkClient(context)
+
+            val service = client.getMarketplaceService()
+
+            val resp = service.getOneProduct(id)
+
+            if (resp.isSuccessful) emit(Resource.success(resp.body()))
+            else emit(
+                Resource.error(
+                    data = null,
+                    message = ResponseConverter.convert<GenericResp>(
+                        resp.errorBody()!!.string()
+                    ).data?.error!!
+                )
+            )
+        } catch (e: Exception) {
+            emit(Resource.error(data = null, message = e.message!!))
         }
     }
 }
