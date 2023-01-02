@@ -8,12 +8,10 @@ import tn.esprit.apimodule.models.Product
 
 interface ProductApiService {
 
-    @POST("product/")
-    @Headers("Content-Type:application/json")
+    @POST("product")
     @Multipart
     suspend fun uploadProduct(
-        @Query("CategoryId") CategoryId: String,
-        @Query("publisher") publisher: String,
+        @Query("categoryId") categoryId: String,
         @Part image: MultipartBody.Part,
         @PartMap product: HashMap<String,Any>): Response<GenericResp>
 }

@@ -16,7 +16,6 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.GenericResp
-import tn.esprit.apimodule.models.Product
 import tn.esprit.apimodule.utils.ResponseConverter
 import tn.esprit.authmodule.repos.UserAuthManagerImpl
 import tn.esprit.nebulagaming.utils.Resource
@@ -40,8 +39,7 @@ class ProductViewModel @Inject constructor(private val userManager: UserAuthMana
                 description = inputs[1].text.toString(),
                 price = inputs[2].text.toString().toFloat(),
                 quantity = inputs[3].text.toString().toInt(),
-                status = 1,
-                category = category,
+                categoryId = category,
                 image = image,
                 context = context
             )
@@ -52,10 +50,9 @@ class ProductViewModel @Inject constructor(private val userManager: UserAuthMana
         name: String,
         description: String,
         price: Float,
-        category: String,
+        categoryId: String,
         image: File,
         quantity: Int,
-        status: Int,
         context: Context
     ) {
         val authClient = NetworkClient(context)
@@ -72,34 +69,28 @@ class ProductViewModel @Inject constructor(private val userManager: UserAuthMana
                 requestBody
             )
         job = CoroutineScope(Dispatchers.IO).launch {
-            val map: Map<String, Any> = HashMap()
+
+            val map = HashMap<String, Any>()
+
+            map["name"] = name
+            map["description"] = description
+            map["price"] = price
+            map["image"] = image.name
+            map["quantity"] = quantity
+            map["publisher"] = iduser
+
+            println("map : $map")
 
             val ajouterproduct = apiService.uploadProduct(
-                publisher= iduser,
-                CategoryId = category,
+                categoryId = categoryId,
                 image = fileToUpload,
-                /*product = Product(
-                    name = name,
-                    description = description,
-                    price = price,
-                    image = image.name,
-                    quantity = quantity,
-                    status = status
-                )*/
-                product = map.toMutableMap().apply {
-                    set("name", name)
-                    put("description", description)
-                    put("price", price)
-                    put("image", image.name)
-                    put("quantity", quantity)
-                    put("category", category)
-                    put("status", status)
-                } as HashMap<String, Any>
+                product = map
             )
+
             withContext(Dispatchers.Main) {
                 try {
                     if (ajouterproduct.isSuccessful)
-                        onSuccess()
+                        onSuccess(ajouterproduct.body()!!.message)
                     else {
                         Log.e("error", ajouterproduct.errorBody().toString())
                         super.onError(ajouterproduct)
@@ -113,7 +104,7 @@ class ProductViewModel @Inject constructor(private val userManager: UserAuthMana
     }
 
     fun loadCategories(context: Context) = liveData {
-        emit(Resource!!.loading(data = null))
+        emit(Resource.loading(data = null))
         try {
             val authClient = NetworkClient(context)
             val apiService = authClient.getCategoryService()
