@@ -9,7 +9,7 @@ object Consts {
 
     const val DB_VERSION = 9
 
-    const val FUNCTION_URL = "http://192.168.1.2:4040"
+    const val FUNCTION_URL = "http://192.168.1.4:4040"
 
     const val ID_PROD = "ID_PROD"
 

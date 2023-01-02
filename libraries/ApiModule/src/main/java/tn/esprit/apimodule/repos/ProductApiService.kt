@@ -14,4 +14,11 @@ interface ProductApiService {
         @Query("categoryId") categoryId: String,
         @Part image: MultipartBody.Part,
         @PartMap product: HashMap<String,Any>): Response<GenericResp>
+
+    @GET("product/myProducts")
+    suspend fun getMyProducts(
+        @Query("userId") userId: String
+    ): Response<MutableList<Product>>
+
+
 }

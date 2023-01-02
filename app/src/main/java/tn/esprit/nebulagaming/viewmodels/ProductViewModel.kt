@@ -23,7 +23,8 @@ import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductViewModel @Inject constructor(private val userManager: UserAuthManagerImpl) : DefaultViewModel() {
+class ProductViewModel @Inject constructor(private val userManager: UserAuthManagerImpl) :
+    DefaultViewModel() {
 
     //on click button new product
     fun handleSaveProduct(
@@ -119,7 +120,32 @@ class ProductViewModel @Inject constructor(private val userManager: UserAuthMana
                             categories.errorBody()!!.string()
                         ).data?.error!!
                     )
-                )            }
+                )
+            }
+        } catch (exception: Exception) {
+            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+        }
+    }
+
+    fun loadMyProducts(context: Context) = liveData {
+        emit(Resource.loading(data = null))
+        try {
+            val authClient = NetworkClient(context)
+            val apiService = authClient.getProductService()
+            val iduser = userManager.retrieveUserInfoFromStorage()!!.userId
+            val products = apiService.getMyProducts(userId = iduser)
+            if (products.isSuccessful) {
+                emit(Resource.success(data = products.body()))
+            } else {
+                emit(
+                    Resource.error(
+                        data = null,
+                        message = ResponseConverter.convert<GenericResp>(
+                            products.errorBody()!!.string()
+                        ).data?.error!!
+                    )
+                )
+            }
         } catch (exception: Exception) {
             emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
         }
@@ -142,5 +168,8 @@ class ProductViewModel @Inject constructor(private val userManager: UserAuthMana
         }
         return validationList
     }
+
+
+
 
 }
