@@ -9,7 +9,7 @@ object Consts {
 
     const val DB_VERSION = 9
 
-    const val FUNCTION_URL = "https://chubby-dancers-tickle-197-240-140-37.loca.lt"
+    const val FUNCTION_URL = "https://flat-jars-jump-197-15-86-29.loca.lt"
 
     const val ID_PROD = "ID_PROD"
 
@@ -40,3 +40,4 @@ object Consts {
     const val INTENT_QUIZ_ID = "QUIZ_ID"
 
 }
+

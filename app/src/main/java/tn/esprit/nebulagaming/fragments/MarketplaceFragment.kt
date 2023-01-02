@@ -15,6 +15,7 @@ import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.apimodule.models.Product
+import tn.esprit.nebulagaming.AddProductActivity
 import tn.esprit.nebulagaming.ProductDetailsActivity
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.ProductAdapter
@@ -74,9 +75,7 @@ class MarketplaceFragment : Fragment(R.layout.fragment_marketplace) {
         }
 
         addProductBtn.setOnClickListener {
-            val activity: FragmentActivity? = activity
 
-            startActivity(Intent(activity, ProductDetailsActivity::class.java))
 
 
 

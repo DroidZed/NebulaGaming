@@ -18,12 +18,13 @@ import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.GenericResp
 import tn.esprit.apimodule.models.Product
 import tn.esprit.apimodule.utils.ResponseConverter
+import tn.esprit.authmodule.repos.UserAuthManagerImpl
 import tn.esprit.nebulagaming.utils.Resource
 import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductViewModel @Inject constructor() : DefaultViewModel() {
+class ProductViewModel @Inject constructor(private val userManager: UserAuthManagerImpl) : DefaultViewModel() {
 
     //on click button new product
     fun handleSaveProduct(
@@ -39,7 +40,7 @@ class ProductViewModel @Inject constructor() : DefaultViewModel() {
                 description = inputs[1].text.toString(),
                 price = inputs[2].text.toString().toFloat(),
                 quantity = inputs[3].text.toString().toInt(),
-                status = inputs[4].text.toString(),
+                status = 1,
                 category = category,
                 image = image,
                 context = context
@@ -54,11 +55,13 @@ class ProductViewModel @Inject constructor() : DefaultViewModel() {
         category: String,
         image: File,
         quantity: Int,
-        status: String,
+        status: Int,
         context: Context
     ) {
         val authClient = NetworkClient(context)
         val apiService = authClient.getProductService()
+        val iduser = userManager.retrieveUserInfoFromStorage()!!.userId
+
         val requestBody: RequestBody =
             RequestBody.create("image/${image.extension}".toMediaTypeOrNull(), image)
 
@@ -69,18 +72,29 @@ class ProductViewModel @Inject constructor() : DefaultViewModel() {
                 requestBody
             )
         job = CoroutineScope(Dispatchers.IO).launch {
+            val map: Map<String, Any> = HashMap()
 
             val ajouterproduct = apiService.uploadProduct(
+                publisher= iduser,
                 CategoryId = category,
                 image = fileToUpload,
-                product = Product(
+                /*product = Product(
                     name = name,
                     description = description,
                     price = price,
                     image = image.name,
                     quantity = quantity,
                     status = status
-                )
+                )*/
+                product = map.toMutableMap().apply {
+                    set("name", name)
+                    put("description", description)
+                    put("price", price)
+                    put("image", image.name)
+                    put("quantity", quantity)
+                    put("category", category)
+                    put("status", status)
+                } as HashMap<String, Any>
             )
             withContext(Dispatchers.Main) {
                 try {
@@ -98,35 +112,25 @@ class ProductViewModel @Inject constructor() : DefaultViewModel() {
 
     }
 
-    fun loadCategories(context: Context) = liveData(Dispatchers.IO) {
-        val client = NetworkClient(context)
-        val articlesServices = client.getCategoryService()
-        emit(Resource.loading(data = null))
+    fun loadCategories(context: Context) = liveData {
+        emit(Resource!!.loading(data = null))
         try {
-            val response = articlesServices.getAllCategories()
-            if (response.isSuccessful)
-                emit(
-                    Resource.success(
-                        data = response.body()
-                    )
-                )
-            else
+            val authClient = NetworkClient(context)
+            val apiService = authClient.getCategoryService()
+            val categories = apiService.getAllCategories()
+            if (categories.isSuccessful) {
+                emit(Resource.success(data = categories.body()))
+            } else {
                 emit(
                     Resource.error(
                         data = null,
                         message = ResponseConverter.convert<GenericResp>(
-                            response.errorBody()!!.string()
+                            categories.errorBody()!!.string()
                         ).data?.error!!
                     )
-                )
-        } catch (ex: Exception) {
-            emit(
-                Resource.error(
-                    data = null,
-                    message = ex.message
-                        ?: "Unable to retrieve articles at the moment, please try again later."
-                )
-            )
+                )            }
+        } catch (exception: Exception) {
+            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
         }
     }
 

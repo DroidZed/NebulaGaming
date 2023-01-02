@@ -18,10 +18,25 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/logonv"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/logonv"
         android:supportsRtl="true"
         android:theme="@style/Theme.NebulaGaming"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ChatTest"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
 
         <service
             android:name=".services.QuizNotificationsService"

@@ -60,9 +60,9 @@ class NetworkClient(private val context: Context) {
 
     fun getFcmService() = getService<FirebaseTokenApiService>(defaultClient)
     
-    fun getCategoryService() = getService<CategoryApiService>(secureClient)
+    fun getCategoryService() = getService<CategoryApiService>(defaultClient)
 
-    fun getProductService() = getService<ProductApiService>(secureClient)
+    fun getProductService() = getService<ProductApiService>(defaultClient)
 
     /**
      * Initialize OkhttpClient with token authenticator
