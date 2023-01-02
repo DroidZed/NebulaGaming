@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.WishlistAdapter
-import tn.esprit.nebulagaming.data.Wishlist
+import tn.esprit.apimodule.models.Wishlist
 
 @AndroidEntryPoint
 class WishlistFragment : Fragment(R.layout.fragment_wishlist) {

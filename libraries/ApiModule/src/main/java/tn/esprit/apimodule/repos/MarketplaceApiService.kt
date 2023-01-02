@@ -5,6 +5,7 @@ import retrofit2.Response
 import retrofit2.http.*
 import tn.esprit.apimodule.models.Category
 import tn.esprit.apimodule.models.GenericResp
+import tn.esprit.apimodule.models.PagedProductsData
 import tn.esprit.apimodule.models.Product
 
 interface MarketplaceApiService {
@@ -29,10 +30,10 @@ interface MarketplaceApiService {
     ): Response<GenericResp>
 
     @GET(API_ID)
-    suspend fun getAllProducts(): Response<List<Product>>
+    suspend fun getAllProducts(@Query("page") page:Int): Response<PagedProductsData>
 
     @GET("$API_ID/{id}")
-    suspend fun getOneProduct(@Path("id") idProd: String): Response<List<Product>>
+    suspend fun getOneProduct(@Path("id") idProd: String): Response<Product>
 
     @DELETE("$API_ID/{id}")
     suspend fun deleteProduct(@Path("id") id: String): Response<GenericResp>

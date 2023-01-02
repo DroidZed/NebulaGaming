@@ -7,14 +7,10 @@ import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.GenericResp
 import tn.esprit.apimodule.utils.ResponseConverter
 import tn.esprit.nebulagaming.utils.Resource
-import java.time.LocalDateTime
 import javax.inject.Inject
 
 @HiltViewModel
 class EventViewModel @Inject constructor() : DefaultViewModel() {
-
-    fun parseDate(date: String): LocalDateTime? =
-        LocalDateTime.parse(date)
 
     suspend fun fetchEventsOfTheMonthByYear(context: Context, month: Int?, year: Int?) = liveData {
 
@@ -48,37 +44,37 @@ class EventViewModel @Inject constructor() : DefaultViewModel() {
         }
     }
 
-    /*
-        fun fetchEventOfTheDay(context: Context) = liveData {
 
-            val client = NetworkClient(context)
+    /*  fun fetchEventOfTheDay(context: Context) = liveData {
 
-            val service = client.getEventService()
+          val client = NetworkClient(context)
 
-            emit(Resource.loading(data = null))
+          val service = client.getEventService()
 
-            try {
-                val response = service.getOfToday()
+          emit(Resource.loading(data = null))
 
-                if (response.isSuccessful) emit(Resource.success(data = response.body()))
-                else
-                    emit(
-                        Resource.error(
-                            null,
-                            ResponseConverter.convert<GenericResp>(
-                                response.errorBody()!!.string()
-                            ).data?.error!!
-                        )
-                    )
+          try {
+              val response = service.getOfToday()
 
-            } catch (e: Exception) {
-                emit(
-                    Resource.error(
-                        data = null,
-                        message = e.message ?: "Unable to fetch today's event, please try again later."
-                    )
-                )
-            }
-        }
-    */
+              if (response.isSuccessful) emit(Resource.success(data = response.body()))
+              else
+                  emit(
+                      Resource.error(
+                          null,
+                          ResponseConverter.convert<GenericResp>(
+                              response.errorBody()!!.string()
+                          ).data?.error!!
+                      )
+                  )
+
+          } catch (e: Exception) {
+              emit(
+                  Resource.error(
+                      data = null,
+                      message = e.message ?: "Unable to fetch today's event, please try again later."
+                  )
+              )
+          }
+      }
+      */
 }

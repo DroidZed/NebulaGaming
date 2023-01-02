@@ -118,10 +118,6 @@ class ProfileActivity : AppCompatActivity() {
             PostsFragment()
         )
 
-        profileVM.nameUser.observe(this) {
-            nameUser.text = it
-        }
-
         val data = profileVM.fetchUserInfoFromDb()
 
         if (data != null) setUi(data.user!!)

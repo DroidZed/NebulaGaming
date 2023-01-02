@@ -26,7 +26,6 @@ import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
 import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 import tn.esprit.nebulagaming.utils.Status
 import tn.esprit.nebulagaming.viewmodels.HomeViewModel
-import tn.esprit.nebulagaming.viewmodels.NotificationsViewModel
 import tn.esprit.nebulagaming.viewmodels.ProfileViewModel
 import tn.esprit.roommodule.models.UserProfile
 import tn.esprit.shared.Consts.QUIZ_NOTIF_CHANNEL_ID
@@ -39,7 +38,6 @@ class HomeActivity : AppCompatActivity() {
 
     private val homeVM: HomeViewModel by viewModels()
     private val profileVM: ProfileViewModel by viewModels()
-    private val notificationsViewModel: NotificationsViewModel by viewModels()
 
     private lateinit var appToolBar: Toolbar
 
@@ -58,8 +56,6 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var levelHeader: TextView
 
     private lateinit var logout: TextView
-
-    private var notifCount = 0
 
     private lateinit var badgeDrawable: BadgeDrawable
 
@@ -118,7 +114,7 @@ class HomeActivity : AppCompatActivity() {
         usernameHeader = headerView.findViewById(R.id.usernameHeader)
         levelHeader = headerView.findViewById(R.id.levelHeader)
 
-        notificationsViewModel.notifBadgeNumber.observe(this) { notifCount = it }
+        // homeVM.notifBadgeNumber.observe(this) { notifCount = it }
     }
 
     @SuppressLint("UnsafeOptInUsageError")
@@ -127,10 +123,13 @@ class HomeActivity : AppCompatActivity() {
         badgeDrawable = BadgeDrawable.create(this)
         badgeDrawable.isVisible = false
 
-        if (notifCount > 0) {
-            badgeDrawable.isVisible = true
-            badgeDrawable.number = notifCount
-            BadgeUtils.attachBadgeDrawable(badgeDrawable, appToolBar, R.id.notificationFragment)
+        homeVM.notifBadgeNumber.observe(this) {
+
+            if (it > 0) {
+                badgeDrawable.isVisible = true
+                badgeDrawable.number = it
+                BadgeUtils.attachBadgeDrawable(badgeDrawable, appToolBar, R.id.notificationFragment)
+            }
         }
 
         return super.onPrepareOptionsMenu(menu)
@@ -154,8 +153,8 @@ class HomeActivity : AppCompatActivity() {
             }
 
             R.id.notificationFragment -> {
-                badgeDrawable.clearNumber();
-                badgeDrawable.isVisible = false;
+                badgeDrawable.clearNumber()
+                badgeDrawable.isVisible = false
                 navController.navigate(R.id.notificationFragment)
                 true
             }

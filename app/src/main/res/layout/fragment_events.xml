@@ -9,7 +9,7 @@
     <com.applandeo.materialcalendarview.CalendarView
         android:id="@+id/eventsCal"
         android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:layout_margin="10dp"
         app:abbreviationsBarColor="#420897"
         app:abbreviationsLabelsColor="@color/white"
