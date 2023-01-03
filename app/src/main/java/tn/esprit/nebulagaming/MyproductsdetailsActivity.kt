@@ -1,20 +1,31 @@
 package tn.esprit.nebulagaming
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.apimodule.models.Product
+import tn.esprit.nebulagaming.utils.FileUtils
+import tn.esprit.nebulagaming.utils.HelperFunctions
 import tn.esprit.nebulagaming.utils.Status
+import tn.esprit.nebulagaming.viewmodels.MarketplaceViewModel
 import tn.esprit.nebulagaming.viewmodels.ProductViewModel
 import tn.esprit.shared.Consts
+
 @AndroidEntryPoint
 class MyproductsdetailsActivity : AppCompatActivity() {
     private lateinit var CloseProduct: MaterialButton
@@ -30,9 +41,18 @@ class MyproductsdetailsActivity : AppCompatActivity() {
     private lateinit var updatemyproducteditbtn: MaterialButton
     private lateinit var addimageeditbtn2: MaterialButton
     private lateinit var categorytext: TextView
-    private lateinit var statustext: TextView
-    private val prodOfVm: ProductViewModel by viewModels()
-    var idProduct: String?? = null
+    private lateinit var DoneUpload: TextView
+    var idCategory: String? = null
+    var idStatus: Int? = null
+    var REQUEST_CODE_SELECT_PHOTO = 1
+    var imageUri: Uri? = null
+
+    private lateinit var progProddet: ProgressBar
+    private val prodOfVm: MarketplaceViewModel by viewModels()
+    private val prodVm: ProductViewModel by viewModels()
+    private lateinit var idProduct: String
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_myproductsdetails)
@@ -49,46 +69,132 @@ class MyproductsdetailsActivity : AppCompatActivity() {
         updatemyproducteditbtn = findViewById(R.id.updatemyproducteditbtn)
         addimageeditbtn2 = findViewById(R.id.addimageeditbtn2)
         categorytext = findViewById(R.id.categorytext)
-        statustext = findViewById(R.id.statustext)
+        progProddet = findViewById(R.id.progProddet)
+        DoneUpload = findViewById(R.id.DoneUpload)
 
         CloseProduct.setOnClickListener {
             finish()
         }
 
-        idProduct = intent.getStringExtra(Consts.ID_PROD).toString()!!
-        Log.e("idProduct", idProduct!!)
+        idProduct = intent.getStringExtra(Consts.ID_PROD)!!
+        Log.e("idProduct", idProduct)
+        LoadData()
 
-       /* prodOfVm.loadProductbyId(this, idProduct!!).observe(this) {
+        // set spinner with mutablselist key value
+
+
+
+
+        prodVm.loadCategories(this).observe(this) {
+
             it?.let { rs ->
                 when (rs.status) {
                     Status.SUCCESS -> {
-                        rs.data?.let { product ->
-                            Log.e("product", product.toString())
-                            myproducttitle.text = product.name
-                            myproducteditname.setText(product.name)
-                            myproducteditprice.setText(product.price.toString())
-                            myproducteditdescription.setText(product.description)
-                            myproducteditquantity.setText(product.quantity.toString())
-                            categorytext.text = product.category.toString()
-                            if (product.status == 1) {
-                                statustext.text = "On Stock"
-                            } else {
-                                statustext.text = "Out of Stock"
-                            }
+                        rs.data?.apply {
 
+                            val adapter = ArrayAdapter(
+                                this@MyproductsdetailsActivity,
+                                android.R.layout.simple_spinner_item,
+                                this.map { cat -> cat.name })
+                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                            myproducteditspinner.adapter = adapter
                         }
                     }
-                    Status.ERROR -> {
-                        Log.e("DATA", rs.message!!)
-                    }
                     Status.LOADING -> {
-                        //HelperFunctions.toastMsg(context, "Loading")
+                        Log.e("loadCategories", "LOADING")
                     }
+                    Status.ERROR -> {
 
+                        Log.e("OFFER-JOB", it.message!!)
+                    }
+                }
+            }
+        }
+
+
+        addimageeditbtn2.setOnClickListener {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                // Permission is not granted, request it
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    REQUEST_CODE_SELECT_PHOTO
+                )
+            } else {
+                val intent =
+                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                startActivityForResult(intent, REQUEST_CODE_SELECT_PHOTO)
+            }
+        }
+
+        updatemyproducteditbtn.setOnClickListener {
+            Log.e("idStatus f butn", idStatus.toString())
+            if (imageUri == null) {
+                progProddet.visibility = View.VISIBLE
+                prodVm.updateproductwithoutimage(
+                    this,
+                    myproducteditname.text.toString(),
+                    myproducteditdescription.text.toString(),
+                    myproducteditprice.text.toString().toFloat(),
+                    myproducteditquantity.text.toString().toInt(),
+                    idCategory!!,
+                    idProduct
+                )
+                prodVm.errorMessage.observe(this) {
+                    if (it != null) {
+
+                        progProddet.visibility = View.GONE
+                        Intent(this, this@MyproductsdetailsActivity::class.java).also {
+                            startActivity(it)
+                        }
+                    }
+                }
+            }
+        }
+
+
+        myproducteditspinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    Log.e("ena Zero ", idCategory.toString())
+
+                    prodVm.loadCategories(this@MyproductsdetailsActivity)
+                        .observe(this@MyproductsdetailsActivity) {
+
+                            it?.let { rs ->
+                                when (rs.status) {
+                                    Status.SUCCESS -> {
+                                        rs.data?.apply {
+                                            idCategory = this[position].name
+
+                                            Log.e("ena loula ", idCategory.toString())
+                                        }
+                                    }
+                                    Status.LOADING -> {
+                                        Log.e("loadCategories", "LOADING")
+                                    }
+                                    Status.ERROR -> {
+
+                                        Log.e("OFFER-JOB", it.message!!)
+                                    }
+                                }
+                            }
+                        }
+                    Log.e("ena thanya", idCategory.toString())
                 }
 
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
             }
-        }*/
+
         val group = listOf(
             myproducteditname,
             myproducteditprice,
@@ -99,17 +205,14 @@ class MyproductsdetailsActivity : AppCompatActivity() {
 
         disableComponents(group)
 
-        editmyproductbtn.setOnClickListener {
-            enableComponents(group)
-        }
+        editmyproductbtn.setOnClickListener { enableComponents(group) }
 
-        updatemyproducteditbtn.setOnClickListener {
+       /* updatemyproducteditbtn.setOnClickListener {
             disableComponents(group)
-        }
+        }*/
 
 
     }
-
 
     private fun setupUi(product: Product) {
         myproducttitle.text = product.name
@@ -125,10 +228,9 @@ class MyproductsdetailsActivity : AppCompatActivity() {
         }
         updatemyproducteditbtn.visibility = View.GONE
         addimageeditbtn2.visibility = View.GONE
-        myproducteditspinner.isEnabled = false
-        myproducteditspinner2.isEnabled = false
-        myproducteditspinner.isClickable = false
-        myproducteditspinner2.isClickable = false
+
+        myproducteditspinner.visibility = View.GONE
+        myproducteditspinner2.visibility = View.GONE
     }
 
     private fun enableComponents(group: List<TextView>) {
@@ -136,10 +238,61 @@ class MyproductsdetailsActivity : AppCompatActivity() {
             it.isEnabled = true
         }
         updatemyproducteditbtn.visibility = View.VISIBLE
-        addimageeditbtn2.visibility = View.VISIBLE
-        myproducteditspinner.isEnabled = true
-        myproducteditspinner2.isEnabled = true
-        myproducteditspinner.isClickable = true
-        myproducteditspinner2.isClickable = true
+     //   addimageeditbtn2.visibility = View.VISIBLE
+        myproducteditspinner.visibility = View.VISIBLE
+       // myproducteditspinner2.visibility = View.VISIBLE
+    }
+
+
+    private fun LoadData() {
+        prodOfVm.getProductById(this, idProduct).observe(this) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    progProddet.visibility = View.GONE
+                    it.data?.let { product ->
+                        setupUi(product)
+                        Log.e("productname", product.name)
+                        myproducttitle.text = product.name
+                        myproducteditname.setText(product.name, TextView.BufferType.EDITABLE)
+
+                        HelperFunctions.usePicasso(
+                            HelperFunctions.getImageFromBackend(product.image!!),
+                            R.drawable.logonv,
+                            myproducteditimage
+                        )
+                        categorytext.text = product.category!!.name
+
+
+
+                    }
+                }
+                Status.LOADING -> {
+                    progProddet.visibility = View.VISIBLE
+                }
+                Status.ERROR -> {
+                    progProddet.visibility = View.GONE
+                    Log.e("Error", it.message!!)
+                }
+            }
+
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE_SELECT_PHOTO && resultCode == Activity.RESULT_OK && data != null) {
+//progressBarUpimage with  green color
+
+
+            DoneUpload.text = "Photo Uploaded"
+            DoneUpload.setTextColor(resources.getColor(R.color.green))
+
+            imageUri = data.data
+
+
+            Log.e("imageUri", imageUri.toString())
+        }
     }
 }

@@ -115,4 +115,6 @@ class MarketplaceViewModel @Inject constructor(
             emit(Resource.error(data = null, message = e.message!!))
         }
     }
+
+
 }

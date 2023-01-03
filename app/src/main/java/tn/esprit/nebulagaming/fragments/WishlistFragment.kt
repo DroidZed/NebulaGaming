@@ -50,8 +50,8 @@ class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
             "Assassin's Creed",
             "Assassin's Creed"
         )
-        for (i in photoProduct.indices) {
+       /* for (i in photoProduct.indices) {
             arraylist.add(Wishlist(idWish[i], nomProduct[i], photoProduct[i], priceProduct[i]))
-        }
+        }*/
     }
 }

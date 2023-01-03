@@ -43,12 +43,12 @@ class MyProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)  {
             myproductDetailsOV?.visibility = View.INVISIBLE
         }
 
-        HelperFunctions.usePicasso(
-            url = product.image,
-            placeholder = R.drawable.event_wallpaper,
-            view = myproductImage!!
-        )
 
+        HelperFunctions.usePicasso(
+            HelperFunctions.getImageFromBackend(product.image!!),
+            placeholder = R.drawable.event_wallpaper,
+            myproductImage!!
+        )
         myproductName?.text = product.name
         myproductDesc?.text = product.description
         myproductBtbMS?.setOnClickListener {

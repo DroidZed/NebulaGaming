@@ -17,11 +17,11 @@ class WishlistAdapter(private val list: MutableList<Wishlist>) :
     override fun onBindViewHolder(holder: WishListViewHolder, position: Int) {
 
         val wishlist = list[position]
-
+/*
         holder.idWish = wishlist.idWish
         holder.nomProduct?.text = wishlist.nameProduct
         holder.priceProduct?.text = wishlist.priceProduct
-        holder.photoProduct?.setImageResource(wishlist.photoProduct)
+        holder.photoProduct?.setImageResource(wishlist.photoProduct)*/
 
         holder.deleteWish?.setOnClickListener { remove(wishlist) }
     }
