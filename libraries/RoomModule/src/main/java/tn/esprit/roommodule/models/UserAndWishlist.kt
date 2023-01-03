@@ -4,10 +4,10 @@ import androidx.room.Embedded
 import androidx.room.Relation
 
 
-data class UserAndNotifications(
+data class UserAndWishlist(
     @Embedded val user: UserProfile?,
     @Relation(
         parentColumn = "_id",
         entityColumn = "userId"
-    ) val notifications: List<Notification>?
+    ) val wishlistItems: List<Wishlist>?
 )

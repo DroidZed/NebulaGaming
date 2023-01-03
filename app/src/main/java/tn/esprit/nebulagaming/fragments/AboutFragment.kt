@@ -8,6 +8,8 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
 import tn.esprit.nebulagaming.R
+import tn.esprit.nebulagaming.utils.HelperFunctions.getUrlFromResource
+import tn.esprit.nebulagaming.utils.HelperFunctions.openLink
 
 
 class AboutFragment : Fragment(R.layout.fragment_about) {
@@ -33,39 +35,31 @@ class AboutFragment : Fragment(R.layout.fragment_about) {
             Intent(Intent.ACTION_SENDTO).apply {
                 data = Uri.parse("mailto:nebula.gaming2@outlook.com")
                 putExtra(Intent.EXTRA_SUBJECT, "Contact Nebula Team")
-                putExtra(Intent.EXTRA_EMAIL, getUrlFromResource(R.string.ng_email))
+                putExtra(Intent.EXTRA_EMAIL, getUrlFromResource(R.string.ng_email, resources))
                 startActivity(Intent.createChooser(this, "Choose an Email client :"))
             }
         }
 
         dev1ChipLI.setOnClickListener {
-            openLink(getUrlFromResource(R.string.lin_aymen))
+            openLink(requireContext(), getUrlFromResource(R.string.lin_aymen, resources))
         }
 
         dev2ChipLI.setOnClickListener {
-            openLink(getUrlFromResource(R.string.lin_yassine))
+            openLink(requireContext(), getUrlFromResource(R.string.lin_yassine, resources))
         }
 
         dev1ChipGH.setOnClickListener {
-            openLink(getUrlFromResource(R.string.gh_aymen))
+            openLink(requireContext(), getUrlFromResource(R.string.gh_aymen, resources))
         }
 
         dev2ChipGH.setOnClickListener {
-            openLink(getUrlFromResource(R.string.gh_yassine))
+            openLink(requireContext(), getUrlFromResource(R.string.gh_yassine, resources))
         }
 
         dev2ChipFB.setOnClickListener {
-            openLink(getUrlFromResource(R.string.fb_yassine))
+            openLink(requireContext(), getUrlFromResource(R.string.fb_yassine, resources))
         }
-    }
 
-    private fun getUrlFromResource(id: Int) = resources.getString(id)
-
-    private fun openLink(profileLink: String) {
-        Intent(Intent.ACTION_VIEW).apply {
-            data = Uri.parse(profileLink)
-            startActivity(this)
-        }
     }
 
 }

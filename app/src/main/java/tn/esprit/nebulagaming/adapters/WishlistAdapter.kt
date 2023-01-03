@@ -2,9 +2,14 @@ package tn.esprit.nebulagaming.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import tn.esprit.nebulagaming.R
-import tn.esprit.apimodule.models.Wishlist
 import tn.esprit.nebulagaming.viewholders.WishListViewHolder
+import tn.esprit.roommodule.NebulaGamingDatabase
+import tn.esprit.roommodule.models.Wishlist
 
 class WishlistAdapter(private val list: MutableList<Wishlist>) :
     ClassicAdapter<WishListViewHolder, Wishlist>(list) {
@@ -18,12 +23,17 @@ class WishlistAdapter(private val list: MutableList<Wishlist>) :
 
         val wishlist = list[position]
 
-        holder.idWish = wishlist.idWish
-        holder.nomProduct?.text = wishlist.nameProduct
-        holder.priceProduct?.text = wishlist.priceProduct
-        holder.photoProduct?.setImageResource(wishlist.photoProduct)
+        holder.bind(wishlist)
 
-        holder.deleteWish?.setOnClickListener { remove(wishlist) }
+        holder.deleteWish?.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                NebulaGamingDatabase
+                    .getInstance(holder.itemView.context)
+                    .wishlistDao()
+                    .delete(wishlist)
+                withContext(Dispatchers.Main) { remove(wishlist) }
+            }
+        }
     }
 }
 

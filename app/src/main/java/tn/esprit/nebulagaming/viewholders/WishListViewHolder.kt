@@ -6,11 +6,25 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import tn.esprit.nebulagaming.R
+import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
+import tn.esprit.roommodule.models.Wishlist
 
 
 class WishListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    var idWish: Int? = 0
+    fun bind(wishlist: Wishlist) {
+        nomProduct?.text = wishlist.name
+        priceProduct?.text = itemView.context.getString(R.string.prod_price, wishlist.price)
+
+        if (wishlist.image != null)
+
+            usePicasso(
+                wishlist.image!!,
+                R.drawable.logonv,
+                photoProduct!!
+            )
+    }
+
     var nomProduct: TextView? = null
     var priceProduct: TextView? = null
     var photoProduct: ImageView? = null

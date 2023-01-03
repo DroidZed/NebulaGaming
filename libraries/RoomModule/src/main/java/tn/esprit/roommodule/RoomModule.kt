@@ -9,6 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import tn.esprit.roommodule.dao.BookmarksDao
 import tn.esprit.roommodule.dao.NotifDao
 import tn.esprit.roommodule.dao.UserDao
+import tn.esprit.roommodule.dao.WishlistDao
 import javax.inject.Singleton
 
 @Module
@@ -31,4 +32,8 @@ class RoomModule {
     @Provides
     @Singleton
     fun providesNotificationDao(database: NebulaGamingDatabase): NotifDao = database.notifDao()
+
+    @Provides
+    @Singleton
+    fun providesWishlistDao(database: NebulaGamingDatabase): WishlistDao = database.wishlistDao()
 }

@@ -13,13 +13,11 @@ import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.AuthResp
 import tn.esprit.apimodule.models.LoginReqBody
 import tn.esprit.authmodule.repos.JWTManager
-import tn.esprit.authmodule.repos.UserAuthManager
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val JwtManager: JWTManager,
-    private val UserAuthManager: UserAuthManager
+    private val JwtManager: JWTManager
 ) : DefaultViewModel() {
 
     // onclick login button
@@ -60,7 +58,7 @@ class LoginViewModel @Inject constructor(
         val token = apiResponse.token!!
         val refresh = apiResponse.refresh!!
 
-        UserAuthManager.saveUserInfoToStorage(
+        authManager.saveUserInfoToStorage(
             id = JwtManager.extractUserIdFromJWT(token),
             token = token,
             refresh = refresh,

@@ -114,5 +114,7 @@
     <string name="product">Product Details</string>
     <string name="contact_buyer">Contact buyer</string>
     <string name="add_to_wishlist">Add to wishlist</string>
-    <string name="prod_price">%1$f DT</string>
+    <string name="prod_price">%1$.2f DT</string>
+    <string name="call_buyer">Call buyer</string>
+    <string name="email_buyer">Email buyer</string>
 </resources>

@@ -6,7 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.GenericResp
 import tn.esprit.apimodule.utils.ResponseConverter
-import tn.esprit.authmodule.repos.UserAuthManager
 import tn.esprit.nebulagaming.utils.Resource
 import tn.esprit.roommodule.dao.NotifDao
 import tn.esprit.roommodule.dao.UserDao
@@ -14,10 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val notifDao: NotifDao,
-    override val authManager: UserAuthManager,
-    override val userDao: UserDao
-) : UserManipulationViewModel(authManager, userDao) {
+    notifDao: NotifDao, override val userDao: UserDao
+) : UserManipulationViewModel(userDao) {
 
     var notifBadgeNumber = notifDao.countNotifications()
 
@@ -34,26 +31,20 @@ class HomeViewModel @Inject constructor(
 
         emit(Resource.loading(data = null))
         try {
-            val response =
-                userService.getProfile(getUserId())
-            if (response.isSuccessful)
-                emit(Resource.success(response.body()))
-            else
-                emit(
-                    Resource.error(
-                        null,
-                        ResponseConverter.convert<GenericResp>(
-                            response.errorBody()!!.string()
-                        ).data?.error!!
-                    )
+            val response = userService.getProfile(getUserId())
+            if (response.isSuccessful) emit(Resource.success(response.body()))
+            else emit(
+                Resource.error(
+                    null, ResponseConverter.convert<GenericResp>(
+                        response.errorBody()!!.string()
+                    ).data?.error!!
                 )
+            )
 
         } catch (ex: Exception) {
             emit(
                 Resource.error(
-                    null,
-                    ex.message
-                        ?: "Error loading user data..."
+                    null, ex.message ?: "Error loading user data..."
                 )
             )
         }

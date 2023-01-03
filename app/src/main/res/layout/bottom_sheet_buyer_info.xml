@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:behavior_saveFlags="fitToContents"
+    tools:context=".fragments.BuyerInfoBottomSheet">
+
+    <LinearLayout
+        android:paddingHorizontal="60dp"
+        android:paddingVertical="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/callBuyerBtn"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/merriweather_bold"
+            android:text="@string/call_buyer"
+            android:textAlignment="center"
+            android:textColor="@color/color_white"
+            android:textSize="20sp"
+            app:icon="@drawable/ic_baseline_local_phone_24"
+            app:iconTint="@color/color_white" />
+
+        <Button
+            android:id="@+id/emailBuyerBtn"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/merriweather_bold"
+            android:text="@string/email_buyer"
+            android:textAlignment="center"
+            android:textColor="@color/color_white"
+            android:textSize="20sp"
+            app:icon="@drawable/ic_baseline_email_24"
+            app:iconTint="@color/color_white" />
+
+    </LinearLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

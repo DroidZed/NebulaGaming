@@ -3,19 +3,21 @@ package tn.esprit.nebulagaming.utils
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
+import android.content.res.Resources
 import android.icu.text.SimpleDateFormat
 import android.net.Uri
 import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.messaging.FirebaseMessaging
 import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import org.apache.commons.codec.binary.Hex
 import org.apache.commons.codec.digest.DigestUtils
 import tn.esprit.shared.Consts.FUNCTION_URL
-import java.time.LocalDateTime
 import java.util.*
 
 object HelperFunctions {
@@ -51,7 +53,21 @@ object HelperFunctions {
 
     fun getImageFromBackend(name: String) = "$FUNCTION_URL/img/$name"
 
-    fun subscribeToTopic(context: Context, channelName: String, channelId: String, topic: String) {
+    fun getUrlFromResource(id: Int, resources: Resources) = resources.getString(id)
+
+    fun openLink(context: Context, profileLink: String) {
+        Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse(profileLink)
+            startActivity(context, this, null)
+        }
+    }
+
+    fun subscribeToTopic(
+        context: Context,
+        channelName: String,
+        channelId: String,
+        topic: String
+    ) {
 
         val channel = NotificationChannel(
             channelId,

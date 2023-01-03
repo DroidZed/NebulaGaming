@@ -7,10 +7,15 @@ import kotlinx.coroutines.Job
 import retrofit2.Response
 import tn.esprit.apimodule.models.GenericResp
 import tn.esprit.apimodule.utils.ResponseConverter
+import tn.esprit.authmodule.repos.UserAuthManager
 import javax.inject.Inject
 
 @HiltViewModel
-open class DefaultViewModel @Inject constructor() : ViewModel() {
+open class DefaultViewModel @Inject constructor(
+) : ViewModel() {
+
+    @Inject
+    lateinit var authManager: UserAuthManager
 
     protected open var job: Job? = null
     open var errorMessage = MutableLiveData<String?>()
@@ -25,6 +30,9 @@ open class DefaultViewModel @Inject constructor() : ViewModel() {
         errorMessage.postValue(
             ResponseConverter.convert<GenericResp>(response!!.errorBody()!!.string()).data!!.error
         )
+
+    protected fun getUserId() = authManager.retrieveUserInfoFromStorage()!!.userId
+
 
     protected open fun onSuccess(msg: String? = "Success") {
         successMessage.postValue(msg)

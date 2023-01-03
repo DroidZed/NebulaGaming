@@ -1,7 +1,7 @@
 package tn.esprit.apimodule.models
 
 data class Product(
-    val _id: String? = null,
+    val _id: String,
     val name: String,
     val image: String? = null,
     val description: String,
@@ -9,5 +9,5 @@ data class Product(
     val category: Category? = null,
     val price: Float,
     val quantity: Int,
-    val publisher: User? = null
+    val publisher: User
 )

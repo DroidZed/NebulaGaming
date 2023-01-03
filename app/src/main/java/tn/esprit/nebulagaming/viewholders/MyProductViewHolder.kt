@@ -9,14 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.makeramen.roundedimageview.RoundedImageView
 import tn.esprit.apimodule.models.Product
-import tn.esprit.nebulagaming.MarketplaceActivity
 import tn.esprit.nebulagaming.MyproductsdetailsActivity
-import tn.esprit.nebulagaming.ProductDetailsActivity
 import tn.esprit.nebulagaming.R
-import tn.esprit.nebulagaming.utils.HelperFunctions
+import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 import tn.esprit.shared.Consts
 
-class MyProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)  {
+class MyProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var myproductDetailsOV: LinearLayout? = null
     private var myproductImage: RoundedImageView? = null
     private var myproductName: TextView? = null
@@ -43,11 +41,12 @@ class MyProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)  {
             myproductDetailsOV?.visibility = View.INVISIBLE
         }
 
-        HelperFunctions.usePicasso(
-            url = product.image,
-            placeholder = R.drawable.event_wallpaper,
-            view = myproductImage!!
-        )
+        if (product.image != null)
+            usePicasso(
+                url = product.image!!,
+                placeholder = R.drawable.event_wallpaper,
+                view = myproductImage!!
+            )
 
         myproductName?.text = product.name
         myproductDesc?.text = product.description

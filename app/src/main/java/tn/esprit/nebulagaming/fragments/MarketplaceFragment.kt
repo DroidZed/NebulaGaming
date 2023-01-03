@@ -1,6 +1,9 @@
 package tn.esprit.nebulagaming.fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
 import android.widget.EditText
@@ -11,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
+import tn.esprit.apimodule.models.Product
 import tn.esprit.nebulagaming.R
 import tn.esprit.nebulagaming.adapters.ProductAdapter
 import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
@@ -25,7 +28,6 @@ import tn.esprit.nebulagaming.viewmodels.MarketplaceViewModel
 class MarketplaceFragment : Fragment(R.layout.fragment_marketplace) {
 
     private lateinit var productAdapter: ProductAdapter
-    private lateinit var filterProductsBtn: FloatingActionButton
     private lateinit var searchProductsBar: EditText
     private lateinit var categoriesGroup: ChipGroup
     private lateinit var productsListRV: RecyclerView
@@ -36,6 +38,8 @@ class MarketplaceFragment : Fragment(R.layout.fragment_marketplace) {
     private var pagedItemsCount: Int = 0
     private var totalPages: Int = 0
 
+    private val data = mutableListOf<Product>()
+
     private val marketPlaceVM: MarketplaceViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,18 +48,26 @@ class MarketplaceFragment : Fragment(R.layout.fragment_marketplace) {
         searchProductsBar = view.findViewById(R.id.searchProductsBar)
         categoriesGroup = view.findViewById(R.id.categoriesGroup)
         productsListRV = view.findViewById(R.id.productsListRV)
-        filterProductsBtn = view.findViewById(R.id.filterProductsBtn)
         refreshLayoutMarketplace = view.findViewById(R.id.refreshLayoutMarketplace)
 
         searchProductsBar.on(IME_ACTION_DONE) {
             searchProductsBar.apply {
                 clearFocus()
                 hideKeyboard()
-                productAdapter.filterProductsByName(searchProductsBar.text.toString())
             }
         }
 
-        filterProductsBtn.setOnClickListener {}
+        searchProductsBar.addTextChangedListener(object : TextWatcher {
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                filterProductsByName(searchProductsBar.text.toString())
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+
 
         productAdapter = ProductAdapter(mutableListOf())
 
@@ -67,9 +79,16 @@ class MarketplaceFragment : Fragment(R.layout.fragment_marketplace) {
         setupUi()
 
         categoriesGroup.setOnCheckedStateChangeListener { group, checkedIds ->
-            productAdapter.filterProductsByCategory(
-                group.findViewById<Chip>(checkedIds[0]).text.toString()
-            )
+            try {
+                filterProductsByCategory(
+                    group.findViewById<Chip>(checkedIds[0]).text.toString()
+                )
+            } catch (e: Exception) {
+                group.clearCheck()
+                productAdapter.clear()
+                productAdapter.addAll(data)
+                productsListRV.refreshDrawableState()
+            }
         }
 
         refreshLayoutMarketplace.setOnRefreshListener {
@@ -92,6 +111,22 @@ class MarketplaceFragment : Fragment(R.layout.fragment_marketplace) {
         loadCategories()
 
         loadProducts(pageNumber)
+    }
+
+    private fun filterProductsByCategory(category: String?) {
+
+        productAdapter.clear()
+
+        productAdapter.addAll(data.asSequence().filter { p -> p.category?.name == category }
+            .toMutableList())
+    }
+
+    fun filterProductsByName(name: String) {
+
+        productAdapter.setFilter(
+            data.asSequence().filter { p -> p.name.lowercase().contains(name.lowercase()) }
+                .toMutableList()
+        )
     }
 
     private fun setRecyclerViewScrollListener() {
@@ -135,7 +170,10 @@ class MarketplaceFragment : Fragment(R.layout.fragment_marketplace) {
 
                                 val chip = Chip(requireContext())
 
-                                chip.apply { text = it.name }
+                                chip.apply {
+                                    text = it.name
+                                    isCheckable = true
+                                }
 
                                 categoriesGroup.addView(chip)
                             }
@@ -159,6 +197,7 @@ class MarketplaceFragment : Fragment(R.layout.fragment_marketplace) {
                 when (rs.status) {
                     Status.SUCCESS -> {
                         rs.data?.apply {
+                            data.addAll(this.products)
                             pagedItemsCount = this.pageSize
                             pageNumber = this.page
                             totalPages = this.pages
@@ -173,6 +212,7 @@ class MarketplaceFragment : Fragment(R.layout.fragment_marketplace) {
                     Status.ERROR -> {
                         if (initialRun == true)
                             refreshLayoutMarketplace.isRefreshing = false
+                        Log.e("PRODUCTS", rs.message!!)
                         toastMsg(requireContext(), "Unable to load products at the moment...")
                     }
                 }

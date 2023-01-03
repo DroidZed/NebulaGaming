@@ -8,14 +8,12 @@ import tn.esprit.apimodule.NetworkClient
 import tn.esprit.apimodule.models.GenericResp
 import tn.esprit.apimodule.models.QuizAnswerBody
 import tn.esprit.apimodule.utils.ResponseConverter
-import tn.esprit.authmodule.repos.UserAuthManager
 import tn.esprit.nebulagaming.utils.Resource
 import tn.esprit.roommodule.dao.NotifDao
 import javax.inject.Inject
 
 @HiltViewModel
 class QuizViewModel @Inject constructor(
-    private val authManager: UserAuthManager,
     private val notifDao: NotifDao
 ) :
     DefaultViewModel() {
@@ -32,7 +30,7 @@ class QuizViewModel @Inject constructor(
 
             val actionResp = service.answerQuiz(
                 quizId,
-                QuizAnswerBody(authManager.retrieveUserInfoFromStorage()!!.userId, failOrPass)
+                QuizAnswerBody(getUserId(), failOrPass)
             )
 
             if (actionResp.isSuccessful)

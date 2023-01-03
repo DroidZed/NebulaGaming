@@ -2,47 +2,38 @@ package tn.esprit.nebulagaming.viewmodels
 
 import android.content.Context
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import tn.esprit.apimodule.NetworkClient
-import tn.esprit.authmodule.repos.UserAuthManager
+import kotlinx.coroutines.runBlocking
+import tn.esprit.apimodule.models.Product
+import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
+import tn.esprit.roommodule.dao.UserDao
+import tn.esprit.roommodule.dao.WishlistDao
+import tn.esprit.roommodule.models.Wishlist
 import javax.inject.Inject
 
 @HiltViewModel
 class WishListViewModel @Inject constructor(
-    private val authManager: UserAuthManager
+    private val wishlistDao: WishlistDao,
+    private val userDao: UserDao
 ) : DefaultViewModel() {
 
-    fun saveToWishList(context: Context, prodId: String) {
+    fun add(context: Context, prod: Product) = runBlocking {
+        try {
 
-        val client = NetworkClient(context)
-
-        val service = client.getWishlistService()
-
-        job = CoroutineScope(Dispatchers.IO).launch {
-
-            val res = service.addProductToWishlist(
-                authManager.retrieveUserInfoFromStorage()!!.userId,
-                prodId
+            wishlistDao.create(
+                Wishlist(
+                    name = prod.name,
+                    userId = authManager.retrieveUserInfoFromStorage()!!.userId,
+                    idProd = prod._id,
+                    price = prod.price,
+                    image = prod.image
+                )
             )
+            toastMsg(context, "Added to wishlist !")
 
-            withContext(Dispatchers.Main) {
-
-                try {
-                    if (res.isSuccessful) {
-                        onSuccess(res.body()!!.message)
-                    } else
-                        onError(res)
-                } catch (e: Exception) {
-                    onError()
-                }
-
-            }
-
+        } catch (e: Exception) {
+            toastMsg(context, "Item already in list!")
         }
-
     }
 
+    fun getAll() = runBlocking { userDao.getAll(getUserId()) }
 }

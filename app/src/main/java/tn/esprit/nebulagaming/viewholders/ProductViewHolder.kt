@@ -8,10 +8,12 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.makeramen.roundedimageview.RoundedImageView
+import dagger.hilt.android.internal.managers.ViewComponentManager.FragmentContextWrapper
 import tn.esprit.apimodule.models.Product
 import tn.esprit.nebulagaming.MarketplaceActivity
 import tn.esprit.nebulagaming.ProductDetailsActivity
 import tn.esprit.nebulagaming.R
+import tn.esprit.nebulagaming.utils.HelperFunctions.getImageFromBackend
 import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 import tn.esprit.shared.Consts.ID_PROD
 
@@ -47,7 +49,7 @@ class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         if (product.image != null)
             usePicasso(
-                url = product.image!!,
+                url = getImageFromBackend(product.image!!),
                 placeholder = R.drawable.event_wallpaper,
                 view = productImage!!
             )
@@ -59,11 +61,11 @@ class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             productDetailsOV?.visibility = View.INVISIBLE
 
             Intent(
-                itemView.context as MarketplaceActivity,
+                itemView.context as FragmentContextWrapper,
                 ProductDetailsActivity::class.java
             ).let { i ->
                 i.putExtra(ID_PROD, product._id)
-                startActivity(itemView.context as MarketplaceActivity, i, null)
+                startActivity(itemView.context as FragmentContextWrapper, i, null)
             }
         }
     }

@@ -34,6 +34,6 @@ class NotificationsFragment : Fragment(R.layout.fragment_notifications) {
             layoutManager = linearLayoutManager
         }
 
-        notificationsAdapter.addAll(notifVm.getUserNotifications().toMutableList())
+        notificationsAdapter.addAll(notifVm.getUserNotifications()!!.toMutableList())
     }
 }

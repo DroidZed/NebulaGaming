@@ -5,8 +5,4 @@ import androidx.room.Query
 import tn.esprit.roommodule.models.Bookmarks
 
 @Dao
-interface BookmarksDao : EntityDao<Bookmarks> {
-
-    @Query("SELECT * FROM Bookmarks")
-    suspend fun getAll(): List<Bookmarks>
-}
+interface BookmarksDao : EntityDao<Bookmarks>

@@ -57,36 +57,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scrolledCg" />
 
-        <FrameLayout
-            android:id="@+id/productsZone"
-            android:layout_width="0dp"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/productsListRV"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider3">
+            app:layout_constraintTop_toBottomOf="@id/divider3" />
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/productsListRV"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="5dp" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/filterProductsBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="50dp"
-                android:clickable="true"
-                android:contentDescription="@string/cntdesc"
-                android:focusable="true"
-
-                android:src="@drawable/ic_baseline_filter_list_24"
-                tools:ignore="ImageContrastCheck" />
-        </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

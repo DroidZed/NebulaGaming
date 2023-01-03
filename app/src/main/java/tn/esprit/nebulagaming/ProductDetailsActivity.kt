@@ -1,7 +1,6 @@
 package tn.esprit.nebulagaming
 
 import android.os.Bundle
-
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -11,15 +10,17 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import dagger.hilt.android.AndroidEntryPoint
+import tn.esprit.apimodule.models.Product
+import tn.esprit.nebulagaming.fragments.BuyerInfoBottomSheet
 import tn.esprit.nebulagaming.utils.HelperFunctions.getImageFromBackend
 import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
 import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
-import tn.esprit.nebulagaming.utils.Status
 import tn.esprit.nebulagaming.viewmodels.MarketplaceViewModel
 import tn.esprit.nebulagaming.viewmodels.WishListViewModel
+import tn.esprit.roommodule.models.Wishlist
 import tn.esprit.shared.Consts.ID_PROD
 
-
+@AndroidEntryPoint
 class ProductDetailsActivity : AppCompatActivity() {
 
     private val viewModel: MarketplaceViewModel by viewModels()
@@ -38,6 +39,10 @@ class ProductDetailsActivity : AppCompatActivity() {
     private lateinit var addWishListBtn: Button
     private lateinit var contactBuyBtn: Button
 
+    var product: Product? = null
+
+    private lateinit var sheet: BuyerInfoBottomSheet
+
     private lateinit var progProd: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +55,8 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         setSupportActionBar(productTopBar)
 
+        productTopBar.setNavigationOnClickListener { finish() }
+
         prodImg = findViewById(R.id.prodImg)
         prodCat = findViewById(R.id.prodCat)
         prodName = findViewById(R.id.prodName)
@@ -60,79 +67,53 @@ class ProductDetailsActivity : AppCompatActivity() {
         contactBuyBtn = findViewById(R.id.contactBuyBtn)
         progProd = findViewById(R.id.progProd)
 
-        setupUi()
 
-        addWishListBtn.setOnClickListener {
-
-            wlViewModel.saveToWishList(this, productId)
-
-            wlViewModel.successMessage.observe(this) { msg ->
-
-                if (msg != null)
-                    toastMsg(this, msg)
-                else
-                    toastMsg(this, wlViewModel.errorMessage.value!!)
-            }
-
-        }
+        addWishListBtn.setOnClickListener { wlViewModel.add(product!!) }
         contactBuyBtn.setOnClickListener {
 
+            sheet.show(supportFragmentManager, sheet.TAG)
         }
+
+        progProd.visibility = View.VISIBLE
+
+        viewModel.getProd(this, productId)
+
+        setupUi()
     }
 
     private fun setupUi() {
-        viewModel.getProductById(this, productId).observe(this) {
 
-            it?.let { rs ->
+        viewModel.productLv.observe(this) {
 
-                when (rs.status) {
+            if (it != null) {
 
-                    Status.LOADING -> {
-                        progProd.visibility = View.VISIBLE
-                    }
+                progProd.visibility = View.GONE
 
-                    Status.SUCCESS -> {
-                        progProd.visibility = View.GONE
-                        it.data?.apply {
+                it.apply {
+                    sheet = BuyerInfoBottomSheet.new(publisher.email, publisher.phone)
 
+                    product = this
 
-                            usePicasso(
-                                getImageFromBackend(this.image!!),
-                                R.drawable.logonv,
-                                prodImg
-                            )
+                    usePicasso(
+                        getImageFromBackend(this.image!!),
+                        R.drawable.logonv,
+                        prodImg
+                    )
+                    prodCat.let { t ->
+                        {
 
-
-                            prodCat.let { t ->
-                                {
-
-                                    if (this.category != null)
-                                        t.text = this.category!!.name
-                                    else
-                                        t.visibility = View.GONE
-                                }
-                            }
-
-
-                            prodName.text = this.name
-                            prodDesc.text = this.description
-                            prodPrice.text = getString(R.string.prod_price, this.price)
-                            prodStockStatus.text =
-                                if (this.quantity > 0) "- In Stock Now -" else "- Out Of Stock -"
-
-
+                            if (this.category != null) t.text = this.category!!.name
+                            else t.visibility = View.GONE
                         }
                     }
-
-                    Status.ERROR -> {
-                        progProd.visibility = View.GONE
-
-                    }
-
+                    prodName.text = this.name
+                    prodDesc.text = this.description
+                    prodPrice.text = getString(R.string.prod_price, this.price)
+                    prodStockStatus.text =
+                        if (this.quantity > 0) "- In Stock Now -" else "- Out Of Stock -"
                 }
-
             }
-
         }
+
     }
 }

@@ -8,12 +8,7 @@ import tn.esprit.roommodule.dao.UserDao
 import javax.inject.Inject
 
 @HiltViewModel
-class BookmarksViewModel @Inject constructor(
-    private val authManager: UserAuthManager,
-    private val userDao: UserDao
-) : ViewModel() {
+class BookmarksViewModel @Inject constructor(private val userDao: UserDao) : DefaultViewModel() {
 
     fun loadBookmarkedArticles() = runBlocking { userDao.getUserWithBookmarks(getUserId()) }
-
-    private fun getUserId() = authManager.retrieveUserInfoFromStorage()!!.userId
 }

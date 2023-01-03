@@ -16,27 +16,8 @@ class ProductAdapter(private val data: MutableList<Product>) :
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) =
         holder.bind(data[position])
 
-    fun filterProductsByCategory(category: String?) {
-
-        var original = data
-
+    fun setFilter(filter: MutableList<Product>) {
         clear()
-
-        if (category.isNullOrEmpty()) addAll(original)
-
-        original = original.asSequence().filter { p -> p.category?.name == category }.toMutableList()
-
-        addAll(original)
-    }
-
-    fun filterProductsByName(name: String) {
-
-        var original = data
-
-        clear()
-
-        original = original.asSequence().filter { p -> p.name == name }.toMutableList()
-
-        addAll(original)
+        addAll(filter)
     }
 }
