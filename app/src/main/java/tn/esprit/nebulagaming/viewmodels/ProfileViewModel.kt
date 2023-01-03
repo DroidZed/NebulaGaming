@@ -24,9 +24,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor(
-    override val userDao: UserDao
-) : UserManipulationViewModel(userDao) {
+class ProfileViewModel @Inject constructor() : UserManipulationViewModel() {
 
     val nameUser = MutableLiveData("")
 

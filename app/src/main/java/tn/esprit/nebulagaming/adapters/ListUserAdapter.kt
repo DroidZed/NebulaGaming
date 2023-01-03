@@ -9,12 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 import tn.esprit.apimodule.models.User
 import tn.esprit.nebulagaming.R
+import tn.esprit.nebulagaming.utils.HelperFunctions.getGravatar
+import tn.esprit.nebulagaming.utils.HelperFunctions.getImageFromBackend
+import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 import tn.esprit.nebulagaming.viewmodels.ProfileViewModel
 
-class ListUserAdapter(private val data: MutableList<User>) :
+class ListUserAdapter(private val profVM: ProfileViewModel, private val data: MutableList<User>) :
     ClassicAdapter<ListUserAdapter.ViewHolder, User>(data) {
-
-    private val profVM: ProfileViewModel? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.layout_oneuser, parent, false)
@@ -32,18 +33,27 @@ class ListUserAdapter(private val data: MutableList<User>) :
         holder.statususer.text = user.status.toString()
         holder.createsatcard.text = user.createdAd.toString()
 
+
+        usePicasso(
+            if (user.photo != null) getImageFromBackend(user.photo!!)
+            else getGravatar(user.email),
+            R.drawable.avatar_profile_png_picture,
+            holder.photocardusert!!
+        )
+
         when (user.status) {
             0 -> {
                 holder.ActDesactbutton.text = "Enable"
                 holder.ActDesactbutton.setOnClickListener {
                     Log.e("id:", user._id)
-                    profVM!!.enableUserById(holder.itemView.context, user._id)
+                    profVM.enableUserById(holder.itemView.context, user._id)
                 }
             }
             1 -> {
                 holder.ActDesactbutton.text = "Disable"
                 holder.ActDesactbutton.setOnClickListener {
                     Log.e("id:", user._id)
+                    profVM.disableUserById(holder.itemView.context, user._id)
                 }
             }
         }

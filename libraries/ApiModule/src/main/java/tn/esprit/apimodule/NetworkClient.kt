@@ -37,10 +37,11 @@ class NetworkClient(private val context: Context) {
 
 
     fun getAuthService() = getService<AuthApiService>(defaultClient)
+    fun getFcmService() = getService<FirebaseTokenApiService>(defaultClient)
+    fun getArticleService() = getService<ArticleApiService>(defaultClient)
 
     fun getUserService() = getService<UserApiService>(secureClient)
 
-    fun getArticleService() = getService<ArticleApiService>(defaultClient)
 
     fun getEventService() = getService<EventApiService>(secureClient)
 
@@ -50,11 +51,8 @@ class NetworkClient(private val context: Context) {
 
     fun getQuizService() = getService<QuizApiService>(secureClient)
 
-    fun getAdminService() = getService<AdminApiService>(defaultClient)
+    fun getAdminService() = getService<AdminApiService>(secureClient)
 
-    fun getWishlistService() = getService<WishlistApiService>(secureClient)
-
-    fun getFcmService() = getService<FirebaseTokenApiService>(defaultClient)
 
     fun getCategoryService() = getService<CategoryApiService>(secureClient)
 

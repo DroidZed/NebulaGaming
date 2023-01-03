@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_white"
     android:fitsSystemWindows="true"
-
-    tools:context=".MainActivity">
+    tools:context=".AdminActivityTest">
 
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:id="@+id/scroll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
             android:id="@+id/form_layout"
@@ -24,8 +27,8 @@
 
                 android:layout_height="200dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
                 android:elevation="10dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="10dp">
@@ -57,15 +60,15 @@
 
                     <!--Pie chart to display the data-->
 
-                    <org.eazegraph.lib.charts.PieChart xmlns:app="http://schemas.android.com/apk/res-auto"
+                    <org.eazegraph.lib.charts.PieChart
                         android:id="@+id/piechart"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:padding="6dp"
-                        android:layout_weight="1"
-                        android:layout_marginTop="25dp"
                         android:layout_marginLeft="15dp"
+                        android:layout_marginTop="25dp"
                         android:layout_marginBottom="15dp"
+                        android:layout_weight="1"
+                        android:padding="6dp"
 
 
                         />
@@ -74,10 +77,10 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:layout_marginLeft="20dp"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical">
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -102,12 +105,12 @@
                                 android:id="@+id/allUsersText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingLeft="10dp"
-                                android:textColor="@color/color_one"
-                                android:textStyle="bold"
-                                android:fontFamily="sans-serif-light"
                                 android:layout_alignParentRight="true"
-                                android:text="0" />
+                                android:fontFamily="sans-serif-light"
+                                android:paddingLeft="10dp"
+                                android:text="0"
+                                android:textColor="@color/color_one"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -135,12 +138,12 @@
                                 android:id="@+id/allMembersText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingLeft="10dp"
-                                android:textColor="@color/color_one"
-                                android:textStyle="bold"
-                                android:fontFamily="sans-serif-light"
                                 android:layout_alignParentRight="true"
-                                android:text="0" />
+                                android:fontFamily="sans-serif-light"
+                                android:paddingLeft="10dp"
+                                android:text="0"
+                                android:textColor="@color/color_one"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -169,12 +172,12 @@
                                 android:id="@+id/allCompaniesText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingLeft="10dp"
-                                android:textColor="@color/color_one"
-                                android:textStyle="bold"
-                                android:fontFamily="sans-serif-light"
                                 android:layout_alignParentRight="true"
-                                android:text="0" />
+                                android:fontFamily="sans-serif-light"
+                                android:paddingLeft="10dp"
+                                android:text="0"
+                                android:textColor="@color/color_one"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -227,7 +230,7 @@
 
                     <!--Pie chart to display the data-->
 
-                    <org.eazegraph.lib.charts.PieChart xmlns:app="http://schemas.android.com/apk/res-auto"
+                    <org.eazegraph.lib.charts.PieChart
                         android:id="@+id/piechart2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -402,7 +405,7 @@
 
                     <!--Pie chart to display the data-->
 
-                    <org.eazegraph.lib.charts.BarChart xmlns:app="http://schemas.android.com/apk/res-auto"
+                    <org.eazegraph.lib.charts.BarChart
                         android:id="@+id/piechart3"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -534,4 +537,27 @@
 
         </RelativeLayout>
     </ScrollView>
-</RelativeLayout>
+
+    <Button
+        android:id="@+id/logOutAdminBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="20dp"
+        android:text="@string/logout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scroll" />
+
+
+    <Button
+        android:id="@+id/listU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="20dp"
+        android:text="@string/list_users"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scroll" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

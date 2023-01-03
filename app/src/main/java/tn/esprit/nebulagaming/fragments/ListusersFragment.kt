@@ -8,11 +8,10 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
-import tn.esprit.nebulagaming.adapters.ListUserAdapter
 import tn.esprit.nebulagaming.R
-import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
-import tn.esprit.nebulagaming.viewmodels.ProfileViewModel
+import tn.esprit.nebulagaming.adapters.ListUserAdapter
 import tn.esprit.nebulagaming.utils.Status
+import tn.esprit.nebulagaming.viewmodels.ProfileViewModel
 
 @AndroidEntryPoint
 class ListusersFragment : Fragment(R.layout.fragment_listusers) {
@@ -24,7 +23,7 @@ class ListusersFragment : Fragment(R.layout.fragment_listusers) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listuRecy = view.findViewById(R.id.listuserRecy)
-        listAdpater = ListUserAdapter(mutableListOf())
+        listAdpater = ListUserAdapter(profVM, mutableListOf())
         listuRecy.apply {
             adapter = listAdpater
             layoutManager = LinearLayoutManager(view.context)

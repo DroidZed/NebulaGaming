@@ -82,7 +82,7 @@ class HomeActivity : AppCompatActivity() {
         )
 
         logout.setOnClickListener {
-            homeVM.handleLogOut()
+            homeVM.logOutUser()
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }

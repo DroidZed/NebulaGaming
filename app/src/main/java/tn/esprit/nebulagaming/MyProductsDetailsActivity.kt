@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -19,7 +18,6 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.apimodule.models.Product
-import tn.esprit.nebulagaming.utils.FileUtils
 import tn.esprit.nebulagaming.utils.HelperFunctions
 import tn.esprit.nebulagaming.utils.Status
 import tn.esprit.nebulagaming.viewmodels.MarketplaceViewModel
@@ -27,7 +25,7 @@ import tn.esprit.nebulagaming.viewmodels.ProductViewModel
 import tn.esprit.shared.Consts
 
 @AndroidEntryPoint
-class MyproductsdetailsActivity : AppCompatActivity() {
+class MyProductsDetailsActivity : AppCompatActivity() {
     private lateinit var CloseProduct: MaterialButton
     private lateinit var myproducttitle: TextView
     private lateinit var editmyproductbtn: MaterialButton
@@ -93,7 +91,7 @@ class MyproductsdetailsActivity : AppCompatActivity() {
                         rs.data?.apply {
 
                             val adapter = ArrayAdapter(
-                                this@MyproductsdetailsActivity,
+                                this@MyProductsDetailsActivity,
                                 android.R.layout.simple_spinner_item,
                                 this.map { cat -> cat.name })
                             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -146,7 +144,7 @@ class MyproductsdetailsActivity : AppCompatActivity() {
                     if (it != null) {
 
                         progProddet.visibility = View.GONE
-                        Intent(this, this@MyproductsdetailsActivity::class.java).also {
+                        Intent(this, this@MyProductsDetailsActivity::class.java).also {
                             startActivity(it)
                         }
                     }
@@ -165,8 +163,8 @@ class MyproductsdetailsActivity : AppCompatActivity() {
                 ) {
                     Log.e("ena Zero ", idCategory.toString())
 
-                    prodVm.loadCategories(this@MyproductsdetailsActivity)
-                        .observe(this@MyproductsdetailsActivity) {
+                    prodVm.loadCategories(this@MyProductsDetailsActivity)
+                        .observe(this@MyProductsDetailsActivity) {
 
                             it?.let { rs ->
                                 when (rs.status) {

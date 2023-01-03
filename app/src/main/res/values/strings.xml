@@ -117,4 +117,5 @@
     <string name="prod_price">%1$.2f DT</string>
     <string name="call_buyer">Call buyer</string>
     <string name="email_buyer">Email buyer</string>
+    <string name="list_users">List Users</string>
 </resources>

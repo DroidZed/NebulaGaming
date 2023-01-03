@@ -20,6 +20,8 @@ class LoginViewModel @Inject constructor(
     private val JwtManager: JWTManager
 ) : DefaultViewModel() {
 
+    fun checkIfAdmin() = JwtManager.extractRoleFromJWT(authManager.retrieveUserInfoFromStorage()!!.token) == 0
+
     // onclick login button
     fun handleLogin(context: Context, inputs: List<EditText>, textLayouts: List<TextInputLayout>) {
 

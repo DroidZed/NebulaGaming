@@ -13,11 +13,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.apimodule.models.Product
 import tn.esprit.nebulagaming.fragments.BuyerInfoBottomSheet
 import tn.esprit.nebulagaming.utils.HelperFunctions.getImageFromBackend
-import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
 import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 import tn.esprit.nebulagaming.viewmodels.MarketplaceViewModel
 import tn.esprit.nebulagaming.viewmodels.WishListViewModel
-import tn.esprit.roommodule.models.Wishlist
 import tn.esprit.shared.Consts.ID_PROD
 
 @AndroidEntryPoint
@@ -43,7 +41,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     private lateinit var sheet: BuyerInfoBottomSheet
 
-    private lateinit var progProd: ProgressBar
+    private lateinit var progressProd: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,16 +63,16 @@ class ProductDetailsActivity : AppCompatActivity() {
         prodStockStatus = findViewById(R.id.prodStockStatus)
         addWishListBtn = findViewById(R.id.addWishListBtn)
         contactBuyBtn = findViewById(R.id.contactBuyBtn)
-        progProd = findViewById(R.id.progProd)
+        progressProd = findViewById(R.id.progProd)
 
 
-        addWishListBtn.setOnClickListener { wlViewModel.add(product!!) }
+        addWishListBtn.setOnClickListener { wlViewModel.add(this, product!!) }
         contactBuyBtn.setOnClickListener {
 
             sheet.show(supportFragmentManager, sheet.TAG)
         }
 
-        progProd.visibility = View.VISIBLE
+        progressProd.visibility = View.VISIBLE
 
         viewModel.getProd(this, productId)
 
@@ -87,7 +85,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
             if (it != null) {
 
-                progProd.visibility = View.GONE
+                progressProd.visibility = View.GONE
 
                 it.apply {
                     sheet = BuyerInfoBottomSheet.new(publisher.email, publisher.phone)

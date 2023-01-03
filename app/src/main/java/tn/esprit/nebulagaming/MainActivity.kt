@@ -21,7 +21,12 @@ class MainActivity : AppCompatActivity() {
         when {
             !mainVM.isUserLoggedIn() -> startActivity(Intent(this, LoginActivity::class.java))
 
-            else -> startActivity(Intent(this, HomeActivity::class.java))
+            else -> startActivity(
+                Intent(
+                    this,
+                    if (mainVM.checkIfAdmin()) AdminActivityTest::class.java else HomeActivity::class.java
+                )
+            )
         }
         finish()
     }

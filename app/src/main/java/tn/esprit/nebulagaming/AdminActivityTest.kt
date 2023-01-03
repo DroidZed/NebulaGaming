@@ -1,13 +1,12 @@
 package tn.esprit.nebulagaming
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import org.eazegraph.lib.charts.BarChart
@@ -31,10 +30,10 @@ class AdminActivityTest : AppCompatActivity() {
     private lateinit var allProductText3: TextView
     private lateinit var allDisabledText: TextView
     private lateinit var allEnabledText: TextView
+    private lateinit var logOutAdminBtn: Button
+    private lateinit var listU: Button
     private val Advm: AdminViewModel by viewModels()
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_test)
@@ -52,6 +51,17 @@ class AdminActivityTest : AppCompatActivity() {
         allProductText3 = findViewById(R.id.allProductText3)
         piechart3 = findViewById(R.id.piechart3)
 
+        logOutAdminBtn = findViewById(R.id.logOutAdminBtn)
+        listU = findViewById(R.id.listU)
+
+        logOutAdminBtn.setOnClickListener {
+            Advm.logOutUser()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+        listU.setOnClickListener {
+            startActivity(Intent(this, AdminActivity::class.java))
+        }
 
         Advm.loadCountUsers(this).observe(this) {
             when (it.status) {
@@ -163,7 +173,7 @@ class AdminActivityTest : AppCompatActivity() {
                 Status.SUCCESS -> {
                     it.data?.let { stats ->
                         Log.e("prod nv", stats.allProducts!!.toString())
-                        Log.e("sum",stats.getSumQuantityAllProduct!!.toString())
+                        Log.e("sum", stats.getSumQuantityAllProduct!!.toString())
                         allProductText3.text = stats.allProducts!!.toString()
                         allCatgText3.text = stats.getCountAllCategorys!!.toString()
                         totalpricesText3.text = stats.getSumQuantityAllProduct!!.toString()

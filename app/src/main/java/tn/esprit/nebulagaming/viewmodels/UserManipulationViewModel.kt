@@ -12,13 +12,16 @@ import tn.esprit.roommodule.models.UserProfile
 import javax.inject.Inject
 
 @HiltViewModel
-open class UserManipulationViewModel @Inject constructor(
-    protected open val userDao: UserDao
-) : DefaultViewModel() {
+open class UserManipulationViewModel @Inject constructor() : DefaultViewModel() {
+
+    @Inject
+    lateinit var userDao: UserDao
 
     fun fetchUserInfoFromDb(): UserAndBookmarks? = runBlocking {
         userDao.getUserWithBookmarks(getUserId())
     }
+
+    fun logOutUser() = authManager.logOutUser()
 
     open fun persistUser(context: Context, user: UserProfile) = runBlocking {
         try {

@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.makeramen.roundedimageview.RoundedImageView
 import tn.esprit.apimodule.models.Product
-import tn.esprit.nebulagaming.MyproductsdetailsActivity
+import tn.esprit.nebulagaming.MyProductsDetailsActivity
 import tn.esprit.nebulagaming.R
+import tn.esprit.nebulagaming.utils.HelperFunctions.getImageFromBackend
 import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 import tn.esprit.shared.Consts
 
@@ -48,8 +49,8 @@ class MyProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 view = myproductImage!!
             )
 
-        HelperFunctions.usePicasso(
-            HelperFunctions.getImageFromBackend(product.image!!),
+        usePicasso(
+            getImageFromBackend(product.image!!),
             placeholder = R.drawable.event_wallpaper,
             myproductImage!!
         )
@@ -59,7 +60,7 @@ class MyProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             myproductDetailsOV?.visibility = View.INVISIBLE
 
-            val intent = Intent(itemView.context, MyproductsdetailsActivity::class.java)
+            val intent = Intent(itemView.context, MyProductsDetailsActivity::class.java)
             intent.putExtra(Consts.ID_PROD, product._id)
             ContextCompat.startActivity(itemView.context, intent, null)
 

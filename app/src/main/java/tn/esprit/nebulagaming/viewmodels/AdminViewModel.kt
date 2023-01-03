@@ -1,7 +1,6 @@
 package tn.esprit.nebulagaming.viewmodels
 
 import android.content.Context
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -12,16 +11,16 @@ import tn.esprit.nebulagaming.utils.Resource
 import javax.inject.Inject
 
 @HiltViewModel
-class AdminViewModel @Inject constructor(): ViewModel(){
+class AdminViewModel @Inject constructor() : UserManipulationViewModel() {
 
-    fun loadCountUsers(context: Context)= liveData(Dispatchers.IO)  {
+    fun loadCountUsers(context: Context) = liveData(Dispatchers.IO) {
 
         val client = NetworkClient(context)
         val responseAdmin = client.getAdminService()
         emit(Resource.loading(data = null))
 
-        try{
-                val response = responseAdmin.getCountAllUsers()
+        try {
+            val response = responseAdmin.getCountAllUsers()
             if (response.isSuccessful)
                 emit(
                     Resource.success(
@@ -37,7 +36,7 @@ class AdminViewModel @Inject constructor(): ViewModel(){
                         ).data?.error!!
                     )
                 )
-        }catch (ex: Exception) {
+        } catch (ex: Exception) {
             emit(
                 Resource.error(
                     data = null,
@@ -50,12 +49,12 @@ class AdminViewModel @Inject constructor(): ViewModel(){
     }
 
 
-    fun loadEnableDisableAccount(context: Context)= liveData(Dispatchers.IO) {
+    fun loadEnableDisableAccount(context: Context) = liveData(Dispatchers.IO) {
         val client = NetworkClient(context)
         val responseAdmin = client.getAdminService()
         emit(Resource.loading(data = null))
 
-        try{
+        try {
             val response = responseAdmin.getCountAllEnableDiscableCount()
             if (response.isSuccessful)
                 emit(
@@ -72,7 +71,7 @@ class AdminViewModel @Inject constructor(): ViewModel(){
                         ).data?.error!!
                     )
                 )
-        }catch (ex: Exception) {
+        } catch (ex: Exception) {
             emit(
                 Resource.error(
                     data = null,
@@ -84,12 +83,12 @@ class AdminViewModel @Inject constructor(): ViewModel(){
 
     }
 
-    fun loadCategProducts(context: Context)=liveData(Dispatchers.IO){
+    fun loadCategProducts(context: Context) = liveData(Dispatchers.IO) {
         val client = NetworkClient(context)
         val responseAdmin = client.getAdminService()
         emit(Resource.loading(data = null))
 
-        try{
+        try {
             val response = responseAdmin.getAllMethodProducts()
             if (response.isSuccessful)
                 emit(
@@ -106,7 +105,7 @@ class AdminViewModel @Inject constructor(): ViewModel(){
                         ).data?.error!!
                     )
                 )
-        }catch (ex: Exception) {
+        } catch (ex: Exception) {
             emit(
                 Resource.error(
                     data = null,

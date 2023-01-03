@@ -75,7 +75,12 @@ class LoginActivity : AppCompatActivity() {
                 else {
                     listOf(emailET, passwordET).forEach { it.clearText() }
                     Toast.makeText(this, "Logged in !", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, HomeActivity::class.java))
+                    startActivity(
+                        Intent(
+                            this,
+                            if (loginVM.checkIfAdmin()) AdminActivityTest::class.java else HomeActivity::class.java
+                        )
+                    )
                     finish()
                 }
             }
