@@ -166,13 +166,15 @@
                 android:layout_marginVertical="10dp"
                 android:fontFamily="@font/amaranth"
                 android:lineSpacingExtra="10sp"
+                android:minHeight="48dp"
                 android:text="@string/contact_buyer"
                 android:textAlignment="textStart"
                 android:textColor="@color/color_white"
                 android:textSize="20sp"
                 app:icon="@drawable/ic_baseline_send_24"
                 app:iconTint="#2196F3"
-                app:strokeColor="#2196F3" />
+                app:strokeColor="#2196F3"
+                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 
 

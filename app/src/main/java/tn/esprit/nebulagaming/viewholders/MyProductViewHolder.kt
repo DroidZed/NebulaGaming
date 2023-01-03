@@ -48,6 +48,11 @@ class MyProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 view = myproductImage!!
             )
 
+        HelperFunctions.usePicasso(
+            HelperFunctions.getImageFromBackend(product.image!!),
+            placeholder = R.drawable.event_wallpaper,
+            myproductImage!!
+        )
         myproductName?.text = product.name
         myproductDesc?.text = product.description
         myproductBtbMS?.setOnClickListener {

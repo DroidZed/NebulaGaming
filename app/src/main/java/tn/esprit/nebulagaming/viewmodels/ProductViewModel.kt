@@ -11,6 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -104,6 +105,102 @@ class ProductViewModel @Inject constructor(private val userManager: UserAuthMana
 
     }
 
+    fun updateproductwithimage(
+        context: Context,
+        name: String,
+        description: String,
+        price: Float,
+        quantity: Int,
+        image: File,
+        category: String,
+        idproduct: String
+    ) {
+        val authClient = NetworkClient(context)
+        val apiService = authClient.getMarketplaceService()
+
+        val requestBody: RequestBody =
+            RequestBody.create("image/${image.extension}".toMediaTypeOrNull(), image)
+
+        val fileToUpload: MultipartBody.Part =
+            MultipartBody.Part.createFormData(
+                "image",
+                image.name,
+                requestBody
+            )
+        job = CoroutineScope(Dispatchers.IO).launch {
+
+            val map = HashMap<String, Any>()
+
+            map["name"] = name
+            map["description"] = description
+            map["price"] = price
+            map["image"] = image.name
+            map["quantity"] = quantity
+
+
+            println("map : $map")
+
+            val ajouterproduct = apiService.updateWithImage(
+                idproduct,
+                category,
+                fileToUpload,
+                map,
+            )
+
+            withContext(Dispatchers.Main) {
+                try {
+                    if (ajouterproduct.isSuccessful)
+                        onSuccess(ajouterproduct.body()!!.toString())
+                    else {
+                        Log.e("error", ajouterproduct.errorBody().toString())
+                        super.onError(ajouterproduct)
+                    }
+                } catch (ex: Exception) {
+                    super.onError()
+                }
+            }
+        }
+
+    }
+
+
+    fun updateproductwithoutimage(
+        context: Context,
+        name: String,
+        description: String,
+        price: Float,
+        quantity: Int,
+
+        category: String,
+        idproduct: String
+    ) {
+        val authClient = NetworkClient(context)
+        val apiService = authClient.getMarketplaceService()
+        job = CoroutineScope(Dispatchers.IO).launch {
+            val map = HashMap<String, Any>()
+            map["name"] = name
+            map["description"] = description
+            map["price"] = price
+            map["quantity"] = quantity
+
+            val updateproduct = apiService.updateWithoutImage(idproduct, category, map)
+            withContext(Dispatchers.Main) {
+                try {
+                    if (updateproduct.isSuccessful)
+                        onSuccess(updateproduct.body().toString())
+                    else {
+                        Log.e("error", updateproduct.errorBody().toString())
+                        super.onError(updateproduct)
+                    }
+                } catch (ex: Exception) {
+                    super.onError()
+                }
+            }
+        }
+
+    }
+
+
     fun loadCategories(context: Context) = liveData {
         emit(Resource.loading(data = null))
         try {
@@ -168,8 +265,6 @@ class ProductViewModel @Inject constructor(private val userManager: UserAuthMana
         }
         return validationList
     }
-
-
 
 
 }

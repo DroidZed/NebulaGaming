@@ -1,5 +1,6 @@
 package tn.esprit.apimodule.repos
 
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -61,6 +62,7 @@ interface MarketplaceApiService {
          @Part description: String,
          @Part starImage: MultipartBody.Part,
          @Part quantity: Int*/
-        @PartMap body: HashMap<String, RequestBody>
+        @Part image: MultipartBody.Part,
+        @PartMap body: HashMap<String, Any>
     ): Response<List<Product>>
 }
