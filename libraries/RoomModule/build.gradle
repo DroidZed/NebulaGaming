@@ -16,16 +16,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += [
-                        "room.schemaLocation"  : "$projectDir/schema".toString(),
-                        "room.incremental"     : "true",
-                        "room.expandProjection": "true"
-                ]
-            }
-        }
     }
 
     buildTypes {

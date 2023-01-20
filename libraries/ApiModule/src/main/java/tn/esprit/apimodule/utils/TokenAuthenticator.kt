@@ -1,6 +1,7 @@
 package tn.esprit.apimodule.utils
 
 import android.content.Context
+import kotlinx.coroutines.runBlocking
 import okhttp3.Authenticator
 import okhttp3.Request
 import okhttp3.Response
@@ -24,12 +25,12 @@ class TokenAuthenticator constructor(private val context: Context) : Authenticat
 
         val userInfo = authServ.retrieveUserInfoFromStorage()!!
 
-        val response = client
-            .getAuthService()
-            .resetUserToken("Bearer ${userInfo.refresh}", userInfo.token)
-            .execute()
-            .body()
-            ?.body()!!
+        val response = runBlocking {
+            client
+                .getAuthService()
+                .resetUserToken("Bearer ${userInfo.refresh}", userInfo.token)
+                .body()!!
+        }
 
         userInfo.apply {
             token = response.token!!

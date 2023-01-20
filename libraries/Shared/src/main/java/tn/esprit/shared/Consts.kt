@@ -7,9 +7,9 @@ object Consts {
 
     const val DB_NAME = "NebulaGaming"
 
-    const val DB_VERSION = 10
+    const val DB_VERSION = 1
 
-    const val FUNCTION_URL = "http://192.168.1.5:4040"
+    const val FUNCTION_URL = "https://nebulagaming-9ve8.onrender.com"
 
     const val ID_PROD = "ID_PROD"
 

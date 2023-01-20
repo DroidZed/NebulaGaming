@@ -55,6 +55,11 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
         loadData(pageNumber)
 
         swipeContainer.setOnRefreshListener {
+            // reset related pagination data
+            pageNumber = 1
+            pagedItemsCount = 0
+            totalPages = 0
+            // clear the recyclerview
             articlesAdapter.clear()
             loadData(pageNumber)
             articlesRV.refreshDrawableState()

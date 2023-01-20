@@ -159,9 +159,9 @@ class ProfileActivity : AppCompatActivity() {
             else -> user.photo
         }
 
-        usePicasso(userPhoto, R.drawable.avatar_profile_png_picture, photoProf)
+        nameUser.text = user.name
 
-        profileVM.nameUser.postValue(user.name)
+        usePicasso(userPhoto, R.drawable.avatar_profile_png_picture, photoProf)
 
         numLevel.text = resources.getString(R.string.levelU, user.level)
     }

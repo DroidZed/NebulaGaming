@@ -1,6 +1,7 @@
 package tn.esprit.nebulagaming.viewmodels
 
 import android.content.Context
+import android.util.Log
 import android.util.Patterns
 import android.widget.EditText
 import com.google.android.material.textfield.TextInputLayout
@@ -20,7 +21,8 @@ class LoginViewModel @Inject constructor(
     private val JwtManager: JWTManager
 ) : DefaultViewModel() {
 
-    fun checkIfAdmin() = JwtManager.extractRoleFromJWT(authManager.retrieveUserInfoFromStorage()!!.token) == 0
+    fun checkIfAdmin() =
+        JwtManager.extractRoleFromJWT(authManager.retrieveUserInfoFromStorage()!!.token) == 0
 
     // onclick login button
     fun handleLogin(context: Context, inputs: List<EditText>, textLayouts: List<TextInputLayout>) {
@@ -42,16 +44,18 @@ class LoginViewModel @Inject constructor(
 
         job = CoroutineScope(Dispatchers.IO).launch {
 
-            val loginResp = apiService.login(LoginReqBody(email = email, password = password))
-            withContext(Dispatchers.Main) {
-                try {
+            try {
+                val loginResp = apiService.login(LoginReqBody(email = email, password = password))
+                withContext(Dispatchers.Main) {
                     if (loginResp.isSuccessful)
                         onLoginSuccess(loginResp.body()!!)
                     else
                         onError(loginResp)
-                } catch (e: Exception) {
-                    super.onError()
                 }
+
+            } catch (e: Exception) {
+                Log.e("ERROR LOGIN", e.message!!)
+                super.onError()
             }
         }
     }

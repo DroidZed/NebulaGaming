@@ -4,10 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -25,8 +22,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor() : UserManipulationViewModel() {
-
-    val nameUser = MutableLiveData("")
 
     fun handleUpdate(context: Context, name: String, phone: String) {
 

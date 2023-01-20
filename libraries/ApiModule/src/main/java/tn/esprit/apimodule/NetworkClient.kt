@@ -42,7 +42,6 @@ class NetworkClient(private val context: Context) {
 
     fun getUserService() = getService<UserApiService>(secureClient)
 
-
     fun getEventService() = getService<EventApiService>(secureClient)
 
     fun getMarketplaceService() = getService<MarketplaceApiService>(secureClient)
@@ -52,7 +51,6 @@ class NetworkClient(private val context: Context) {
     fun getQuizService() = getService<QuizApiService>(secureClient)
 
     fun getAdminService() = getService<AdminApiService>(secureClient)
-
 
     fun getCategoryService() = getService<CategoryApiService>(secureClient)
 
@@ -77,8 +75,8 @@ class NetworkClient(private val context: Context) {
             .addInterceptor(HttpLoggingInterceptor().apply {
                 this.level = HttpLoggingInterceptor.Level.BODY
             })
-            .readTimeout(5, TimeUnit.SECONDS)
-            .writeTimeout(5, TimeUnit.SECONDS)
-            .callTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(2, TimeUnit.MINUTES)
+            .writeTimeout(2, TimeUnit.MINUTES)
+            .callTimeout(2, TimeUnit.MINUTES)
             .build()
 }

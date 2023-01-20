@@ -14,7 +14,8 @@ import tn.esprit.nebulagaming.utils.hideKeyboard
 import tn.esprit.nebulagaming.utils.on
 import tn.esprit.nebulagaming.viewmodels.RegisterViewModel
 
-class   SignupActivity : AppCompatActivity() {
+class SignupActivity : AppCompatActivity() {
+
     private lateinit var haveacc: TextView
     private lateinit var btnnext: Button
     private lateinit var NameTextLayout: TextInputLayout
@@ -27,6 +28,7 @@ class   SignupActivity : AppCompatActivity() {
     private lateinit var PhoneInputText: TextInputEditText
 
     private val RegVm: RegisterViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)

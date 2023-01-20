@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.media.RingtoneManager
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import kotlinx.coroutines.*
@@ -84,25 +85,29 @@ interface INotificationService {
 
         val service = NetworkClient(context).getFcmService()
 
-        if ((currentToken != "") and (currentToken != newToken)) CoroutineScope(Dispatchers.IO).launch {
+        try {
+            if ((currentToken != "") and (currentToken != newToken)) CoroutineScope(Dispatchers.IO).launch {
 
-            val resp = service.saveToken(TokenReqBody(currentToken!!, newToken))
+                val resp = service.saveToken(TokenReqBody(currentToken!!, newToken))
 
-            withContext(Dispatchers.Main) {
+                withContext(Dispatchers.Main) {
 
-                if (resp.isSuccessful)
-                    sharedPrefs.edit().putString(FCM_TOKEN, newToken).apply()
+                    if (resp.isSuccessful)
+                        sharedPrefs.edit().putString(FCM_TOKEN, newToken).apply()
+                }
             }
-        }
-        else CoroutineScope(Dispatchers.IO).launch {
+            else CoroutineScope(Dispatchers.IO).launch {
 
-            val resp = service.saveToken(TokenReqBody(newToken))
+                val resp = service.saveToken(TokenReqBody(newToken))
 
-            withContext(Dispatchers.Main) {
+                withContext(Dispatchers.Main) {
 
-                if (resp.isSuccessful)
-                    sharedPrefs.edit().putString(FCM_TOKEN, newToken).apply()
+                    if (resp.isSuccessful)
+                        sharedPrefs.edit().putString(FCM_TOKEN, newToken).apply()
+                }
             }
+        } catch (e: Exception) {
+            Log.e("FCM-TOKEN", e.message!!)
         }
     }
 }

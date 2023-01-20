@@ -191,7 +191,6 @@ class HomeActivity : AppCompatActivity() {
             headerImage
         )
 
-        profileVM.nameUser.postValue(u.name)
         usernameHeader.text = u.name
         levelHeader.apply {
             textSize = if (u.level > 99) 17f else 25f

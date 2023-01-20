@@ -22,7 +22,6 @@
         android:roundIcon="@drawable/logonv"
         android:supportsRtl="true"
         android:theme="@style/Theme.NebulaGaming"
-        android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
         <meta-data
