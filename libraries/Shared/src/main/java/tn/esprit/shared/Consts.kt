@@ -9,13 +9,9 @@ object Consts {
 
     const val DB_VERSION = 1
 
-    const val FUNCTION_URL = "https://nebulagaming-9ve8.onrender.com"
+    const val FUNCTION_URL = "https://zany-cyan-sea-lion-hem.cyclic.app"
 
     const val ID_PROD = "ID_PROD"
-
-    const val POST_DATA = "POST_DATA"
-
-    const val FCM_TOKEN = "FCM_TOKEN"
 
     const val ARTICLE_DETAIL = "ARTICLE_DETAIL"
 
@@ -29,13 +25,7 @@ object Consts {
 
     const val QUIZ_NOTIF_CHANNEL_NAME = "Quiz Notifications"
 
-    const val DMs_NOTIFICATIONS_ID = "DMS_NOTIFICATIONS"
-
-    const val DMS_NOTIF_CHANNEL_NAME = "Direct Messages"
-
     const val QUIZ_TOPIC = "quiz"
-
-    const val DMs_TOPIC = "DMs"
 
     const val INTENT_QUIZ_ID = "QUIZ_ID"
 

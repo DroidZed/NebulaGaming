@@ -37,7 +37,7 @@ class NetworkClient(private val context: Context) {
 
 
     fun getAuthService() = getService<AuthApiService>(defaultClient)
-    fun getFcmService() = getService<FirebaseTokenApiService>(defaultClient)
+
     fun getArticleService() = getService<ArticleApiService>(defaultClient)
 
     fun getUserService() = getService<UserApiService>(secureClient)

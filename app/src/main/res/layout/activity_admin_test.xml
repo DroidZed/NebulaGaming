@@ -17,12 +17,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
-            android:id="@+id/form_layout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewGraph"
                 android:layout_width="match_parent"
 
                 android:layout_height="200dp"
@@ -40,7 +38,6 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -362,7 +359,6 @@
             <!-- Use of programming languages -->
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/Card3"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_below="@+id/cardViewGraph2"

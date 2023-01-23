@@ -32,23 +32,13 @@
         android:label="@string/job_offers"
         app:popUpTo="@id/articlesFragment"
         tools:layout="@layout/fragment_job_offers" />
-    <fragment
-        android:id="@+id/forumFragment"
-        android:name="tn.esprit.nebulagaming.fragments.ForumFragment"
-        android:label="@string/forum"
-        app:popUpTo="@id/articlesFragment"
-        tools:layout="@layout/fragment_forum" />
+
     <fragment
         android:id="@+id/notificationFragment"
         android:name="tn.esprit.nebulagaming.fragments.NotificationsFragment"
         android:label="@string/notifications"
         tools:layout="@layout/fragment_notifications" />
 
-    <fragment
-        android:id="@+id/chatListFragment"
-        android:name="tn.esprit.nebulagaming.fragments.ChatListFragment"
-        android:label="@string/conversations"
-        tools:layout="@layout/fragment_chat_list" />
     <activity
         android:name="tn.esprit.nebulagaming.MarketplaceActivity"
         android:label="@string/marketplace"

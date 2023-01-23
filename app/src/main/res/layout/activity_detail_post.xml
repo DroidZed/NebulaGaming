@@ -113,7 +113,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/likepost"
             style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
             android:layout_width="46dp"
             android:layout_height="46dp"
@@ -143,7 +142,6 @@
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/savepost"
             style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
             android:layout_width="46dp"
             android:layout_height="46dp"

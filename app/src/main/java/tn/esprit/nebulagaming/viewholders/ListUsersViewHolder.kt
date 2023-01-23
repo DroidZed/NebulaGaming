@@ -65,12 +65,16 @@ class ListUsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             ActDesactbutton!!.setOnClickListener { Log.e("id:", UserProfileResponse._id) }
 
         }
-        if (UserProfileResponse.role == 0) {
-            roleUsercard!!.text = "Admin"
-        } else if (UserProfileResponse.role == 1) {
-            roleUsercard!!.text = "User"
-        } else if (UserProfileResponse.role == 2) {
-            roleUsercard!!.text = "Company"
+        when (UserProfileResponse.role) {
+            0 -> {
+                roleUsercard!!.text = "Admin"
+            }
+            1 -> {
+                roleUsercard!!.text = "User"
+            }
+            2 -> {
+                roleUsercard!!.text = "Company"
+            }
         }
         if (UserProfileResponse.status == 0) {
             statususer!!.text = "Disabled"

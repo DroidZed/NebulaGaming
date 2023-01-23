@@ -15,7 +15,6 @@
     <string name="cntdesc">cntDesc</string>
     <string name="events">Events</string>
     <string name="articles">Articles</string>
-    <string name="forum">Forum</string>
     <string name="job_offers">Job Offers</string>
     <string name="marketplace">Marketplace</string>
     <string name="nav_open">Open</string>
@@ -27,16 +26,7 @@
     <string name="profile">Profile</string>
     <string name="notifications">Notifications</string>
     <string name="notifimage">notifImage</string>
-    <string name="hot_now">Hot Now!</string>
-    <string name="check_out_what_s_hot_now">Check out what\'s hot now !</string>
-    <string name="cool">Cool !</string>
     <string name="we_re_hiring">WE\'RE HIRING!</string>
-    <string name="dot">•</string>
-    <string name="chat">Chat</string>
-    <string name="your_message">Your message…</string>
-    <string name="bubble_header">
-        %1$s • %2$s
-    </string>
     <string name="select_your_role_please">Select your role please</string>
     <string name="submit">Submit</string>
     <string name="slogant">Best Tunisian Gaming Platform</string>
@@ -78,39 +68,28 @@
         <item>Alternance</item>
         <item>Freelance</item>
     </string-array>
-    <string name="overflow_btn_ctn_desc">Overflow button</string>
     <string name="your_name">Your name</string>
-    <string name="lvl_10">lvl 10</string>
-    <string name="rank">Rank</string>
     <string name="rewards">Rewards</string>
     <string name="update_info">Update info</string>
     <string name="wishlist">Wishlist</string>
-    <string name="my_cart">My Cart</string>
     <string name="search">Search…</string>
     <string name="view">View</string>
-    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</string>
     <string name="your_comment">Your comment</string>
-    <string name="posts">Posts</string>
     <string name="no_internet_img">no internet img</string>
     <string name="no_internet">No internet!!</string>
-    <string name="conversations">Conversations</string>
     <string name="article">Article Details</string>
-    <string name="check_it_out">Check it out</string>
     <string name="tags">tags:</string>
     <string name="read_more">Read more</string>
     <string name="levelU">Level - %1$d</string>
     <string name="job_position">Job Position</string>
     <string name="link_to_apply_for_the_job">Link to apply for the job</string>
     <string name="quiz">Quiz</string>
-    <string name="nothing_to_see_here">Nothing to see here…</string>
     <string name="next">Next</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="disable">Disable</string>
     <string name="created_at">Created At:</string>
     <string name="status">Status:</string>
     <string name="remaining_tries">Remaining tries: %1$d</string>
-    <string name="products">Products</string>
     <string name="product">Product Details</string>
     <string name="contact_buyer">Contact buyer</string>
     <string name="add_to_wishlist">Add to wishlist</string>
@@ -118,4 +97,16 @@
     <string name="call_buyer">Call buyer</string>
     <string name="email_buyer">Email buyer</string>
     <string name="list_users">List Users</string>
+    <string name="share">Share</string>
+    <string name="update_my_product">Update my product</string>
+    <string name="update">Update</string>
+    <string name="category">Category:</string>
+    <string name="add_image">Add Image</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_price">Product Price</string>
+    <string name="product_description">Product Description</string>
+    <string name="product_quantity">Product Quantity</string>
+    <string name="edit">Edit</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
 </resources>

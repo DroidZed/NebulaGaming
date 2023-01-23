@@ -20,7 +20,6 @@ import com.mikhaellopez.circularimageview.CircularImageView
 import dagger.hilt.android.AndroidEntryPoint
 import tn.esprit.nebulagaming.adapters.ProfileVP2Adapter
 import tn.esprit.nebulagaming.fragments.BookmarksFragment
-import tn.esprit.nebulagaming.fragments.PostsFragment
 import tn.esprit.nebulagaming.fragments.RankFragment
 import tn.esprit.nebulagaming.utils.FileUtils.getFileFromUri
 import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
@@ -114,8 +113,7 @@ class ProfileActivity : AppCompatActivity() {
 
         val fragments: MutableList<Fragment> = mutableListOf(
             RankFragment(),
-            BookmarksFragment(),
-            PostsFragment()
+            BookmarksFragment()
         )
 
         val data = profileVM.fetchUserInfoFromDb()
@@ -137,14 +135,6 @@ class ProfileActivity : AppCompatActivity() {
                     icon = ResourcesCompat.getDrawable(
                         resources,
                         R.drawable.ic_baseline_bookmarks_24,
-                        null
-                    )
-                }
-                2 -> tab.apply {
-                    text = resources.getString(R.string.posts)
-                    icon = ResourcesCompat.getDrawable(
-                        resources,
-                        R.drawable.ic_baseline_forum_24,
                         null
                     )
                 }

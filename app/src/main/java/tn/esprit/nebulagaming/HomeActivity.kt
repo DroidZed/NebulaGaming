@@ -26,7 +26,6 @@ import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
 import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso
 import tn.esprit.nebulagaming.utils.Status
 import tn.esprit.nebulagaming.viewmodels.HomeViewModel
-import tn.esprit.nebulagaming.viewmodels.ProfileViewModel
 import tn.esprit.roommodule.models.UserProfile
 import tn.esprit.shared.Consts.QUIZ_NOTIF_CHANNEL_ID
 import tn.esprit.shared.Consts.QUIZ_NOTIF_CHANNEL_NAME
@@ -37,7 +36,6 @@ import tn.esprit.shared.Consts.QUIZ_TOPIC
 class HomeActivity : AppCompatActivity() {
 
     private val homeVM: HomeViewModel by viewModels()
-    private val profileVM: ProfileViewModel by viewModels()
 
     private lateinit var appToolBar: Toolbar
 

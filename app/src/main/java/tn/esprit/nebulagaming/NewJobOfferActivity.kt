@@ -89,7 +89,7 @@ class NewJobOfferActivity : AppCompatActivity() {
                 this,
                 { view, year, monthOfYear, dayOfMonth ->
                     // Display Selected date in textbox
-                    Startdatetext.setText("" + dayOfMonth + "/" + monthOfYear + "/" + year)
+                    Startdatetext.text = "" + dayOfMonth + "/" + monthOfYear + "/" + year
                 },
                 year,
                 month,
@@ -102,7 +102,7 @@ class NewJobOfferActivity : AppCompatActivity() {
                 this,
                 { view, year, monthOfYear, dayOfMonth ->
                     // Display Selected date in textbox
-                    Enddatetext.setText("" + dayOfMonth + "/" + monthOfYear + "/" + year)
+                    Enddatetext.text = "" + dayOfMonth + "/" + monthOfYear + "/" + year
                 },
                 year,
                 month,
