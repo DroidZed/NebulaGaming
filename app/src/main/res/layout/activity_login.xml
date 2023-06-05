@@ -133,134 +133,36 @@
             android:textColor="@color/white" />
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp">
-
-        <TextView
-            android:id="@+id/tvText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:fontFamily="@font/pacifico"
-            android:text="@string/continue_with"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:layout_toStartOf="@id/tvText"
-            android:background="@color/white" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
-            android:layout_toEndOf="@id/tvText"
-            android:background="@color/white" />
-
-    </RelativeLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginEnd="5dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:text="@string/don_t_have_an_account"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
-                android:id="@+id/fbLoginBtn"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_gravity="center"
-                android:layout_margin="9dp"
-                android:backgroundTint="@color/FbColor"
-                android:foregroundGravity="center"
-                android:gravity="center"
-                app:cornerRadius="28dp"
-                app:icon="@drawable/fbicone"
-                app:iconGravity="top"
-                app:iconSize="25dp"
-                app:iconTint="@color/white"
-                app:startIconTint="@color/white"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/googleBtn"
-                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_gravity="center"
-                android:layout_margin="9dp"
-                android:backgroundTint="@color/GoogleColor"
-                app:cornerRadius="28dp"
-                app:icon="@drawable/googleicone"
-                app:iconGravity="top"
-                app:iconSize="25dp"
-                app:iconTint="@color/white"
-                app:startIconTint="@color/white"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/discordButton"
-                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/DiscordColor"
-                app:cornerRadius="28dp"
-                app:icon="@drawable/discordicon"
-                app:iconGravity="top"
-                app:iconSize="25dp"
-                app:iconTint="@color/white"
-                app:startIconTint="@color/white"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/signUpText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="5dp"
-                android:gravity="center"
-                android:text="@string/don_t_have_an_account"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/signUpText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:text="@string/sign_up"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-
+            android:text="@string/sign_up"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 </LinearLayout>

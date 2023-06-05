@@ -34,10 +34,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var forgotPasswordLink: TextView
     private lateinit var signUpPrompt: TextView
 
-    private lateinit var fbLoginBtn: MaterialButton
-    private lateinit var googleBtn: MaterialButton
-    private lateinit var discordButton: MaterialButton
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -53,10 +49,6 @@ class LoginActivity : AppCompatActivity() {
 
         forgotPasswordLink = findViewById(R.id.resetPasswordLink)
         signUpPrompt = findViewById(R.id.signUpText)
-
-        fbLoginBtn = findViewById(R.id.fbLoginBtn)
-        googleBtn = findViewById(R.id.googleBtn)
-        discordButton = findViewById(R.id.discordButton)
 
         passwordET.on(IME_ACTION_DONE) {
             passwordET.apply {

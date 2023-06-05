@@ -87,12 +87,4 @@ object HelperFunctions {
                 Log.d("NOTIF-SUB", msg)
             }
     }
-
-    /**
-     * @param pattern Pattern like: DD-MM-YYYY
-     * @param d Date object
-     * @return Parsed date corresponding to the pattern supplied.
-     */
-    fun parseDateUsingPattern(pattern: String, d: Date? = null): String =
-        SimpleDateFormat(pattern, Locale.ENGLISH).format(d ?: Date())
 }

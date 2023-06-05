@@ -13,6 +13,7 @@ import tn.esprit.apimodule.models.GenericResp
 import tn.esprit.apimodule.models.UpdateProfileBody
 import tn.esprit.apimodule.utils.ResponseConverter
 import tn.esprit.authmodule.repos.UserAuthManager
+import tn.esprit.nebulagaming.utils.HelperFunctions.getImageFromBackend
 import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
 import tn.esprit.nebulagaming.utils.Resource
 import tn.esprit.roommodule.dao.UserDao
@@ -59,7 +60,7 @@ class ProfileViewModel @Inject constructor() : UserManipulationViewModel() {
                 try {
                     if (response.isSuccessful) {
                         try {
-                            user.photo = response.body()!!.message!!
+                            user.photo = getImageFromBackend(response.body()!!.message!!)
                             userDao.update(user)
                             onSuccess("Photo updated successfully!!")
                         } catch (e: Exception) {

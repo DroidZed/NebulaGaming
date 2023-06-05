@@ -57,9 +57,14 @@ class ProfileActivity : AppCompatActivity() {
                 Log.d("FILE", file.absolutePath)
 
                 profileVM.changeProfilePhoto(this, file)
-                photoProf.apply {
-                    scaleType = ImageView.ScaleType.CENTER_CROP
-                    setImageURI(contentURI)
+                profileVM.successMessage.observe(this) { msg ->
+                    if (msg != null) {
+                        toastMsg(this, msg)
+                        photoProf.apply {
+                            scaleType = ImageView.ScaleType.CENTER_CROP
+                            setImageURI(contentURI)
+                        }
+                    }
                 }
 
 
@@ -142,17 +147,16 @@ class ProfileActivity : AppCompatActivity() {
         }.attach()
     }
 
-    private fun setUi(user: UserProfile) {
+    private fun setUi(u: UserProfile) {
 
-        val userPhoto = when {
-            user.photo.contains("gravatar") -> user.photo
-            else -> user.photo
-        }
+        nameUser.text = u.name
 
-        nameUser.text = user.name
+        usePicasso(
+            u.photo,
+            R.drawable.avatar_profile_png_picture,
+            photoProf
+        )
 
-        usePicasso(userPhoto, R.drawable.avatar_profile_png_picture, photoProf)
-
-        numLevel.text = resources.getString(R.string.levelU, user.level)
+        numLevel.text = resources.getString(R.string.levelU, u.level)
     }
 }

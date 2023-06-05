@@ -21,6 +21,8 @@ import com.google.android.material.badge.BadgeUtils
 import com.google.android.material.navigation.NavigationView
 import com.mikhaellopez.circularimageview.CircularImageView
 import dagger.hilt.android.AndroidEntryPoint
+import tn.esprit.nebulagaming.utils.HelperFunctions
+import tn.esprit.nebulagaming.utils.HelperFunctions.getImageFromBackend
 import tn.esprit.nebulagaming.utils.HelperFunctions.subscribeToTopic
 import tn.esprit.nebulagaming.utils.HelperFunctions.toastMsg
 import tn.esprit.nebulagaming.utils.HelperFunctions.usePicasso

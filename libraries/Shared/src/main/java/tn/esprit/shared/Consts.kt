@@ -9,7 +9,7 @@ object Consts {
 
     const val DB_VERSION = 1
 
-    const val FUNCTION_URL = "https://zany-cyan-sea-lion-hem.cyclic.app"
+    const val FUNCTION_URL = "https://ng-back-production.up.railway.app"
 
     const val ID_PROD = "ID_PROD"
 
