@@ -13,6 +13,9 @@ interface UserDao : EntityDao<UserProfile> {
     @Query("SELECT * FROM UserProfile WHERE _id = :userId")
     suspend fun getUserWithBookmarks(userId: String): UserAndBookmarks?
 
+    @Query("SELECT * FROM UserProfile")
+    suspend fun getAllUsers(): List<UserProfile>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveUser(e: UserProfile)
 

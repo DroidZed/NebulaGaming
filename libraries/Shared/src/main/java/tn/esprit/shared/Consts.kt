@@ -9,7 +9,7 @@ object Consts {
 
     const val DB_VERSION = 1
 
-    const val FUNCTION_URL = "https://ng-back-production.up.railway.app"
+    const val FUNCTION_URL = "https://ng-back.vercel.app"
 
     const val ID_PROD = "ID_PROD"
 
@@ -28,6 +28,5 @@ object Consts {
     const val QUIZ_TOPIC = "quiz"
 
     const val INTENT_QUIZ_ID = "QUIZ_ID"
-
 }
 

@@ -13,6 +13,7 @@
         android:background="@color/DarkBarColor"
         app:menu="@menu/top_bar_menu"
         app:navigationIcon="@drawable/ic_baseline_menu"
+        app:navigationContentDescription="Open"
         app:title="@string/app_name"
         app:titleTextColor="@color/white" />
 
